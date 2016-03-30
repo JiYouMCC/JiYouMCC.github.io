@@ -11,3 +11,4 @@ paginate: 7
 paginate_path: "/blog/index/:num"
 gems: [jekyll-paginate]
 excerpt_separator: <!--more-->
+timezone: Asia/Shanghai
