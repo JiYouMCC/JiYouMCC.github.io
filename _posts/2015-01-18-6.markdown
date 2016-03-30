@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Sweet home"
+date:   2015-1-18 19:32:47 +0800
+categories: 生活
+---
+玩了一下午的画画，愣是敬佩学设计的同学们了
+
+linux下面sweet home 3d感觉是个不错的软件
+
+就是比较西式，比如找不到中式煤气灶之类的
+
+SweetHome在线版本：[Sweet Home 3D online](http://www.sweethome3d.com/zh-cn/SweetHome3DOnline.jsp)
+
+客户端支持Win,Mac,**Linux**
+
+语言支持En,XX,XX,XX...XX,**中文**
+
+<!--more-->
+
+![2D](http://7u2j48.com1.z0.glb.clouddn.com/blog_sweet_home_2.png)
+
+![3D](http://7u2j48.com1.z0.glb.clouddn.com/blog_sweet_home_1.png)
+
