@@ -1,0 +1,545 @@
+---
+layout: post
+title:  "中国元素颜色112个Hex代码"
+date:   2015-1-22 13:04:00 +0800
+categories: 技术
+tags: python
+---
+最早的时候是在微信朋友圈里面看到的图片作品，我搜了一下，因为流传太多，实在找不到作者，不知道是哪个数字工作室还是什么设计学院学生的作品
+<!--more-->
+
+## 实验前 ##
+
+昨晚我用其中几个颜色取色调整了下颜色方案，瞬间有了一种被PM2.5笼罩了的感觉，雾蒙蒙的，显然拿鸦黑做字色有点不太舒服
+
+![鸦黑方案](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color-0.PNG)
+
+## 源文件 ##
+
+大概搜了下，比较完整的是搜到了112个颜色，不过和流传的一样，只有图片没有颜色代码
+
+[中国颜色之美--古老中国色彩描述（一）](http://www.yeeed.com/2014/03/11295.html)
+
+[中国颜色之美--古老中国色彩描述（二）](http://www.yeeed.com/2014/03/11317.html)
+
+[中国颜色之美--古老中国色彩描述（三）](http://www.yeeed.com/2014/03/11339.html)
+
+[中国颜色之美--古老中国色彩描述（四）](http://www.yeeed.com/2014/03/11361.html)
+
+[中国颜色之美--古老中国色彩描述（五）](http://www.yeeed.com/2014/03/11383.html)
+
+[中国颜色之美--古老中国色彩描述（六）](http://www.yeeed.com/2014/03/11405.html)
+
+## 爬图 ##
+
+第一反应就是把图片爬下来自己慢慢整
+
+之前在[show-me-the-code/python](https://github.com/Show-Me-the-Code/python/tree/master/JiYouMCC/0013)写过一个[爬虫的程序段](https://github.com/JiYouMCC/python/blob/ef91e7046551d1275af5aa004f1e5e655322ca44/JiYouMCC/0013/0013.py)，必须复用
+
+    html_urls = ['http://www.yeeed.com/2014/03/11295.html',
+                 'http://www.yeeed.com/2014/03/11317.html',
+                 'http://www.yeeed.com/2014/03/11339.html',
+                 'http://www.yeeed.com/2014/03/11361.html',
+                 'http://www.yeeed.com/2014/03/11383.html',
+                 'http://www.yeeed.com/2014/03/11405.html', ]
+    # china color
+    for html_url in html_urls:
+        get_images(html_url=html_url, folder_name='color', extensions=['jpg'])
+
+不过在拉下来的过程中发现了个bug，用urllib2.Request去取图片的时候会发生图片文件不完整的情况，之前拉日本妹纸的时候肿么没发生呢
+
+于是修改了下，用urllib.urlretrieve去处理拉图片的过程
+
+    import urllib
+
+    urllib.urlretrieve(img, os.path.join(folder_name, filename))
+
+同样是在拉图片过程中发现，guid的名字对于人类来说辨认起来真的很难受，于是就写了个非常不优雅的global去命名
+
+    FILE_NAME_NUMBER = 0
+
+    global FILE_NAME_NUMBER
+    filename = str(FILE_NAME_NUMBER)
+    FILE_NAME_NUMBER += 1
+
+然后拉下来文件夹大概是这样的
+
+![文件夹里面的图片](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color1.PNG)
+
+## 取色 ##
+
+接着我很手贱地手动把不是颜色的图片给删了一些，删到后来是在觉得删起来很反人类，顿悟自己又2了一回
+
+因为颜色的图片都是500*280的大小，所以在取色的时候做点手脚其实就行了
+
+        # -*- coding: utf-8 -*-
+        from PIL import Image
+
+        list_img = os.listdir('color')
+        # 按照文件名排序，其实默认不需要的样子
+        list_img.sort(key=lambda x: str(x))
+        for item in list_img:
+            item_path = os.path.join('color', item)
+            if os.path.isfile(item_path):
+                try:
+                    im = Image.open(item_path)
+                    (width, height) = im.size
+                    # 图片尺寸为500*280的才取色
+                    if width == 500 and height == 280:
+                        # 不conver到RGBA，好几个颜色就成了int的255
+                        pix = im.convert('RGBA').load()
+                        pixels = pix[1, 1]
+                        # 输出为HEX
+                        print item, '#{:02x}{:02x}{:02x}'.format(pixels[0], pixels[1], pixels[2])
+                except Exception, e:
+                    print e
+
+敲出来结果基本是这样的
+
+![输出结果](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color2.PNG)
+
+## 人工找色 ##
+
+接下来的事情好像python搞不定了，毕竟python不是ocr……
+
+![人工找色](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color-3.PNG)
+
+我只能说，感谢sublime，感谢sublime3的图片预览功能，感谢sublime的Color Schema插件，感谢搜狗拼音输入法让我明白靛读‘店’而不是‘定’，赭念‘者’而不是‘猪’，殷红的殷读‘烟’而不是‘因’，瞬间上了一堂语文课，逼格貌似也level up了不少
+
+## 输出结果 ##
+
+然后排序一下
+
+    # -*- coding: utf-8 -*-
+    colors = [
+            ['#9d2932','胭脂'],
+            ['#789262','竹青'],
+            ['#426666','黛绿'],
+            ['#dc3022','酡红'],
+            ['#ff2021','大红'],
+            ['#fe7831','橘黄'],
+            ['#faff71','鸭黄'],
+            ['#ef7a82','嫣红'],
+            ['#db5a6c','海棠红'],
+            ['#bccdc5','蟹壳青'],
+            ['#bddd22','嫩绿'],
+            ['#61281f','栗色'],
+            ['#c89b40','昏黄'],
+            ['#cca4e3','丁香色'],
+            ['#f1fcfe','雪白'],
+            ['#57004f','紫棠'],
+            ['#f05654','银红'],
+            ['#f3d3e8','水红'],
+            ['#f2be46','赤金'],
+            ['#cb3a57','茜色'],
+            ['#f00057','品红'],
+            ['#549688','铜绿'],
+            ['#fef143','鹅黄'],
+            ['#9ed148','豆绿'],
+            ['#ffc774','薑黄'],
+            ['#00bb12','油绿'],
+            ['#ff4c01','朱红'],
+            ['#801dae','青莲'],
+            ['#0eb83b','葱青'],
+            ['#e9f0f6','霜色'],
+            ['#808080','灰色'],
+            ['#fcefe7','鱼肚白'],
+            ['#21a775','松柏绿'],
+            ['#0d8919','绿沈'],
+            ['#09a343','青葱'],
+            ['#6b6981','黝'],
+            ['#d9b612','秋香色'],
+            ['#177cb0','靛青'],
+            ['#ffb3a6','粉红'],
+            ['#a1afc9','蓝灰色'],
+            ['#ff3300','炎'],
+            ['#00e500','绿色'],
+            ['#ff2d52','火红'],
+            ['#424b50','鸦青'],
+            ['#9c5333','赭'],
+            ['#c32136','枣红'],
+            ['#a88462','驼色'],
+            ['#8e4bbc','紫色'],
+            ['#ecd1d8','藕色'],
+            ['#805463','紫酱'],
+            ['#fffbf0','象牙白'],
+            ['#e9ff55','樱草色'],
+            ['#3a2f40','乌黑'],
+            ['#4c8dad','群青'],
+            ['#494166','黛'],
+            ['#ff8c31','杏红'],
+            ['#f3f8f1','荼白'],
+            ['#075279','靛蓝'],
+            ['#ed5736','妃色'],
+            ['#fa8c35','橙色'],
+            ['#88ada6','水色'],
+            ['#fe0096','洋红'],
+            ['#f0eff4','铅白'],
+            ['#bbe672','松花色'],
+            ['#e0efe8','素'],
+            ['#9eda00','葱绿'],
+            ['#3eede8','碧蓝'],
+            ['#161824','漆黑'],
+            ['#c9dd23','柳黄'],
+            ['#70f2ff','蔚蓝'],
+            ['#8c4356','绛紫'],
+            ['#415065','黛蓝'],
+            ['#b0a4e2','雪青'],
+            ['#c3272b','赤'],
+            ['#f35436','彤'],
+            ['#003372','绀青'],
+            ['#d4f2e8','水绿'],
+            ['#d2b17c','枯黄'],
+            ['#067749','松花绿'],
+            ['#76664d','黎'],
+            ['#e29c46','黄櫨'],
+            ['#7febad','缥'],
+            ['#efdeb0','牙色'],
+            ['#f20c00','石榴红'],
+            ['#1cd1a6','碧色'],
+            ['#ffffff','精白'],
+            ['#be002e','殷红'],
+            ['#afdd22','柳绿'],
+            ['#ffa630','杏黄'],
+            ['#d7ecf1','月白'],
+            ['#c83c23','绯红'],
+            ['#6f511f','褐色'],
+            ['#5d513b','黧'],
+            ['#ffa401','橙黄'],
+            ['#00e078','青翠'],
+            ['#75878b','苍色'],
+            ['#725e83','乌色'],
+            ['#8a6c3a','秋色'],
+            ['#b36d61','檀'],
+            ['#4b5cc4','宝蓝'],
+            ['#748a98','墨灰'],
+            ['#f2ecde','缟'],
+            ['#41555c','黯'],
+            ['#a98175','绾'],
+            ['#44cef5','蓝'],
+            ['#a3e2c5','艾绿'],
+            ['#f0c239','缃色'],
+            ['#ca6924','琥珀'],
+            ['#574165','黛紫'],
+            ['#50606d','墨色'],
+            ['#3b2e7e','藏蓝'],
+            ['#2e4e7d','藏青']        
+        ]
+    colors.sort()
+    for color in colors:
+        print '<div style="width:200px;height:80px;background:%s;">%s %s</div>' % (color[0], color[1],color[0])
+
+输出结果：
+
+<div style="width:200px;height:80px;background:#003372;">绀青 #003372</div>
+<div style="width:200px;height:80px;background:#00bb12;">油绿 #00bb12</div>
+<div style="width:200px;height:80px;background:#00e078;">青翠 #00e078</div>
+<div style="width:200px;height:80px;background:#00e500;">绿色 #00e500</div>
+<div style="width:200px;height:80px;background:#067749;">松花绿 #067749</div>
+<div style="width:200px;height:80px;background:#075279;">靛蓝 #075279</div>
+<div style="width:200px;height:80px;background:#09a343;">青葱 #09a343</div>
+<div style="width:200px;height:80px;background:#0d8919;">绿沈 #0d8919</div>
+<div style="width:200px;height:80px;background:#0eb83b;">葱青 #0eb83b</div>
+<div style="width:200px;height:80px;background:#161824;">漆黑 #161824</div>
+<div style="width:200px;height:80px;background:#177cb0;">靛青 #177cb0</div>
+<div style="width:200px;height:80px;background:#1cd1a6;">碧色 #1cd1a6</div>
+<div style="width:200px;height:80px;background:#21a775;">松柏绿 #21a775</div>
+<div style="width:200px;height:80px;background:#2e4e7d;">藏青 #2e4e7d</div>
+<div style="width:200px;height:80px;background:#3a2f40;">乌黑 #3a2f40</div>
+<div style="width:200px;height:80px;background:#3b2e7e;">藏蓝 #3b2e7e</div>
+<div style="width:200px;height:80px;background:#3eede8;">碧蓝 #3eede8</div>
+<div style="width:200px;height:80px;background:#415065;">黛蓝 #415065</div>
+<div style="width:200px;height:80px;background:#41555c;">黯 #41555c</div>
+<div style="width:200px;height:80px;background:#424b50;">鸦青 #424b50</div>
+<div style="width:200px;height:80px;background:#426666;">黛绿 #426666</div>
+<div style="width:200px;height:80px;background:#44cef5;">蓝 #44cef5</div>
+<div style="width:200px;height:80px;background:#494166;">黛 #494166</div>
+<div style="width:200px;height:80px;background:#4b5cc4;">宝蓝 #4b5cc4</div>
+<div style="width:200px;height:80px;background:#4c8dad;">群青 #4c8dad</div>
+<div style="width:200px;height:80px;background:#50606d;">墨色 #50606d</div>
+<div style="width:200px;height:80px;background:#549688;">铜绿 #549688</div>
+<div style="width:200px;height:80px;background:#57004f;">紫棠 #57004f</div>
+<div style="width:200px;height:80px;background:#574165;">黛紫 #574165</div>
+<div style="width:200px;height:80px;background:#5d513b;">黧 #5d513b</div>
+<div style="width:200px;height:80px;background:#61281f;">栗色 #61281f</div>
+<div style="width:200px;height:80px;background:#6b6981;">黝 #6b6981</div>
+<div style="width:200px;height:80px;background:#6f511f;">褐色 #6f511f</div>
+<div style="width:200px;height:80px;background:#70f2ff;">蔚蓝 #70f2ff</div>
+<div style="width:200px;height:80px;background:#725e83;">乌色 #725e83</div>
+<div style="width:200px;height:80px;background:#748a98;">墨灰 #748a98</div>
+<div style="width:200px;height:80px;background:#75878b;">苍色 #75878b</div>
+<div style="width:200px;height:80px;background:#76664d;">黎 #76664d</div>
+<div style="width:200px;height:80px;background:#789262;">竹青 #789262</div>
+<div style="width:200px;height:80px;background:#7febad;">缥 #7febad</div>
+<div style="width:200px;height:80px;background:#801dae;">青莲 #801dae</div>
+<div style="width:200px;height:80px;background:#805463;">紫酱 #805463</div>
+<div style="width:200px;height:80px;background:#808080;">灰色 #808080</div>
+<div style="width:200px;height:80px;background:#88ada6;">水色 #88ada6</div>
+<div style="width:200px;height:80px;background:#8a6c3a;">秋色 #8a6c3a</div>
+<div style="width:200px;height:80px;background:#8c4356;">绛紫 #8c4356</div>
+<div style="width:200px;height:80px;background:#8e4bbc;">紫色 #8e4bbc</div>
+<div style="width:200px;height:80px;background:#9c5333;">赭 #9c5333</div>
+<div style="width:200px;height:80px;background:#9d2932;">胭脂 #9d2932</div>
+<div style="width:200px;height:80px;background:#9ed148;">豆绿 #9ed148</div>
+<div style="width:200px;height:80px;background:#9eda00;">葱绿 #9eda00</div>
+<div style="width:200px;height:80px;background:#a1afc9;">蓝灰色 #a1afc9</div>
+<div style="width:200px;height:80px;background:#a3e2c5;">艾绿 #a3e2c5</div>
+<div style="width:200px;height:80px;background:#a88462;">驼色 #a88462</div>
+<div style="width:200px;height:80px;background:#a98175;">绾 #a98175</div>
+<div style="width:200px;height:80px;background:#afdd22;">柳绿 #afdd22</div>
+<div style="width:200px;height:80px;background:#b0a4e2;">雪青 #b0a4e2</div>
+<div style="width:200px;height:80px;background:#b36d61;">檀 #b36d61</div>
+<div style="width:200px;height:80px;background:#bbe672;">松花色 #bbe672</div>
+<div style="width:200px;height:80px;background:#bccdc5;">蟹壳青 #bccdc5</div>
+<div style="width:200px;height:80px;background:#bddd22;">嫩绿 #bddd22</div>
+<div style="width:200px;height:80px;background:#be002e;">殷红 #be002e</div>
+<div style="width:200px;height:80px;background:#c32136;">枣红 #c32136</div>
+<div style="width:200px;height:80px;background:#c3272b;">赤 #c3272b</div>
+<div style="width:200px;height:80px;background:#c83c23;">绯红 #c83c23</div>
+<div style="width:200px;height:80px;background:#c89b40;">昏黄 #c89b40</div>
+<div style="width:200px;height:80px;background:#c9dd23;">柳黄 #c9dd23</div>
+<div style="width:200px;height:80px;background:#ca6924;">琥珀 #ca6924</div>
+<div style="width:200px;height:80px;background:#cb3a57;">茜色 #cb3a57</div>
+<div style="width:200px;height:80px;background:#cca4e3;">丁香色 #cca4e3</div>
+<div style="width:200px;height:80px;background:#d2b17c;">枯黄 #d2b17c</div>
+<div style="width:200px;height:80px;background:#d4f2e8;">水绿 #d4f2e8</div>
+<div style="width:200px;height:80px;background:#d7ecf1;">月白 #d7ecf1</div>
+<div style="width:200px;height:80px;background:#d9b612;">秋香色 #d9b612</div>
+<div style="width:200px;height:80px;background:#db5a6c;">海棠红 #db5a6c</div>
+<div style="width:200px;height:80px;background:#dc3022;">酡红 #dc3022</div>
+<div style="width:200px;height:80px;background:#e0efe8;">素 #e0efe8</div>
+<div style="width:200px;height:80px;background:#e29c46;">黄櫨 #e29c46</div>
+<div style="width:200px;height:80px;background:#e9f0f6;">霜色 #e9f0f6</div>
+<div style="width:200px;height:80px;background:#e9ff55;">樱草色 #e9ff55</div>
+<div style="width:200px;height:80px;background:#ecd1d8;">藕色 #ecd1d8</div>
+<div style="width:200px;height:80px;background:#ed5736;">妃色 #ed5736</div>
+<div style="width:200px;height:80px;background:#ef7a82;">嫣红 #ef7a82</div>
+<div style="width:200px;height:80px;background:#efdeb0;">牙色 #efdeb0</div>
+<div style="width:200px;height:80px;background:#f00057;">品红 #f00057</div>
+<div style="width:200px;height:80px;background:#f05654;">银红 #f05654</div>
+<div style="width:200px;height:80px;background:#f0c239;">缃色 #f0c239</div>
+<div style="width:200px;height:80px;background:#f0eff4;">铅白 #f0eff4</div>
+<div style="width:200px;height:80px;background:#f1fcfe;">雪白 #f1fcfe</div>
+<div style="width:200px;height:80px;background:#f20c00;">石榴红 #f20c00</div>
+<div style="width:200px;height:80px;background:#f2be46;">赤金 #f2be46</div>
+<div style="width:200px;height:80px;background:#f2ecde;">缟 #f2ecde</div>
+<div style="width:200px;height:80px;background:#f35436;">彤 #f35436</div>
+<div style="width:200px;height:80px;background:#f3d3e8;">水红 #f3d3e8</div>
+<div style="width:200px;height:80px;background:#f3f8f1;">荼白 #f3f8f1</div>
+<div style="width:200px;height:80px;background:#fa8c35;">橙色 #fa8c35</div>
+<div style="width:200px;height:80px;background:#faff71;">鸭黄 #faff71</div>
+<div style="width:200px;height:80px;background:#fcefe7;">鱼肚白 #fcefe7</div>
+<div style="width:200px;height:80px;background:#fe0096;">洋红 #fe0096</div>
+<div style="width:200px;height:80px;background:#fe7831;">橘黄 #fe7831</div>
+<div style="width:200px;height:80px;background:#fef143;">鹅黄 #fef143</div>
+<div style="width:200px;height:80px;background:#ff2021;">大红 #ff2021</div>
+<div style="width:200px;height:80px;background:#ff2d52;">火红 #ff2d52</div>
+<div style="width:200px;height:80px;background:#ff3300;">炎 #ff3300</div>
+<div style="width:200px;height:80px;background:#ff4c01;">朱红 #ff4c01</div>
+<div style="width:200px;height:80px;background:#ff8c31;">杏红 #ff8c31</div>
+<div style="width:200px;height:80px;background:#ffa401;">橙黄 #ffa401</div>
+<div style="width:200px;height:80px;background:#ffa630;">杏黄 #ffa630</div>
+<div style="width:200px;height:80px;background:#ffb3a6;">粉红 #ffb3a6</div>
+<div style="width:200px;height:80px;background:#ffc774;">薑黄 #ffc774</div>
+<div style="width:200px;height:80px;background:#fffbf0;">象牙白 #fffbf0</div>
+<div style="width:200px;height:80px;background:#ffffff;">精白 #ffffff</div>
+
+## 完整代码 ##
+
+    # -*- coding: utf-8 -*-
+    import urllib2
+    import urllib
+    import os
+    import uuid
+    import re
+    from PIL import Image
+
+    FILE_NAME_NUMBER = 0
+
+
+    def get_images(html_url='http://ycool.com/post/ae3u4zu',
+                   folder_name='jiyou_blog_PingLiangRoad',
+                   extensions=['gif', 'png', 'jpg']):
+        global FILE_NAME_NUMBER
+        request_html = urllib2.Request(html_url)
+        try:
+            response = urllib2.urlopen(request_html)
+            html = response.read()
+            r1 = r'<img.+src=\".+?\"'
+            r2 = r'<img.+src=\"(.+?)\"'
+            results = []
+            imgs = []
+            p = re.compile(r1)
+            for m in p.finditer(html):
+                results.append(m.group())
+            for result in results:
+                compile_result = re.compile(r2)
+                imgs.append(compile_result.sub(r'\1', result))
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)
+            for img in imgs:
+                filename = str(FILE_NAME_NUMBER)
+                ex = ''
+                for extension in extensions:
+                    if '.%s' % extension in img:
+                        ex = '.%s' % extension
+                if ex is '':
+                    continue
+                filename += ex
+                try:
+                    urllib.urlretrieve(img, os.path.join(folder_name, filename))
+                    print 'Image save at %s' % os.path.join(folder_name, filename)
+                    FILE_NAME_NUMBER += 1
+                except Exception, ex:
+                    print ex
+        except Exception, e:
+            print e
+
+    html_urls = ['http://www.yeeed.com/2014/03/11295.html',
+                 'http://www.yeeed.com/2014/03/11317.html',
+                 'http://www.yeeed.com/2014/03/11339.html',
+                 'http://www.yeeed.com/2014/03/11361.html',
+                 'http://www.yeeed.com/2014/03/11383.html',
+                 'http://www.yeeed.com/2014/03/11405.html', ]
+    for html_url in html_urls:
+        get_images(html_url=html_url, folder_name='color', extensions=['jpg'])
+
+
+    list_img = os.listdir('color')
+    list_img.sort(key=lambda x: str(x))
+    for item in list_img:
+        item_path = os.path.join('color', item)
+        if os.path.isfile(item_path):
+            try:
+                im = Image.open(item_path)
+                (width, height) = im.size
+                if width == 500 and height == 280:
+                    pix = im.convert('RGBA').load()
+                    pixels = pix[1, 1]
+                    print item, '#{:02x}{:02x}{:02x}'.format(pixels[0], pixels[1], pixels[2])
+            except Exception, e:
+                print e
+
+    colors = [
+            ['#9d2932','胭脂'],
+            ['#789262','竹青'],
+            ['#426666','黛绿'],
+            ['#dc3022','酡红'],
+            ['#ff2021','大红'],
+            ['#fe7831','橘黄'],
+            ['#faff71','鸭黄'],
+            ['#ef7a82','嫣红'],
+            ['#db5a6c','海棠红'],
+            ['#bccdc5','蟹壳青'],
+            ['#bddd22','嫩绿'],
+            ['#61281f','栗色'],
+            ['#c89b40','昏黄'],
+            ['#cca4e3','丁香色'],
+            ['#f1fcfe','雪白'],
+            ['#57004f','紫棠'],
+            ['#f05654','银红'],
+            ['#f3d3e8','水红'],
+            ['#f2be46','赤金'],
+            ['#cb3a57','茜色'],
+            ['#f00057','品红'],
+            ['#549688','铜绿'],
+            ['#fef143','鹅黄'],
+            ['#9ed148','豆绿'],
+            ['#ffc774','薑黄'],
+            ['#00bb12','油绿'],
+            ['#ff4c01','朱红'],
+            ['#801dae','青莲'],
+            ['#0eb83b','葱青'],
+            ['#e9f0f6','霜色'],
+            ['#808080','灰色'],
+            ['#fcefe7','鱼肚白'],
+            ['#21a775','松柏绿'],
+            ['#0d8919','绿沈'],
+            ['#09a343','青葱'],
+            ['#6b6981','黝'],
+            ['#d9b612','秋香色'],
+            ['#177cb0','靛青'],
+            ['#ffb3a6','粉红'],
+            ['#a1afc9','蓝灰色'],
+            ['#ff3300','炎'],
+            ['#00e500','绿色'],
+            ['#ff2d52','火红'],
+            ['#424b50','鸦青'],
+            ['#9c5333','赭'],
+            ['#c32136','枣红'],
+            ['#a88462','驼色'],
+            ['#8e4bbc','紫色'],
+            ['#ecd1d8','藕色'],
+            ['#805463','紫酱'],
+            ['#fffbf0','象牙白'],
+            ['#e9ff55','樱草色'],
+            ['#3a2f40','乌黑'],
+            ['#4c8dad','群青'],
+            ['#494166','黛'],
+            ['#ff8c31','杏红'],
+            ['#f3f8f1','荼白'],
+            ['#075279','靛蓝'],
+            ['#ed5736','妃色'],
+            ['#fa8c35','橙色'],
+            ['#88ada6','水色'],
+            ['#fe0096','洋红'],
+            ['#f0eff4','铅白'],
+            ['#bbe672','松花色'],
+            ['#e0efe8','素'],
+            ['#9eda00','葱绿'],
+            ['#3eede8','碧蓝'],
+            ['#161824','漆黑'],
+            ['#c9dd23','柳黄'],
+            ['#70f2ff','蔚蓝'],
+            ['#8c4356','绛紫'],
+            ['#415065','黛蓝'],
+            ['#b0a4e2','雪青'],
+            ['#c3272b','赤'],
+            ['#f35436','彤'],
+            ['#003372','绀青'],
+            ['#d4f2e8','水绿'],
+            ['#d2b17c','枯黄'],
+            ['#067749','松花绿'],
+            ['#76664d','黎'],
+            ['#e29c46','黄櫨'],
+            ['#7febad','缥'],
+            ['#efdeb0','牙色'],
+            ['#f20c00','石榴红'],
+            ['#1cd1a6','碧色'],
+            ['#ffffff','精白'],
+            ['#be002e','殷红'],
+            ['#afdd22','柳绿'],
+            ['#ffa630','杏黄'],
+            ['#d7ecf1','月白'],
+            ['#c83c23','绯红'],
+            ['#6f511f','褐色'],
+            ['#5d513b','黧'],
+            ['#ffa401','橙黄'],
+            ['#00e078','青翠'],
+            ['#75878b','苍色'],
+            ['#725e83','乌色'],
+            ['#8a6c3a','秋色'],
+            ['#b36d61','檀'],
+            ['#4b5cc4','宝蓝'],
+            ['#748a98','墨灰'],
+            ['#f2ecde','缟'],
+            ['#41555c','黯'],
+            ['#a98175','绾'],
+            ['#44cef5','蓝'],
+            ['#a3e2c5','艾绿'],
+            ['#f0c239','缃色'],
+            ['#ca6924','琥珀'],
+            ['#574165','黛紫'],
+            ['#50606d','墨色'],
+            ['#3b2e7e','藏蓝'],
+            ['#2e4e7d','藏青']        
+        ]
+    colors.sort()
+    for color in colors:
+        print '<div style="width:200px;height:80px;background:%s;">%s %s</div>' % (color[0], color[1],color[0])
+
+然后用漆黑改了下颜色
+
+![漆黑配色方案](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color-4.png)
+
+对比着似乎精神不少，不过毕竟漆黑不是#000，稍微还有点云雾的感觉……
