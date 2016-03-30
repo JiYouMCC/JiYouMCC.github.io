@@ -1,0 +1,304 @@
+---
+layout: post
+title:  "生命游戏"
+date:   2015-8-26 13:22:00 +0800
+categories: 技术
+tags: c python
+---
+
+从开始写代码就乐此不疲的一个项目
+
+![100阶段的随机250X250生命游戏](http://7u2j48.com1.z0.glb.clouddn.com/blog_ConwayLifeGame.gif "100阶段的随机250X250生命游戏")
+<!--more-->
+
+当年写C的时候的版本
+----------
+
+[【C】生命游戏](http://ycool.com/post/3mj8s5a "【C】生命游戏")
+
+~~~~.c
+#include <stdio.h>
+#include <malloc.h>
+#include <curses.h>
+#include <stdlib.h>
+#include <time.h>
+
+struct life
+{
+    int around;
+    struct life *up;
+    struct life *down;
+    struct life *left;
+    struct life *right;
+    bool i;
+};
+
+struct life *createLife(bool li)
+{
+    struct life *l=(struct life*)malloc(sizeof(struct life));
+    l->left=NULL;
+    l->right=NULL;
+    l->up=NULL;
+    l->down=NULL;
+    l->around=0;
+    l->i=li;
+    return l;
+}
+
+void print(struct life *l)
+{
+    if (l->i==false)
+        printf("  ");
+    else
+        printf("[]");
+}
+
+void checkAround(struct life *l)
+{
+    struct life *temp;
+    l->around=0;
+    temp=l->up;//北
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+    temp=l->down;//南
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+    temp=l->left;//西
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+    temp=l->right;//东
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+    temp=l->up;
+    if(temp!=NULL)
+        temp=temp->left;//西北
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+    temp=l->up;
+    if(temp!=NULL)
+        temp=temp->right;//东北
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+    temp=l->down;
+    if(temp!=NULL)
+        temp=temp->left;//西南
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+    temp=l->down;
+    if(temp!=NULL)
+        temp=temp->right;//东南
+    if(temp!=NULL)
+        if(temp->i==true)
+            l->around++;
+        ;
+}
+
+void develop(struct life *l)
+{
+    if(l->around==3)
+        l->i=true;
+    else if(l->around==2)
+        ;
+    else
+        l->i=false;
+}            
+
+struct lifes
+{
+    int x;
+    int y;
+    struct life *start;
+}Lifes;
+
+void createLifes(int X,int Y)
+{
+    int i,j;
+    Lifes.x=X;
+    Lifes.y=Y;
+    struct life *temp1,*temp2,*temp3;
+    //横向建立
+    Lifes.start=createLife(false);
+    for(j=0,temp2=Lifes.start;j<Y;)
+    {
+        for(i=1,temp1=temp2;i<X;i++)
+        {
+            temp1->right=createLife(rand()%2);
+            temp1->right->left=temp1;
+            temp1=temp1->right;
+        }
+        j++;
+        if(j<Y)
+        {
+            temp2->down=createLife(false);
+            temp2->down->up=temp2;
+            temp2=temp2->down;
+        }
+    }
+    //纵向串联
+    for(j=1,temp1=Lifes.start;j<Y;j++,temp1=temp1->down)
+    {
+        for(i=0,temp2=temp1,temp3=temp1->down;i<X;)
+        {
+            temp2->down=temp3;
+            temp3->up=temp2;
+            i++;
+            if(i<X)
+            {
+                temp2=temp2->right;
+                temp3=temp3->right;
+            }
+        }
+    }
+}
+
+void printLifes()
+{
+    struct life *temp1,*temp2;
+    int i,j;
+    for(j=0,temp1=Lifes.start;j<Lifes.y;j++,temp1=temp1->down)
+    {
+        for(i=0,temp2=temp1;i<Lifes.x;i++,temp2=temp2->right)
+            print(temp2);
+        printf("\n");
+    }
+}
+
+void developLifes()
+{
+    struct life *temp1,*temp2;
+    int i,j;
+    for(j=0,temp1=Lifes.start;j<Lifes.y;j++,temp1=temp1->down)
+    {
+        for(i=0,temp2=temp1;i<Lifes.x;i++,temp2=temp2->right)
+        {
+            checkAround(temp2);
+        }
+    }
+    for(j=0,temp1=Lifes.start;j<Lifes.y;j++,temp1=temp1->down)
+    {
+        for(i=0,temp2=temp1;i<Lifes.x;i++,temp2=temp2->right)
+            develop(temp2);
+    }
+    printLifes();
+}
+
+int main()
+{
+    time_t start,finish;
+    int i;
+    start=clock();
+    srand(time(0));
+    struct lifes *a=&Lifes;
+    createLifes(60,33);
+    for(i=0;i<1000;i++)
+    {
+        for(;((double)(finish-start))/CLOCKS_PER_SEC<0.4;)
+        {
+            finish=clock();
+        }
+        start=finish;
+        developLifes();
+        printf("--------------------------------the %d day-----------------------------\n",i);
+       
+    }
+    return 0;
+}
+~~~~
+
+python版本
+--------
+~~~~.python
+# https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+from images2gif import writeGif
+from PIL import Image
+from PIL import ImageDraw
+import random
+import copy
+
+LIFE = 1
+DEAD = 0
+
+
+class ConwayLifeGame(object):
+
+    def __init__(self, width, height, life=[]):
+        width = width or 0
+        height = height or 0
+        self.rooms = [[DEAD for y in range(height)] for x in range(width)]
+        self.age = 0
+        for x, y in life:
+            if x in range(self.width) and y in range(self.height):
+                self.rooms[x][y] = LIFE
+
+    def print_to_gif(self, ages=20, file_name='ConwayLifeGame'):
+        images = []
+        squares = {}
+        for age in range(ages):
+            t_age, rooms, count = self.grow()
+            squares[t_age] = rooms
+        for age, rooms in squares.items():
+            image = Image.new('RGB', (self.width, self.height))
+            draw = ImageDraw.Draw(image)
+            for y in range(self.height):
+                for x in range(self.width):
+                    if rooms[x][y]:
+                        draw.point((x, y))
+            images.append(image)
+        writeGif("%s.gif" % file_name, images)
+        return squares
+
+    @property
+    def count(self):
+        return sum([sum(column) for column in self.rooms])
+
+    @property
+    def width(self):
+        return len(self.rooms)
+
+    @property
+    def height(self):
+        if self.width:
+            return len(self.rooms[0])
+        else:
+            return 0
+
+    def neighbors(self, width, height):
+        neigh_points = [(-1, -1), (0, -1), (1, -1),
+                        (-1, 0), (1, 0),
+                        (-1, 1), (0, 1), (1, 1), ]
+        count = 0
+        for px, py in neigh_points:
+            x, y = width + px, height + py
+            if x in range(self.width) and y in range(self.height):
+                if self.rooms[x][y]:
+                    count += 1
+        return count
+
+    def grow(self, age=1):
+        new_rooms = [[0 for y in range(self.height)]
+                     for x in range(self.width)]
+        for y in range(self.height):
+            for x in range(self.width):
+                neighs = self.neighbors(x, y)
+                if self.rooms[x][y]:
+                    if neighs < 2:
+                        new_rooms[x][y] = DEAD
+                    elif neighs is 2 or neighs is 3:
+                        new_rooms[x][y] = LIFE
+                    else:
+                        new_rooms[x][y] = DEAD
+                else:
+                    if neighs is 3:
+                        new_rooms[x][y] = LIFE
+        self.rooms = new_rooms
+        self.age += 1
+        return self.age, self.rooms, self.count
+~~~~
+我觉得奇怪的是好像python跑的没有纯c效率。。

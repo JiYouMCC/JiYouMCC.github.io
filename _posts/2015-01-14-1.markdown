@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "碎碎念"
+date:   2015-1-14 19:48:21 +0800
+categories: 技术
+---
+我已经严重过了写博客的年龄了。
+不过最近在玩django。
+考虑在新浪云豆用完前多折腾折腾。
+
+### 你好，这是一个测试页面。 ###
+
+### python测试 ###
+
+    class Person:
+        name=""
+
+        def __init__(self, name="Mr Jia on the way"):
+            self.name = name
+
+
+        def say_hello(self):
+            print "Hello, %s!" % (self.name)
+
+
+    people=[
+        Person(name='Jill'),
+    ]
+    for person in people:
+        person.say_hello()
+
+### c测试 ###
+
+    #include<stdio.h>
+
+    int main()
+    {
+        printf("Hello world!");
+        return 0;
+    }
+
+### xml测试 ###
+
+    <html>
+        <head>
+            <title>Hello World</title>
+        </head>
+        <body>
+            <h1>Hello world</h1>
+        </body>
+    </html>

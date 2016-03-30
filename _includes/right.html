@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>最新文章</strong>
+  </div>
+  <div class="list-group">
+    {% for post in site.posts offset: 0 limit: 7  %}
+    <a title="{{ post.date }}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
+    {% endfor %}
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>最新评论</strong>
+    </div>
+    <div class="list-group ds-recent-comments" data-num-items="7" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>RSS</strong>
+  </div>
+  <div class="list-group">
+    <a href="/feed.xml" class="list-group-item">{{ site.title }}</a>
+  </div>
+</div>

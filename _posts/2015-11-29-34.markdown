@@ -1,0 +1,261 @@
+---
+layout: post
+title:  "长大的龙们（附：Flight Rising一些资料整理）"
+date:   2015-11-29 21:26:00 +0800
+categories: 游戏
+tags: FR
+---
+在玩了几天过后，一些在刚开始两天从市场带回来的小龙都长大了，有些出落得愈发标致/帅气，有些就有点……
+
+![硝基](http://7u2j48.com1.z0.glb.clouddn.com/blog_fr_051129_nitryl.png "硝基")
+<!--more-->
+
+硝基同学，在我的5只以官能团命名的龙里面真的是长的最最漂亮的，当然他的帝王血统让他天生拥有一定的优越感，两个闪基因也帮了很大的忙，加上“帝王”的紫色配色，真的太帅了
+
+![羧基](http://7u2j48.com1.z0.glb.clouddn.com/blog_fr_051129_carboxyl.png "羧基")
+
+羧基同学，虽然是一只3 basic基因的二代龙，但是长得挺踏实的
+
+![羟基](http://7u2j48.com1.z0.glb.clouddn.com/blog_fr_051129_oxhydryl.png "羟基")
+
+羟基同学，血统是夜曲，但这种像是打翻了染缸的基因我个人还是不是很待见
+
+![氯基](http://7u2j48.com1.z0.glb.clouddn.com/blog_fr_051129_chlor.png "氯基")
+
+氯基同学，血统是天舞，和羟基同学一样遭到了我的不待见……
+
+![磺基](http://7u2j48.com1.z0.glb.clouddn.com/blog_fr_051129_sulfo.png "磺基")
+
+最可惜的就是磺基同学了，身为一只稀有的羽蛇，为啥可以毛长的颜色那么奇怪…………
+
+----
+
+![李四](http://7u2j48.com1.z0.glb.clouddn.com/blog_fr_051129_lisi.png "李四")
+
+长大了的李四姑娘，水晶基因还是很美啊。给脚上绑铁链是什么意思（喂——
+
+![张三](http://7u2j48.com1.z0.glb.clouddn.com/blog_fr_051129_zhangsan.png "张三")
+
+李四的童养婿张三同学，虽然他长的丑，和李四还不是一个血统的，但当时确实是为了这个缘故去找他的。不过他很幸运有了一张皮，稍微有点王老五的感觉了。就是李四貌似有很多特殊配偶，比如上面的硝基同学，还有另一个毛毛培育计划中的一个毛毛父亲候选人（也是一只寻珠，雄性）
+
+## 另:最近整理的一些FR的资料
+
+其实我是为了做一些个脚本，比如说，自动计算2只龙后代的各种颜色基因范围，输入一系列要求（比如雌性的navy-white-ice，第三基因为裂纹），计算2只龙的后代出现满足要求龙的几率
+
+以下所有中文不代表官方翻译，要是毛毛叫毛毛估计官方会疯了的。还有那个胖子是什么鬼……
+
+| Odds | 几率 |产假|
+| ------ | ------ |---|
+| Plentiful   | 丰富   |15|
+| Common   | 常见   |20|
+| Uncommon   | 罕见   |25|
+| Limited   | 限定   |30|
+| Rare   | 稀有   |35|
+
+| Gender |  性别|
+| ------ | ------ |
+| Male   | 雄性   |
+| Female   | 雌性   |
+
+| Diet | 饮食 |
+| ------ | ------ |
+| Insects   | 昆虫   |
+| Meet   | 肉类   |
+| Seafood   | 海鲜   |
+| Plants   | 植物   |
+
+| Gene | 基因分类 |
+| ------ | ------ |
+| Primary   | 第一基因   |
+| Secondary   | 第二基因   |
+| Tertiary   | 第三基因   |
+
+| Element | 元素 |
+| ------ | ------ |
+| Arcane   | 奥术   |
+| Earth   | 地   |
+| Fire   | 火   |
+| Ice   | 冰   |
+| Light   | 光   |
+| Lightning   | 电   |
+| Nature   | 自然   |
+| Plague   | 瘟疫  |
+| Shadow   | 影   |
+| Water   | 水   |
+| Wind   | 风   |
+
+我和老盆友就Nature和Plague的翻译有过一段讨论。当时我希望能够接受一点建议把Nature翻译成一个字，老盆友说“草”不错，我心里直接把这个主意给枪毙了。接着讨论瘟疫的时候，我说：
+
+“大家好，我叫张三，我是一只病龙。”
+
+“……可以翻译成瘟龙……”
+
+“大家好，我叫张三，我是一只瘟龙。”
+
+“…………”
+
+于是还是算了，同时把原来翻译成了“魔”的Arcane还是变成奥术了。
+
+
+<a target="_blank" href="http://flightrising.com/main.php?dragon=18581573">
+<img src="http://flightrising.com/rendern/350/185816/18581573_350.png">
+</a>
+
+
+（无辜躺枪的张三：“麻麻我记得我是一只lighting龙，我不是Plague龙，你看我眼睛的颜色！”）
+
+| Breed | 品种 | Odds | Diet |
+| ------ | ------ | ------ | ------ |
+| Fae   | 精灵   | Plentiful   | Insects   |
+| Guardian   | 守护   | Plentiful   | Insects, Meet, Seafood, Plants  |
+| Tundra   | 毛毛   | Plentiful   | Plants   |
+| Mirror   | 镜子   | Plentiful   | Meet, Seafood   |
+| Pearlcatcher   | 寻珠   | Common   | Insects,  Plants  |
+| Ridgeback   | 脊背   | Common   | Seafood   |
+| Snapper   | 胖子   | Common   | Plants, Seafood  |
+| Spiral   | 圈圈   | Common   | Insects, Meet  |
+| Skydancer   | 天舞   | Uncommon   | Insects, Plants  |
+| Imperial   | 帝王   | Limited   | Insects, Meet, Seafood, Plants   |
+| Nocturne   | 夜曲   | Limited   | Insects, Meet   |
+| Wildclaw   | 野爪   | Rare   | Meet   |
+| Coatl   | 羽蛇   | Rare   | Seafood   |
+
+| Primary Gene | 第一基因 | Odds |
+| ------ | ------ | ------ |
+| Basic   | 基础   | Plentiful   |
+| Clown   | 小丑   | Common   |
+| Piebald   | 花斑   | Common   |
+| Speckle   | 斑纹   | Common   |
+| Tiger   | 虎纹   | Common   |
+| Bar   | 条纹   | Uncommon   |
+| Cherub   | 天使   | Uncommon   |
+| Ripple   | 涟漪   | Uncommon   |
+| Vipera   | 蛇纹   | Uncommon   |
+| Poison   | 毒药   | Limited   |
+| Crystal   | 水晶   | Rare   |
+| Iridescent   | 渐变   | Rare   |
+
+| Secondary Gene | 第二基因 | Odds |
+| ------ | ------ | ------ |
+| Basic   | 基础   | Plentiful   |
+| Current   | 涌流   | Common   |
+| Daub   |    | Common   |
+| EyeSpots   |    | Common   |
+| Freckle   |    | Common   |
+| Paint   |    | Common   |
+| Peregrine   |    | Common   |
+| Stripes   |    | Common   |
+| Hypnotic   |    | Uncommon   |
+| Seraph   |    | Uncommon   |
+| Toxin   |    | Limited   |
+| Facet   | 侧面   | Rare   |
+| Shimmer   | 闪烁   | Rare   |
+
+| Tertiary Gene | 第三基因 | Odds |
+| ------ | ------ | ------ |
+| Basic   | 基础   | Plentiful   |
+| Underbelly   | 腹部   | Common   |
+| Crackle   | 裂纹   | Uncommon   |
+| Okapi   |    | Uncommon   |
+| Smoke   | 烟纹   | Uncommon   |
+| Gembond   |    | Limited   |
+| Spines   | 脊刺   | Limited   |
+| Circuit   | 电路   | Rare   |
+| Glimmer   | 闪光   | Rare   |
+
+资料主要来源于[Flight_Rising_Wiki](http://flightrising.wikia.com/wiki/Flight_Rising_Wiki "Flight Rising Wiki")，这个站点还有移动设计，手机看起来感觉不错。
+
+----
+## 我写脚本的初衷
+
+我想要培养一只特定条件的龙，条件如下：
+~~~~
+target = {
+    'gender': Gender.Female,
+    'breed': Breed.Tundra,
+    'tertiaryGene': TertiaryGene.Crackle,
+    'primaryColor': DragonColor.Navy,
+    'secondaryColor': DragonColor.White,
+    'tertiaryColor': DragonColor.Ice
+}
+~~~~
+现在已经在拍卖行找到了3只龙，其中一只作为母上大人，主要是保留毛毛的血统
+~~~~
+ TiYi ♀
+ #18614948
+ 毛毛 光龙
+----------
+ 渐变 宝蓝
+ 闪烁 煤黑
+ 裂纹 银灰
+~~~~
+
+然后是2只为了校准颜色找来的父上候选，巧合地是他们居然颜色相同，但是依然各有缺点
+
+~~~~
+ TiYiBan ♂
+ #18701932
+ 寻珠 水龙
+----------
+ 斑纹 藏青
+ 雀斑 白色
+ 裂纹 玉米色
+~~~~
+
+缺点在于二基因在毛毛身上就像沾染了水渍
+
+~~~~
+ TiYiSan ♂
+ #18674452
+ 守卫 自然龙
+----------
+ 水晶 藏青
+ 闪烁 白色
+ 裂纹 玉米色
+~~~~
+缺点在于一基因是水晶，虽然水晶很美，但是不太符合我的要求
+
+在去除了对一、二基因的苛求后结果如下：
+
+~~~~
+TiYi ♀  TiYiBan ♂   
+=====品种=====
+寻珠 30.0 % 毛毛 70.0 %
+====第一基因====
+斑纹 99.0 % 渐变 1.0 %
+宝蓝 风暴蓝 藏青
+====第二基因====
+闪烁 1.0 % 雀斑 99.0 %
+白色 冰蓝 银灰 银色 灰色 炭灰 煤黑
+====第三基因====
+裂纹 100 %
+玉米色 白色 冰蓝 银灰
+几率：0.416666666667 %
+~~~~
+
+~~~~
+TiYi ♀  TiYiSan ♂   
+=====品种=====
+守卫 50.0 % 毛毛 50.0 %
+====第一基因====
+渐变 50.0 % 水晶 50.0 %
+宝蓝 风暴蓝 藏青
+====第二基因====
+闪烁 100 %
+白色 冰蓝 银灰 银色 灰色 炭灰 煤黑
+====第三基因====
+裂纹 100 %
+玉米色 白色 冰蓝 银灰
+几率：0.297619047619 %
+~~~~
+
+好像提一半占一定的优势，而且一基因斑纹很不错。就是……0.41%和0.29%的几率真的差很多吗…………
+
+## 相关代码
+[flight_rising.py](https://github.com/JiYouMCC/python-practice/blob/master/game/flight_rising.py "flight_rising.py")
+
+原来想放在gist上面的，但是……
+
+如果有颜色的翻译等等的修改我就直接放在代码里面了，如果有翻译建议可以告诉我。
+
+我真的很想知道胖子到底应该叫什么。

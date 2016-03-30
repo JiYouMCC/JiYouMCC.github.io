@@ -1,0 +1,40 @@
+---
+layout: default
+title: "标签"
+---
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  {% for tag in site.tags %}
+  <li role="presentation">
+    <a id="tag_{{ tag[0] }}" href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ tag[0] }} <span class="badge">{{ tag[1].size }}</span></a>
+  </li>
+  {% endfor %}
+</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+{% for tag in site.tags %}
+  <div role="tabpanel" class="tab-pane" id="{{ tag[0] }}">
+    <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th><th></th><th>分类</th><th>评论</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in tag[1] %}
+        <tr>
+          <td><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></td>
+          <td class="page_datetime">{{ post.date }}</td>
+          <td>{% if post.categories.size > 0 %}<span><a class="label label-default" href="/type#{{ post.categories }}">{{ post.categories }}</a></span>{% endif %}</td>
+          <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+{% endfor %}
+</div>
+<script type="text/javascript">
+  $("#tag_"+location.hash.replace("#","")).tab('show');
+</script>

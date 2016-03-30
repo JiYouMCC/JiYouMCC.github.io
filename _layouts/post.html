@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span class="page_blog_title">{{ page.title }}</span>
+    <span class="page_datetime">{{ page.date }}</span>
+  </div>
+  <article id="blog_content" class="panel-body page_blog_content">
+    {{ content }}
+  </article>
+  <div class="panel-footer page_blog_footer">
+    <strong>
+      <span>{% if page.categories.size > 0 %}分类&nbsp;<a class="label label-default" href="/type#{{ page.categories }}">{{ page.categories }}</a>{% else %}未分类{% endif %}</span>
+      {% if page.tags.size > 0 %}<span>标签{% for tag in page.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
+    </strong>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="ds-thread" data-thread-key="{{ page.id }}" data-title="{{ page.title }}" data-url="{{ post.url | prepend: site.baseurl }}"></div>
+  <a name="comments"></a>
+</div>
