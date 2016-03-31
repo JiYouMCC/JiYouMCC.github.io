@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "永远吐不完槽的sae"
+date:    2015-3-9 22:53:04 +0800
+categories: 技术
+---
+上海备案啊备案啊备案啊备案啊……
+
+python字体啊字体啊字体啊字体啊……
+
+KVDB稳定啊稳定啊稳定啊稳定啊……
+
+django1.8啊1.8啊1.8啊1.8啊……
+
+python3.x啊3.x3.x3.x……（我一个python2.X党为什么要吐这个？）
+
+django form上传图片nginx 504 gateway超时啊超时啊超时啊超时啊……
+
+
