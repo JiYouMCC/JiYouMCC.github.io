@@ -68,12 +68,13 @@
 .checkbox_true:before {
   font-weight: bold;
   content: "\2611\  ";
-  font-size: 16pt;
+  font-size: 15pt;
 }
 
 .checkbox_false:before {
   font-weight: bold;
   content: "\2610\  ";
+  font-size: 15pt;
 }
 
 .page_blog_content table {
