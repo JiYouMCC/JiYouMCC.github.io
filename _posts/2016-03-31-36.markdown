@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "我的世界"
-date:   2015-3-31 23:10:31 +0800
+date:   2016-3-31 23:10:31 +0800
 categories: 游戏
 tags: MC
 ---
-最近迷恋上了[Minecraft](https://minecraft.net/)[Minecraft]这款游戏。
+最近迷恋上了[Minecraft](https://minecraft.net/)这款游戏。
 
 其实知乎介绍了很久了，但是一直没尝试。
 
