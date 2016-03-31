@@ -61,18 +61,19 @@
 .checkbox_true,
 .checkbox_false {
     list-style-type: none;
-    margin: 0px;
+    margin: 0 0 0 -20px;
     padding: 0px;
 }
 
 .checkbox_true:before {
   font-weight: bold;
-  content: "\2611\ ";
+  content: "\2611\  ";
+  font-size: 16pt;
 }
 
 .checkbox_false:before {
   font-weight: bold;
-  content: "\2610\ ";
+  content: "\2610\  ";
 }
 
 .page_blog_content table {
