@@ -64,11 +64,11 @@
     padding: 0px;
 }
 
-.ballot_box_with_check:before {
+.checkbox_true:before {
   content: "\2611\ ";
 }
 
-.ballot_box:before {
+.checkbox_false:before {
   content: "\2610\ ";
 }
 
