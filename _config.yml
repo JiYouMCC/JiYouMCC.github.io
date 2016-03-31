@@ -5,7 +5,7 @@ baseurl: ""
 url: "http://www.jithee.name"
 github_username:  JiYouMCC
 # Build settings
-markdown: kramdown
+markdown: GFM
 permalink: /blog/post/:title/
 paginate: 7
 paginate_path: "/blog/index/:num"
