@@ -66,10 +66,12 @@
 }
 
 .checkbox_true:before {
+  font-weight: bold;
   content: "\2611\ ";
 }
 
 .checkbox_false:before {
+  font-weight: bold;
   content: "\2610\ ";
 }
 
