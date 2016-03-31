@@ -3,37 +3,108 @@ layout: default
 title: "分类"
 ---
 <ul class="nav nav-tabs nav-justified" role="tablist">
-  {% for cat in site.categories %}
-  <li role="presentation">
-    <a id="tag_{{ cat[0] }}" href="#{{ cat[0] }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
+  <li role="presentation" class="active">
+    <a id="tag_all" href="#all" title="所有文章" rel="{{ site.posts.size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">所有文章 <span class="badge">{{ site.posts.size }}</span></a>
   </li>
+  {% for cat in site.categories %}
+    {% if cat[0] != "sticky" %}
+    <li role="presentation">
+      <a id="tag_{{ cat[0] }}" href="#{{ cat[0] }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
+    </li>
+    {% endif %}
   {% endfor %}
 </ul>
 <div class="tab-content">
-{% for cat in site.categories %}
-  <div role="tabpanel" class="tab-pane" id="{{ cat[0] }}">
+  <div role="tabpanel" class="tab-pane active" id="all">
     <div class="table-responsive">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th></th><th></th><th>分类</th><th>评论</th>
+          <th></th><th></th><th></th><th>分类</th><th>评论</th>
         </tr>
       </thead>
       <tbody>
-        {% for post in cat[1] %}
+        {% for post in site.categories.sticky %}
         <tr>
-          <td><a href="{{ post.url }}">{{ post.title }}</a></td>
+          <td>
+            <span class="label label-default">置顶</span>
+          </td>
+          <td>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </td>
           <td class="page_datetime">{{ post.date }}</td>
-          <td>{% if post.categories.size > 0 %}<span><a class="label label-default" href="/type#{{ post.categories }}">{{ post.categories }}</a></span>{% endif %}</td>
-          <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+          <td>{% for cat in post.categories %}
+                {% if cat != 'sticky' %}
+                <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
+                {% endif %}
+              {% endfor %}</td>
+          <td>
+            <span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span>
+          </td>
         </tr>
+        {% endfor %}
+        {% for post in site.posts %}
+          {% assign sticky = false %}
+          {% for cat in post.categories %}
+            {% if cat == 'sticky' %}
+              {% assign sticky = true %}
+            {% endif %}
+          {% endfor %}
+          {% unless sticky %}
+          <tr>
+            <td>{% if sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
+            <td><a href="{{ post.url }}">{{ post.title }}</a></td>
+            <td class="page_datetime">{{ post.date }}</td>
+            <td>{% for cat in post.categories %}
+                  {% if cat != 'sticky' %}
+                  <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
+                  {% endif %}
+                {% endfor %}</td>
+            <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+          </tr>
+          {% endunless %}
         {% endfor %}
       </tbody>
     </table>
     </div>
   </div>
-{% endfor %}
+  {% for cat in site.categories %}
+    {% if cat[0] != "sticky" %}
+    <div role="tabpanel" class="tab-pane" id="{{ cat[0] }}">
+      <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th><th></th><th></th><th>分类</th><th>评论</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in cat[1] %}
+          <tr>
+            <td>{% if sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
+            <td><a href="{{ post.url }}">{{ post.title }}</a></td>
+            <td class="page_datetime">{{ post.date }}</td>
+            <td>
+              {% if post.categories.size > 0 %}
+                {% for cat in post.categories %}
+                  {% if cat != 'sticky' %}
+                  <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            </td>
+            <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
 </div>
 <script type="text/javascript">
-  $("#tag_"+location.hash.replace("#","")).tab('show');
+  if (location.hash != "") {
+    $("#tag_"+location.hash.replace("#","")).tab('show');
+  }
 </script>

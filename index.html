@@ -1,24 +1,51 @@
 ---
 layout: default
 ---
+{% if paginator.page == 1 %}
+  {% for post in site.categories.sticky %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title"><span class="label label-default">置顶</span> {{ post.title }}</a>
+      <span class="page_datetime">{{ post.date }}</span>
+    </div>
+    <div class="panel-body">{{ post.excerpt | replace: '<li>[ ]', '<li class = "checkbox_false">' | replace: '<li>[x]', '<li class = "checkbox_true">'  }}</div>
+    <div class="panel-footer page_blog_footer">
+      <strong>
+        <span><a href="{{ post.url | prepend: site.baseurl }}">阅读</a></span>
+        <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>&nbsp;<span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></span>
+        <span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>
+        {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
+      </strong>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
 {% for post in paginator.posts %}
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title">{{ post.title }}</a>
-    <span class="page_datetime">{{ post.date }}</span>
+  {% assign sticky = false %}
+  {% for cat in post.categories %}
+    {% if cat == 'sticky' %}
+      {% assign sticky = true %}
+    {% endif %}
+  {% endfor %}
+  {% unless sticky %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title">{{ post.title }}</a>
+      <span class="page_datetime">{{ post.date }}</span>
+    </div>
+    <div class="panel-body">
+      {{ post.excerpt }}
+    </div>
+    <div class="panel-footer page_blog_footer">
+    <strong>
+        <span><a href="{{ post.url | prepend: site.baseurl }}">阅读</a></span>
+        <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>&nbsp;<span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></span>
+        <span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>
+        {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
+      </strong>
+    </div>
   </div>
-  <div class="panel-body">
-    {{ post.excerpt }}
-  </div>
-  <div class="panel-footer page_blog_footer">
-  <strong>
-      <span><a href="{{ post.url | prepend: site.baseurl }}">阅读</a></span>
-      <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>&nbsp;<span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></span>
-      <span>{% if post.categories.size > 0 %}分类&nbsp;<a class="label label-default" href="/type#{{ post.categories }}">{{ post.categories }}</a>{% else %}未分类{% endif %}</span>
-      {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
-    </strong>
-  </div>
-</div>
+  {% endunless %}
 {% endfor %}
 <nav>
   <ul class="pager">

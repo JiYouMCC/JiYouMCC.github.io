@@ -2,14 +2,23 @@
 layout: default
 title: "标签"
 ---
-<ul class="nav nav-tabs nav-justified" role="tablist">
+{% capture tags %}
   {% for tag in site.tags %}
-  <li role="presentation">
-    <a id="tag_{{ tag[0] }}" href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ tag[0] }} <span class="badge">{{ tag[1].size }}</span></a>
-  </li>
+    {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+  {% endfor %}
+{% endcapture %}
+
+{% assign sortedtags = tags | split:' ' | sort %}
+
+<ul role="tablist">
+  {% for tag in sortedtags reversed %}
+    {% assign tagitems = tag | split: '#' %}
+    <li role="presentation" style="display: inline-block;">
+      <h4><a id="tag_{{ tagitems[1] }}" href="#{{ tagitems[1] }}" title="{{ tagitems[1] }}" rel="{{ tagitems[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true" class="label label-default">{{ tagitems[1] }} <SUB>{{ tagitems[2] }}</SUB></a></h4>
+    </li>
   {% endfor %}
 </ul>
-<!-- Tab panes -->
+
 <div class="tab-content">
 {% for tag in site.tags %}
   <div role="tabpanel" class="tab-pane" id="{{ tag[0] }}">
@@ -25,7 +34,11 @@ title: "标签"
         <tr>
           <td><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></td>
           <td class="page_datetime">{{ post.date }}</td>
-          <td>{% if post.categories.size > 0 %}<span><a class="label label-default" href="/type#{{ post.categories }}">{{ post.categories }}</a></span>{% endif %}</td>
+          <td>{% for cat in post.categories %}
+                {% if cat != 'sticky' %}
+                <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
+                {% endif %}
+              {% endfor %}</td>
           <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
         </tr>
         {% endfor %}
