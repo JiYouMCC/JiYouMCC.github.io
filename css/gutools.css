@@ -64,6 +64,14 @@
     padding: 0px;
 }
 
+.ballot_box_with_check:before {
+  content: "\2611\ ";
+}
+
+.ballot_box:before {
+  content: "\2610\ ";
+}
+
 .page_blog_content table {
   width: 100%;
   max-width: 100%;
