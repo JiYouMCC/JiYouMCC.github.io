@@ -58,7 +58,8 @@
     display: inline-block;
 }
 
-.checklist {
+.checkbox_true,
+.checkbox_false {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
