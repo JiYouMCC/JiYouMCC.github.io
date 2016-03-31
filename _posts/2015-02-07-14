@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "练手ajax"
+date:   2015-2-7 21:50:49 +0800
+categories: 技术
+tags: javascript
+---
+因为iframe实在太落后了，所以被C世界某某某光毫无底线地耻笑了一番，所以就狠心好好整一整
+
+其实直接看w3c的教程也许大概真的足够了，不过我还是去当当弄了中文“从入门到精通”教材，结论是三分之一的纸张是被代码填满的，大多我还不会去看
+
+练手的素材依然是喝水的交易品查询器
+
+接着我很自虐的毅然拒绝的jquary，然后……就没有然后了，自己手动写吧
+
+总觉得我的sublime的js插件貌似还不够完善，总是觉得不太舒服，要是继续折腾的话再说吧
+
+<!--more-->
+
+    function readJson(url, func) {
+        try {
+            var xmlhttp = new XMLHttpRequest();
+        } catch (e) {
+            var xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        xmlhttp.open('GET', url);
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                func(eval('(' + xmlhttp.responseText + ')'));
+            }
+        }
+        xmlhttp.send(null);
+    }
+
+其实归根到底就是这个，而且只写了get没有弄post
+
+我自己碰到的麻烦（不是问题，因为都解决了）是js还是不熟悉啊，各种翻书查库
+
+后台写python的地方也有点不爽，总觉得缺少了什么东西
+
