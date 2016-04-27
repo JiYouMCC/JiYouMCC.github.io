@@ -32,12 +32,20 @@
             {% endfor %}
             </ul>
           </li>
+
+          {% capture tags %}
+            {% for tag in site.tags %}
+              {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+            {% endfor %}
+          {% endcapture %}
+          {% assign sortedtags = tags | split:' ' | sort %}
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">标签<span class="caret"></span></a>
             <ul class="dropdown-menu">
-            {% for tag in site.tags %}
+            {% for tag in sortedtags reversed %}
+              {% assign tagitems = tag | split: '#' %}
               <li>
-                <a href="/tag#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">{{ tag[0] }} <span class="badge">{{ tag[1].size }}</span></a>
+                <a href="/tag#{{ tagitems[1] }}" title="{{ tagitems[1] }}" rel="{{ tagitems[1].size }}">{{ tagitems[1] }} <span class="badge">{{ tagitems[2] }}</span></a>
               </li>
             {% endfor %}
             </ul>
