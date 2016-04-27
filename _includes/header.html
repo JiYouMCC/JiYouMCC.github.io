@@ -58,21 +58,21 @@
             </ul>
           </li>
         </ul>
-        <form class="navbar-form navbar-right" role="search" action="get" id="site_search">
+        <form class="navbar-form navbar-right" role="search" action="/search/" method="get">
           <div class="input-group">
             <div class="input-group-btn">
-              <input name="string" type="text" class="form-control" id="search_box">
+              <input name="string" type="text" class="form-control">
             </div>
-            <!-- <div class="input-group-btn">
+            <div class="input-group-btn">
               <select name="type" class="form-control">
                 <option value="all">所有</option>
                 <option value="title">标题</option>
                 <option value="content">分类</option>
                 <option value="comment">标签</option>
               </select>
-            </div> -->
+            </div>
             <div class="input-group-btn">
-              <button type="submit" value="search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             </div>
           </div>
         </form>
@@ -81,8 +81,3 @@
     </div>
   </nav>
 </header>
-<!-- 
-<form action="get" id="site_search">
-  <label for="search_box">Search</label><input type="text" id="search_box">
-  <input type="submit" value="search">
-</form> -->
