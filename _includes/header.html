@@ -32,7 +32,6 @@
             {% endfor %}
             </ul>
           </li>
-
           {% capture tags %}
             {% for tag in site.tags %}
               {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
@@ -48,6 +47,14 @@
                 <a href="/tag#{{ tagitems[1] }}" title="{{ tagitems[1] }}" rel="{{ tagitems[1].size }}">{{ tagitems[1] }} <span class="badge">{{ tagitems[2] }}</span></a>
               </li>
             {% endfor %}
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工具<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="http://fr.jithee.name" title="Flight Rising Tool" target="_blank">FR工具</a>
+              </li>
             </ul>
           </li>
         </ul>
