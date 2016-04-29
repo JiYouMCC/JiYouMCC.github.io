@@ -2,18 +2,16 @@
 layout: default
 title: "搜索"
 ---
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th></th><th></th><th>分类</th><th>评论</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href="">post.title</a></td>
-          <td class="page_datetime">post.date</td>
-          <td> <span><a class="label label-default" href="/type#">cat</a></span></td>
-          <td><span class="badge ds-thread-count" data-thread-key="post.id" data-count-type="comments"></span></td>
-        </tr>
-      </tbody>
-    </table>
+<script src="/js/lunr.js"></script>
+<script src="/js/tinyseg.js"></script>
+<script src="/js/lunr.stemmer.support.js"></script>
+<script src="/js/lunr.jp.js"></script>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th><th></th><th>分类</th><th>评论</th>
+    </tr>
+  </thead>
+  <tbody id="result"></tbody>
+</table>
+<script src="/js/search.js"></script>
