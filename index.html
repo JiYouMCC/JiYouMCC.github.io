@@ -6,7 +6,7 @@ layout: default
   <div class="panel panel-default">
     <div class="panel-heading">
       <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title"><span class="label label-default">置顶</span> {{ post.title }}</a>
-      <span class="page_datetime">{{ post.date }}</span>
+      <span class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
     </div>
     <div class="panel-body">{{ post.excerpt | replace: '<li>[ ]', '<li class = "checkbox_false">' | replace: '<li>[x]', '<li class = "checkbox_true">'  }}</div>
     <div class="panel-footer page_blog_footer">
@@ -31,7 +31,7 @@ layout: default
   <div class="panel panel-default">
     <div class="panel-heading">
       <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title">{{ post.title }}</a>
-      <span class="page_datetime">{{ post.date }}</span>
+      <span class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
     </div>
     <div class="panel-body">
       {{ post.excerpt }}

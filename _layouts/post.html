@@ -4,7 +4,7 @@ layout: default
 <div class="panel panel-default">
   <div class="panel-heading">
     <span class="page_blog_title">{{ page.title }}</span>
-    <span class="page_datetime">{{ page.date }}</span>
+    <span class="page_datetime">{{ page.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
   </div>
   <article id="blog_content" class="panel-body page_blog_content">
     {{ content | replace: '<li>[ ]', '<li class = "checkbox_false">' | replace: '<li>[x]', '<li class = "checkbox_true">'  }}

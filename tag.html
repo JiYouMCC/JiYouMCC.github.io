@@ -33,7 +33,7 @@ title: "标签"
         {% for post in tag[1] %}
         <tr>
           <td><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></td>
-          <td class="page_datetime">{{ post.date }}</td>
+          <td class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
           <td>{% for cat in post.categories %}
                 {% if cat != 'sticky' %}
                 <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
