@@ -309,7 +309,3 @@ body {
 #ds-recent-comments li.ds-comment:nth-of-type(1){
   border-top: none;
 }
-
-#ds-recent-comments li.ds-comment:nth-of-last-type():hover {
-  border-radius: 5px;
-}
