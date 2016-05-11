@@ -304,6 +304,7 @@ body {
   color: #161824;
   text-decoration: none;
   background-color: #F3F8F1;
+  box-sizing: border-box;
 }
 
 #ds-recent-comments li.ds-comment:nth-of-type(1){
