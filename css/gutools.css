@@ -292,12 +292,14 @@ body {
 #ds-recent-comments {
     position: relative;
     display: block;
-    padding: 10px 15px !important;
     background-color: #e9f0f6;
     border-radius: 5px;
+}
+
+#ds-recent-comments li.ds-comment {
+    padding: 10px 15px !important;
 }
 
 #ds-recent-comments li.ds-comment:nth-of-type(1){
   border-top: none;
 }
-
