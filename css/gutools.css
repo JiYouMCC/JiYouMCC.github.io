@@ -296,7 +296,7 @@ body {
     border-radius: 5px;
 }
 
-#ds-recent-comments li.ds-comment {
+#ds-recent-comments li.ds-comment:nth-of-type(n) {
     padding: 10px 15px !important;
 }
 
