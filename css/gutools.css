@@ -297,3 +297,8 @@ body {
     border-radius: 5px;
 }
 
+#ds-recent-comments:first-child {
+    border-top: none;
+}
+}
+
