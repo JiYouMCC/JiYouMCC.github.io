@@ -300,6 +300,12 @@ body {
     padding: 10px 15px !important;
 }
 
+#ds-recent-comments li.ds-comment:nth-of-type(n):hover {
+  color: #161824;
+  text-decoration: none;
+  background-color: #F3F8F1;
+}
+
 #ds-recent-comments li.ds-comment:nth-of-type(1){
   border-top: none;
 }
