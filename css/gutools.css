@@ -30,13 +30,15 @@
     display: inline-block;
 }
 
-.page_datetime,.ds-time {
+.page_datetime {
     text-shadow: 1px 1px 1px #161824;
     display: inline-block;
     line-height: 20pt;
     vertical-align: middle;
     font-weight: normal;
 }
+
+
 .table>tbody>tr .page_datetime{
     display: table-cell;
 }
@@ -313,4 +315,14 @@ body {
 
 #ds-recent-comments li.ds-comment:nth-of-type(1){
   border-top: none;
+}
+
+#ds-recent-comments li.ds-comment .ds-time {
+    color: #161824;
+    font-size: 16pt;
+    text-shadow: 1px 1px 1px #161824;
+    display: inline-block;
+    line-height: 20pt;
+    vertical-align: middle;
+    font-weight: normal;
 }
