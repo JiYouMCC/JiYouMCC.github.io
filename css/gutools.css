@@ -30,7 +30,7 @@
     display: inline-block;
 }
 
-.page_datetime {
+.page_datetime,.ds-time {
     text-shadow: 1px 1px 1px #161824;
     display: inline-block;
     line-height: 20pt;
