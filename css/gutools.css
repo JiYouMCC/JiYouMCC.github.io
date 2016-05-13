@@ -318,8 +318,8 @@ body {
 }
 
 #ds-recent-comments li.ds-comment .ds-time {
-    color: #161824;
-    font-size: 16pt;
+    color: #161824 !important;
+    font-size: 12pt !important;
     text-shadow: 1px 1px 1px #161824;
     display: inline-block;
     line-height: 20pt;
