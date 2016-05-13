@@ -304,7 +304,11 @@ body {
   color: #161824;
   text-decoration: none;
   background-color: #F3F8F1;
-  box-sizing: border-box;
+}
+
+#ds-recent-comments li.ds-comment:nth-last-of-type(1):hover {
+ border-bottom-left-radius: 5px;
+ border-bottom-right-radius: 5px;
 }
 
 #ds-recent-comments li.ds-comment:nth-of-type(1){
