@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "【新闻】Minecraft is coming to China"
+date:   2016-5-23 10:21:31 +0800
+categories: 游戏
+tags: MC
+---
+之前在群里就听到小伙伴说网易要代理Minecraft。小伙伴是丢了一个mc.163.com，评论道，还有若干看上去很逗逼的宣传视频，然后没有了，有了，了。。。
+
+官方：http://www.mojang.com/2016/05/minecraft-is-coming-to-china/
+
+搜了一堆资料，不太明白网易以什么形式代理，不过知乎上面已经各种讨论了，如何看待网易代理 Minecraft ？https://www.zhihu.com/question/46541916
+
+好像和java版本没关系……
