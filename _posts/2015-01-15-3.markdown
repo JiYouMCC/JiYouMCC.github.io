@@ -11,17 +11,17 @@ tags: django python
 
 <!--more-->
 
-![代码](http://7u2j48.com1.z0.glb.clouddn.com/blogtest-1.png)
+![代码](/img/blogtest-1.png)
 
 后台pagedown在webkit内核浏览器的render不工作也就算了
 
 后台居然不能删Post！！！
 
-![utf-8](http://7u2j48.com1.z0.glb.clouddn.com/blogtest-2.png)
+![utf-8](/img/blogtest-2.png)
 
 incorrect string value bla bla...
 django你默认设拉丁干嘛呀。。一看就知道编码出错了。。
 
-![utf=8](http://7u2j48.com1.z0.glb.clouddn.com/blogtest-3.png)
+![utf=8](/img/blogtest-3.png)
 
 我去……
