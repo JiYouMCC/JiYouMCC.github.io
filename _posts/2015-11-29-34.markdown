@@ -96,10 +96,7 @@ tags: FR
 
 于是还是算了，同时把原来翻译成了“魔”的Arcane还是变成奥术了。
 
-
-<a target="_blank" href="http://flightrising.com/main.php?dragon=18581573">
-<img src="http://flightrising.com/rendern/350/185816/18581573_350.png">
-</a>
+[![张三](http://flightrising.com/rendern/350/185816/18581573_350.png "张三")](http://flightrising.com/main.php?dragon=18581573 "张三")
 
 
 （无辜躺枪的张三：“麻麻我记得我是一只lighting龙，我不是Plague龙，你看我眼睛的颜色！”）
