@@ -64,4 +64,4 @@ nginx同理
     max-requests    = 6000
     vacuum          = true
     daemonize       = /home/xx/xx/xx/uwsgi.log
-
+ 
