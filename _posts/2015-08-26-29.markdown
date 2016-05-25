@@ -5,7 +5,6 @@ date:   2015-8-26 13:22:00 +0800
 categories: 技术
 tags: c python
 ---
-
 从开始写代码就乐此不疲的一个项目
 
 ![100阶段的随机250X250生命游戏](/img/blog_ConwayLifeGame.gif "100阶段的随机250X250生命游戏")
