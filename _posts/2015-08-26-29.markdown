@@ -8,7 +8,7 @@ tags: c python
 
 从开始写代码就乐此不疲的一个项目
 
-![100阶段的随机250X250生命游戏](http://7u2j48.com1.z0.glb.clouddn.com/blog_ConwayLifeGame.gif "100阶段的随机250X250生命游戏")
+![100阶段的随机250X250生命游戏](/img/blog_ConwayLifeGame.gif "100阶段的随机250X250生命游戏")
 <!--more-->
 
 当年写C的时候的版本
