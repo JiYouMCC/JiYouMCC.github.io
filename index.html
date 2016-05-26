@@ -8,7 +8,7 @@ layout: default
       <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title"><span class="label label-default">置顶</span> {{ post.title }}</a>
       <span class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
     </div>
-    <div class="panel-body">{{ post.excerpt | replace: '<li>[ ]', '<li class = "checkbox_false">' | replace: '<li>[x]', '<li class = "checkbox_true">'  }}</div>
+    <div class="panel-body">{{ post.excerpt | replace: '<li>[ ]', '<li><input type="checkbox" disabled>' | replace: '<li>[x]', '<li><input type="checkbox" disabled checked>'  }}</div>
     <div class="panel-footer page_blog_footer">
       <strong>
         <span><a href="{{ post.url | prepend: site.baseurl }}">阅读</a></span>
