@@ -1,0 +1,109 @@
+---
+layout: default
+title: "抽签器"
+---
+<style type="text/css">
+  #players, 
+  #result, 
+  #roles {
+    width: 98%;
+    height: 400px;
+    max-width: 98%;
+    max-height: 400px;
+  }
+</style>
+<script type="text/javascript">
+  Array.prototype.removeAll = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+      what = a[--L];
+      while ((ax = this.indexOf(what)) !== -1) {
+        this.splice(ax, 1);
+      }
+    }
+    return this;
+  }
+
+  Array.prototype.remove = function() {
+    var what,a = arguments, L = a.length, ax;
+    if (L == 1) {
+      what = a[0];
+      ax = this.indexOf(what);
+      if (ax != -1) {
+        this.splice(ax, 1);
+      }
+    }
+    return this;
+  }
+
+  function getMaxLengthOfArray(array) {
+    var count = 0;
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].length > count) {
+        count = array[i].length;
+      }
+    }
+    return count;
+  }
+
+  function calcuate() {
+    var roles = document.getElementById("roles").value.split("\n").removeAll("");
+    var players = document.getElementById("players").value.split("\n").removeAll("");
+    if (roles.length == players.length) {
+      var roleLength = getMaxLengthOfArray(roles);
+      var playerLength = getMaxLengthOfArray(players);
+      document.getElementById("result").value = "";
+      var count = roles.length;
+      for (var i = 0; i < count; i++) {
+        var player = players[Math.floor(Math.random() * players.length)];
+        var role = roles[i];
+        players.remove(player);
+        document.getElementById("result").value += player + " ---------- " + role + " \n";
+      }
+    } else {
+      document.getElementById("result").value = "角色与身份数量不符。"
+    }
+  }
+</script>
+<div class="row">
+  <div class="col-md-4">
+    <h3>身份</h3>
+    <textarea class="form-control" id="roles">面壁人 A
+面壁人 B
+面壁人 C
+普通地球人
+普通地球人
+普通地球人
+普通地球人
+普通地球人
+智子 A
+智子 B
+ETO A
+ETO B
+ETO C</textarea>
+  </div>
+  <div class="col-md-4">
+    <h3>角色</h3>
+    <textarea class="form-control" id="players">小  蝶
+斑  马
+叶  子
+石  头
+狐  狸
+鸡  毛
+楼  兰
+默  默
+睡觉觉
+扎  扎
+瓶  子
+菜  菜
+桃  子</textarea>
+  </div>
+  <div class="col-md-4">
+    <h3>结果</h3>
+    <textarea class="form-control" id="result"></textarea>
+  </div>
+</div>
+<p></p>
+<div class="text-center">
+  <button class="btn btn-default" onclick="calcuate()">计算结果</button>
+</div>
