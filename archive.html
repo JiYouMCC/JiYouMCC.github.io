@@ -30,7 +30,10 @@ title: "归档"
         {% assign archives_month = post_month %}
     <div class="panel-body"><h3>{{ post_month }}</h3></div>
     {% endif %}
-    <a href="{{post.url}}" class="list-group-item"><b>{{ post.date | date: "%d" }}</b> {{ post.title }}</a>
+    <div class="list-group-item">
+        <span class="page_datetime">{{ post.date | date: "%d" }}</span>
+        <a href="{{post.url}}">{{ post.title }}</a>
+    </div>
 {% endfor %}
     </div>
 </div>
