@@ -6,10 +6,9 @@ title: "抽签器"
   #players, 
   #result, 
   #roles {
-    width: 98%;
+    width: 100%;
     height: 400px;
-    max-width: 98%;
-    max-height: 400px;
+    max-width: 100%;
   }
 </style>
 <script type="text/javascript">
@@ -67,8 +66,9 @@ title: "抽签器"
 </script>
 <div class="row">
   <div class="col-md-4">
-    <h3>身份</h3>
-    <textarea class="form-control" id="roles">面壁人 A
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>身份</strong></div>
+      <div class="panel-body"><textarea class="form-control" id="roles">面壁人 A
 面壁人 B
 面壁人 C
 普通地球人
@@ -81,10 +81,13 @@ title: "抽签器"
 ETO A
 ETO B
 ETO C</textarea>
+      </div>
+    </div>
   </div>
   <div class="col-md-4">
-    <h3>角色</h3>
-    <textarea class="form-control" id="players">小  蝶
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>角色</strong></div>
+      <div class="panel-body"><textarea class="form-control" id="players">小  蝶
 斑  马
 叶  子
 石  头
@@ -97,13 +100,16 @@ ETO C</textarea>
 瓶  子
 菜  菜
 桃  子</textarea>
+      </div>
+    </div>
   </div>
   <div class="col-md-4">
-    <h3>结果</h3>
-    <textarea class="form-control" id="result"></textarea>
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>结果</strong></div>
+      <div class="panel-body"><textarea class="form-control" id="result"></textarea></div>
+    </div>
   </div>
 </div>
-<p></p>
 <div class="text-center">
   <button class="btn btn-default" onclick="calcuate()">计算结果</button>
 </div>
