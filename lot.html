@@ -63,6 +63,24 @@ title: "抽签器"
       document.getElementById("result").value = "角色与身份数量不符。"
     }
   }
+
+  function clearArea(id) {
+    document.getElementById(id).value = "";
+  }
+
+  function addRole() {
+    var role = document.getElementById("role_add").value;
+    var count = parseInt(document.getElementById("role_count").value);
+    var current = document.getElementById("roles").value;
+    if (current.length > 0 ) {
+      if (current[current.length - 1] != "\n") {
+        document.getElementById("roles").value += "\n";
+      }
+    }
+    for (var i = 0; i < count; i++) {
+      document.getElementById("roles").value += role + "\n";
+    }
+  }
 </script>
 <div class="row">
   <div class="col-md-4">
@@ -81,7 +99,22 @@ title: "抽签器"
 ETO A
 ETO B
 ETO C</textarea>
-      </div>
+</div>
+<div class="panel-body">
+  <div class="input-group">
+    <div class="input-group-btn">
+      <input id="role_add" type="text" class="form-control" value="杀手">
+    </div><div class="input-group-btn">
+      <input id="role_count" type="number" class="form-control" min="1" max="20" value="1">
+    </div>
+    <div class="input-group-btn">
+      <button class="btn btn-default" onclick="addRole()"><span class="glyphicon glyphicon-plus"></span></button>
+    </div>
+  </div>
+</div>
+<div class="panel-body text-center">
+  <button class="btn btn-default" onclick="clearArea('roles')">清空</button>
+</div>
     </div>
   </div>
   <div class="col-md-4">
@@ -113,3 +146,4 @@ ETO C</textarea>
 <div class="text-center">
   <button class="btn btn-default" onclick="calcuate()">计算结果</button>
 </div>
+<p></p>
