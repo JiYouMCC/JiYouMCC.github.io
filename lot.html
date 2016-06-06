@@ -11,77 +11,6 @@ title: "抽签器"
     max-width: 100%;
   }
 </style>
-<script type="text/javascript">
-  Array.prototype.removeAll = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-      what = a[--L];
-      while ((ax = this.indexOf(what)) !== -1) {
-        this.splice(ax, 1);
-      }
-    }
-    return this;
-  }
-
-  Array.prototype.remove = function() {
-    var what,a = arguments, L = a.length, ax;
-    if (L == 1) {
-      what = a[0];
-      ax = this.indexOf(what);
-      if (ax != -1) {
-        this.splice(ax, 1);
-      }
-    }
-    return this;
-  }
-
-  function getMaxLengthOfArray(array) {
-    var count = 0;
-    for (var i = 0; i < array.length; i++) {
-      if (array[i].length > count) {
-        count = array[i].length;
-      }
-    }
-    return count;
-  }
-
-  function calcuate() {
-    var roles = document.getElementById("roles").value.split("\n").removeAll("");
-    var players = document.getElementById("players").value.split("\n").removeAll("");
-    if (roles.length == players.length) {
-      var roleLength = getMaxLengthOfArray(roles);
-      var playerLength = getMaxLengthOfArray(players);
-      document.getElementById("result").value = "";
-      var count = roles.length;
-      for (var i = 0; i < count; i++) {
-        var player = players[Math.floor(Math.random() * players.length)];
-        var role = roles[i];
-        players.remove(player);
-        document.getElementById("result").value += player + " ---------- " + role + " \n";
-      }
-    } else {
-      document.getElementById("result").value = "角色与身份数量不符。"
-    }
-  }
-
-  function clearArea(id) {
-    document.getElementById(id).value = "";
-  }
-
-  function addRole() {
-    var role = document.getElementById("role_add").value;
-    var count = parseInt(document.getElementById("role_count").value);
-    var current = document.getElementById("roles").value;
-    if (current.length > 0 ) {
-      if (current[current.length - 1] != "\n") {
-        document.getElementById("roles").value += "\n";
-      }
-    }
-    for (var i = 0; i < count; i++) {
-      document.getElementById("roles").value += role + "\n";
-    }
-  }
-</script>
 <div class="row">
   <div class="col-md-4">
     <div class="panel panel-default">
@@ -147,3 +76,4 @@ ETO C</textarea>
   <button class="btn btn-default" onclick="calcuate()">计算结果</button>
 </div>
 <p></p>
+<script src="{{ "/js/lot.js"}}"></script>
