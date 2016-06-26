@@ -14,7 +14,7 @@ tags: django
 
 2015/8/30更新：因为sae支持了django1.8.3，所以还是用了继承类，好像1.8.3和1.8.0的rss有点区别，item里面添加了comment所以修改之
 
-##RSS 2.0
+## RSS 2.0 ##
 
 [【参考】](http://cyber.law.harvard.edu/rss/rss.html) [【w3school】](http://www.w3schools.com/rss/default.asp) [【django 1.8的相关文档】](https://docs.djangoproject.com/en/1.8/ref/contrib/syndication/)
 ###channel###
@@ -56,7 +56,7 @@ textInput|输入框|&lt;description>Search Google&lt;/description><br />&lt;titl
 skipHours|忽略小时|&lt;hour>0&lt;/hour><br />&lt;hour>1&lt;/hour>|||
 skipDays|忽略周天|&lt;day>Saturday&lt;/day>|||
 
-###item
+### item ###
 
 title和description必须存在一个，都是可选项
 
@@ -96,7 +96,7 @@ guid|唯一标识|http://www.jithee.name/blog/post/23/ 有属性isPermaLink|√
 pubDate|发布时间|Sun, 19 May 2002 15:21:36 GMT|√
 source|第三方来源|&lt;source url=""http://www.w3school.com.cn"">w3school.com.cn&lt;/source>|○
 
-###代码整理
+### 代码整理 ###
 
 ~~~~.python
 
