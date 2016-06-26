@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "简易账本ichartjs"
+date:   2015-4-8 20:00:00 +0800
+categories: 技术
+tags: javascript
+---
+我好像是个吃货啊……
+
+其实还是比较喜欢yui3里面的color shemes，不过刚发现yui3说不维护了……弄不出spotfire的那种高大上的感觉
+
+其实开源的js chart挺多的，我怎么就看上这个了……
+
+[http://www.ichartjs.com](http://www.ichartjs.com)
+
+[https://github.com/wanghetommy/ichartjs](https://github.com/wanghetommy/ichartjs)
+<!--more-->
+![chart](http://7u2j48.com1.z0.glb.clouddn.com/account_book_chart.png)
+
+还有就是不知道python自己有没有内置的color（应该是有的吧。。就算没有PIL应该有），一直觉得下面这段很不优雅，想干掉它们
+
+    def get_color_schema(count):
+        result = [[0xff, 0x77, 0x77], [0xff, 0xff, 0x77], [0x77, 0x77, 0xff]]
+        while len(result) < count:
+            temp = []
+            p = result[-1]
+            for color in result:
+                temp.append(color)
+                temp.append(
+                    [
+                        (p[0] + color[0]) / 0x2,
+                        (p[1] + color[1]) / 0x2,
+                        (p[2] + color[2]) / 0x2
+                    ]
+                )
+                p = color
+            result = temp
+        output = []
+        for color in result:
+            output.append('#%.2x%.2x%.2x' % (color[0], color[1], color[2]))
+        return output
