@@ -1,0 +1,132 @@
+---
+layout: post
+title:  "Feed标准整理RSS & django扩展"
+date:   2015-4-13 16:11:00 +0800
+categories: 技术
+tags: django
+---
+未完
+<!--more-->
+
+○ 扩展，其实自己继承一个类做起来更好，不过我django1.8是完整代码丢在一起，就直接改本身的Feed了，我觉着本身就是根据标准扩展，也没啥的
+
+√Django 1.8的feedgenerator本来就实现的
+
+2015/8/30更新：因为sae支持了django1.8.3，所以还是用了继承类，好像1.8.3和1.8.0的rss有点区别，item里面添加了comment所以修改之
+
+##RSS 2.0 ##
+
+[【参考】](http://cyber.law.harvard.edu/rss/rss.html) [【w3school】](http://www.w3schools.com/rss/default.asp) [【django 1.8的相关文档】](https://docs.djangoproject.com/en/1.8/ref/contrib/syndication/)
+###channel###
+django中Rss201rev2Feed继承于RssFeed，RssFeed继承于SyndicationFeed。root的配置实现在RssFeed。其实还多实现了feed_url，标签为atom:link，不过没有实现的东西实在太多了。
+
+pubDate的实现：
+
+        handler.addQuickElement(
+            ""pubDate"", rfc2822_date(datetime.datetime.now()))
+
+扩展实现：
+
+    def add_root_elements(self, handler):
+        super(Rss201rev2Feed, self).add_root_elements(handler)
+        handler.addQuickElement(
+            'docs', 'http://blogs.law.harvard.edu/tech/rss')
+        handler.addQuickElement(
+            ""generator"", 'django.util.feedgenerator.Rss201rev2Feed')
+
+标签名称  | 描述 | 举例 | 必须 |  
+------------- | ------------- | ------------- | ------------- | ---------------
+title  | 频道名称 | 嵇尔的吐槽 |√ | √
+link | 网站的URL | http://www.jithee.name |√ | √
+description | 频道描述 |没事画轮子的嵇尔不定期的(W)碎(E)碎(B)念(B)和(L)吐(O)槽(G) | √ | √
+language | 语言代码 | zh-cn [【参考】](http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes)| | √
+copyright | 版权信息 | Copyright 2015, Ji You | | √
+managingEditor	| 编辑邮件 | n**********u@gmai.com (嵇尔) | | 
+webMaster	| 网管邮件 |	n**********u@gmai.com (嵇尔) | | 
+pubDate | 发布时间 | Sat, 07 Sep 2002 00:00:01 GMT [【符合RFC 822】](http://www.rfc-editor.org/rfc/rfc822.txt)| |○
+lastBuildDate|更新时间|Sat, 07 Sep 2002 09:42:31 GMT| |√
+category|分类|&lt;category>IT/Internet/Web development&lt;/category>||√
+generator|生成程序|django.util.feedgenerator||○
+docs|文档标准|http://blogs.law.harvard.edu/tech/rss||○
+cloud|注册进程|&lt;cloud domain=""www.w3school.com.cn""<br />port=""80""<br />path=""/RPC""<br />registerProcedure=""NotifyMe""<br />protocol=""xml-rpc"" />|||
+ttl|缓存分钟|80||√
+image|频道图片|&lt;url>http://www.w3school.com.cn/images/logo.gif&lt;/url><br />&lt;title>W3School.com.cn&lt;/title><br />&lt;link>http://www.w3school.com.cn&lt;/link>|||
+rating| PICS 级别||||
+textInput|输入框|&lt;description>Search Google&lt;/description><br />&lt;title>Search&lt;/title><br />&lt;link>http://www.google.no/search?&lt;/link><br />&lt;name>q&lt;/name>|||
+skipHours|忽略小时|&lt;hour>0&lt;/hour><br />&lt;hour>1&lt;/hour>|||
+skipDays|忽略周天|&lt;day>Saturday&lt;/day>|||
+
+###item###
+
+title和description必须存在一个，都是可选项
+
+
+django实现中title和link为必须。comments和source都没有实现，不过实现起来貌似太简单了。author灵活实现。
+
+    def add_item(self, title, link, description, author_email=None,
+        #...
+                 source=None, source_url=None, **kwargs):
+        item = {
+            #...
+            'ttl': ttl,
+            'source': source,
+            'source_url': source_url,
+        }
+    #...
+        # Comments.
+        if item['comments'] is not None:
+            handler.addQuickElement(""comments"", item['comments'])
+
+        # Source.
+        if item['source_url'] and item['source']:
+            source_attrs = {}
+            source_attrs['url'] = item['source_url']
+            handler.addQuickElement(""source"", item['source'], source_attrs)
+
+标签名称|描述|举例|
+--------|----|----|------
+title|单项标题|Feed标准整理：RSS/Atom|√
+link|单项URL|http://www.jithee.name/blog/post/23/|√
+description|单项描述|blablablablabla（略）|√
+author|作者电子邮件地址|n***********u@gmail.com (嵇尔)|√
+category|单项分类|IT/Web development|√
+comments|评论地址|http://www.jithee.name/blog/post/23/#0|√
+enclosure|媒体项目|&lt;enclosure url=""http://www.w3school.com.cn/media/movie.wmv""<br />length=""856329""<br />type=""video/wmv"" />|√
+guid|唯一标识|http://www.jithee.name/blog/post/23/ 有属性isPermaLink|√
+pubDate|发布时间|Sun, 19 May 2002 15:21:36 GMT|√
+source|第三方来源|&lt;source url=""http://www.w3school.com.cn"">w3school.com.cn&lt;/source>|○
+
+###代码整理###
+
+~~~~.python
+
+from django.utils import feedgenerator
+from project.utils import get_local_time
+
+class ExRss201rev2Feed(feedgenerator.Rss201rev2Feed):
+
+    def add_item_elements(self, handler, item):
+        super(ExtreRss201rev2Feed, self).add_item_elements(handler, item)
+        # Source.
+        if 'source_url' in item and 'source' in item and item['source_url'] and item['source']:
+            source_attrs = {}
+            source_attrs['url'] = item['source_url']
+            handler.addQuickElement(""source"", item['source'], source_attrs)
+
+    def add_root_elements(self, handler):
+        super(ExtreRss201rev2Feed, self).add_root_elements(handler)
+        handler.addQuickElement(""pubDate"", feedgenerator.rfc2822_date(get_local_time()))
+        handler.addQuickElement('docs', 'http://blogs.law.harvard.edu/tech/rss')
+        handler.addQuickElement(""generator"", 'django.util.feedgenerator.Rss201rev2Feed')
+~~~~
+
+~~~~.python
+# project.utils
+from django.shortcuts import render_to_response, RequestContext
+import pytz
+from settings import TIME_ZONE
+from django.utils import timezone
+
+def get_local_time(utc_datetime=timezone.now()):
+    return utc_datetime.astimezone(pytz.timezone(TIME_ZONE))
+~~~~
