@@ -15,7 +15,7 @@ tags: javascript
 
 [https://github.com/wanghetommy/ichartjs](https://github.com/wanghetommy/ichartjs)
 <!--more-->
-![chart](http://7u2j48.com1.z0.glb.clouddn.com/account_book_chart.png)
+![chart](/img/account_book_chart.png)
 
 还有就是不知道python自己有没有内置的color（应该是有的吧。。就算没有PIL应该有），一直觉得下面这段很不优雅，想干掉它们
 
