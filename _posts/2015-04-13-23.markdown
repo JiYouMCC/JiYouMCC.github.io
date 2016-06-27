@@ -5,19 +5,18 @@ date:   2015-4-13 16:11:00 +0800
 categories: 技术
 tags: django
 ---
-未完
-<!--more-->
-
 ○ 扩展，其实自己继承一个类做起来更好，不过我django1.8是完整代码丢在一起，就直接改本身的Feed了，我觉着本身就是根据标准扩展，也没啥的
 
 √Django 1.8的feedgenerator本来就实现的
 
 2015/8/30更新：因为sae支持了django1.8.3，所以还是用了继承类，好像1.8.3和1.8.0的rss有点区别，item里面添加了comment所以修改之
 
+<!--more-->
+
 ## RSS 2.0 ##
 
 [【参考】](http://cyber.law.harvard.edu/rss/rss.html) [【w3school】](http://www.w3schools.com/rss/default.asp) [【django 1.8的相关文档】](https://docs.djangoproject.com/en/1.8/ref/contrib/syndication/)
-###channel###
+### channel ###
 django中Rss201rev2Feed继承于RssFeed，RssFeed继承于SyndicationFeed。root的配置实现在RssFeed。其实还多实现了feed_url，标签为atom:link，不过没有实现的东西实在太多了。
 
 pubDate的实现：
