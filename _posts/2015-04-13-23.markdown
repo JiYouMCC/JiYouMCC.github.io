@@ -16,7 +16,9 @@ tags: django
 ## RSS 2.0 ##
 
 [【参考】](http://cyber.law.harvard.edu/rss/rss.html) [【w3school】](http://www.w3schools.com/rss/default.asp) [【django 1.8的相关文档】](https://docs.djangoproject.com/en/1.8/ref/contrib/syndication/)
+
 ### channel ###
+
 django中Rss201rev2Feed继承于RssFeed，RssFeed继承于SyndicationFeed。root的配置实现在RssFeed。其实还多实现了feed_url，标签为atom:link，不过没有实现的东西实在太多了。
 
 pubDate的实现：
