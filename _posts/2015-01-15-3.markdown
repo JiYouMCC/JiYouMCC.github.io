@@ -5,6 +5,7 @@ date:   2015-1-15 21:37:10 +0800
 categories: 技术
 tags: django python
 ---
+
 我只是测试一下storiage。
 
 太折腾了，bug多得就像蜂窝一样……
