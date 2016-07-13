@@ -1,0 +1,69 @@
+---
+layout: post
+title:  "1 + 2 + 34 – 5 + 67 – 8 + 9 = 100"
+date:    2015-5-29 22:00:00 +0800
+categories: 技术
+tags: python
+---
+其实原来是微信推送的东西，第五题比较感兴趣
+
+[每个程序员1小时内必须解决的5个编程问题](http://www.codeceo.com/article/5-problems-programmer-1-hour.html)
+
+#### 问题5
+
+编写一个在1，2，…，9（顺序不能变）数字之间插入+或-或什么都不插入，使得计算结果总是100的程序，并输出所有的可能性。例如：1 + 2 + 34 – 5 + 67 – 8 + 9 = 100。
+
+Ps：如果你不知道的话，[点击这里](https://blog.svpino.com/2015/05/08/solution-to-problem-5-and-some-other-thoughts-about-this-type-of-questions)，阅读我的解决方案。
+
+
+
+    CODES = ['+', '-', '']
+    NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+    def list_calculate(num):
+        if num == 1:
+            return [[code] for code in CODES]
+        else:
+            return [[code] + code_list for code in CODES for code_list in list_calculate(num - 1)]
+
+
+    def calculate_equation(equation):
+        result, temp_number, temp_code = 0, NUMBERS[0], '+'
+        for i in range(len(equation)):
+            the_number = NUMBERS[i + 1]
+            if equation[i] is '+' or equation[i] is '-':
+                if temp_code is '+':
+                    result += temp_number
+                elif temp_code is '-':
+                    result -= temp_number
+                elif temp_code is None:
+                    result = the_number
+                temp_number, temp_code = the_number, equation[i]
+            else:
+                temp_number = temp_number * 10 + the_number
+        if temp_code is '+':
+            result += temp_number
+        elif temp_code is '-':
+            result -= temp_number
+        elif temp_code is '':
+            result = result * 10 + temp_number
+        return result
+
+
+    def print_equation(equation):
+        result = '%s' % NUMBERS[0]
+        for i in range(len(equation)):
+            if not equation[i] is '':
+                result += ' %s ' % equation[i]
+            result += '%s' % NUMBERS[i + 1]
+        result += ' = %s' % calculate_equation(equation)
+        print result
+
+
+    equations = list_calculate(len(NUMBERS) - 1)
+    for equation in equations:
+        if calculate_equation(equation) == 100:
+            print_equation(equation)
+
+我现在在想除了穷举还有啥好办法，比如根据位数大致算出一个范围什么的
