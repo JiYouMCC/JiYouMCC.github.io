@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Ubuntu DOSBox 和 金庸群侠传"
+date:   2015-5-8 22:26:00 +0800
+categories: 游戏
+---
+![DOSBox](http://7u2j48.com1.z0.glb.clouddn.com/blog_jinyong_1.png)
+
+![金庸群侠传](http://7u2j48.com1.z0.glb.clouddn.com/blog_jinyong_2.png)
+
+我突然什么都不想说了……
