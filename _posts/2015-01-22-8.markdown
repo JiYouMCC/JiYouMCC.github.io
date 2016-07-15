@@ -12,7 +12,7 @@ tags: python
 
 昨晚我用其中几个颜色取色调整了下颜色方案，瞬间有了一种被PM2.5笼罩了的感觉，雾蒙蒙的，显然拿鸦黑做字色有点不太舒服
 
-![鸦黑方案](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color-0.PNG)
+![鸦黑方案](/img/blog_china_color_china-color-0.PNG)
 
 ## 源文件 ##
 
@@ -64,7 +64,7 @@ tags: python
 
 然后拉下来文件夹大概是这样的
 
-![文件夹里面的图片](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color1.PNG)
+![文件夹里面的图片](/img/blog_china_color_china-color1.PNG)
 
 ## 取色 ##
 
@@ -96,13 +96,13 @@ tags: python
 
 敲出来结果基本是这样的
 
-![输出结果](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color2.PNG)
+![输出结果](/img/blog_china_color_china-color2.PNG)
 
 ## 人工找色 ##
 
 接下来的事情好像python搞不定了，毕竟python不是ocr……
 
-![人工找色](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color-3.PNG)
+![人工找色](/img/blog_china_color_china-color-3.PNG)
 
 我只能说，感谢sublime，感谢sublime3的图片预览功能，感谢sublime的Color Schema插件，感谢搜狗拼音输入法让我明白靛读‘店’而不是‘定’，赭念‘者’而不是‘猪’，殷红的殷读‘烟’而不是‘因’，瞬间上了一堂语文课，逼格貌似也level up了不少
 
@@ -540,6 +540,6 @@ tags: python
 
 然后用漆黑改了下颜色
 
-![漆黑配色方案](http://7u2j48.com1.z0.glb.clouddn.com/blog_china_color_china-color-4.png)
+![漆黑配色方案](/img/blog_china_color_china-color-4.png)
 
 对比着似乎精神不少，不过毕竟漆黑不是#000，稍微还有点云雾的感觉……
