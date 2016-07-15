@@ -17,24 +17,24 @@ tags: 街景
 4. 应该早点写个image的配置模块，sae storage上传太麻烦了
 
 <!--more-->
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0875.JPG)
+![](/img/blog_pingliang_IMG_0875.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0876.JPG)
+![](/img/blog_pingliang_IMG_0876.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0878.JPG)
+![](/img/blog_pingliang_IMG_0878.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0879.JPG)
+![](/img/blog_pingliang_IMG_0879.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0880.JPG)
+![](/img/blog_pingliang_IMG_0880.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0881.JPG)
+![](/img/blog_pingliang_IMG_0881.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0883.JPG)
+![](/img/blog_pingliang_IMG_0883.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0884.JPG)
+![](/img/blog_pingliang_IMG_0884.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0886.JPG)
+![](/img/blog_pingliang_IMG_0886.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0887.JPG)
+![](/img/blog_pingliang_IMG_0887.JPG)
 
-![](http://7u2j48.com1.z0.glb.clouddn.com/blog_pingliang_IMG_0888.JPG)
+![](/img/blog_pingliang_IMG_0888.JPG)
