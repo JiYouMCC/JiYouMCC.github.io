@@ -49,7 +49,7 @@ tags: css javascript jquary
 
 结果发现stdLength取出来的时候已经被撑大了。。。
 
-最后借鉴了这个：[CSS 防止表格被內容撐開](http://inspire.twgg.org/programming/html-css/item/368-css-form-is-content-to-prevent-distraction.html)，发现外层框架加上
+最后借鉴了这个：[CSS 防止表格被內容撐開](http://inspire.twgg.org/programming/html-css/item/368-css-form-is-content-to-prevent-distraction.html)，发现外层框架加上:
 
     table-layout: fixed;
 
