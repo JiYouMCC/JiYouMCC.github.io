@@ -18,7 +18,7 @@ SweetHome在线版本：[Sweet Home 3D online](http://www.sweethome3d.com/zh-cn/
 
 <!--more-->
 
-![2D](http://7u2j48.com1.z0.glb.clouddn.com/blog_sweet_home_2.png)
+![2D](/img/blog_sweet_home_2.png)
 
-![3D](http://7u2j48.com1.z0.glb.clouddn.com/blog_sweet_home_1.png)
+![3D](/img/blog_sweet_home_1.png)
 
