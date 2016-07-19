@@ -10,4 +10,4 @@ tags: django python
 愕然发现原来我那么落后啊还在用iframe。。。
 <!--more-->
 
-![drink-water-goods](http://7u2j48.com1.z0.glb.clouddn.com/blog_drinkwater_drink-water-goods.png)
+![drink-water-goods](/img/blog_drinkwater_drink-water-goods.png)
