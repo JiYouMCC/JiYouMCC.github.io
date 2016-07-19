@@ -35,11 +35,11 @@ tags: django javascript mysql python
 
 还有firefox为啥就是那么难伺候，一样是浏览器，为啥chrome显示挺不错的
 
-![chrome](http://7u2j48.com1.z0.glb.clouddn.com/blog_drinkwater_chrome.png)
+![chrome](/img/blog_drinkwater_chrome.png)
 
 firefox非要在前面拉开一点距离这是为嘛为嘛
 
-![firefox](http://7u2j48.com1.z0.glb.clouddn.com/blog_drinkwater_firefox.png)
+![firefox](/img/blog_drinkwater_firefox.png)
 
 现在剩下的问题是交易品的按钮状态，各种优化减少mysql请求次数以节约云豆，还有卖萌的发现物排行榜
 
