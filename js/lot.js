@@ -32,6 +32,9 @@ function calcuate() {
     document.getElementById("result").value = "";
     var count = roles.length;
     for (var i = 0; i < count; i++) {
+      // Math.random range[0,1)
+      // Math.random() * players.length range [0, length)
+      // Math.floor(Math.random() * players.length) range [0, 1, 2, ... range-1]
       var player = players[Math.floor(Math.random() * players.length)];
       var role = roles[i];
       players.remove(player);
