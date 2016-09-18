@@ -8,16 +8,16 @@ tags: django python
 * [ ] 迁移到github.io
 * [ ] 小工具-还款计算表
 * [ ] 二维码解析
-* [ ] 简易进销存
-* [ ] 简易待办事项
 * [ ] 相册
 * [ ] 共享文档
 * [ ] 轮子：标签云<https://github.com/atizo/PyTagCloud> 文字碰撞 <http://www.wordle.net/>
-* [ ] 修改密码昵称ajax化
-* [ ] 支持找回密码
-* [ ] ascii art应用化/template重构
-* [ ] 简易账本 bootstrap化/ 优化/ 支持分类筛选
+* [ ] ascii art全js化
 <!--more-->
+* [ ] ~~修改密码昵称ajax化~~
+* [ ] ~~支持找回密码~~
+* [ ] ~~简易账本 bootstrap化/ 优化/ 支持分类筛选~~
+* [ ] ~~简易待办事项~~
+* [ ] ~~简易进销存~~
 * [x]2015-11-19~22 cleanup django process / 界面div化-移动端靠谱化 bootstrap/tinysort / 登录注册ajax化 / 去SEA化,使用django自己上传代码
 * [x]2015-9-4 二维码生成
 * [x]2015-9-1 隐藏文章
