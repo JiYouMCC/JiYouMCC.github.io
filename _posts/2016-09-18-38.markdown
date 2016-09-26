@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "再见sae"
+date:   2016-9-18 9:21:00 +0800
+categories: 技术
+---
+![](http://www.jithee.name/img/sinacloud.PNG)
+
+8月的时候其实sae已经欠费停应用了，已经开始大规模迁移github.io了
+
+但是其实到现在还有那么若干篇关于FR的还没弄过来
+
+还有一些python小应用什么的没有弄过来
+
+至少这种一天48云豆的实在接受不能，算下来还没有在AWS上面搭个instance合算（阿里云不知道，没用过）
+
+后来发现其实我也就是弄弄小前端，根本不需要嘛
+
+实质性的改变就是，我的兴趣直接从python+django转移到了js和相关的各种jquery, typescript, react上了
+ 
