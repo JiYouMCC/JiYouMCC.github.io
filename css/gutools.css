@@ -326,3 +326,11 @@ body {
     vertical-align: middle;
     font-weight: normal;
 }
+
+#ds-reset .ds-service-link {
+    text-align: center;
+    height: 16px !important;
+    line-height: 16px;
+    display: block;
+    background: none
+}
