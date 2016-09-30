@@ -3,6 +3,7 @@ layout: post
 title:  "37.187.248.45又是什么鬼"
 date:   2015-3-20 00:48:57 +0800
 categories: 技术
+use_code: true
 ---
 这回我没事去看了看[http://identerprise.co.kr/css/qtalk.txt](http://identerprise.co.kr/css/qtalk.txt)这个文件，绝对不信这是蜘蛛了……
 

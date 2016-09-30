@@ -4,6 +4,7 @@ title:  "Feed标准整理RSS & django扩展"
 date:   2015-4-13 16:11:00 +0800
 categories: 技术
 tags: django
+use_code: true
 ---
 ○ 扩展，其实自己继承一个类做起来更好，不过我django1.8是完整代码丢在一起，就直接改本身的Feed了，我觉着本身就是根据标准扩展，也没啥的
 

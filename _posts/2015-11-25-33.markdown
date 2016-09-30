@@ -4,6 +4,7 @@ title:  "ubuntu清理boot分区"
 date:   2015-11-25 19:19:00 +0800
 categories: 技术
 tags: linux ubuntu
+use_code: true
 ---
 因为这个事情做了太多了，每次都去百度查觉得自己太那啥了。
 

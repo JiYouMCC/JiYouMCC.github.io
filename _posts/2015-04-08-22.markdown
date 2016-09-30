@@ -4,6 +4,7 @@ title:  "简易账本ichartjs"
 date:   2015-4-8 20:00:00 +0800
 categories: 技术
 tags: javascript
+use_code: true
 ---
 我好像是个吃货啊……
 

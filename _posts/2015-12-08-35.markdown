@@ -4,6 +4,7 @@ title:  "ubuntu+uwsgi+nginx+django手记"
 date:   2015-12-08 10:39:00 +0800
 categories: 技术
 tags: django nginx python ubuntu uwsgi
+use_code: true
 ---
 下面的安装都没测试，都是靠记忆，要是出问题我不负责
 

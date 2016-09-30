@@ -3,6 +3,7 @@ layout: post
 title:  "碎碎念"
 date:   2015-1-14 19:48:21 +0800
 categories: 技术
+use_code: true
 ---
 我已经严重过了写博客的年龄了。
 不过最近在玩django。

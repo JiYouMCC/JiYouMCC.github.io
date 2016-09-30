@@ -4,6 +4,7 @@ title:  "dol喝水发现物统计"
 date:    2015-2-9 23:22:00 +0800
 categories: 游戏
 tags: django javascript mysql python
+use_code: true
 ---
 总算把这个弄差不多了:[http://drinkwater.sinaapp.com/discovery/](http://drinkwater.sinaapp.com/discovery/)
 

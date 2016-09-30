@@ -4,6 +4,7 @@ title:  "Firefox中markdown的img max-width:100%不兼容问题"
 date:   2015-1-20 13:19:50 +0800
 categories: 技术
 tags: css javascript jquary
+use_code: true
 ---
 其实我的第一反应是改写markdown的解析器，至少我处理link的_blank的时候就是这么干的，而且这样我觉得比较优雅，在网页上装满javascript总觉得不太爽
 

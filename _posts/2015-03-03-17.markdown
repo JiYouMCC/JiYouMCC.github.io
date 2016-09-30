@@ -4,6 +4,7 @@ title:  "ASCII艺术：字符画"
 date:    2015-3-3 21:24:00 +0800
 categories: 技术
 tags: css django PIL python
+use_code: true
 ---
 
 这其实是个老话题了
