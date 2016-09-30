@@ -14,5 +14,7 @@
     <link rel="stylesheet" href="{{ "/css/docco.css" }}" />
     <script src="{{ "/js/highlight.pack.js" }}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    {% if page.use_math %}
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    {% endif %}
 </head>
