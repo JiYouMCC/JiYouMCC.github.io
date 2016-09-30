@@ -3,4 +3,4 @@ layout: post
 title:  "公式测试"
 date:   2016-9-30 10:19:00 +0800
 ---
-$$ \Large S(n)=F(n) $$
+$$\Large S(n)=F(n)$$
