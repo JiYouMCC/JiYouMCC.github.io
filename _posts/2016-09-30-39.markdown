@@ -3,4 +3,6 @@ layout: post
 title:  "公式测试"
 date:   2016-9-30 10:19:00 +0800
 ---
-$$ a + b = c $$
+{% raw %}
+  $$a^2 + b^2 = c^2$$ --> note that all equations between these tags will not need escaping! 
+ {% endraw %}
