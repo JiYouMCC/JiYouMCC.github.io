@@ -4,6 +4,7 @@ title:  "1 + 2 + 34 – 5 + 67 – 8 + 9 = 100"
 date:    2015-5-29 22:00:00 +0800
 categories: 技术
 tags: python
+use_code: true
 ---
 其实原来是微信推送的东西，第五题比较感兴趣
 
