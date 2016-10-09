@@ -12,6 +12,8 @@ tags: django python
 * [ ] 共享文档
 * [ ] 轮子：标签云<https://github.com/atizo/PyTagCloud> 文字碰撞 <http://www.wordle.net/>
 * [ ] ascii art全js化
+* [ ] 清理七牛上面的图片
+* [ ] 美化猫命抽签器
 <!--more-->
 * [ ] ~~修改密码昵称ajax化~~
 * [ ] ~~支持找回密码~~
