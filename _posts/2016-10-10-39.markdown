@@ -87,10 +87,10 @@ $$|−4| = 4$$
                     count += 1
                 else:
                     if count > result_count:
-                        print "a = %s, b = %s, count = %s" % (a, b, count)
                         result_count = count
                         result_a = a
                         result_b = b
+                        print "a = %s, b = %s, count = %s" % (a, b, count)
     print
     print "product = %s" % (result_a * result_b)
 
