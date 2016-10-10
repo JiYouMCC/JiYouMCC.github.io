@@ -34,7 +34,8 @@ Find the product of the coefficients, $$a$$ and $$b$$, for the quadratic express
 <!--more-->
 
 *****
-### 第27题 二次“素数生成”多项式"
+
+### 第27题 二次“素数生成”多项式" ###
 
 欧拉发现了这个著名的二次多项式：
 
