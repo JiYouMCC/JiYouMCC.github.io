@@ -3,7 +3,7 @@ layout: post
 title:  "Problem 27 Quadratic primes"
 date:   2016-10-10 12:05:00 +0800
 categories: 技术
-tags: projecteulor
+tags: projecteulor, python
 use_math: true
 use_code: true
 ---
