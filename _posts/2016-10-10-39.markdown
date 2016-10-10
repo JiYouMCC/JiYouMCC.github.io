@@ -94,22 +94,6 @@ $$|−4| = 4$$
     print
     print "product = %s" % (result_a * result_b)
 
-
-    a = -1000, b = 2, count = 1
-    a = -996, b = 997, count = 2
-    a = -499, b = 997, count = 3
-    a = -325, b = 977, count = 4
-    a = -245, b = 977, count = 5
-    a = -197, b = 983, count = 6
-    a = -163, b = 983, count = 7
-    a = -131, b = 941, count = 8
-    a = -121, b = 947, count = 9
-    a = -105, b = 967, count = 11
-    a = -61, b = 971, count = 71
-    
-    product = //这里不直接贴答案
-    [Finished in 19.0s]
-    
 感想：
 
 1. 暴力破解很无耻
