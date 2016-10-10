@@ -64,7 +64,6 @@ $$|−4| = 4$$
 这其中存在某个二次多项式能够对从0开始尽可能多的连续整数$$n$$都生成素数，求其系数a和b的乘积。
 
 ****
-
     import math
 
 
@@ -80,7 +79,7 @@ $$|−4| = 4$$
     result_a = -1000
     result_b = -1000
     for a in range(-1000, 1000):
-        for b in range(-1000, 1000):
+        for b in range(1, 1000):
             count = 0
             for x in range(0, 1001):
                 if is_Prime(x * x + a * x + b):
@@ -91,6 +90,10 @@ $$|−4| = 4$$
                         result_a = a
                         result_b = b
                         print "a = %s, b = %s, count = %s" % (a, b, count)
+                    break
     print
     print "product = %s" % (result_a * result_b)
 
+感想
+1 暴力破解很无耻
+2 该break时候就应该break
