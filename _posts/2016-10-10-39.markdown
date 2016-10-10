@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "Problem 27 Quadratic primes"
+title:  "Problem 27 Quadratic primes 二次“素数生成”多项式"
 date:   2016-10-10 12:05:00 +0800
+categories: 技术
 use_math: true
 ---
 Euler discovered the remarkable quadratic formula:
@@ -29,3 +30,29 @@ and
 $$|−4| = 4$$
 
 Find the product of the coefficients, $$a$$ and $$b$$, for the quadratic expression that produces the maximum number of primes for consecutive values of $$n$$, starting with $$n = 0$$.
+<!--more-->
+
+欧拉发现了这个著名的二次多项式：
+
+$$n^2 + n + 41$$
+
+对于连续的整数n，$$0 \le n \le 39$$，这个二次多项式生成了40个素数。然而，当$$n = 40$$时，$$40^2 + 40 + 41 = 40(40 + 1) + 41$$能够被41整除，同时显然当$$n = 41$$时，$$41^2 + 41 + 41$$也能被41整除。
+
+随后，另一个神奇的多项式$$n^2 - 79n + 1601$$被发现了，对于连续的整数n，$$0 \le n \le 79$$，它生成了80个素数。这个多项式的系数-79和1601的乘积为-126479。
+
+考虑以下形式的二次多项式：
+
+$$n^2 + an + b$$,
+满足 
+$$|a|< 1000$$
+且
+$$|b|\le1000$$
+
+其中$$|n|$$
+指$$n$$的模或绝对值
+例如
+$$|11| = 11$$
+以及
+$$|−4| = 4$$
+
+这其中存在某个二次多项式能够对从0开始尽可能多的连续整数$$n$$都生成素数，求其系数a和b的乘积。
