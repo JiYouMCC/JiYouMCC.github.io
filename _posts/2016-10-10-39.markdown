@@ -94,6 +94,7 @@ $$|−4| = 4$$
     print
     print "product = %s" % (result_a * result_b)
 
+
     a = -1000, b = 2, count = 1
     a = -996, b = 997, count = 2
     a = -499, b = 997, count = 3
