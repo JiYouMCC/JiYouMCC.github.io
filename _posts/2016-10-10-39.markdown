@@ -32,8 +32,9 @@ $$|−4| = 4$$
 
 Find the product of the coefficients, $$a$$ and $$b$$, for the quadratic expression that produces the maximum number of primes for consecutive values of $$n$$, starting with $$n = 0$$.
 <!--more-->
---------
-###第27题 二次“素数生成”多项式"
+
+*****
+### 第27题 二次“素数生成”多项式"
 
 欧拉发现了这个著名的二次多项式：
 
