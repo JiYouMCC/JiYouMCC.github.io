@@ -93,6 +93,8 @@ $$|−4| = 4$$
                     break
     print
     print "product = %s" % (result_a * result_b)
+    
+****
 
     a = -1000, b = 2, count = 1
     a = -996, b = 997, count = 2
@@ -110,5 +112,6 @@ $$|−4| = 4$$
     [Finished in 19.0s]
     
 感想：
+
 1. 暴力破解很无耻
 2. 该break时候就应该break
