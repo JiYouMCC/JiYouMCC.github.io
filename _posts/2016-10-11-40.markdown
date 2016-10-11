@@ -3,7 +3,7 @@ layout: post
 title:  "Problem 29 Distinct powers"
 date:   2016-10-11 09:50:00 +0800
 categories: 技术
-tags: projecteulor
+tags: projecteulor python
 use_math: true
 use_code: true
 ---
@@ -45,3 +45,18 @@ $$5^2=25, 5^3=125, 5^4=625, 5^5=3125$$
 
 在所有满足2 ≤ a ≤ 100和2 ≤ b ≤ 100的整数组合生成的幂$$a^b$$排列并去重所得到的序列中，有多少个不同的项？
 
+    result = []
+
+    for a in range(2, 101):
+        for b in range(2, 101):
+            power = 1
+            for i in range(0, b):
+                power = power * a
+            if not power in result:
+                result.append(power)
+    print len(result)
+
+感想：
+
+1. 暴力破解什么时候可以停止
+2. python的range的范围有点晕
