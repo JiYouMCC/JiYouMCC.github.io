@@ -28,7 +28,11 @@
   </div>
 {% for link in site.data.links %}
   <div class="list-group">
+    {% if link.src %}
     <a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img src="{{ link.src }}"></a>
+    {% else %}
+    <a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item">{{ link.title }}</a>
+    {% endif %}
   </div>
 {% endfor %}
 </div>
