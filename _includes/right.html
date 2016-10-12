@@ -26,7 +26,9 @@
   <div class="panel-heading">
     <strong>链接</strong>
   </div>
+{% for link in site.data.links %}
   <div class="list-group">
-    <a href="https://projecteuler.net" target="_blank" class="list-group-item"><img src="https://projecteuler.net/profile/jiyou.png"></a>
+    <a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img src="{{ link.src }}"></a>
   </div>
+{% endfor %}
 </div>
