@@ -1,0 +1,84 @@
+---
+layout: post
+title:  "Problem 32 Pandigital products"
+date:   2016-10-13 10:23:00 +0800
+categories: 技术
+tags: projecteulor python
+use_code: true
+---
+We shall say that an n-digit number is pandigital if it makes use of all the digits 1 to n exactly once; for example, the 5-digit number, 15234, is 1 through 5 pandigital.
+
+The product 7254 is unusual, as the identity, 39 × 186 = 7254, containing multiplicand, multiplier, and product is 1 through 9 pandigital.
+
+Find the sum of all products whose multiplicand/multiplier/product identity can be written as a 1 through 9 pandigital.
+
+HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.
+
+<!--more-->
+
+*****
+
+### 全数字的乘积 ###
+
+如果一个n位数包含了1至n的所有数字恰好一次，我们称它为全数字的；例如，五位数15234就是1至5全数字的。
+
+7254是一个特殊的乘积，因为在等式39 × 186 = 7254中，被乘数、乘数和乘积恰好是1至9全数字的。
+
+找出所有被乘数、乘数和乘积恰好是1至9全数字的乘法等式，并求出这些等式中乘积的和。
+
+注意：有些乘积可能从多个乘法等式中得到，但在求和的时候只计算一次。
+
+    import itertools
+
+    number_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    result_list = []
+
+
+    def product_to_number(product):
+        result = []
+        while product:
+            number = product % 10
+            product = product / 10
+            if not number in result:
+                result.append(number)
+        result.sort()
+        return result
+
+
+    def number_level(product):
+        return len(str(product))
+
+
+    def list_to_number(list):
+        result = 0
+        for n in list:
+            result *= 10
+            result += n
+        return result
+
+    for a_level in range(1, 5):
+        for a_tuple in list(itertools.permutations(number_list, a_level)):
+            a_list = list(a_tuple)
+            a = list_to_number(a_list)
+            b_number_list = filter(lambda a: a not in a_list, number_list)
+            for b_level in range(1, len(b_number_list)):
+                for b_tuple in list(itertools.permutations(b_number_list, b_level)):
+                    b_list = list(b_tuple)
+                    b = list_to_number(b_list)
+                    product = a * b
+                    if number_level(a) + number_level(b) + number_level(product) == 9:
+                        product_number_list = filter(
+                            lambda a: a not in b_list, b_number_list)
+                        if product_to_number(product) == product_number_list:
+                            print "%s * %s = %s" % (a, b, product)
+                            if not product in result_list:
+                                result_list.append(product)
+
+    print
+    print sum(result_list)
+
+感想：
+
+1. 我很惊讶很多可以在1秒以内算出来的人，用了各种magic number我最多压到8秒，保守的算法还是19秒
+2. 应该有很多地方可以用eval或者str改写的，我懒惰了，比如list_to_number
