@@ -45,8 +45,6 @@ Note: as 1! = 1 and 2! = 2 are not sums they are not included.
             result += factorial(i)
         return result
 
-    a = factorial(9)
-
     for i in range(3, 9999999):
         if i == get_number_sum(i):
             print i
