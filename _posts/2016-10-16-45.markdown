@@ -1,0 +1,62 @@
+---
+layout: post
+title:  "Problem 35 Circular primes"
+date:   2016-10-16 20:58:42 +0800
+categories: 技术
+tags: projecteulor python
+use_code: true
+---
+The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves prime.
+
+There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, and 97.
+
+How many circular primes are there below one million?
+
+<!--more-->
+
+*****
+
+### 圆周素数 ###
+
+197被称为圆周素数，因为将它逐位旋转所得到的数：197/971和719都是素数。
+
+小于100的圆周素数有十三个：2、3、5、7、11、13、17、31、37、71、73、79和97。
+
+小于一百万的圆周素数有多少个？
+
+    import math
+
+    def is_Prime(number):
+        if number < 2:
+            return False
+        for x in range(2, int(math.sqrt(number)) + 1):
+            if number % x == 0:
+                return False
+        return True
+
+    def get_brothers(number):
+        result = []
+        number_level = len(str(number))
+        for i in range(0, number_level):
+            result.append(number)
+            number_str = str(number)
+            number = eval(number_str[1:] + number_str[0])
+        return result
+
+    count = 0
+    for i in range(2, 1000001):
+        if is_Prime(i) and not '0' in str(i):
+            ok = True
+            numbers = get_brothers(i)
+            for n in numbers:
+                if not is_Prime(n):
+                    ok = False
+                    break
+            if ok:
+                count += 1
+                print i
+    print "count = %s" % count
+
+感想：
+
+1. 一开始审题审错了，居然对着197各种排列组合……
