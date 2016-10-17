@@ -10,7 +10,7 @@ title: "归档"
 <div class="panel panel-default" id="archive" role="tablist" aria-multiselectable="true">
 {% for post in site.posts %}
     {% capture post_year %}{{ post.date | date: '%Y' }}{% endcapture %}
-    {% capture post_month %}{{ post.date | date: '%B' }}{% endcapture %}
+    {% capture post_month %}{{ post.date | date: '%-m' }}{% endcapture %}
     {% if archives_year != post_year %}
         {% assign archives_year = post_year %}
         {% if is_first_year != "1" %}
@@ -28,7 +28,20 @@ title: "归档"
     {% endif %}
     {% if archives_month != post_month %}
         {% assign archives_month = post_month %}
-    <div class="panel-body"><h3>{{ post_month }}</h3></div>
+        <div class="panel-body"><h3>{% case post_month %}
+  {% when '1' %}一月
+  {% when '2' %}二月
+  {% when '3' %}三月
+  {% when '4' %}四月
+  {% when '5' %}五月
+  {% when '6' %}六月
+  {% when '7' %}七月
+  {% when '8' %}八月
+  {% when '9' %}九月
+  {% when '10' %}十月
+  {% when '11' %}十一月
+  {% when '12' %}十二月
+{% endcase %}</h3></div>
     {% endif %}
     <a href="{{post.url}}" class="list-group-item">
         <span class="page_datetime">{{ post.date | date: "%d" }}</span>
