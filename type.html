@@ -20,7 +20,7 @@ title: "分类"
     <table class="table table-striped">
       <thead>
         <tr>
-          <th></th><th></th><th></th><th>分类</th><th>评论</th>
+          <th></th><th></th><th></th><th class="text-center">分类</th><th class="text-center">评论</th>
         </tr>
       </thead>
       <tbody>
@@ -33,12 +33,12 @@ title: "分类"
             <a href="{{ post.url }}">{{ post.title }}</a>
           </td>
           <td class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
-          <td>{% for cat in post.categories %}
+          <td class="text-center">{% for cat in post.categories %}
                 {% if cat != 'sticky' %}
                 <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                 {% endif %}
               {% endfor %}</td>
-          <td>
+          <td class="text-center">
             <span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span>
           </td>
         </tr>
