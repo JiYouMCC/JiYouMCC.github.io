@@ -55,12 +55,12 @@ title: "分类"
             <td>{% if sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
             <td><a href="{{ post.url }}">{{ post.title }}</a></td>
             <td class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
-            <td>{% for cat in post.categories %}
+            <td class="text-center">{% for cat in post.categories %}
                   {% if cat != 'sticky' %}
                   <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                   {% endif %}
                 {% endfor %}</td>
-            <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+            <td class="text-center"><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
           </tr>
           {% endunless %}
         {% endfor %}
