@@ -19,7 +19,7 @@ title: "归档"
             {% assign is_first_year = "0" %}
         {% endif %}
     <div class="panel-heading active" role="tab" id="heading_{{ archives_year }}">
-        <a class="collapsed " role="button" data-toggle="collapse" data-parent="#archive" href="#collaps_{{ archives_year }}" aria-expanded="{{ expanded }}" aria-controls="collaps_{{ archives_year }}">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#archive" href="#collaps_{{ archives_year }}" aria-expanded="{{ expanded }}" aria-controls="collaps_{{ archives_year }}">
             <span class="page_blog_title">{{ archives_year }}</span>
         </a>
     </div>
@@ -48,5 +48,7 @@ title: "归档"
         {{ post.title }}
     </a>
 {% endfor %}
+    </div>
+    <div class="panel-heading">
     </div>
 </div>
