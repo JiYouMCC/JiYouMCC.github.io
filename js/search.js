@@ -27,11 +27,11 @@ var params = {};
     results.forEach(function(result) {
       var item = loaded_data[result.ref];
       var title = $("<td></td>").append($("<a></a>").text(item.title).attr("href", item.url));
-      var date = $("<td></td>").addClass("page_datetime").text(item.date);
-      var cat = $("<td></td>").append(
+      var date = $("<td></td>").addClass("page_datetime").addClass("text-right").text(item.date);
+      var cat = $("<td></td>").addClass("text-center").append(
         $("<span></span>").append(
           $("<a></a>").attr("class", "label label-default").attr("href", "/type#" + item.category).text(item.category)));
-      var comments = $("<td></td").append($("<span></span>").attr("class", "badge ds-thread-count").attr("data-thread-key", item.post_id).attr("data-count-type","comments"));
+      var comments = $("<td></td").addClass("text-center").append($("<span></span>").attr("class", "badge ds-thread-count").attr("data-thread-key", item.post_id).attr("data-count-type","comments"));
       $("#result").append(
         $("<tr></tr")
           .append(title)
