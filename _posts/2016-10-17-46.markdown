@@ -1,0 +1,53 @@
+---
+layout: post
+title:  "Problem 36 Double-base palindromes"
+date:   2016-10-17 09:57:00 +0800
+categories: 技术
+tags: projecteulor python
+use_code: true
+---
+The decimal number, 585 = 10010010012 (binary), is palindromic in both bases.
+
+Find the sum of all numbers, less than one million, which are palindromic in base 10 and base 2.
+
+(Please note that the palindromic number, in either base, may not include leading zeros.)
+
+<!--more-->
+
+*****
+
+### 双进制回文数 ###
+
+十进制数585 = 1001001001（二进制表示），因此它在这两种进制下都是回文数。
+
+找出所有小于一百万，且在十进制和二进制下均回文的数，并求它们的和。
+
+（请注意，无论在哪种进制下，回文数均不考虑前导零。）
+
+    def palindromes(number_str):
+        result = True
+        for i in range(0, len(number_str) / 2):
+            if not number_str[i] == number_str[len(number_str) - 1 - i]:
+                result = False
+                break
+        return result
+
+
+    def check(number):
+        if (palindromes(str(number))):
+            return palindromes(bin(number)[2:])
+        return False
+
+    result = 0
+    for i in range(1, 1000001):
+        if check(i):
+            result += i
+            print i
+
+    print 
+    print result
+
+
+感想：
+
+学习了下python里面的显示2进制数

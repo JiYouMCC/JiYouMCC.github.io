@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ site.title | escape }} - {% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+    <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %} - {{ site.title | escape }}</title>
     <link href="{{ "/css/bootstrap.css"}}" rel="stylesheet">
     <link href="{{ "/css/gutools.css"}}" rel="stylesheet">
     <link rel="Shortcut Icon" href="{{ "/favicon.ico" }}" type="image/x-icon">

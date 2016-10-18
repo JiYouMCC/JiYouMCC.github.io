@@ -34,7 +34,6 @@
     text-shadow: 1px 1px 1px #161824;
     display: inline-block;
     line-height: 20pt;
-    vertical-align: middle;
     font-weight: normal;
 }
 
@@ -150,6 +149,14 @@
 .page_nav img {
   max-width: 100%;
   _background: none;
+}
+
+.post_check {
+   margin-left: -30px;
+}
+
+.page_list_item {
+    width:65px;
 }
 
 body {

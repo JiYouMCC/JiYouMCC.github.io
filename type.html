@@ -20,25 +20,25 @@ title: "分类"
     <table class="table table-striped">
       <thead>
         <tr>
-          <th></th><th></th><th></th><th>分类</th><th>评论</th>
+          <th class="page_list_item"></th><th></th><th></th><th class="text-center page_list_item">分类</th><th class="text-center page_list_item">评论</th>
         </tr>
       </thead>
       <tbody>
         {% for post in site.categories.sticky %}
         <tr>
-          <td>
+          <td class="text-center">
             <span class="label label-default">置顶</span>
           </td>
           <td>
             <a href="{{ post.url }}">{{ post.title }}</a>
           </td>
-          <td class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
-          <td>{% for cat in post.categories %}
+          <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
+          <td class="text-center">{% for cat in post.categories %}
                 {% if cat != 'sticky' %}
                 <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                 {% endif %}
               {% endfor %}</td>
-          <td>
+          <td class="text-center">
             <span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span>
           </td>
         </tr>
@@ -52,15 +52,15 @@ title: "分类"
           {% endfor %}
           {% unless sticky %}
           <tr>
-            <td>{% if sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
+            <td class="text-center">{% if sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
             <td><a href="{{ post.url }}">{{ post.title }}</a></td>
-            <td class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
-            <td>{% for cat in post.categories %}
+            <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
+            <td class="text-center">{% for cat in post.categories %}
                   {% if cat != 'sticky' %}
                   <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                   {% endif %}
                 {% endfor %}</td>
-            <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+            <td class="text-center"><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
           </tr>
           {% endunless %}
         {% endfor %}
@@ -75,16 +75,16 @@ title: "分类"
       <table class="table table-striped">
         <thead>
           <tr>
-            <th></th><th></th><th></th><th>分类</th><th>评论</th>
+            <th class="page_list_item"></th><th></th><th></th><th class="text-center page_list_item">分类</th><th class="text-center page_list_item">评论</th>
           </tr>
         </thead>
         <tbody>
           {% for post in cat[1] %}
           <tr>
-            <td>{% if sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
+            <td class="text-center">{% if sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
             <td><a href="{{ post.url }}">{{ post.title }}</a></td>
-            <td class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
-            <td>
+            <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
+            <td class="text-center">
               {% if post.categories.size > 0 %}
                 {% for cat in post.categories %}
                   {% if cat != 'sticky' %}
@@ -93,7 +93,7 @@ title: "分类"
                 {% endfor %}
               {% endif %}
             </td>
-            <td><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+            <td class="text-center"><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
           </tr>
           {% endfor %}
         </tbody>

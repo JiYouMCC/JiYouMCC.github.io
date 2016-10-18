@@ -25,11 +25,11 @@ use_code: true
 
 **原图**
 
-![原图](http://7u2j48.com1.z0.glb.clouddn.com/blog_ascii_1024x768.jpg)
+![原图](/img/blog_ascii_1024x768.jpg)
 
 **效果图**
 
-![效果图](http://7u2j48.com1.z0.glb.clouddn.com/blog_ascii_result.png)
+![效果图](/img/blog_ascii_result.png)
 
 做成文字的版本其实比图片更加隔着裤子放屁，逻辑是先画一张白底图，然后在上面写文字，然后再做成上面这一步…………
 
