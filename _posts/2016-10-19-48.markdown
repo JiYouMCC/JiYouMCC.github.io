@@ -5,6 +5,7 @@ date:   2016-10-19 10:02:00 +0800
 categories: 技术
 tags: projecteulor python
 use_code: true
+use_math: true
 ---
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
