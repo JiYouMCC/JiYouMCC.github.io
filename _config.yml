@@ -12,6 +12,8 @@ kramdown:
 permalink: /blog/post/:title/
 paginate: 7
 paginate_path: "/blog/index/:num"
-gems: [jekyll-paginate]
+gems: 
+  - jekyll-paginate
+  - jemoji
 excerpt_separator: <!--more-->
 timezone: Asia/Shanghai
