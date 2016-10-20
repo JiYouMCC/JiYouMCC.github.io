@@ -44,7 +44,7 @@ For which value of p ≤ 1000, is the number of solutions maximised?
 
     print v, count
     
-上面是愚蠢的暴力破解方法，然后算出答案之后，我开始扮演时候诸葛亮了，blabla，先算出最小边长比，然后算最小公倍数1000以内的就行了，blabla（piapia打回自己的脸）
+上面是愚蠢的暴力破解方法，然后算出答案之后，我开始扮演事后诸葛亮了，blabla，先算出最小边长比，然后算最小公倍数1000以内的就行了，blabla（piapia打回自己的脸）
 
     numbers = []
 
