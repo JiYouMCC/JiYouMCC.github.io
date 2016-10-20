@@ -5,8 +5,8 @@ use_code: true
 ---
 {% if paginator.page == 1 %}
 
-{% for post in  site.posts | where:"is_sticky","true" %}
-{{ post.title }}
+{% for post in site.posts|where:"is_sticky","true" %}
+<!--{{ post.title }}-->
 {% endfor %}
 
   {% for post in site.categories.sticky %}
