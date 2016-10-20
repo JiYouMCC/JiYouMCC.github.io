@@ -14,7 +14,7 @@ use_code: true
     <div class="panel-footer page_blog_footer">
       <strong>
         <span><a href="{{ post.url | prepend: site.baseurl }}">阅读</a></span>
-        <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>&nbsp;<span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></span>
+        <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论</a><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></span>
         <span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>
         {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
       </strong>
@@ -41,7 +41,7 @@ use_code: true
     <div class="panel-footer page_blog_footer">
     <strong>
         <span><a href="{{ post.url | prepend: site.baseurl }}">阅读</a></span>
-        <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>&nbsp;<span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></span>
+        <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论</a><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></span>
         <span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>
         {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
       </strong>
