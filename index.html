@@ -5,7 +5,7 @@ use_code: true
 ---
 {% if paginator.page == 1 %}
 
-{% for post in site.posts|where_exp:"item","item.is_sticky == true" %}
+{% for post in site.posts|where_exp:"item","item.is_sticky contains 'true'" %}
 <!--{{ post.title }}-->
 {% endfor %}
 
