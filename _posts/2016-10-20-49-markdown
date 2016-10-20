@@ -5,7 +5,6 @@ date:   2016-10-19 10:02:00 +0800
 categories: 技术
 tags: projecteulor python
 use_code: true
-use_math: true
 ---
 If p is the perimeter of a right angle triangle with integral length sides, {a,b,c}, there are exactly three solutions for p = 120.
 
@@ -79,4 +78,4 @@ For which value of p ≤ 1000, is the number of solutions maximised?
     if count > large:
         large = count
         r = i
-print r
+    print r
