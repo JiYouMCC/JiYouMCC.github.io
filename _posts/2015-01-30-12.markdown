@@ -4,6 +4,7 @@ title:  "To do list"
 date:    2015-1-30 11:17:00 +0800
 categories: sticky
 tags: django python
+is_sticky: true
 ---
 * [ ] 迁移到github.io
 * [ ] 小工具-还款计算表
