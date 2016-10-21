@@ -4,11 +4,6 @@ use_math: true
 use_code: true
 ---
 {% if paginator.page == 1 %}
-<!--
-{{ site.posts|where_exp:"item","item.is_sticky" }}
--->
-
-
   {% for post in site.categories.sticky %}
   <div class="panel panel-default">
     <div class="panel-heading">
