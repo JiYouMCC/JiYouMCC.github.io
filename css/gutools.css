@@ -140,6 +140,16 @@
     border: solid 1px #161824;
 }
 
+.page_tag_dialog>ul {
+  width: 480px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.page_tag_dialog>ul>li {
+  display: inline-block;
+}
+
 .error {
     color: #be002e;
     font-weight: normal;
@@ -341,4 +351,11 @@ body {
 
 #ds-reset .ds-service-list a {
     text-align: center;
+}
+
+@media (max-width: 767px) {
+  .page_tag_dialog>ul {
+    background-color: #a1afc9 !important;
+    border-radius: 0;
+  }
 }
