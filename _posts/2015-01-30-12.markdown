@@ -2,7 +2,6 @@
 layout: post
 title:  "To do list"
 date:    2015-1-30 11:17:00 +0800
-categories: sticky
 tags: django python
 is_sticky: true
 ---
