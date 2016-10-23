@@ -12,7 +12,7 @@ layout: default
   </article>
   <div class="panel-footer page_blog_footer">
     <strong>
-      {% if post.categories.size > 0 %}<span>分类{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
+      {% if page.categories.size > 0 %}<span>分类{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
       {% if page.tags.size > 0 %}<span>标签{% for tag in page.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
     </strong>
   </div>
