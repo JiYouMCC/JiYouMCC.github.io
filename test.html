@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>评论测试页面</title>
+</head>
+  <body>
+    <table>
+      <tbody id="comments">
+        
+      </tbody>
+      <tbody>
+        <form onsubmit="return false">
+        <tr>
+          <td><label>昵称</label></td>
+          <td><input id="name" type="text" name="username" required></td>
+        </tr>
+        <tr>
+          <td><label>邮件</label></td>
+          <td><input id="email" type="email" name="email" required></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><textarea id="text" name="comment" required></textarea></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" onclick="commit();" value="评论"> <input type="reset" value="重置"></td>
+        </tr>
+        </form>
+      </tbody>
+    </table>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+  <script src="js/test.js"></script>
+</html>
