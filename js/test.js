@@ -20,31 +20,32 @@ function guid() {
 }
 
 function commit() {
-  firebase.database().ref('comments/' + guid()).set({
+  var datetime = new Date().getTime();
+  firebase.database().ref('comments/' + datetime + "-" + guid()).set({
     username: document.getElementById("name").value,
     email: document.getElementById("email").value,
-    datetime: new Date().getTime(),
+    datetime: datetime,
     detail: document.getElementById("text").value
   }).then(function() {
-    location.reload();
+    //location.reload();
   });
 }
 
 function getComments() {
   var commentBody = document.getElementById("comments");
   commentBody.innerHTML = "评论载入中。。。";
-  return firebase.database().ref('comments').once('value').then(function(snapshot) {
+  return firebase.database().ref('comments').orderByChild('datetime').on('value',function(snapshot) {
     var commentBody = document.getElementById("comments");
     commentBody.innerHTML = "";
     var comments = snapshot.val();
     for (key in comments) {
       var comment = comments[key];
       var line1 = document.createElement("tr");
-      var imgUrl = get_gravatar(comment.email, 50);
+      var imgUrl = get_gravatar(comment.email, 20);
       var nameTd = document.createElement("td");
       var img = document.createElement("img");
       img.setAttribute("src", imgUrl);
-      var nameText = document.createTextNode(comment.username);
+      var nameText = document.createTextNode(comment.username+"@");
       nameTd.appendChild(img);
       var dateTd = document.createElement("td");
       var theDate = new Date(comment.datetime);
