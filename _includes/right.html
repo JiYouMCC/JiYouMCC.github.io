@@ -4,7 +4,7 @@
   </div>
   <div class="list-group">
     {% for post in site.posts offset: 0 limit: 7  %}
-    <a title="{{ page.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
+    <a data-toggle="tooltip" data-placement="bottom" title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
     {% endfor %}
   </div>
 </div>
