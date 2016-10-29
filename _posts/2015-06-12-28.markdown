@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Civitas广场数据"
+date:   2015-06-12 16:23:00 +0800
+categories: 技术
+tags: bigdata civitas
+---
+"某个喊我大姐的人叫我弄的……其实我很懒……
+
+但是发现其实改不了几行代码……代码重用真不错……
+
+code:[https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/works.py](https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/works.py ""https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/works.py"")
+
+![各种人口](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_works_work_2.png)
+
+![各种产能](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_works_work_3.png)
+
+↑都是高产能工了
+
+![各种土地](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_works_work_4.png)
+
+↑开郊区的时候大家实在是太疯狂了……现在退地快要退成只有城区的水平了"
