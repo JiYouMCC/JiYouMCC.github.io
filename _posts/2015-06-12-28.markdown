@@ -11,12 +11,12 @@ tags: bigdata civitas
 
 code:[https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/works.py](https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/works.py ""https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/works.py"")
 
-![各种人口](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_works_work_2.png)
+![各种人口](/img/blog_civitas_works_work_2.png)
 
-![各种产能](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_works_work_3.png)
+![各种产能](/img/blog_civitas_works_work_3.png)
 
 ↑都是高产能工了
 
-![各种土地](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_works_work_4.png)
+![各种土地](/img/blog_civitas_works_work_4.png)
 
 ↑开郊区的时候大家实在是太疯狂了……现在退地快要退成只有城区的水平了"
