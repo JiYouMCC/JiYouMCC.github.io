@@ -3,7 +3,7 @@ layout: post
 title:  "Civitas广场演讲大数据(~D802)"
 date:   2015-06-02 13:41:00 +0800
 categories: 技术
-tags: "bigdata"
+tags: bigdata civitas
 use_code: true
 ---
 这货很早以前就玩过一次，还是比较有趣
