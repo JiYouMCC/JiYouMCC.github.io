@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "Civitas广场演讲大数据(~D802)"
+date:   2015-06-02 13:41:00 +0800
+categories: 技术
+tags: "big data"
+---
+这货很早以前就玩过一次，还是比较有趣
+
+6/4 python版本 更新
+==================
+数据截止到D804
+
+[代码点我](https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/speech.py "代码")
+
+基本上就是这么回事，用urllib2爬，用BeautifulSoup拆，依赖项是xlwt和bt4(和附近的mccblackteck)
+ 
+	pip install xlwt
+	pip install beautifulsoup4
+
+比较恶心的问题是：
+
+1. 代码丑，不解释
+2. 因为soup经常抓错，所以用了吓死人的while True去抓到可以为止，没设次数，所以要是永远抓不到就没有结束的时候了
+3. xlwt操作excel是xls，只能65535行，所以加了sheet 0,1,2....
+
+![分布图](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_speech_22.PNG "分布图")
+<!--more-->
+![数量榜](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_speech_21.png "数量榜")
+
+![标签内容榜](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_speech_23.PNG "标签内容榜")
+
+6/2 C#老版本
+==================
+数据截止到D802下午
+
+
+![演讲排行榜TreeMap](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_1.png "演讲排行榜TreeMap")
+
+↑【演讲数量排行榜TreeMap】之前弄过列表式，发现给人围观的时候都没啥感觉。偶然一天发现TreeMap真不错，小伙伴们都忙着埋头在里面找自己的名字
+
+![日期-演讲数量CharBar](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_2.png "日期-演讲数量CharBar")
+
+↑【日期-演讲数量CharBar】这个是我最喜欢的图，选了一个比较明显的Color Schema，可以清楚地看到C世界兴衰，某些小高峰是一些嘴炮之类的，最左边的橘红色长条是BOSS的系统消息
+
+![时间-演讲数量折线图](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_3.png "时间-演讲数量折线图")
+
+↑【时间-演讲数量折线图】由此可见大家2~6点基本都在睡觉，0点整的长条是BOSS的早期系统消息，早上9点一个小高峰（上班？上课？），中午12点小高峰（午休？），下午2~6点白天低谷，晚上6点开始继续活动。之前用CharBar做这个图的染色还发现星猫街灯经常在晚上6点出来活动。。
+
+![演讲内容CharBar](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_4.png "演讲内容CharBar")
+
+↑【演讲内容CharBar】刷演讲还是1,2,3什么的最多啊……其中316/236/98的褐色是排行第一的星猫街灯。。。
+
+![星猫街灯发言内容CharBar](http://7u2j48.com1.z0.glb.clouddn.com/blog_civitas_5.png "星猫街灯发言内容CharBar")
+
+↑【星猫街灯发言内容CharBar】话唠是怎样炼成的。
+
+事实上这个数据是有问题的，爬虫的时候没处理超链接，结果在第一个<a href="的时候基本都断开了，有空改善下……
