@@ -1,0 +1,57 @@
+---
+layout: post
+title:  "导入旧评论到多说"
+date:   2016-10-30 16:40:00 +0800
+categories: 技术
+tags: python
+use_code: true
+---
+趁周末有空+自己懒癌暂时没有发作，终于把最后2篇文章的迁移和评论的迁移弄好了。
+
+不过写脚本弄评论迁移的时候发现，自己长久不写python，很多基础的东西又忘记了。
+
+1. 读excel用应该是xlrd，这个以前还真没用过，不过用的方法很简单。最大的问题是xlrd的官网上不去([](http://www.python-excel.org/))。不过用法到和xlwt没差多少
+2. datetime的用法又是各种查文档，看来这是一个习惯了，已经背不出了
+3. timedelta的用法同上
+4. json的dumps彻彻底底忘记了啊喂，记得当时用django写微信公众号后台还研究了好久unicode转换之类的
+5. 原来最后想直接输出到文件的，但是居然unicode报错而且我还不想再折腾了……直接从console拷贝了，幸好也只有14条评论，要是14亿跳就吓人了（哈哈想想也不可能）
+6. 多说的parent_key是不能用还是我用错了格式……
+
+代码记录如下:
+
+    #-*- coding: utf-8 -*-
+    import xlrd
+    import json
+    import datetime
+
+    result = {"posts": []}
+
+    data = xlrd.open_workbook('comments.xls')
+    table = data.sheets()[0]
+
+    nrows = table.nrows
+
+    for i in range(0, nrows):
+        row_value = table.row_values(i)
+        v = {
+            "post_key": "post_%s" % int(row_value[0]),
+            "author_name": row_value[1],
+            "author_email": row_value[2],
+            "created_at": (datetime.datetime.strptime(row_value[3], "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M:%S"),
+            "message": row_value[4],
+            "thread_key": "/blog/post/%s" % int(row_value[5])
+        }
+        if not row_value[6] == 'NULL':
+            v["parent_key"] = "post_%s" % int(row_value[6])
+        result["posts"].append(v)
+
+    out = json.dumps(result, ensure_ascii=False)
+    print out
+
+参考：
+
+[多说导入格式](http://dev.duoshuo.com/docs/500d0629448f04782b00000a)
+
+[python datetime参考(各种慢，直接去别人家的博客找了)](https://docs.python.org/2/library/datetime.html)
+
+[xlrd Github仓库(其实没看，也是去别人家的博客找了)](https://github.com/python-excel/xlrd)
