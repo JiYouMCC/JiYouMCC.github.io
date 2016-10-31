@@ -73,73 +73,72 @@ use_code: true
                 for key_13 in result[key_17].keys():
                     for key_11 in result[key_17][key_13].keys():
                         result_11_front_1 = key_11[:1]
-                    if result_5_back_1 == result_11_front_1:
+                        if result_5_back_1 == result_11_front_1:
+                            for key_7 in result[key_17][key_13][key_11].keys():
+                                result_5_back_2 = result_5_str[1:]
+                                result_7_front_2 = key_7[:2]
+                                if result_5_back_2 == result_7_front_2:
+                                    if check_multi(key_17 + key_13[0] + key_11[0] + key_7[0] + result_5_str[0]):
+                                        result[key_17][key_13][key_11][key_7][
+                                            '%03d' % result_5] = {}
+
+    for i in range(1, 1000 / 3):
+        result_3 = 3 * i
+        result_3_str = '%03d' % result_3
+        if check_multi(result_3_str):
+            result_3_back_1 = result_3_str[2:]
+            for key_17 in result.keys():
+                for key_13 in result[key_17].keys():
+                    for key_11 in result[key_17][key_13].keys():
                         for key_7 in result[key_17][key_13][key_11].keys():
-                            result_5_back_2 = result_5_str[1:]
-                            result_7_front_2 = key_7[:2]
-                            if result_5_back_2 == result_7_front_2:
-                                if check_multi(key_17 + key_13[0] + key_11[0] + key_7[0] + result_5_str[0]):
-                                    result[key_17][key_13][key_11][key_7][
-                                        '%03d' % result_5] = {}
+                            for key_5 in result[key_17][key_13][key_11][key_7].keys():
+                                result_7_front_1 = key_7[:1]
+                                if result_3_back_1 == result_7_front_1:
+                                    for key_5 in result[key_17][key_13][key_11][key_7].keys():
+                                        result_3_back_2 = result_3_str[1:]
+                                        result_5_front_2 = key_5[:2]
+                                        if result_3_back_2 == result_5_front_2:
+                                            if check_multi(key_17 + key_13[0] + key_11[0] + key_7[0] + key_5[0] + result_3_str[0]):
+                                                result[key_17][key_13][key_11][key_7][key_5][
+                                                    '%03d' % result_3] = {}
 
-for i in range(1, 1000 / 3):
-    result_3 = 3 * i
-    result_3_str = '%03d' % result_3
-    if check_multi(result_3_str):
-        result_3_back_1 = result_3_str[2:]
-        for key_17 in result.keys():
-            for key_13 in result[key_17].keys():
-                for key_11 in result[key_17][key_13].keys():
-                    for key_7 in result[key_17][key_13][key_11].keys():
-                        for key_5 in result[key_17][key_13][key_11][key_7].keys():
-                            result_7_front_1 = key_7[:1]
-                            if result_3_back_1 == result_7_front_1:
-                                for key_5 in result[key_17][key_13][key_11][key_7].keys():
-                                    result_3_back_2 = result_3_str[1:]
-                                    result_5_front_2 = key_5[:2]
-                                    if result_3_back_2 == result_5_front_2:
-                                        if check_multi(key_17 + key_13[0] + key_11[0] + key_7[0] + key_5[0] + result_3_str[0]):
-                                            result[key_17][key_13][key_11][key_7][key_5][
-                                                '%03d' % result_3] = {}
+    for i in range(1, 1000 / 2):
+        result_2 = 2 * i
+        result_2_str = '%03d' % result_2
+        if check_multi(result_2_str):
+            result_2_back_1 = result_2_str[2:]
+            for key_17 in result.keys():
+                for key_13 in result[key_17].keys():
+                    for key_11 in result[key_17][key_13].keys():
+                        for key_7 in result[key_17][key_13][key_11].keys():
+                            for key_5 in result[key_17][key_13][key_11][key_7].keys():
+                                for key_3 in result[key_17][key_13][key_11][key_7][key_5].keys():
+                                    result_5_front_1 = key_5[:1]
+                                    if result_2_back_1 == result_5_front_1:
+                                        for key_3 in result[key_17][key_13][key_11][key_7][key_5].keys():
+                                            result_2_back_2 = result_2_str[1:]
+                                            result_3_front_2 = key_3[:2]
+                                            if result_2_back_2 == result_3_front_2:
+                                                if check_multi(key_17 + key_13[0] + key_11[0] + key_7[0] + key_5[0] + key_3[0] + result_2_str[0]):
+                                                    result[key_17][key_13][key_11][key_7][key_5][key_3][
+                                                        '%03d' % result_2] = {}
 
-for i in range(1, 1000 / 2):
-    result_2 = 2 * i
-    result_2_str = '%03d' % result_2
-    if check_multi(result_2_str):
-        result_2_back_1 = result_2_str[2:]
-        for key_17 in result.keys():
-            for key_13 in result[key_17].keys():
-                for key_11 in result[key_17][key_13].keys():
-                    for key_7 in result[key_17][key_13][key_11].keys():
-                        for key_5 in result[key_17][key_13][key_11][key_7].keys():
-                            for key_3 in result[key_17][key_13][key_11][key_7][key_5].keys():
-                                result_5_front_1 = key_5[:1]
-                                if result_2_back_1 == result_5_front_1:
-                                    for key_3 in result[key_17][key_13][key_11][key_7][key_5].keys():
-                                        result_2_back_2 = result_2_str[1:]
-                                        result_3_front_2 = key_3[:2]
-                                        if result_2_back_2 == result_3_front_2:
-                                            if check_multi(key_17 + key_13[0] + key_11[0] + key_7[0] + key_5[0] + key_3[0] + result_2_str[0]):
-                                                result[key_17][key_13][key_11][key_7][key_5][key_3][
-                                                    '%03d' % result_2] = {}
+    for key_17 in result.keys():
+        for key_13 in result[key_17].keys():
+            for key_11 in result[key_17][key_13].keys():
+                for key_7 in result[key_17][key_13][key_11].keys():
+                    for key_5 in result[key_17][key_13][key_11][key_7].keys():
+                        for key_3 in result[key_17][key_13][key_11][key_7][key_5].keys():
+                            for key_2 in result[key_17][key_13][key_11][key_7][key_5][key_3].keys():
+                                print key_2, key_3, key_5, key_7, key_11, key_13, key_17, key_2[0] + key_3[0] + key_5[0] + key_7[0] + key_11[0] + key_13[0] + key_17
+                                final_result.append(
+                                    key_2[0] + key_3[0] + key_5[0] + key_7[0] + key_11[0] + key_13[0] + key_17)
 
-for key_17 in result.keys():
-    for key_13 in result[key_17].keys():
-        for key_11 in result[key_17][key_13].keys():
-            for key_7 in result[key_17][key_13][key_11].keys():
-                for key_5 in result[key_17][key_13][key_11][key_7].keys():
-                    for key_3 in result[key_17][key_13][key_11][key_7][key_5].keys():
-                        for key_2 in result[key_17][key_13][key_11][key_7][key_5][key_3].keys():
-                            print key_2, key_3, key_5, key_7, key_11, key_13, key_17, key_2[0] + key_3[0] + key_5[0] + key_7[0] + key_11[0] + key_13[0] + key_17
-                            final_result.append(
-                                key_2[0] + key_3[0] + key_5[0] + key_7[0] + key_11[0] + key_13[0] + key_17)
+    for s_result in final_result:
+        number_list = [str(i) for i in range(0, 10)]
+        for s in s_result:
+            number_list.remove(s)
+        s_result = number_list[0] + s_result
+        final_result_number.append(eval(s_result))
 
-
-for s_result in final_result:
-    number_list = [str(i) for i in range(0, 10)]
-    for s in s_result:
-        number_list.remove(s)
-    s_result = number_list[0] + s_result
-    final_result_number.append(eval(s_result))
-
-print sum(final_result_number)
+    print sum(final_result_number)
