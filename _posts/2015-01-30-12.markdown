@@ -5,7 +5,6 @@ date:    2015-1-30 11:17:00 +0800
 tags: django python
 is_sticky: true
 ---
-* [ ] 迁移到github.io
 * [ ] 小工具-还款计算表
 * [ ] 二维码解析
 * [ ] 相册
@@ -20,6 +19,7 @@ is_sticky: true
 * [ ] ~~简易账本 bootstrap化/ 优化/ 支持分类筛选~~
 * [ ] ~~简易待办事项~~
 * [ ] ~~简易进销存~~
+* [x]2016-10-30 迁移到github.io
 * [x]2015-11-19~22 cleanup django process / 界面div化-移动端靠谱化 bootstrap/tinysort / 登录注册ajax化 / 去SEA化,使用django自己上传代码
 * [x]2015-9-4 二维码生成
 * [x]2015-9-1 隐藏文章
