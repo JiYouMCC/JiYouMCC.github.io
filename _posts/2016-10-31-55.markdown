@@ -236,4 +236,4 @@ Find the sum of all 0 to 9 pandigital numbers with this property.
 
     print sum(final_result_number)
 
-其实我觉得逻辑阅读性还是简化前的比较清楚，虽然实在是太丑陋了:ugly:
+其实我觉得逻辑阅读性还是简化前的比较清楚，虽然实在是太丑陋了:scream:
