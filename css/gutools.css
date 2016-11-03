@@ -254,6 +254,10 @@ body {
     display: initial;
 }
 
+.emoji img {
+    vertical-align: text-bottom;
+}
+
 @media (max-width: 767px) {
   .page_tag_dialog>ul {
     background-color: #a1afc9 !important;
