@@ -254,7 +254,7 @@ body {
     display: initial;
 }
 
-.emoji{
+img[class='emoji']{
     vertical-align: text-bottom;
 }
 
