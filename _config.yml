@@ -15,5 +15,6 @@ paginate_path: "/blog/index/:num"
 gems: 
   - jekyll-paginate
   - jemoji
+  - jekyll-sitemap
 excerpt_separator: <!--more-->
 timezone: Asia/Shanghai
