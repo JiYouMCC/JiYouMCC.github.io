@@ -57,7 +57,7 @@
             <ul class="dropdown-menu">
               {% for tool in site.data.tools %}
               <li>
-                <a href="{{ tool.href }}" title="{{ tool.title }}" {% if tool.blank %}target="_blank"{% endif %}>{{ tool.name }}</a>
+                <a href="{{ tool.href }}" data-toggle="tooltip" data-placement="bottom" title="{{ tool.title }}" {% if tool.blank %}target="_blank"{% endif %}>{{ tool.name }}</a>
               </li>
               {% endfor %}
             </ul>
