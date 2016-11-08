@@ -5,13 +5,15 @@ date:   2016-11-08 10:58:00 +0800
 categories: 技术
 tags: projecteulor
 ---
-好久以前就开始玩欧拉刷题（>800天），但是显然我做题速度远远低于它出题速度
+好久以前就开始玩[欧拉](https://projecteuler.net/)刷题（>800天），但是显然我做题速度远远低于它出题速度
 
 虽然我不觉得欧拉的好友有什么很大的用处，不过如果想加我好友的可以点
 
 主要是鸡毛突然从我的好友名单里面消失了……
 
 <!--more-->
+
+[![JiYou](https://projecteuler.net/profile/jiyou.png)](https://projecteuler.net/)
 
 My friend key: 383897_XvLOrlslgldrM18oPiOq78s9eq6mUa4B
 
