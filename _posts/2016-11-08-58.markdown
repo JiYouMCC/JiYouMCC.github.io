@@ -23,7 +23,8 @@ Please leave comment here and let me know who you are if you add friend...
 --------
 
 {% for post in site.tags.projecteulor limit: 20 %}
-   {% unless post.title="欧拉项目好友键值 Project Eulor friend key" %}
+   {% unless post.id="58" %}
       [{{ post.title }}]({{ post.url }})
+      
    {% endunless %}
 {% endfor %}
