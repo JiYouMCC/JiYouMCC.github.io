@@ -3,7 +3,6 @@ layout: post
 title:  "欧拉项目好友键值 Project Eulor friend key"
 date:   2016-11-08 10:58:00 +0800
 categories: 技术
-tags: projecteulor
 ---
 好久以前就开始玩[欧拉](https://projecteuler.net/)刷题（>800天），但是显然我做题速度远远低于它出题速度
 
@@ -21,9 +20,9 @@ My friend key: 383897_XvLOrlslgldrM18oPiOq78s9eq6mUa4B
 
 Please leave comment here and let me know who you are if you add friend...
 --------
+我的解题记录：
 
 {% for post in site.tags.projecteulor limit: 20 %}
-{% unless post.title=page.title %}
-[{{ post.title }}]({{ post.url }})
-{% endunless %}
+- [{{ post.title }}]({{ post.url }})
+
 {% endfor %}
