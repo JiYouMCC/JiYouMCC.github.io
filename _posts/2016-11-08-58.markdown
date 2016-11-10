@@ -23,8 +23,7 @@ Please leave comment here and let me know who you are if you add friend...
 --------
 
 {% for post in site.tags.projecteulor limit: 20 %}
-{% unless post.id="58" %}
+{% unless post.title=page.title %}
 [{{ post.title }}]({{ post.url }})
-      
-   {% endunless %}
+{% endunless %}
 {% endfor %}
