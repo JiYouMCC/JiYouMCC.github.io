@@ -23,9 +23,7 @@ Please leave comment here and let me know who you are if you add friend...
 --------
 
 {% for post in site.tags.projecteulor limit: 20 %}
-   <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-         <span>({{ post.date | date:"%Y-%m-%d" }})</span>
-    </li>
-    </div>
+   {% unless post.title="欧拉项目好友键值 Project Eulor friend key" %}
+      [{{ post.title }}]({{ post.url }})
+   {% endunless %}
 {% endfor %}
