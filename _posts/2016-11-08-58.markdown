@@ -23,7 +23,7 @@ Please leave comment here and let me know who you are if you add friend...
 --------
 我的解题记录：
 
-{% for post in site.tags.projecteulor limit: 20 %}
+{% for post in site.tags.projecteulor %}
 - [{{ post.title }}]({{ post.url }})
 
 {% endfor %}
