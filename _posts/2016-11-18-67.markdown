@@ -5,6 +5,7 @@ date:   2016-11-18 10:02:00 +0800
 categories: 技术
 tags: python projecteulor
 use_code: true
+use_math: true
 ---
 There are exactly ten ways of selecting three from five, 12345:
 
