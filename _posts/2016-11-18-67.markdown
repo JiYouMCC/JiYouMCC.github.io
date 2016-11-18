@@ -22,4 +22,35 @@ It is not until n = 23, that a value exceeds one-million: <sup>23</sup>C<sub>10<
 
 How many, not necessarily distinct, values of  <sup>n</sup>C<sub>r</sub>, for 1 ≤ n ≤ 100, are greater than one-million?
 <!--more-->
- 
+    def F(n):
+        result = 1
+        if n is 0:
+            return result
+        else:
+            for i in range(1, n + 1):
+                result *= i
+            return result
+
+
+    def C(n, r):
+        if r <= n:
+            return F(n) / (F(r) * F(n - r))
+        else:
+            return None
+
+    result = 0
+    for n in range(1, 101):
+        for r in range(1, n + 1):
+            if C(n, r) > 1000000:
+                result += 1
+
+    print result
+
+从奥数的角度这题可以有很多捷径，比如C(n,r)已经大于100W了，C(n+1,r)=C(n,r)*(n+1)/(n+1-r)一定也大于100W了，不过考虑没有偷懒算的好像也挺快的，而且这么处理循环有点混乱，我就不高兴弄了
+
+用了很久的itertools，我一直以为它是用来做排列组合的，所以以为也有直接算C和P的函数，现在才发现这个是用来做快速索引的……
+
+另，MathJax基础用法：
+
+http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
+
