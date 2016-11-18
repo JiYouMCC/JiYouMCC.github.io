@@ -15,7 +15,8 @@ In combinatorics, we use the notation, <sup>5</sup>C<sub>3</sub> = 10.
 
 In general,
 
-\\nCr =( \sqrt{\frac{n!}{r!(n−r)!}} \\),where r ≤ n, n! = n×(n−1)×...×3×2×1, and 0! = 1.
+$nCr =\frac{n!}{r!(n−r)!} $,where r ≤ n, n! = n×(n−1)×...×3×2×1, and 0! = 1.
+
 It is not until n = 23, that a value exceeds one-million: <sup>23</sup>C<sub>10</sub> = 1144066.
 
 How many, not necessarily distinct, values of  <sup>n</sup>C<sub>r</sub>, for 1 ≤ n ≤ 100, are greater than one-million?
