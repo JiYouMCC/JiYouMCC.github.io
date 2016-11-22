@@ -39,7 +39,9 @@ The cards are valued in the order:
 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace.
 
 If two players have the same ranked hands then the rank made up of the highest value wins; for example, a pair of eights beats a pair of fives (see example 1 below). But if two ranks tie, for example, both players have a pair of queens, then highest cards in each hand are compared (see example 4 below); if the highest cards tie then the next highest cards are compared, and so on.
-如果两个玩家有用相同的牌型，那么组成牌型的牌点高的赢 比如，一对8比一对5大
+
+如果两个玩家有用相同的牌型，那么组成牌型的牌点高的赢 比如，一对8比一对5大（下面例子1）。如果牌型大小平局了，就检查剩下的最高点数的牌（下面例子4）。如果最大的牌又平局了就算剩下牌的最大牌，以此类推。
+
 Consider the following five hands dealt to two players:
 
 | Hand | Player 1 | Player 2 | Winner |
@@ -52,7 +54,11 @@ Consider the following five hands dealt to two players:
 
 The file, [poker.txt](https://projecteuler.net/project/resources/p054_poker.txt), contains one-thousand random hands dealt to two players. Each line of the file contains ten cards (separated by a single space): the first five are Player 1's cards and the last five are Player 2's cards. You can assume that all hands are valid (no invalid characters or repeated cards), each player's hand is in no specific order, and in each hand there is a clear winner.
 
+有这么个文件，里面有随机（呵呵:simple_smile:）的2个玩家的手牌。每行10张牌，被当个空格分隔。前5张牌是玩家1的，后5张是玩家2的。你可以假定所有的手牌都是合法的（没有无效牌符号或者重复的牌），每个玩家的牌都打乱的，每一手牌都有明确的胜利者（这句话其实已经排除很多情况了）。
+
 How many hands does Player 1 win?
+
+玩家1赢了多少次？
 
 <!--more-->
 
@@ -1262,3 +1268,7 @@ How many hands does Player 1 win?
     print result
 
 这题做得挺开心的，这种题就是欧拉题最早给我留下的印象。
+
+有空要把读文件的算法改一改。
+
+还有桥牌是:spades::hearts::diamonds::clubs:的顺序，梭哈是:spades::hearts::clubs::diamonds:，学到了……
