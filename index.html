@@ -29,7 +29,7 @@ use_code: true
       <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title">{{ post.title }}</a>
       <span class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
     </div>
-    <div class="panel-body">
+    <div class="panel-body page_blog_content">
       {{ post.excerpt | replace: '<li>[ ]', '<li class="list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="list-unstyled"><input type="checkbox" disabled checked>'  }}
     </div>
     <div class="panel-footer page_blog_footer">
