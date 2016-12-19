@@ -6,7 +6,7 @@ categories: 技术
 tags: 手记 powershell
 use_code: true
 ---
-<code>(Get-Content path/to/file/app.rc) | ForEach-Object { $_ -replace "13.0.0.0", "1.0.0.$env:BUILD_NUMBER" } | Set-Content path/to/file/app.rc</code>
+<pre><code>(Get-Content path/to/file/app.rc) | ForEach-Object { $_ -replace "13.0.0.0", "1.0.0.$env:BUILD_NUMBER" } | Set-Content path/to/file/app.rc</code></pre>
 
 其实我记得Jenkins有插件做文字替换的（好像记得，忘记了），不过这个Jenkins服务器我没权限装插件。
 
