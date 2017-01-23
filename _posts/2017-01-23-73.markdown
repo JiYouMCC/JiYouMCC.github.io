@@ -11,7 +11,7 @@ tags: RSS
 
 大概是这么回事，2年前我在找一个可以看RSS的工具，然后在Chrome的插件里面找到了[The RSS Aggregator](https://chrome.google.com/webstore/detail/the-rss-aggregator/ffhafkagcdhnhamiaecajogjcfgienom)这个东西
 
-也不是说它怎么好值得推荐什么的，它有一些不错的优点，比如不收钱:smile，还有界面干净
+也不是说它怎么好值得推荐什么的，它有一些不错的优点，比如不收钱:smile:，还有界面干净
 
 然后有一些显而易见的缺点，比如说RSS列表不能随着chrome账号同步什么的
 
@@ -22,4 +22,4 @@ tags: RSS
 然后
 
 ![大名上去了](/img/2017-01-23-73-page.PNG)
-不过我现在有点儿不高兴，因为更新了版本之后，以前的RSS列表没了，列表没了，表没了，没了，了。。。。。:cry
+不过我现在有点儿不高兴，因为更新了版本之后，以前的RSS列表没了，列表没了，表没了，没了，了。。。。。:cry:
