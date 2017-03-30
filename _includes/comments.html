@@ -43,7 +43,7 @@
       </form>
     </div>
     <div class="list-group-item">
-      评论共<span id="comment_count" class="badge ds-thread-count"></span>条
+      评论共<span id="comment_count"></span>条
       <script type="text/javascript">
         Comments.post.commentCount.updateCallback("{{ page.id }}", function(count){
           document.getElementById('comment_count').innerHTML = count;
