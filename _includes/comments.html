@@ -135,6 +135,13 @@
       div_comment.appendChild(p_reply);*/
 
     }
+
+    $("button[id^=button_reply_]").click(function(){
+      var reply = $(this).attr("reply");
+      $("#reply").val(reply);
+      $("#reply_user").text(comments_messages[reply].name);
+      $("#reply_to").show();
+    });
   });
 
   $("#add_comment").click(function(){
@@ -145,14 +152,7 @@
         }
 
         $("#add_comment").removeAttr("disabled");
-       });
-  });
-
-  $("button[id^=button_reply_]").click(function(){
-    var reply = $(this).attr("reply");
-    $("#reply").val(reply);
-    $("#reply_user").text(comments_messages[reply].name);
-    $("#reply_to").show();
+    });
   });
 
   $("#reply_clear").click(function() {
@@ -160,5 +160,3 @@
     $("#reply_to").hide();
   });
 </script>
-
-
