@@ -39,7 +39,6 @@
         <div class="text-center">
           <button type="submit" class="btn btn-default">评论</button>
           <button type="reset" class="btn btn-default">重置</button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="errorModal">Small modal</button>
         </div>
       </form>
     </div>
@@ -52,18 +51,19 @@
       </script>
     </div>
   </div>
+  <div id="comments" class="list-group">
+  </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel">
+<div class="modal fade" id="modal_error" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="errorModalLabel">Error</h4>
       </div>
-      <div class="modal-body">
-        ...
+      <div id="error_message" class="modal-body">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -71,5 +71,78 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  function showError(error) {
+    var message = error.message? error.message:error;
+    $("#modal_error").modal('show');
+    $("#error_message").text(message);
+  }
+
+  Comments.handleError = function(error) {
+    showError(error);
+  };
+
+  Comments.comment.listCallback("{{ page.id }}", function(messages) {
+    $("#comments").text("");
+    for (commentId in messages) {
+      var comment = messages[commentId];
+      $("#comments").append(
+        $("<div></div>").addClass("list-group-item").append(
+          $("<div></div>").append(
+            $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email));
+            ).append(
+              $("<span></span>").text(comment.name)
+            )
+            .append(
+              $("<span></span>").text(new Date(parseInt(comment.timestamp)).toDateString())
+            )
+
+
+            /*<a title="回复" href="#0" onclick="SetFollow('{{ comment.id }}','{{ comment.author }}')"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-comment"></span></button></a>*/
+        ).append(
+          $("<pre></pre>").text(htmlEscape(pre_comment.comment))
+        )
+      )
+
+      /*<pre class="page_blog_comment">{% if comment.follow_comment %}<pre><div><img class="img-circle" alt="{{ comment.follow_comment.author }}" src="{{ comment.follow_comment.email|mail_gravatar:"20"}}"> <span class="page_author">{{ comment.follow_comment.author }}</span> <span class="page_datetime">{{ comment.follow_comment.datetime | date:"Y-n-j H:i:s" }}</span> <a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a></div>{{ comment.follow_comment.detail }}</pre>{% endif %}{{ comment.detail}}</pre>
+    </div>*/
+
+
+      /*var p_reply = document.createElement("button");
+      p_reply.innerHTML = "Reply";
+      p_reply.onclick = function(){document.getElementById('reply').value=commentId;}
+      div_comment.appendChild(p_reply);*/
+
+    }
+  });
+
+  /*function addComment() {
+    document.getElementById('button_comment').disabled = "disabled";
+    Comments.comment.add(document.getElementById('name').value,
+      document.getElementById('email').value,
+      '{{ page.id }}',
+       document.getElementById('comment').value,
+       document.getElementById('url').value, 
+       document.getElementById('reply').value, 
+       function(result){
+          if (result) {
+            document.getElementById('comment').value = "";
+          }
+            document.getElementById('button_comment').disabled = "";
+            
+
+       });
+  }*/
+
+  function htmlEscape(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+  }
+
+</script>
 
 
