@@ -107,33 +107,32 @@
       comment_detail.append(
         $("<pre></pre>").text(comment.comment)
       );
+      var name_div = $("<div></div>").append(
+        $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
+      ).append(" ").append(
+        $("<strong></strong>").text(comment.name)
+      ).append(" ").append(
+        $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
+      );
 
-      var d_comments = $("<div></div>").addClass("list-group-item").attr('id',"comments_" + commentId).append(
-          $("<div></div>").append(
-            $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
-            ).append(" ").append(
-              $("<strong></strong>").text(comment.name)
-            ).append(" ").append(
-              $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
-            ).append(" ").append(
-              $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id',"button_reply_" + commentId).attr('reply', commentId).append(
-                  $("<span></span>").addClass("glyphicon glyphicon-comment")
-                )
+      if (comment.url) {
+        name_div.append(" ").append(
+          $("<a></a>").attr('href', 'comment.url').attr('title', "网站").append(
+            $("<button></button>").addClass('btn btn-link').append(
+              $("<span></span>").addClass("glyphicon glyphicon-home")
             )
-        ).append(comment_detail);
+          )
+        );
+      }
 
+      name_div.append(" ").append(
+        $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id',"button_reply_" + commentId).attr('reply', commentId).append(
+            $("<span></span>").addClass("glyphicon glyphicon-comment")
+          )
+      );
 
+      var d_comments = $("<div></div>").addClass("list-group-item").attr('id',"comments_" + commentId).append(name_div).append(comment_detail);
       d_comments.insertAfter($("#div_comments"));
-
-      /*<pre class="page_blog_comment">{% if comment.follow_comment %}<pre><div><img class="img-circle" alt="{{ comment.follow_comment.author }}" src="{{ comment.follow_comment.email|mail_gravatar:"20"}}"> <span class="page_author">{{ comment.follow_comment.author }}</span> <span class="page_datetime">{{ comment.follow_comment.datetime | date:"Y-n-j H:i:s" }}</span> <a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a></div>{{ comment.follow_comment.detail }}</pre>{% endif %}{{ comment.detail}}</pre>
-    </div>*/
-
-
-      /*var p_reply = document.createElement("button");
-      p_reply.innerHTML = "Reply";
-      p_reply.onclick = function(){document.getElementById('reply').value=commentId;}
-      div_comment.appendChild(p_reply);*/
-
     }
 
     $("button[id^=button_reply_]").click(function(){
