@@ -19,11 +19,11 @@ Comments = {
         console.log(error);
     },
     formatDate: function(date) {
-        return date.getFullYear() + "-" + 
-            ("0"+(date.getMonth() + 1)).slice(-2) + "-" + 
-            ("0"+date.getDate()).slice(-2) + " " +
-            ("0" + date.getHours()).slice(-2) + ":" + 
-            ("0" + date.getMinutes()).slice(-2) + ":" + 
+        return date.getFullYear() + "-" +
+            ("0" + (date.getMonth() + 1)).slice(-2) + "-" +
+            ("0" + date.getDate()).slice(-2) + " " +
+            ("0" + date.getHours()).slice(-2) + ":" +
+            ("0" + date.getMinutes()).slice(-2) + ":" +
             ("0" + date.getSeconds()).slice(-2) + " ";
     },
     errors: {
@@ -191,6 +191,22 @@ Comments = {
                     Comments.handleCallback(callback, count);
                 });
                 return returnCallback;
+            }
+        }
+    },
+    util: {
+        showCount(elementClass = 'Comments-count') {
+            var elements = document.getElementsByClassName(elementClass);
+            for (index in elements) {
+                var element = elements[index];
+                var post = element.post;
+                if (post) {
+                    Comments.post.commentCount.updateCallback(post, function(count){
+                        if (count != null || count != undefined) {
+                            element.innerHTML = count;
+                        }
+                    });
+                }
             }
         }
     }
