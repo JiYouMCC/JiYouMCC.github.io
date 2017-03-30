@@ -11,7 +11,7 @@
             <input id="name" type="text" class="form-control" name="name" required>
           </div>
         </div>
-        <input id="follow_id" type="hidden" name="follow_id" value="0" />
+        <input id="reply" type="hidden" value="" />
         <div class="form-group">
           <label class="col-sm-2 control-label" for="email">*电子邮件</label>
           <div class="col-sm-10">
@@ -24,10 +24,10 @@
             <input id="url" type="url" class="form-control" name="url">
           </div>
         </div>
-        <div id="reply" style="display:none;" class="form-group">
+        <div id="reply_to" style="display:none;" class="form-group">
           <label class="col-sm-2 control-label" for="reply_input">回复</label>
           <div class="col-sm-10">
-            <span id="reply_user" class="page_author"></span><a title="清除" onclick="ClearFollow()"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button></a>
+            <span id="reply_user"></span><a title="清除" onclick="ClearFollow()"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button></a>
           </div>
         </div>
         <div class="form-group">
@@ -89,7 +89,7 @@
       var comment_detail = $("<div></div>");
       if (comment.reply) {
         comment_detail.append(
-          $("<pre></pre>").append(
+          $("<blockquote></blockquote>").append(
             $("<div></div>").append(
               $("<img></img>").addClass("img-circle").attr("alt", messages[comment.reply].name).attr('src', getGravatar(messages[comment.reply].email, 20))
             ).append(" ").append(
