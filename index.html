@@ -58,10 +58,11 @@ use_code: true
   </ul>
 </nav>
 <script type="text/javascript">
-    $(".comment-count").load(function(){
-      var post = $(this).attr('post');
+  $(".comment-count").forEach(function(span){
+      span = $(span);
+      var post = span.attr('post');
       Comments.post.commentCount.updateCallback(post, function(count){
-        $(this).text(count);
+        post.text(count);
       });
-    });
+  })
 </script>
