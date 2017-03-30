@@ -14,11 +14,7 @@ use_code: true
     <div class="panel-body">{{ post.excerpt | replace: '<li>[ ]', '<li class="post_check list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="post_check list-unstyled"><input type="checkbox" disabled checked>'  }}</div>
     <div class="panel-footer page_blog_footer">
       <strong>
-        <span><a href="{{ post.url | prepend: site.baseurl }}#respond">评论&nbsp;</a><span id="comment_{{ post.id }}" class="badge ds-thread-count"></span></span>
-        <script type="text/javascript">
-        Comments.post.commentCount.updateCallback("{{ post.id }}", function(count){
-          document.getElementById('comment_{{ post.id }}').innerHTML = count;
-        })
+        <span><a href="{{ post.url | prepend: site.baseurl }}#respond">评论&nbsp;</a><span post="{{ post.id }}" class="badge ds-thread-count comment-count"></span></span>
       </script>
         {% if post.categories.size > 0 %}<span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
         {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}&nbsp;
@@ -39,12 +35,7 @@ use_code: true
     </div>
     <div class="panel-footer page_blog_footer">
     <strong>
-        <span><a href="{{ post.url | prepend: site.baseurl }}#respond">评论&nbsp;</a><span id="comment_{{ post.id }}" class="badge ds-thread-count"></span></span>
-        <script type="text/javascript">
-        Comments.post.commentCount.updateCallback("{{ post.id }}", function(count){
-          document.getElementById('comment_{{ post.id }}').innerHTML = count;
-        })
-      </script>
+        <span><a href="{{ post.url | prepend: site.baseurl }}#respond">评论&nbsp;</a><span post="{{ post.id }}" class="badge ds-thread-count comment-count"></span></span>
         {% if post.categories.size > 0 %}<span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
         {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
       </strong>
@@ -66,3 +57,12 @@ use_code: true
     {% endif %}
   </ul>
 </nav>
+<script type="text/javascript">
+  <script type="text/javascript">
+    $(".comment-count").load(){
+      var post = $(this).attr('post');
+      Comments.post.commentCount.updateCallback(post, function(count){
+        $(this).innerHTML = count;
+      })
+    }
+</script>
