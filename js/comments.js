@@ -18,6 +18,14 @@ Comments = {
     handleError: function(error) {
         console.log(error);
     },
+    formatDate: function(date) {
+        return date.getFullYear() + "-" + 
+            ("0"+(date.getMonth() + 1)).slice(-2) + 
+            ("0"+(date.getDate() + 1)).slice(-2) + 
+            ("0" + date.getHours()).slice(-2) + ":" + 
+            ("0" + date.getMinutes()).slice(-2) + ":" + 
+            ("0" + date.getSeconds()).slice(-2) + " ";
+    },
     errors: {
         NO_POST: "没有指定文章",
         NO_NAME: "昵称为空",

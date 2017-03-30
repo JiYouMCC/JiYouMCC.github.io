@@ -95,7 +95,7 @@
             ).append(
               $("<span></span>").text(messages[comment.reply].name)
             ).append(
-              $("<span></span>").addClass('page_datetime').text(new Date(parseInt(messages[comment.reply].timestamp)).toDateString())
+              $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
             ).append(
               $("<a></a>").attr('title', '跳转').attr('href', "#comments_" + comment.reply).append(
                 $("<button></button>").attr('class', 'btn btn-link').attr('type', "button").append(
@@ -120,7 +120,7 @@
               $("<span></span>").text(comment.name)
             )
             .append(
-              $("<span></span>").addClass('page_datetime').text(new Date(parseInt(comment.timestamp)).toDateString())
+              $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
             )
             /*<a title="回复" href="#0" onclick="SetFollow('{{ comment.id }}','{{ comment.author }}')"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-comment"></span></button></a>*/
         ).append(comment_detail)
