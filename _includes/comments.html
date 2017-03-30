@@ -27,7 +27,7 @@
         <div id="reply_to" style="display:none;" class="form-group">
           <label class="col-sm-2 control-label" for="reply_input">回复</label>
           <div class="col-sm-10">
-            <span id="reply_user"></span><a title="清除" onclick="ClearFollow()"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button></a>
+            <span id="reply_user"></span><button id="reply_clear" title="清除" type="button" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
           </div>
         </div>
         <div class="form-group">
@@ -72,6 +72,7 @@
 
 <script src="{{ site.baseurl }}/js/avatar.js"></script>
 <script type="text/javascript">
+  var comments_messages = undefined; 
   function showError(error) {
     var message = error.message? error.message:error;
     $("#modal_error").modal('show');
@@ -83,6 +84,7 @@
   };
 
   Comments.comment.listCallback("{{ page.id }}", function(messages) {
+    comments_messages = messages
     $('div[id^=comments_]').remove();
     for (commentId in messages) {
       var comment = messages[commentId];
@@ -93,28 +95,28 @@
             $("<div></div>").append(
               $("<img></img>").addClass("img-circle").attr("alt", messages[comment.reply].name).attr('src', getGravatar(messages[comment.reply].email, 20))
             ).append(" ").append(
-              $("<span></span>").text(messages[comment.reply].name)
+              $("<strong></strong>").text(messages[comment.reply].name)
             ).append(" ").append(
               $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
             ).append(
-              $("<div></div>").text(messages[comment.reply].comment)
+              $("<pre></pre>").text(messages[comment.reply].comment)
             )
           )
         )
       }
       comment_detail.append(
-        $("<div></div>").text(comment.comment)
+        $("<pre></pre>").text(comment.comment)
       );
 
       var d_comments = $("<div></div>").addClass("list-group-item").attr('id',"comments_" + commentId).append(
           $("<div></div>").append(
             $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
             ).append(" ").append(
-              $("<span></span>").text(comment.name)
+              $("<strong></strong>").text(comment.name)
             ).append(" ").append(
               $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
             ).append(" ").append(
-              $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id',"button_reply_" + commentId).append(
+              $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id',"button_reply_" + commentId).attr('reply', commentId).append(
                   $("<span></span>").addClass("glyphicon glyphicon-comment")
                 )
             )
@@ -137,13 +139,25 @@
 
   $("#add_comment").click(function(){
     $("#add_comment").attr("disabled", "");
-    Comments.comment.add($("#name").val(), $("#email").val(), '{{ page.id }}', $("#comment").val(), $("#url").val(), null,  function(result){
+    Comments.comment.add($("#name").val(), $("#email").val(), '{{ page.id }}', $("#comment").val(), $("#url").val(), $("#reply").val(),  function(result){
         if (result) {
           $("#comment").val("");
         }
 
         $("#add_comment").removeAttr("disabled");
        });
+  });
+
+  $("button[id^=button_reply_]").click(function(){
+    var reply = $(this).attr("reply");
+    $("#reply").val(reply);
+    $("#reply_user").text(comments_messages[reply].name);
+    $("#reply_to").show();
+  });
+
+  $("#reply_clear").click(function() {
+    $("#reply").val("");
+    $("#reply_to").hide();
   });
 </script>
 
