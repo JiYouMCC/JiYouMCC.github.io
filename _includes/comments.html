@@ -92,9 +92,9 @@
           $("<pre></pre>").append(
             $("<div></div>").append(
               $("<img></img>").addClass("img-circle").attr("alt", messages[comment.reply].name).attr('src', getGravatar(messages[comment.reply].email, 20))
-            ).append(
+            ).append(" ").append(
               $("<span></span>").text(messages[comment.reply].name)
-            ).append(
+            ).append(" ").append(
               $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
             ).append(
               $("<div></div>").text(messages[comment.reply].comment)
@@ -109,12 +109,15 @@
       var d_comments = $("<div></div>").addClass("list-group-item").attr('id',"comments_" + commentId).append(
           $("<div></div>").append(
             $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
-            ).append(
+            ).append(" ").append(
               $("<span></span>").text(comment.name)
-            ).append(
+            ).append(" ").append(
               $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
+            ).append(" ").append(
+              $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id',"button_reply_" + commentId).append(
+                  $("<span></span>").addClass("glyphicon glyphicon-comment")
+                )
             )
-            /*<a title="回复" href="#0" onclick="SetFollow('{{ comment.id }}','{{ comment.author }}')"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-comment"></span></button></a>*/
         ).append(comment_detail);
 
 
