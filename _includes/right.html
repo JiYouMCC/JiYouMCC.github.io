@@ -19,7 +19,7 @@
         for (commentId in comments){
           var comment = comments[commentId];
           $("#recent-comments").append(
-            $("<a></a>").attr("href", comment.post).append(
+            $("<a></a>").addClass("list-group-item").attr("href", comment.post).append(
               $("<strong></strong>").text(comment.name)
             ).append(" : ").append(
               $("<span></span>").text(comment.comment)
