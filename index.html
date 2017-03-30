@@ -59,13 +59,17 @@ use_code: true
 </nav>
 <script type="text/javascript">
 $(function() {
-  var divs = $(".comment-count");
-  for (index in divs) {
-    var span = $(divs[index]);
-    var post = span.attr('post');
-    Comments.post.commentCount.updateCallback(post, function(count){
-      span.text(count);
-    });
+  var elements = $(".comment-count");
+  for (var i = elements.length - 1; i >= 0; i--) {
+    var element = $(elements[i]);
+    var post = element.attr('post');
+    if (post) {
+      Comments.post.commentCount.updateCallback(post, function(count){
+        if(count) {
+          element.text(count);
+        }
+      });
+    }
   }
 });
 </script>
