@@ -212,6 +212,6 @@ Comments = {
     }
 }
 
-document.onload = function() {
+window.onload = function() {
     Comments.util.showCount();
 }
