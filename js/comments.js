@@ -195,15 +195,15 @@ Comments = {
         }
     },
     util: {
-        showCount(elementClass = 'Comments-count') {
-            var elements = document.getElementsByClassName(elementClass);
+        showCount(elementClass = 'comments-count') {
+            var elements = document.querySelectorAll("[" + elementClass + "]");
             for (var i = 0; i < elements.length; i++) {
                 var element = elements[i];
-                var post = element.getAttribute("post");
+                var post = element.getAttribute(elementClass);
                 if (post) {
                     Comments.post.commentCount.updateCallback(post, function(count) {
                         if (count != null || count != undefined) {
-                            var selects =  document.querySelectorAll("[" + elementClass + "='" + post + "']");
+                            var selects = document.querySelectorAll("[" + elementClass + "='" + post + "']");
                             for (var j = 0; j < selects.length; j++) {
                                 var select  = selects[j];
                                 select.innerHTML = count;
