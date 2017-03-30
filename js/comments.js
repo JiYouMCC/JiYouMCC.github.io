@@ -147,7 +147,10 @@ Comments = {
                         count = snapshot.val().count
                     }
 
-                    Comments.handleCallback(callback, count);
+                    Comments.handleCallback(callback, {
+                        "post": post,
+                        "count": count
+                    });
                 });
             },
             set: function(post, count, callback) {
@@ -188,7 +191,10 @@ Comments = {
                         count = snapshot.val().count
                     }
 
-                    Comments.handleCallback(callback, count);
+                    Comments.handleCallback(callback, {
+                        "post": post,
+                        "count": count
+                    });
                 });
                 return returnCallback;
             }
@@ -197,16 +203,16 @@ Comments = {
     util: {
         showCount(elementClass = 'comments-count') {
             var elements = document.querySelectorAll("[" + elementClass + "]");
-            for (var i = 0; i < elements.length; i++) {
-                var element = elements[i];
+            for (var index = 0; index < elements.length; index++) {
+                var element = elements[index];
                 var post = element.getAttribute(elementClass);
                 if (post) {
-                    Comments.post.commentCount.updateCallback(post, function(count) {
-                        if (count != null || count != undefined) {
-                            var selects = document.querySelectorAll("[" + elementClass + "='" + post + "']");
+                    Comments.post.commentCount.updateCallback(post, function(result) {
+                        if (result && (result.count != null || result.count != undefined)) {
+                            var selects = document.querySelectorAll("[" + elementClass + "='" + result.post + "']");
                             for (var j = 0; j < selects.length; j++) {
-                                var select  = selects[j];
-                                select.innerHTML = count;
+                                var select = selects[j];
+                                select.innerHTML = result.count;
                             }
                         }
                     });
