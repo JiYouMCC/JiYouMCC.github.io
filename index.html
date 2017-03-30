@@ -61,7 +61,7 @@ use_code: true
     $(".comment-count").load(function(){
       var post = $(this).attr('post');
       Comments.post.commentCount.updateCallback(post, function(count){
-        $(this).innerHTML = count;
+        $(this).text(count);
       });
     });
 </script>
