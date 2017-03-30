@@ -86,7 +86,7 @@
     $('div[id^=comments_]').remove();
     for (commentId in messages) {
       var comment = messages[commentId];
-      var comment_detail = $("<pre></pre>");
+      var comment_detail = $("<div></div>");
       if (comment.reply) {
         comment_detail.append(
           $("<pre></pre>").append(
@@ -97,12 +97,6 @@
             ).append(
               $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
             ).append(
-              $("<a></a>").attr('title', '跳转').attr('href', "#comments_" + comment.reply).append(
-                $("<button></button>").attr('class', 'btn btn-link').attr('type', "button").append(
-                  $("<span></span>").attr('class', 'glyphicon glyphicon-share-alt')
-                )
-              )
-            ).append(
               $("<div></div>").text(messages[comment.reply].comment)
             )
           )
@@ -112,13 +106,12 @@
         $("<div></div>").text(comment.comment)
       );
 
-      var d_comments = $("<div></div>").addClass("list-group-item").attr('id',"comments_"+commentId).append(
+      var d_comments = $("<div></div>").addClass("list-group-item").attr('id',"comments_" + commentId).append(
           $("<div></div>").append(
             $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
             ).append(
               $("<span></span>").text(comment.name)
-            )
-            .append(
+            ).append(
               $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
             )
             /*<a title="回复" href="#0" onclick="SetFollow('{{ comment.id }}','{{ comment.author }}')"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-comment"></span></button></a>*/
@@ -141,31 +134,14 @@
 
   $("#add_comment").click(function(){
     $("#add_comment").attr("disabled", "");
-    Comments.comment.add(
-      $("#name").val(),
-      $("#email").val(),
-      '{{ page.id }}',
-      $("#comment").val(),
-      $("#url").val(),
-      null, 
-      function(result){
+    Comments.comment.add($("#name").val(), $("#email").val(), '{{ page.id }}', $("#comment").val(), $("#url").val(), null,  function(result){
         if (result) {
           $("#comment").val("");
         }
 
         $("#add_comment").removeAttr("disabled");
        });
-  })
-
-  function htmlEscape(str) {
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-  }
-
+  });
 </script>
 
 
