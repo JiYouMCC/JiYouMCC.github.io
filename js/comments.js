@@ -197,8 +197,8 @@ Comments = {
     util: {
         showCount(elementClass = 'Comments-count') {
             var elements = document.getElementsByClassName(elementClass);
-            for (index in elements) {
-                var element = elements[index];
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
                 var post = element.getAttribute("post");
                 if (post) {
                     Comments.post.commentCount.updateCallback(post, function(count){

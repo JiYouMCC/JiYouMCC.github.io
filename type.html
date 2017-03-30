@@ -39,7 +39,7 @@ title: "分类"
                 {% endif %}
               {% endfor %}</td>
           <td class="text-center">
-            <span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span>
+            <span post="{{ post.id }}" class="badge ds-thread-count Comments-count"></span>
           </td>
         </tr>
         {% endfor %}
@@ -60,7 +60,7 @@ title: "分类"
                   <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                   {% endif %}
                 {% endfor %}</td>
-            <td class="text-center"><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+            <td class="text-center"><span post="{{ post.id }}" class="badge ds-thread-count Comments-count"></span></td>
           </tr>
           {% endunless %}
         {% endfor %}
@@ -93,7 +93,7 @@ title: "分类"
                 {% endfor %}
               {% endif %}
             </td>
-            <td class="text-center"><span class="badge ds-thread-count" data-thread-key="{{ post.id }}" data-count-type="comments"></span></td>
+            <td class="text-center"><span post="{{ post.id }}" class="badge ds-thread-count Comments-count"></span></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -105,6 +105,6 @@ title: "分类"
 </div>
 <script type="text/javascript">
   if (location.hash != "") {
-    $("#tag_"+location.hash.replace("#","")).tab('show');
+    $("#tag_" + location.hash.replace("#","")).tab('show');
   }
 </script>
