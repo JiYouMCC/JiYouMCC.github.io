@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-  <div class="list-group">
+  <div id="comments" class="list-group">
     <div class="list-group-item">
       以下正在测试，请无视_(:зゝ∠)_
     </div>
@@ -50,9 +50,7 @@
         })
       </script>
     </div>
-  </div>
-  <div id="comments" class="list-group">
-  </div>
+  
 </div>
 
 <!-- Modal -->
@@ -84,7 +82,7 @@
   };
 
   Comments.comment.listCallback("{{ page.id }}", function(messages) {
-    $("#comments").text("");
+    $('div[id^=comments_]').remove();
     for (commentId in messages) {
       var comment = messages[commentId];
       var comment_detail = $("<pre></pre>");
@@ -109,7 +107,7 @@
   /*<a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a>*/
 
       $("#comments").append(
-        $("<div></div>").addClass("list-group-item").append(
+        $("<div></div>").addClass("list-group-item").attr('id',"comments_"+commentId).append(
           $("<div></div>").append(
             $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
             ).append(
