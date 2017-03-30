@@ -63,7 +63,7 @@ use_code: true
     var span = $(divs[index]);
     var post = span.attr('post');
     Comments.post.commentCount.updateCallback(post, function(count){
-      post.text(count);
+      span.text(count);
     });
   }
 </script>
