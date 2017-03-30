@@ -103,7 +103,9 @@
           )
         )
       }
-      comment_detail.append($("<div></div>").text(htmlEscape(comment.comment));
+      comment_detail.append(
+        $("<div></div>").text(comment.comment)
+      );
   /*<a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a>*/
 
       $("#comments").append(
