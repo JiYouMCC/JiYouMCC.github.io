@@ -87,10 +87,29 @@
     $("#comments").text("");
     for (commentId in messages) {
       var comment = messages[commentId];
+      var comment_detail = $("<pre></pre>");
+      if (comment.reply) {
+        comment_detail.append(
+          $("<pre></pre>").append(
+            $("<div></div>").append(
+              $("<img></img>").addClass("img-circle").attr("alt", messages[comment.reply].name).attr('src', getGravatar(messages[comment.reply].email, 20))
+            ).append(
+              $("<span></span>").text(messages[comment.reply].name)
+            ).append(
+              $("<span></span>").text(new Date(parseInt(messages[comment.reply].name.timestamp)).toDateString())
+            )
+          ).append(
+            $("<div></div>").text(messages[comment.reply].comment)
+          )
+        )
+      }
+      comment_detail.append($("<div></div>").text(htmlEscape(comment.comment));
+  /*<a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a>*/
+
       $("#comments").append(
         $("<div></div>").addClass("list-group-item").append(
           $("<div></div>").append(
-            $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email))
+            $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
             ).append(
               $("<span></span>").text(comment.name)
             )
@@ -98,9 +117,7 @@
               $("<span></span>").text(new Date(parseInt(comment.timestamp)).toDateString())
             )
             /*<a title="回复" href="#0" onclick="SetFollow('{{ comment.id }}','{{ comment.author }}')"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-comment"></span></button></a>*/
-        ).append(
-          $("<pre></pre>").text(htmlEscape(comment.comment))
-        )
+        ).append(comment_detail)
       )
 
       /*<pre class="page_blog_comment">{% if comment.follow_comment %}<pre><div><img class="img-circle" alt="{{ comment.follow_comment.author }}" src="{{ comment.follow_comment.email|mail_gravatar:"20"}}"> <span class="page_author">{{ comment.follow_comment.author }}</span> <span class="page_datetime">{{ comment.follow_comment.datetime | date:"Y-n-j H:i:s" }}</span> <a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a></div>{{ comment.follow_comment.detail }}</pre>{% endif %}{{ comment.detail}}</pre>
