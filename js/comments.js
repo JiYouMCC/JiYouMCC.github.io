@@ -87,7 +87,7 @@ Comments = {
                 return;
             }
 
-            Comments.post.commentCount.get(post, function(oldCount) {
+            Comments.post.commentCount.get(post, function(oldResult) {
                 var commentRef = Comments._sync.ref("/comments");
                 commentRef.push({
                     "name": name,
@@ -102,7 +102,7 @@ Comments = {
                         Comments.handleError(error);
                         Comments.handleCallback(callback, false);
                     } else {
-                        Comments.post.commentCount.set(post, oldCount + 1, function() {
+                        Comments.post.commentCount.set(post, oldResult.count + 1, function() {
                             Comments.handleCallback(callback, true);
                         });
                     }
