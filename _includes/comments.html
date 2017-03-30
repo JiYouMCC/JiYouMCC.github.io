@@ -50,7 +50,7 @@
         })
       </script>
     </div>
-  
+  </div>
 </div>
 
 <!-- Modal -->
@@ -69,6 +69,7 @@
     </div>
   </div>
 </div>
+
 <script src="{{ site.baseurl }}/js/avatar.js"></script>
 <script type="text/javascript">
   function showError(error) {
@@ -94,17 +95,22 @@
             ).append(
               $("<span></span>").text(messages[comment.reply].name)
             ).append(
-              $("<span></span>").text(new Date(parseInt(messages[comment.reply].name.timestamp)).toDateString())
+              $("<span></span>").text(new Date(parseInt(messages[comment.reply].timestamp)).toDateString())
+            ).append(
+              $("<a></a>").attr('title', '跳转').attr('href', "#comments_" + comment.reply).append(
+                $("<button></button>").attr('class', 'btn btn-link').attr('type', "button").append(
+                  $("<span></span>").attr('class', 'glyphicon glyphicon-share-alt')
+                )
+              )
+            ).append(
+              $("<div></div>").text(messages[comment.reply].comment)
             )
-          ).append(
-            $("<div></div>").text(messages[comment.reply].comment)
           )
         )
       }
       comment_detail.append(
         $("<div></div>").text(comment.comment)
       );
-  /*<a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a>*/
 
       $("#comments").append(
         $("<div></div>").addClass("list-group-item").attr('id',"comments_"+commentId).append(
