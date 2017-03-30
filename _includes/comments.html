@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="text-center">
-          <button type="submit" class="btn btn-default">评论</button>
+          <button id="add_comment" type="submit" class="btn btn-default">评论</button>
           <button type="reset" class="btn btn-default">重置</button>
         </div>
       </form>
@@ -89,15 +89,13 @@
       $("#comments").append(
         $("<div></div>").addClass("list-group-item").append(
           $("<div></div>").append(
-            $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email));
+            $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email))
             ).append(
               $("<span></span>").text(comment.name)
             )
             .append(
               $("<span></span>").text(new Date(parseInt(comment.timestamp)).toDateString())
             )
-
-
             /*<a title="回复" href="#0" onclick="SetFollow('{{ comment.id }}','{{ comment.author }}')"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-comment"></span></button></a>*/
         ).append(
           $("<pre></pre>").text(htmlEscape(pre_comment.comment))
@@ -116,23 +114,23 @@
     }
   });
 
-  /*function addComment() {
-    document.getElementById('button_comment').disabled = "disabled";
-    Comments.comment.add(document.getElementById('name').value,
-      document.getElementById('email').value,
+  $("#add_comment").click(function(){
+    $("#add_comment").attr("disabled", "");
+    Comments.comment.add(
+      $("#name").val(),
+      $("#email").val(),
       '{{ page.id }}',
-       document.getElementById('comment').value,
-       document.getElementById('url').value, 
-       document.getElementById('reply').value, 
-       function(result){
-          if (result) {
-            document.getElementById('comment').value = "";
-          }
-            document.getElementById('button_comment').disabled = "";
-            
+      $("#comment").val(),
+      $("#url").val(),
+      null, 
+      function(result){
+        if (result) {
+          $("#comment").val("");
+        }
 
+        $("#add_comment").removeAttr("disabled");
        });
-  }*/
+  })
 
   function htmlEscape(str) {
     return str
