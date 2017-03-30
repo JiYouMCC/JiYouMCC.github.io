@@ -201,9 +201,9 @@ Comments = {
                 var element = elements[i];
                 var post = element.getAttribute("post");
                 if (post) {
-                    Comments.post.commentCount.updateCallback(post, function(count){
+                    Comments.post.commentCount.updateCallback(post, function(count) {
                         if (count != null || count != undefined) {
-                            element.innerHTML = count;
+                            document.querySelectorAll("[" + elementClass + "='" + post + "']").innerHTML = count;
                         }
                     });
                 }
