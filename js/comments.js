@@ -199,7 +199,7 @@ Comments = {
             var elements = document.getElementsByClassName(elementClass);
             for (index in elements) {
                 var element = elements[index];
-                var post = element.post;
+                var post = element.getAttribute("post");
                 if (post) {
                     Comments.post.commentCount.updateCallback(post, function(count){
                         if (count != null || count != undefined) {
@@ -210,4 +210,8 @@ Comments = {
             }
         }
     }
+}
+
+document.onload = function() {
+    Comments.util.showCount();
 }
