@@ -42,7 +42,7 @@
         </div>
       </form>
     </div>
-    <div class="list-group-item">
+    <div id="div_comments" class="list-group-item">
       评论共<span id="comment_count"></span>条
       <script type="text/javascript">
         Comments.post.commentCount.updateCallback("{{ page.id }}", function(count){
@@ -112,8 +112,7 @@
         $("<div></div>").text(comment.comment)
       );
 
-      $("#comments").append(
-        $("<div></div>").addClass("list-group-item").attr('id',"comments_"+commentId).append(
+      var d_comments = $("<div></div>").addClass("list-group-item").attr('id',"comments_"+commentId).append(
           $("<div></div>").append(
             $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
             ).append(
@@ -123,8 +122,10 @@
               $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
             )
             /*<a title="回复" href="#0" onclick="SetFollow('{{ comment.id }}','{{ comment.author }}')"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-comment"></span></button></a>*/
-        ).append(comment_detail)
-      )
+        ).append(comment_detail);
+
+
+      d_comments.insertAfter($("#div_comments"));
 
       /*<pre class="page_blog_comment">{% if comment.follow_comment %}<pre><div><img class="img-circle" alt="{{ comment.follow_comment.author }}" src="{{ comment.follow_comment.email|mail_gravatar:"20"}}"> <span class="page_author">{{ comment.follow_comment.author }}</span> <span class="page_datetime">{{ comment.follow_comment.datetime | date:"Y-n-j H:i:s" }}</span> <a title="跳转" href="#{{ comment.follow_comment.id }}"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-share-alt"></span></button></a></div>{{ comment.follow_comment.detail }}</pre>{% endif %}{{ comment.detail}}</pre>
     </div>*/
