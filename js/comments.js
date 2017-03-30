@@ -203,7 +203,11 @@ Comments = {
                 if (post) {
                     Comments.post.commentCount.updateCallback(post, function(count) {
                         if (count != null || count != undefined) {
-                            document.querySelectorAll("[" + elementClass + "='" + post + "']").innerHTML = count;
+                            var selects =  document.querySelectorAll("[" + elementClass + "='" + post + "']");
+                            for (var j = 0; j < selects.length; j++) {
+                                var select  = selects[j];
+                                select.innerHTML = count;
+                            }
                         }
                     });
                 }
