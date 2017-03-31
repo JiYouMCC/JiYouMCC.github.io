@@ -29,8 +29,12 @@ Comments = {
     errors: {
         NO_POST: "没有指定文章",
         NO_NAME: "昵称为空",
-        NO_EMAIL: "邮件为空",
-        NO_COMMIT: "评论为空",
+        NAME_TOO_LONG: "昵称太长",
+        NO_EMAIL: "邮件地址为空",
+        EMAIL_INVALD: "邮件地址无效",
+        URL_INVALD: "网址无效",
+        NO_COMMENT: "评论为空",
+        COMMENT_TOO_LONG: "评论太长",
         NO_COUNT: "没有指定数量"
     },
     handleCallback: function(callback, returnValue) {
@@ -69,8 +73,20 @@ Comments = {
                 return;
             }
 
+            if (name.length > 20) {
+                Comments.handleError(Comments.errors.NAME_TOO_LONG);
+                Comments.handleCallback(callback, false);
+                return;
+            }
+
             if (!email) {
                 Comments.handleError(Comments.errors.NO_EMAIL);
+                Comments.handleCallback(callback, false);
+                return;
+            }
+
+            if (!/^[\.a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email)) {
+                Comments.handleError(Comments.errors.EMAIL_INVALD);
                 Comments.handleCallback(callback, false);
                 return;
             }
@@ -81,8 +97,20 @@ Comments = {
                 return;
             }
 
+            if (!/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/.test(url)) {
+                Comments.handleError(Comments.errors.URL_INVALD);
+                Comments.handleCallback(callback, false);
+                return;
+            }
+
             if (!comment) {
-                Comments.handleError(Comments.errors.NO_COMMIT);
+                Comments.handleError(Comments.errors.NO_COMMENT);
+                Comments.handleCallback(callback, false);
+                return;
+            }
+
+            if (comment.length >= 2048) {
+                Comments.handleError(Comments.errors.COMMENT_TOO_LONG);
                 Comments.handleCallback(callback, false);
                 return;
             }
