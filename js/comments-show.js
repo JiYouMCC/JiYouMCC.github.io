@@ -24,8 +24,6 @@ function showComments(page) {
           ).append(" ").append(
             $("<strong></strong>").text(messages[comment.reply].name)
           ).append(" ").append(
-            $("<span></span>").text("@")
-          ).append(" ").append(
             $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
           ).append(" ").append(
             $("<em></em>").text("的评论：")
