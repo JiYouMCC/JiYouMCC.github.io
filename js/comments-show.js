@@ -1,5 +1,15 @@
 var comments_messages = undefined;
 
+function showError(error) {
+  var message = error.message ? error.message : error;
+  $("#modal_error").modal('show');
+  $("#error_message").text(message);
+}
+
+Comments.handleError = function(error) {
+  showError(error);
+};
+
 function showComments(page) {
   Comments.comment.listCallback(page, function(messages) {
     comments_messages = messages
