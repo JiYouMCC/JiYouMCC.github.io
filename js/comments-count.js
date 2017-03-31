@@ -6,7 +6,7 @@ $(function() {
         if (post) {
             Comments.post.commentCount.updateCallback(post, function(result) {
                 if (result) {
-                    element.text(result.count);
+                    $("[comments-count='" + result.post + "']").text(result.count);
                 }
             });
         }
