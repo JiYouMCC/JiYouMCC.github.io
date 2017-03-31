@@ -5,6 +5,7 @@ date:   2015-2-7 21:50:49 +0800
 categories: 技术
 tags: javascript
 use_code: true
+disable_comment: true
 ---
 因为iframe实在太落后了，所以被C世界某某某光毫无底线地耻笑了一番，所以就狠心好好整一整
 
