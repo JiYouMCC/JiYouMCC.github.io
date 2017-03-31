@@ -19,16 +19,18 @@ function showComments(page) {
       var comment_detail = $("<div></div>");
       if (comment.reply) {
         comment_detail.append(
-          $("<blockquote></blockquote>").append(
-            $("<div></div>").append(
-              $("<img></img>").addClass("img-circle").attr("alt", messages[comment.reply].name).attr('src', getGravatar(messages[comment.reply].email, 20))
-            ).append(" ").append(
-              $("<strong></strong>").text(messages[comment.reply].name)
-            ).append(" ").append(
-              $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
-            ).append(
-              $("<pre></pre>").text(messages[comment.reply].comment)
-            )
+          $("<div></div>").append(
+            $("<em></em>").text("引用")
+          ).append(" ").append(
+            $("<strong></strong>").text(messages[comment.reply].name)
+          ).append(" ").append(
+            $("<span></span>").text("@")
+          ).append(" ").append(
+            $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
+          ).append(" ").append(
+            $("<em></em>").text("的评论：")
+          ).append(
+            $("<div></div>").addClass('page_blog_comment_message_reply').text(messages[comment.reply].comment)
           )
         )
       }
