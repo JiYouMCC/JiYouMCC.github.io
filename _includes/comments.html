@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div id="comments" class="list-group">
     <div class="list-group-item">
-      <form class="form-horizontal" novalidate>
+      <div class="form-horizontal">
         <div class="form-group">
           <label class="col-sm-2 control-label" for="name">*昵称</label>
           <div class="col-sm-10">
@@ -37,7 +37,7 @@
           <button id="add_comment" class="btn btn-default">评论</button>
           <button type="reset" class="btn btn-default">重置</button>
         </div>
-      </form>
+      </div>
     </div>
     <div id="div_comments" class="list-group-item">
       <strong>评论共<span comments-count="{{ page.id }}"></span>条</strong>
