@@ -69,7 +69,5 @@
 <script src="{{ site.baseurl }}/js/comments-show.js"></script>
 <script src="{{ site.baseurl }}/js/comments-count.js"></script>
 <script type="text/javascript">
-  Comments.post.commentCount.updateCallback("{{ page.id }}", function(count){
-    document.getElementById('comment_count').innerHTML = count;
-  });
+  showComments("{{ page.id }}");
 </script>
