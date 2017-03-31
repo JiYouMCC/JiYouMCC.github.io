@@ -147,7 +147,10 @@ Comments = {
                         count = snapshot.val().count
                     }
 
-                    Comments.handleCallback(callback, count);
+                    Comments.handleCallback(callback, {
+                        "post": post,
+                        "count": count
+                    });
                 });
             },
             set: function(post, count, callback) {
@@ -188,7 +191,10 @@ Comments = {
                         count = snapshot.val().count
                     }
 
-                    Comments.handleCallback(callback, count);
+                    Comments.handleCallback(callback, {
+                        "post": post,
+                        "count": count
+                    });
                 });
                 return returnCallback;
             }
