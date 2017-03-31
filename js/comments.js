@@ -147,10 +147,7 @@ Comments = {
                         count = snapshot.val().count
                     }
 
-                    Comments.handleCallback(callback, {
-                        "post": post,
-                        "count": count
-                    });
+                    Comments.handleCallback(callback, count);
                 });
             },
             set: function(post, count, callback) {
@@ -191,37 +188,10 @@ Comments = {
                         count = snapshot.val().count
                     }
 
-                    Comments.handleCallback(callback, {
-                        "post": post,
-                        "count": count
-                    });
+                    Comments.handleCallback(callback, count);
                 });
                 return returnCallback;
             }
         }
-    },
-    util: {
-        showCount(elementClass = 'comments-count') {
-            var elements = document.querySelectorAll("[" + elementClass + "]");
-            for (var index = 0; index < elements.length; index++) {
-                var element = elements[index];
-                var post = element.getAttribute(elementClass);
-                if (post) {
-                    Comments.post.commentCount.updateCallback(post, function(result) {
-                        if (result && (result.count != null || result.count != undefined)) {
-                            var selects = document.querySelectorAll("[" + elementClass + "='" + result.post + "']");
-                            for (var j = 0; j < selects.length; j++) {
-                                var select = selects[j];
-                                select.innerHTML = result.count;
-                            }
-                        }
-                    });
-                }
-            }
-        }
     }
-}
-
-window.onload = function() {
-    Comments.util.showCount();
 }
