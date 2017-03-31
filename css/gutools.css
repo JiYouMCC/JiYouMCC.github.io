@@ -132,7 +132,7 @@
     display: block;
     unicode-bidi: embed;
     font-family: monospace;
-    white-space: pre-line;
+    white-space: pre-wrap;
 }
 
 .page_blog_comment {
