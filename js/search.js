@@ -31,7 +31,7 @@ var params = {};
       var cat = $("<td></td>").addClass("text-center").append(
         $("<span></span>").append(
           $("<a></a>").attr("class", "label label-default").attr("href", "/type#" + item.category).text(item.category)));
-      var comments = $("<td></td").addClass("text-center").append($("<span></span>").attr("class", "badge ds-thread-count").attr("data-thread-key", item.post_id).attr("data-count-type","comments"));
+      var comments = $("<td></td").addClass("text-center").append($("<span></span>").attr("class", "badge ds-thread-count").attr("comments-count", item.post_id));
       $("#result").append(
         $("<tr></tr")
           .append(title)
@@ -40,4 +40,17 @@ var params = {};
           .append(comments)
           );
       });
+
+    var elements = $("[comments-count]");
+    for (var i = 0; i < elements.length; i++) {
+        var element = $(elements[i]);
+        var post = element.attr('comments-count');
+        if (post) {
+            Comments.post.commentCount.updateCallback(post, function(result) {
+                if (result) {
+                    $("[comments-count='" + result.post + "']").text(result.count);
+                }
+            });
+        }
+    }
   });
