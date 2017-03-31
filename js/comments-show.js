@@ -33,7 +33,7 @@ function showComments(page) {
         )
       }
       comment_detail.append(
-        $("<pre></pre>").text(comment.comment)
+        $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
       var name_div = $("<div></div>").append(
         $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
