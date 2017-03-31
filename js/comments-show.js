@@ -10,13 +10,13 @@ function showComments(page) {
       if (comment.reply) {
         comment_detail.append(
           $("<div></div>").append(
-            $("<em></em>").text("引用")
+            $("<span></span>").text("引用")
           ).append(" ").append(
             $("<strong></strong>").text(messages[comment.reply].name)
           ).append(" ").append(
             $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(messages[comment.reply].timestamp))))
           ).append(" ").append(
-            $("<em></em>").text("的评论：")
+            $("<span></span>").text("的评论：")
           ).append(
             $("<div></div>").addClass('page_blog_comment_message_reply').text(messages[comment.reply].comment)
           )
