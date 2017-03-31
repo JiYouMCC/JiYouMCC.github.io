@@ -16,13 +16,18 @@
   <div id="recent-comments" class="list-group">
     <script type="text/javascript">
       Comments.comment.recent.updateCallback(7,function(comments){
+        $("#recent-comments").text("");
         for (commentId in comments){
           var comment = comments[commentId];
-          $("#recent-comments").append(
-            $("<a></a>").addClass("list-group-item").attr("href", comment.post).append(
-              $("<strong></strong>").text(comment.name)
-            ).append(" : ").append(
-              $("<span></span>").text(comment.comment)
+          $("#recent-comments").prepend(
+            $("<div></div>").addClass("list-group-item").append(
+              $("<div></div>").append(
+                $("<strong></strong>").text(comment.name)
+              ).append(" ").append(
+                $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
+              )
+            ).append(
+              $("<div></div>").text(comment.comment).slice(0, 32);
             )
           );
         }
@@ -30,19 +35,6 @@
     </script>
   </div>
  </div>
-
-<!--
-TO be deleted
- <div class="panel panel-default">
-    <div class="panel-heading">
-     <strong>最新访客</strong>
-     </div>
-   <div class="panel-body text-center">
-     <ul data-num-items="28" class="ds-recent-visitors"></ul>
-   </div>
-  </div>
--->
-
 
 <div class="panel panel-default">
   <div class="panel-heading">
