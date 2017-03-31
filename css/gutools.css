@@ -128,6 +128,13 @@
   background-color: #F3F8F1;
 }
 
+.page_blog_comment_message {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    white-space: pre;
+}
+
 .page_blog_comment {
     color: #161824;
     border: none;
