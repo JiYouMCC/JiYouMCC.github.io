@@ -131,7 +131,6 @@
 .page_blog_comment_message {
     display: block;
     unicode-bidi: embed;
-    font-family: monospace;
     white-space: pre-wrap;
 }
 
@@ -165,7 +164,7 @@
 
 .page_nav img {
   max-width: 100%;
-  _background: none;
+  background: none;
 }
 
 .post_check {
