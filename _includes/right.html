@@ -27,7 +27,7 @@
                 $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
               )
             ).append(
-              $("<div></div>").text(comment.comment.slice(0, 32));
+              $("<div></div>").text(comment.comment.slice(0, 32))
             )
           );
         }
