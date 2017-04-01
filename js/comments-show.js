@@ -40,7 +40,7 @@ function showComments(page) {
       comment_detail.append(
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
-
+      alert("start");
       var name_div = $("<div></div>");
       alert("div");
       name_div.append("<img class='img-circle' alt='" + comment.name + "' src='" + getGravatar(comment.email, 20) + "' />").append(" ");
