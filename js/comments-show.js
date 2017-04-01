@@ -37,9 +37,9 @@ function showComments(page) {
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
 
-      var name_div = $("<div></div>").append(
+      var name_div = $("<div></div>")/*.append(
         $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
-      )/*.append(
+      )*//*.append(
         $("<strong></strong>").text(comment.name)
       ).append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
