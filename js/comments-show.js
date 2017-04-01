@@ -11,6 +11,7 @@ Comments.handleError = function(error) {
 }
 
 function showComments(page) {
+  alert(page);
   Comments.comment.listCallback(page, function(messages) {
     alert("get update");
     comments_messages = messages;
