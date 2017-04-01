@@ -4,6 +4,7 @@ title:  "Jekyll 中使用 Firebase/Wilddog 部署评论系统"
 date:   2017-04-01 17:03:45 +0800
 categories: 技术
 tags: javascript firebase wilddog jquery
+use_code: true
 ---
 # 碎碎念 #
 
