@@ -94,7 +94,7 @@ function showComments(page) {
   });
 }
 
-function getGravatar(email, size = 100) {
+function getGravatar(email, size) {
   return "https://www.gravatar.com/avatar/" + MD5(email) + "?s=" + size;
 }
 
