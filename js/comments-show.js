@@ -13,14 +13,10 @@ Comments.handleError = function(error) {
 function showComments(page) {
   Comments.comment.listCallback(page, function(messages) {
     comments_messages = messages;
-    alert("-1");
     $('div[id^=comments_]').remove();
-    alert("0");
     for (commentId in messages) {
-      alert("1");
       var comment = messages[commentId];
       var comment_detail = $("<div></div>");
-      alert("2");
       if (comment.reply) {
         comment_detail.append(
           $("<div></div>").append(
@@ -36,10 +32,11 @@ function showComments(page) {
           )
         )
       }
-      alert("3");
+      alert("a");
       comment_detail.append(
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
+      alert("b");
       var name_div = $("<div></div>").append(
         $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
       ).append(" ").append(
@@ -47,7 +44,7 @@ function showComments(page) {
       ).append(" ").append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
       );
-      alert("4");
+      alert("c");
       if (comment.url) {
         name_div.append(" ").append(
           $("<a></a>").attr('href', comment.url).attr('target', '_blank').attr('title', "网站").append(
@@ -57,7 +54,7 @@ function showComments(page) {
           )
         );
       }
-      alert("5");
+      alert("d");
 
       name_div.append(" ").append(
         $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', commentId).append(
@@ -68,7 +65,7 @@ function showComments(page) {
       var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
       d_comments.insertAfter($("#div_comments"));
     }
-    
+
     $("button[id^=button_reply_]").click(function() {
       var reply = $(this).attr("reply");
       $("#reply").val(reply);
