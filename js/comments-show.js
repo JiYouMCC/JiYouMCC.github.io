@@ -32,14 +32,14 @@ function showComments(page) {
           )
         )
       }
-      alert("a");
+
       comment_detail.append(
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
-      alert("b");
+
       var name_div = $("<div></div>").append(
-        $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr('src', getGravatar(comment.email, 20))
-      ).append(" ").append(
+//        $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
+//      ).append(" ").append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
@@ -54,14 +54,13 @@ function showComments(page) {
           )
         );
       }
-      alert("d");
 
       name_div.append(" ").append(
         $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', commentId).append(
           $("<span></span>").addClass("glyphicon glyphicon-comment")
         )
       );
-      alert("6");
+
       var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
       d_comments.insertAfter($("#div_comments"));
     }
