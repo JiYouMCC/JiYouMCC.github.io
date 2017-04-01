@@ -40,7 +40,7 @@ function showComments(page) {
 
       var name_div = $("<div></div>").append(
         $("<strong></strong>").text(comment.name)
-      ).append(
+      ).append(" ").append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
       );
       if (comment.url) {
