@@ -19,6 +19,7 @@ function showComments(page) {
     comments_messages = messages;
     $('div[id^=comments_]').remove();
     for (commentId in messages) {
+      alert(commentId);
       var comment = messages[commentId];
       var comment_detail = $("<div></div>");
       if (comment.reply) {
