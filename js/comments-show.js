@@ -42,12 +42,13 @@ function showComments(page) {
       );
 
       var name_div = $("<div></div>");
-
-      name_div.append(
-        $("<strong></strong>").text(comment.name)
-      ).append(" ").append(
-        $("<span></span>").addClass("page_datetime").text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
-      );
+      alert("div");
+      name_div.append("<img class='img-circle' alt='" + comment.name + "' src='" + getGravatar(comment.email, 20) + "' />").append(" ");
+      alert("img");
+      name_div.append($("<strong></strong>").text(comment.name)).append(" ");
+      alert("name");
+      name_div.append($("<span></span>").addClass("page_datetime").text(Comments.formatDate(new Date(parseInt(comment.timestamp)))));
+      alert("datetime");
       if (comment.url) {
         name_div.append(" ").append(
           $("<a></a>").attr("href", comment.url).attr("target", "_blank").attr("title", "网站").append(
