@@ -10,8 +10,8 @@ Comments.handleError = function(error) {
   showError(error);
 };
 
-function getGravatar(email, size=100) {
-    return "https://www.gravatar.com/avatar/" + md5(email) + "?s=" + size;
+function getGravatar(email, size = 100) {
+  return "https://www.gravatar.com/avatar/" + md5(email) + "?s=" + size;
 }
 
 function showComments(page) {
@@ -42,7 +42,7 @@ function showComments(page) {
       );
 
       var name_div = $("<div></div>").append(
-        $("<img></img>")
+        $("<img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
       ).append(" ").append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
