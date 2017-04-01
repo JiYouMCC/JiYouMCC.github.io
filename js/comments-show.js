@@ -42,7 +42,7 @@ function showComments(page) {
       );
 
       var name_div = $("<div></div>").append(
-        $("<img></img>").addClass("img-circle").attr("alt", comment.name)
+        $("<img></img>")
       ).append(" ").append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
