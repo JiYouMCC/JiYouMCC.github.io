@@ -12,8 +12,10 @@ Comments.handleError = function(error) {
 
 function showComments(page) {
   Comments.comment.listCallback(page, function(messages) {
+    alert("get update");
     comments_messages = messages;
     $('div[id^=comments_]').remove();
+    alert("clean done");
     for (commentId in messages) {
       alert(commentId);
       var comment = messages[commentId];
