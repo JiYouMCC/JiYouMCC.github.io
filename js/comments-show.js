@@ -10,6 +10,10 @@ Comments.handleError = function(error) {
   showError(error);
 };
 
+function getGravatar(email, size=100) {
+    return "https://www.gravatar.com/avatar/" + md5(email) + "?s=" + size;
+}
+
 function showComments(page) {
   Comments.comment.listCallback(page, function(messages) {
     comments_messages = messages;
@@ -36,9 +40,10 @@ function showComments(page) {
       comment_detail.append(
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
-//$("<img></img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
 
       var name_div = $("<div></div>").append(
+        $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
+      ).append(" ").append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
