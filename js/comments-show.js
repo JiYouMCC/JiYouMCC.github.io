@@ -44,7 +44,7 @@ function showComments(page) {
       ).append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
       );*/
-      alert(getGravatar(comment.email, 20));
+      alert(MD5(comment.email));
       if (comment.url) {
         name_div.append(" ").append(
           $("<a></a>").attr('href', comment.url).attr('target', '_blank').attr('title', "网站").append(
