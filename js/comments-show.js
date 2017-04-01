@@ -50,7 +50,7 @@ function showComments(page) {
         console.log("some mobile do not suport add image. I don't know why.");
       }
 
-      var name_div = $("<div></div>").append(
+      name_div.append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
