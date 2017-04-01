@@ -11,9 +11,7 @@ Comments.handleError = function(error) {
 };
 
 function showComments(page) {
-  alert("Phone test");
   Comments.comment.listCallback(page, function(messages) {
-    alert("Phone test: Update");
     comments_messages = messages;
     $('div[id^=comments_]').remove();
     for (commentId in messages) {
@@ -64,13 +62,14 @@ function showComments(page) {
       var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
       d_comments.insertAfter($("#div_comments"));
     }
-
+    alert("Phone test: Comments add finish");
     $("button[id^=button_reply_]").click(function() {
       var reply = $(this).attr("reply");
       $("#reply").val(reply);
       $("#reply_user").text(comments_messages[reply].name);
       $("#reply_to").show();
     });
+    alert("Phone test: Reply function done");
   });
 
   $("#add_comment").click(function() {
