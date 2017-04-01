@@ -44,21 +44,21 @@ function showComments(page) {
       var name_div = $("<div></div>");
 
       //some mobile do not suport add image. I don't know why.
-      try {
+      /*try {
         name_div.append("<img class='img-circle' alt='" + comment.name + "' src='" + getGravatar(comment.email, 20) + "' />").append(" ");
       } catch (err) {
         console.log("some mobile do not suport add image. I don't know why.");
-      }
+      }*/
 
       name_div.append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
-        $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
+        $("<span></span>").addClass("page_datetime").text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
       );
       if (comment.url) {
         name_div.append(" ").append(
-          $("<a></a>").attr('href', comment.url).attr('target', '_blank').attr('title', "网站").append(
-            $("<button></button>").addClass('btn btn-link').append(
+          $("<a></a>").attr("href", comment.url).attr("target", "_blank").attr("title", "网站").append(
+            $("<button></button>").addClass("btn btn-link").append(
               $("<span></span>").addClass("glyphicon glyphicon-home")
             )
           )
