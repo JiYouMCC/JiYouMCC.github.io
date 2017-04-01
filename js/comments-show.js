@@ -42,7 +42,7 @@ function showComments(page) {
       );
 
       var name_div = $("<div></div>").append(
-        $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
+        $("<img></img>").addClass("img-circle").attr("alt", comment.name)
       ).append(" ").append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
