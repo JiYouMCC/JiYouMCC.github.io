@@ -15,8 +15,10 @@ function showComments(page) {
     comments_messages = messages;
     $('div[id^=comments_]').remove();
     for (commentId in messages) {
+      alert("1");
       var comment = messages[commentId];
       var comment_detail = $("<div></div>");
+      alert("2");
       if (comment.reply) {
         comment_detail.append(
           $("<div></div>").append(
@@ -32,6 +34,7 @@ function showComments(page) {
           )
         )
       }
+      alert("3");
       comment_detail.append(
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
@@ -42,7 +45,7 @@ function showComments(page) {
       ).append(" ").append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
       );
-
+      alert("4");
       if (comment.url) {
         name_div.append(" ").append(
           $("<a></a>").attr('href', comment.url).attr('target', '_blank').attr('title', "网站").append(
@@ -52,24 +55,24 @@ function showComments(page) {
           )
         );
       }
+      alert("5");
 
       name_div.append(" ").append(
         $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', commentId).append(
           $("<span></span>").addClass("glyphicon glyphicon-comment")
         )
       );
-
+      alert("6");
       var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
       d_comments.insertAfter($("#div_comments"));
     }
-    alert("Phone test: Comments add finish");
+    
     $("button[id^=button_reply_]").click(function() {
       var reply = $(this).attr("reply");
       $("#reply").val(reply);
       $("#reply_user").text(comments_messages[reply].name);
       $("#reply_to").show();
     });
-    alert("Phone test: Reply function done");
   });
 
   $("#add_comment").click(function() {
