@@ -31,7 +31,7 @@ tags: javascript firebase wilddog jquery
 
 顺手撸的代码在： [jekyll-firebase-comments](https://github.com/JiYouMCC/jekyll-firebase-comments)
 
-一开始比较拙劣，弄到一半的时候我就去逛逛知乎了。不出我的所料，已经有那么点儿讨论了，比如[知乎：如何评价“多说”即将关闭？有什么替代方案？](https://www.zhihu.com/question/57426274/answer/)。看了一圈，各种推荐网易跟帖，换Disqus的，还有个韩国弄的什么的。里面有几个回答有点吸引我，有个是把评论推到github上的。然后就发现了一个小伙伴 [Frank Lin](https://flinhong.com/2017/03/25/self-host-comments-in-jekyll-using-firebase-database/)在干和我一样的事儿，有点儿小兴奋呢。
+一开始比较拙劣，弄到一半的时候我就去逛逛知乎了。不出我的所料，已经有那么点儿讨论了，比如[知乎：如何评价“多说”即将关闭？有什么替代方案？](https://www.zhihu.com/question/57426274/)。看了一圈，各种推荐网易跟帖，换Disqus的，还有个韩国弄的什么的。里面有几个回答有点吸引我，有个是把评论推到github上的。然后就发现了一个小伙伴 [Frank Lin](https://flinhong.com/2017/03/25/self-host-comments-in-jekyll-using-firebase-database/)在干和我一样的事儿，有点儿小兴奋呢。
 
 <!--more-->
 
