@@ -8,10 +8,6 @@ function showError(error) {
 
 Comments.handleError = function(error) {
   showError(error);
-};
-
-function getGravatar(email, size = 100) {
-  return "https://www.gravatar.com/avatar/" + md5(email) + "?s=" + size;
 }
 
 function showComments(page) {
@@ -93,4 +89,8 @@ function showComments(page) {
     $("#reply").val("");
     $("#reply_to").hide();
   });
+}
+
+function getGravatar(email, size = 100) {
+  return "https://www.gravatar.com/avatar/" + md5(email) + "?s=" + size;
 }
