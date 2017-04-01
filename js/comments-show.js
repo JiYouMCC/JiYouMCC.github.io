@@ -36,15 +36,13 @@ function showComments(page) {
       comment_detail.append(
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
+//$("<img></img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
 
-      var name_div = $("<div></div>")/*.append(
-        $("<img></img>").addClass("img-circle").attr("alt", comment.name).attr("src", getGravatar(comment.email, 20))
-      )*//*.append(
+      var name_div = $("<div></div>").append(
         $("<strong></strong>").text(comment.name)
       ).append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
-      );*/
-      alert(MD5(comment.email));
+      );
       if (comment.url) {
         name_div.append(" ").append(
           $("<a></a>").attr('href', comment.url).attr('target', '_blank').attr('title', "网站").append(
