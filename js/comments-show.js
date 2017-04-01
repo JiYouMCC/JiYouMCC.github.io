@@ -41,9 +41,16 @@ function showComments(page) {
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
 
+      var name_div = $("<div></div>");
+
+      //some mobile do not suport add image. I don't know why.
+      try {
+        name_div.append("<img class='img-circle' alt='" + comment.name + "' src='" + getGravatar(comment.email, 20) + "' />").append(" ");
+      } catch (err) {
+        console.log("some mobile do not suport add image. I don't know why.");
+      }
+
       var name_div = $("<div></div>").append(
-        "<img class='img-circle' alt='" + comment.name + "' src='" + getGravatar(comment.email, 20) + "' />"
-      ).append(" ").append(
         $("<strong></strong>").text(comment.name)
       ).append(" ").append(
         $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
