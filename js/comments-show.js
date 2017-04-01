@@ -1,24 +1,16 @@
 var comments_messages = undefined;
 
-function showError(error) {
+Comments.handleError = function(error) {
   var message = error.message ? error.message : error;
   $("#modal_error").modal('show');
   $("#error_message").text(message);
 }
 
-Comments.handleError = function(error) {
-  showError(error);
-}
-
 function showComments(page) {
-  alert(page);
   Comments.comment.listCallback(page, function(messages) {
-    alert("get update");
     comments_messages = messages;
     $('div[id^=comments_]').remove();
-    alert("clean done");
     for (commentId in messages) {
-      alert(commentId);
       var comment = messages[commentId];
       var comment_detail = $("<div></div>");
       if (comment.reply) {
@@ -40,15 +32,10 @@ function showComments(page) {
       comment_detail.append(
         $("<div></div>").addClass('page_blog_comment_message').text(comment.comment)
       );
-      alert("start");
       var name_div = $("<div></div>");
-      alert("div");
       name_div.append("<img class='img-circle' alt='" + comment.name + "' src='" + getGravatar(comment.email, 20) + "' />").append(" ");
-      alert("img");
       name_div.append($("<strong></strong>").text(comment.name)).append(" ");
-      alert("name");
       name_div.append($("<span></span>").addClass("page_datetime").text(Comments.formatDate(new Date(parseInt(comment.timestamp)))));
-      alert("datetime");
       if (comment.url) {
         name_div.append(" ").append(
           $("<a></a>").attr("href", comment.url).attr("target", "_blank").attr("title", "网站").append(
