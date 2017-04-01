@@ -205,7 +205,7 @@ Comments = {
                     }
                 });
             },
-            updateCallback(post, callback) {
+            updateCallback: function(post, callback) {
                 if (!post) {
                     Comments.handleError(Comments.errors.NO_POST);
                     Comments.handleCallback(callback, null);
