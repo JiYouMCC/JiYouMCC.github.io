@@ -3,7 +3,7 @@ Comments.comment.recent.updateCallback(7, function(comments) {
   for (commentId in comments) {
     var comment = comments[commentId];
     $("#recent-comments").prepend(
-      $("<a></a>").addClass("list-group-item").attr("href", comment.post + "#comments").append(
+      $("<a></a>").addClass("list-group-item").attr("href", comment.post + "#comments_" + commentId).append(
         $("<div></div>").append(
           $("<strong></strong>").text(comment.name)
         ).append(" ").append(
