@@ -110,7 +110,7 @@ use_code: true
 遇到如下的的坑：
 
 - firebase/wilddog里面正则和javascript里面略有不同，转义有的地方需要双斜杠
-- write和validate是不同的，没弄清楚会在成set({})等于remove()的恶劣效果，这个其实在firebase文档里面写了，我没仔细看
+- write和validate是不同的，没弄清楚会造成set({})等于remove()的恶劣效果，这个其实在firebase文档里面写了，我没仔细看
 
 ## 关于comments.js ##
 因为很大一部分代码都是复用了抓鬼的代码，所以风格和抓鬼的一致，比如：
@@ -174,7 +174,7 @@ use_code: true
 * 因为异步操作，我一开始的版本是直接返回了count，然后再循环的时候就各种一团乱了。我的解决方案是直接让这个方法返回{"post": "XXX", "count": X}
 * 因为数据冗余，造成新建评论的时候需要维护post的count，为了节省流量我就忍了
 * 同样因为数据冗余，后面我要写的多说转firebase格式有个大坑。还好我是直接空的迁移，如果更新迁移就晕菜了
-* 
+
 *Comments.post.commentCount.updateCallback(post, callback)*
 
 上面那个方法的监听版本，会返回的监听Ref，可以remove来关闭监听
