@@ -61,6 +61,7 @@ function showComments(page) {
       $("#reply").val(reply);
       $("#reply_user").text(comments_messages[reply].name);
       $("#reply_to").show();
+      $("html,body").animate({scrollTop:$("#comments").offset().top},1000)
     });
   });
 
