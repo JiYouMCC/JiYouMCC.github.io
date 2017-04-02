@@ -70,7 +70,7 @@ function showComments(page) {
           $("html,body").animate({scrollTop:$(location.hash).offset().top},1000); 
         }
       }
-    }
+    });
   });
 
   $("#add_comment").click(function() {
