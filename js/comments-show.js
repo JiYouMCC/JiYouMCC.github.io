@@ -64,8 +64,10 @@ function showComments(page) {
       $("html,body").animate({scrollTop:$("#comments").offset().top},1000)
     });
     
-    if (location.hash.startsWith("#comments_")) {
-      $("html,body").animate({scrollTop:$(location.hash).offset().top},1000)
+    if (location.hash.startsWith("#comments_")) {      
+      if ($("location.hash")){ 
+        $("html,body").animate({scrollTop:$(location.hash).offset().top},1000); 
+      }
     }
   });
 
