@@ -65,7 +65,7 @@ function showComments(page) {
     });
     
     if (location.hash.startsWith("#comments_")) {
-      $("html,body").animate({scrollTop:$("location.hash").offset().top},1000)
+      $("html,body").animate({scrollTop:$(location.hash).offset().top},1000)
     }
   });
 
