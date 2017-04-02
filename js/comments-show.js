@@ -63,6 +63,10 @@ function showComments(page) {
       $("#reply_to").show();
       $("html,body").animate({scrollTop:$("#comments").offset().top},1000)
     });
+    
+    if (location.hash.startsWith("#comments_")) {
+      $("html,body").animate({scrollTop:$("location.hash").offset().top},1000)
+    }
   });
 
   $("#add_comment").click(function() {
