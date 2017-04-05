@@ -17,8 +17,8 @@ function getCommentByCommentId(commentId) {
 }
 
 function showComments(page) {
-  Comments.comment.listCallback(page, function(messages) {
-    comments_messages = messages;
+  Comments.comment.listCallback(page, function(comments) {
+    comments_messages = comments;
     $('div[id^=comments_]').remove();
     for (var i = 0; i < comments.length; i++) {
       var comment = comments[i];
@@ -78,7 +78,7 @@ function showComments(page) {
       }, 1000)
     });
 
-    /*$(function() {
+    $(function() {
       if (location.hash.startsWith("#comments_")) {
         if ($("location.hash")) {
           $("html,body").animate({
@@ -86,7 +86,7 @@ function showComments(page) {
           }, 1000);
         }
       }
-    });*/
+    });
   });
 
   $("#add_comment").click(function() {
