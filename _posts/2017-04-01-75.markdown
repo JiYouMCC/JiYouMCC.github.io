@@ -6,6 +6,11 @@ categories: 技术
 tags: javascript firebase wilddog jquery
 use_code: true
 ---
+# 更新 #
+4/4 前端：修改首页最新评论的锚记名字；添加加载后滑动到指定锚记；添加用cookies记录已经发送评论的昵称邮箱网址。
+
+4/5 添加Comments.post.commentCount.check(callback)； 添加js端排序；修改所有comments返回的格式。以上修改是为了动态导入野狗数据准备
+
 # 碎碎念 #
 
 这件事情的起因是这样的
@@ -182,6 +187,12 @@ use_code: true
 *Comments.post.commentCount.set(post, count, callback)*
 
 设置某个post的评论数量。我在考虑要不要把这个方法给_了，因为毕竟是内部方法。不过也可以考虑以后写个校验评论数量的方法之类的。
+
+*Comments.post.commentCount.check(callback)*
+
+校验所有post的评论数量并更新。这个也可以用来防止数据冗余造成不配对的情况，可以手动校验一下。这里有坑：
+- 同样还是分页问题
+- 在使用之前必须要给posts加上.write是true，不然它没法工作
 
 ### 具体用法 ###
 
