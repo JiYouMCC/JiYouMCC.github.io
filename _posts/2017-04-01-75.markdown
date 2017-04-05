@@ -250,7 +250,7 @@ use_code: true
 
 <button class="btn btn-default" onclick="document.getElementById('result_json').value = JSON.stringify(Comments.comment.convertFromDuoshuo(document.getElementById('source_json').value))">转换</button>
 
-<textarea class="form-control" id="result_json" disabled></textarea>
+<textarea class="form-control" id="result_json"></textarea>
 
 迁移有2种方法
 
