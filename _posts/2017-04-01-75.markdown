@@ -245,8 +245,10 @@ use_code: true
 为了迁移我做了一些有点古怪的事儿，首先是下面2个框，我放这里只是为了自己不想把双引号转成单引号
 
 <textarea class="form-control" id="source_json"></textarea>
+
 <button class="btn btn-default" onclick="document.getElementById('result_json').value = JSON.stringify(Comments.comment.convertFromDuoshuo(document.getElementById('source_json').value))">转换</button>
-<textarea class="form-control" id="result_json" disabled=""></textarea>
+
+<textarea class="form-control" id="result_json" disabled></textarea>
 
 迁移有2种方法
 
