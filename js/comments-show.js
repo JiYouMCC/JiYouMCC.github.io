@@ -78,7 +78,7 @@ function showComments(page) {
       }, 1000)
     });
 
-    $(function() {
+    /*$(function() {
       if (location.hash.startsWith("#comments_")) {
         if ($("location.hash")) {
           $("html,body").animate({
@@ -86,7 +86,7 @@ function showComments(page) {
           }, 1000);
         }
       }
-    });
+    });*/
   });
 
   $("#add_comment").click(function() {
