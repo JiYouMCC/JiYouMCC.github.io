@@ -240,6 +240,22 @@ use_code: true
 
 还碰到奇怪的坑，到手机端全都看不到了。怀疑是MD5方法坏了，后来才发现是comment.js里面的格式带了ES6特性，手机的（以及IE）都不认识就挂了。
 
+# 迁移自多说 #
+
+为了迁移我做了一些有点古怪的事儿，首先是下面2个框，我放这里只是为了自己不想把双引号转成单引号
+
+<textarea class="form-control" id="source_json"></textarea>
+<button class="btn btn-default" onclick="document.getElementById('result_json').value = JSON.stringify(Comments.comment.convertFromDuoshuo(document.getElementById('source_json').value))">转换</button>
+<textarea class="form-control" id="result_json" disabled=""></textarea>
+
+迁移有2种方法
+
+一种是如果firebase或者野狗还没有新评论的时候，直接用上面我这个框转换一下，然后手工导入进去，接着开一下posts的write权限，然后Comments.post.commentCount.check()，最后关掉posts的write权限
+
+另一种情况是这样的，firebase或者野狗已经有新评论稍微有一点儿费劲，我写了个方法Comments.comment.transferFromDuoShuo(sourceJson, callback)，先打开comments和posts的Write权限（且关掉所有其他的乱七八糟限制），sourceJson里面填写上面框的结果里面的comments的值部分（不包括"comments":），然后调用，然后再把comments和posts权限给关了
+
+我在写这段文字的时候还没迁移，我先去试一试成不成功
+
 # 还没干的事儿  #
 
 - 多说转格式的脚本还么写_(:зゝ∠)_
