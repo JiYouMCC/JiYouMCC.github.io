@@ -128,6 +128,11 @@
   background-color: #F3F8F1;
 }
 
+.page_blog_comment_name {
+    font-weight: bold;
+    vertical-align: middle
+}
+
 .page_blog_comment_message,
 .page_blog_comment_message_reply {
     display: block;
