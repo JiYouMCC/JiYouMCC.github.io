@@ -5,7 +5,7 @@ Comments.comment.recent.updateCallback(7, function(comments) {
     $("#recent-comments").prepend(
       $("<a></a>").addClass("list-group-item").attr("href", comment.post + "#comments_" + commentId).append(
         $("<div></div>").append(
-          $("<strong></strong>").text(comment.name)
+          $("<span></span>").addClass("page_blog_comment_name").text(comment.name)
         ).append(" ").append(
           $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(comment.timestamp))))
         )
