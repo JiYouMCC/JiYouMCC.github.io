@@ -34,7 +34,7 @@ function showComments(page) {
       );
       var name_div = $("<div></div>");
       name_div.append("<img class='img-circle' alt='" + comment.name + "' src='" + getGravatar(comment.email, 20) + "' />").append(" ");
-      name_div.append($("<strong></strong>").text(comment.name)).append(" ");
+      name_div.append($("<span></span>").addClass("page_blog_comment_name").text(comment.name)).append(" ");
       name_div.append($("<span></span>").addClass("page_datetime").text(Comments.formatDate(new Date(parseInt(comment.timestamp)))));
       if (comment.url) {
         name_div.append(" ").append(
