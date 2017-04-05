@@ -111,4 +111,4 @@ $(function() {
   if (Cookies.get('url')) {
     $("#url").val(Cookies.get('url'));
   }
-}
+});
