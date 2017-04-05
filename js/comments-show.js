@@ -30,7 +30,7 @@ function showComments(page) {
           $("<div></div>").append(
             $("<span></span>").text("引用")
           ).append(" ").append(
-            $("<strong></strong>").text(reply_comment.name)
+            $("<span></span>").addClass('page_blog_comment_name').text(reply_comment.name)
           ).append(" ").append(
             $("<span></span>").addClass('page_datetime').text(Comments.formatDate(new Date(parseInt(reply_comment.timestamp))))
           ).append(" ").append(
