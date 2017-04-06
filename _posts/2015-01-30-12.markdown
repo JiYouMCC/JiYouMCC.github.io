@@ -11,13 +11,14 @@ is_sticky: true
 * [ ] 共享文档
 * [ ] 轮子：标签云<https://github.com/atizo/PyTagCloud> 文字碰撞 <http://www.wordle.net/>
 * [ ] ascii art全js化
-* [ ] 清理七牛上面的图片
+
 <!--more-->
 * [ ] ~~修改密码昵称ajax化~~
 * [ ] ~~支持找回密码~~
 * [ ] ~~简易账本 bootstrap化/ 优化/ 支持分类筛选~~
 * [ ] ~~简易待办事项~~
 * [ ] ~~简易进销存~~
+* [x] 清理七牛上面的图片
 * [x]2017-2-27 美化猫命抽签器
 * [x]2016-10-30 迁移到github.io
 * [x]2015-11-19~22 cleanup django process / 界面div化-移动端靠谱化 bootstrap/tinysort / 登录注册ajax化 / 去SEA化,使用django自己上传代码
