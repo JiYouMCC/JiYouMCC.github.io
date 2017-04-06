@@ -13,4 +13,5 @@ Comments.comment.recent.updateCallback(7, function(comments) {
       )
     );
   }
+  $('[data-toggle="tooltip"]').tooltip();
 });
