@@ -4,7 +4,7 @@ Comments.comment.recent.updateCallback(7, function(comments) {
     var comment = comments[i];
     var commentId = comment.id;
     $("#recent-comments").prepend(
-      $("<a></a>").attr("data-toggle", "tooltip").attr("data-placement", "bottom").attr("title", Comments.formatDate(new Date(parseInt(comment.timestamp)))),addClass("list-group-item").attr("href", comment.post + "#comments_" + commentId).append(
+      $("<a></a>").attr("data-toggle", "tooltip").attr("data-placement", "bottom").attr("title", Comments.formatDate(new Date(parseInt(comment.timestamp)))).addClass("list-group-item").attr("href", comment.post + "#comments_" + commentId).append(
         $("<div></div>").append(
           $("<span></span>").addClass("page_blog_comment_name").text(comment.name)
         )
