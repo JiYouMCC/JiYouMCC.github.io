@@ -9,7 +9,7 @@ Comments.comment.recent.updateCallback(7, function(comments) {
           $("<span></span>").addClass("page_blog_comment_name").text(comment.name)
         )
       ).append(" ").append(
-        $("<span></span>").text(comment.comment.slice(0, 16))
+        $("<div></div>").text(comment.comment.slice(0, 16))
       )
     );
   }
