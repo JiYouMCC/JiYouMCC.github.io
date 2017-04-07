@@ -9,6 +9,9 @@
     <a data-toggle="tooltip" data-placement="bottom" title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
     {% endfor %}
   </div>
+</div>
+
+<div class="panel panel-default">
   <div class="panel-heading">
     <a role="button" data-toggle="collapse" href="#recent-comments" aria-expanded="true" aria-controls="recent-comments">
        <strong>最新评论</strong>
@@ -18,21 +21,25 @@
 </div>
 <script src="{{ site.baseurl }}/js/comments-recent.js"></script>
 
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a role="button" data-toggle="collapse" href="#collapse_recent_links" aria-expanded="true" aria-controls="collapse_recent_links">
+      <strong>链接</strong>
+    </a>
+  </div>
+  <div id="collapse_recent_links" class="list-group collapse in">{% for link in site.data.links %}
+      {% if link.src %}<a data-toggle="tooltip" data-placement="bottom" href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img class="img-responsive" src="{{ link.src }}"></a>
+      {% else %}<a data-toggle="tooltip" data-placement="bottom" href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item">{{ link.title }}</a>{% endif %}
+  {% endfor %}
+  </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <strong>RSS</strong>
   </div>
   <div class="list-group">
     <a href="/feed.xml" class="list-group-item">{{ site.title }}</a>
-  </div>
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <strong>链接</strong>
-  </div>
-  <div class="list-group">{% for link in site.data.links %}
-      {% if link.src %}<a data-toggle="tooltip" data-placement="bottom" href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img class="img-responsive" src="{{ link.src }}"></a>
-      {% else %}<a data-toggle="tooltip" data-placement="bottom" href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item">{{ link.title }}</a>{% endif %}
-  {% endfor %}
   </div>
 </div>
