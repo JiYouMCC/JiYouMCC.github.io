@@ -43,3 +43,14 @@
     <a href="/feed.xml" class="list-group-item">{{ site.title }}</a>
   </div>
 </div>
+
+{% if page.affix %}
+<div id="affix-nav" class="hidden-xs hidden-sm">
+  <div class="panel panel-default">
+    <ol id="affix-nav-ul" class="nav nav-stacked" role="tablist">
+      <li id="nav_top"><a href="#top"><span class="glyphicon glyphicon-triangle-top"></span></a></li>
+      <li id="nav_bottom"><a href="#bottom"><span class="glyphicon glyphicon-triangle-bottom"></span></a></li>
+    </ol>
+  </div>
+</div>
+{% endif %}
