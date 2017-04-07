@@ -9,13 +9,12 @@
     <a data-toggle="tooltip" data-placement="bottom" title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
     {% endfor %}
   </div>
-</div>
-
-<div class="panel panel-default">
   <div class="panel-heading">
-    <strong>最新评论</strong>
+    <a role="button" data-toggle="collapse" href="#recent-comments" aria-expanded="true" aria-controls="recent-comments">
+       <strong>最新评论</strong>
+    </a>
   </div>
-  <div id="recent-comments" class="list-group"></div>
+  <div id="recent-comments" class="list-group collapse in"></div>
 </div>
 <script src="{{ site.baseurl }}/js/comments-recent.js"></script>
 
