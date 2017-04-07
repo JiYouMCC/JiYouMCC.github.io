@@ -4,7 +4,7 @@
        <strong>最新文章</strong>
     </a>    
   </div>
-  <div class="list-group collapse" id="collapse_recent_posts">
+  <div class="list-group collapse in" id="collapse_recent_posts">
     {% for post in site.posts offset: 0 limit: 7  %}
     <a data-toggle="tooltip" data-placement="bottom" title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
     {% endfor %}
