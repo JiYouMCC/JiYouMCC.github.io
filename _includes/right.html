@@ -3,7 +3,7 @@
     <strong>最新文章</strong>
   </div>
   <div class="list-group">
-    {% for post in site.posts offset: 0 limit: 7  %}
+    {% for post in site.posts offset: 0 limit: 7 %}
     <a data-toggle="tooltip" data-placement="bottom" title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
     {% endfor %}
   </div>
@@ -56,9 +56,9 @@
         }
       }
     });
-    $('#affix-nav-ul').width($('#recent_posts').width());
+    $('#affix-nav').width($('#recent_posts').width());
     $(window).resize(function () {
-      $('#affix-nav-ul').width($('#recent_posts').width());
+      $('#affix-nav').width($('#recent_posts').width());
     }); 
   });
 </script>
