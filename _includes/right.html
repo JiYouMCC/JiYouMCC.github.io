@@ -4,7 +4,7 @@
   </div>
   <div class="list-group">
     {% for post in site.posts offset: 0 limit: 7 %}
-    <a data-toggle="tooltip" data-placement="bottom" title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
+    <a title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
     {% endfor %}
   </div>
 </div>
@@ -23,7 +23,7 @@
     <strong>链接</strong>
   </div>
   <div class="list-group">{% for link in site.data.links %}
-      {% if link.src %}<a data-toggle="tooltip" data-placement="bottom" href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img class="img-responsive" src="{{ link.src }}"></a>
+      {% if link.src %}<a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img class="img-responsive" src="{{ link.src }}"></a>
       {% else %}<a data-toggle="tooltip" data-placement="bottom" href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item">{{ link.title }}</a>{% endif %}
   {% endfor %}
   </div>
