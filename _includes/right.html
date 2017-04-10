@@ -48,11 +48,15 @@
   </div>
 </div>
 <script type="text/javascript">
+  var offset_top = $('#affix-nav-ul').offset().top;
+  setInterval(function(){
+    offset_top = $('#affix-nav-ul').offset().top;
+  },10000);
   $(function() {
     $('#affix-nav').affix({
       offset: {
         top: function() {
-          return $('#affix-nav-ul').offset().top;
+          return offset_top;
         }
       }
     });
