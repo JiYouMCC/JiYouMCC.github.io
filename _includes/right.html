@@ -49,17 +49,17 @@
 </div>
 <script type="text/javascript">
   $(function() {
-    setTimeout(function(){
-      $('#affix-nav').affix({
+    $('#affix-nav').affix({
       offset: {
-        top: $('#affix-nav-ul').offset().top
+        top: function() {
+          return $('#affix-nav-ul').offset().top;
+        }
       }
     });
     $('#affix-nav-ul').width($('#recent_posts').width());
     $(window).resize(function () {
       $('#affix-nav-ul').width($('#recent_posts').width());
-    });
-    },60000);    
+    }); 
   });
 </script>
 {% endif %}
