@@ -1,4 +1,4 @@
-<div id="recent_posts" class="panel panel-default">
+<div class="panel panel-default">
   <div class="panel-heading">
     <strong>最新文章</strong>
   </div>
@@ -17,14 +17,13 @@
 </div>
 <script src="{{ site.baseurl }}/js/comments-recent.js"></script>
 
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <strong>链接</strong>
   </div>
   <div class="list-group">{% for link in site.data.links %}
       {% if link.src %}<a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img class="img-responsive" src="{{ link.src }}"></a>
-      {% else %}<a data-toggle="tooltip" data-placement="bottom" href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item">{{ link.title }}</a>{% endif %}
+      {% else %}<a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item">{{ link.title }}</a>{% endif %}
   {% endfor %}
   </div>
 </div>
@@ -56,9 +55,9 @@
         }
       }
     });
-    $('#affix-nav').width($('#recent_posts').width());
+    $('#affix-nav').width($('#rss_nav').width());
     $(window).resize(function () {
-      $('#affix-nav').width($('#recent_posts').width());
+      $('#affix-nav').width($('#rss_nav').width());
     }); 
   });
 </script>
