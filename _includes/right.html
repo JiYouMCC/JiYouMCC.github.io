@@ -46,19 +46,5 @@
     </ol>
   </div>
 </div>
-<script type="text/javascript">
-  $(function() {
-    $('#affix-nav').affix({
-      offset: {
-        top: function() {
-          return $('#rss_nav').offset().top + $('#affix-nav-ul').height() + 20;;
-        }
-      }
-    });
-    $('#affix-nav').width($('#rss_nav').width());
-    $(window).resize(function () {
-      $('#affix-nav').width($('#rss_nav').width());
-    }); 
-  });
-</script>
+<script src="{{ site.baseurl }}/js/affix.js"></script>
 {% endif %}
