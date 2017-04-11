@@ -12,7 +12,9 @@ $(function() {
   $('#affix-nav').width($('#rss_nav').width());
   $(window).resize(function () {
     $('#affix-nav').width($('#rss_nav').width());
-  }); 
+  });
+  
+  $("body").attr("data-spy", "scroll").attr("data-target", "#affix-nav");
 });
 
 
