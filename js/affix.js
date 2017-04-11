@@ -29,7 +29,7 @@ var links = $("<ol></ol>").attr("id", "affix-nav-ul").attr("class", "nav nav-sta
 
 links.append(
   $("<li></li").append(
-    $("<a></a>").attr('affix-to', '#top').append(
+    $("<a></a>").attr('href', '#top').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-triangle-top")
     )
   )
@@ -68,18 +68,11 @@ for (var i = 0; i < headers.length; i++) {
 
 links.append(
   $("<li></li").append(
-    $("<a></a>").attr('affix-to', '#bottom').append(
+    $("<a></a>").attr('href', '#bottom').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-triangle-bottom")
     )
   )
 );
-
-$("a[affix-to]").click(function() {
-  var target = $(this).attr("affix-to");
-  $(document.body).animate({
-    'scrollTop':   $(target).offset().top
-  }, 1500);
-});
 
 $("#affix-nav-pannel").append(links);
 $('body').scrollspy({ target: '#affix-nav-pannel' })
