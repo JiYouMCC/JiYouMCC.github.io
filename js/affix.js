@@ -1,5 +1,21 @@
 $(function() { 
-  //<a href="#title_0" data-localize="Gender List">Gender List</a>  
+  $('#affix-nav').affix({
+    offset: {
+      top: function() {
+        return $('#rss_nav').offset().top + $('#affix-nav-ul').height() + 20;
+      },
+      bottom: function() {
+        return $('#bottom').outerHeight(true) + 20;
+      }
+    }
+  });
+  $('#affix-nav').width($('#rss_nav').width());
+  $(window).resize(function () {
+    $('#affix-nav').width($('#rss_nav').width());
+  }); 
+});
+
+//<a href="#title_0" data-localize="Gender List">Gender List</a>  
   var headers = $("#blog_content").find("h1,h2,h3,h4,h5,h6");
   var maxHead = 6;
   for (var i = 0; i < headers.length; i++) {
@@ -54,19 +70,3 @@ $(function() {
       )
     )
   );
-  
-  $('#affix-nav').affix({
-    offset: {
-      top: function() {
-        return $('#rss_nav').offset().top + $('#affix-nav-ul').height() + 20;
-      },
-      bottom: function() {
-        return $('#bottom').outerHeight(true) + 20;
-      }
-    }
-  });
-  $('#affix-nav').width($('#rss_nav').width());
-  $(window).resize(function () {
-    $('#affix-nav').width($('#rss_nav').width());
-  }); 
-});
