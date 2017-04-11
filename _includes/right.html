@@ -1,3 +1,4 @@
+{% if !page.is_post %}
 <div class="panel panel-default">
   <div class="panel-heading">
     <strong>最新文章</strong>
@@ -16,6 +17,7 @@
   <div id="recent-comments" class="list-group collapse in"></div>
 </div>
 <script src="{{ site.baseurl }}/js/comments-recent.js"></script>
+{% endif %}
 
 <div class="panel panel-default">
   <div class="panel-heading">
