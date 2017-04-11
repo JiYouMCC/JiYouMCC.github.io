@@ -19,6 +19,7 @@ $(function() {
 var headers = $("#blog_content").find("h1,h2,h3,h4,h5,h6");
 var maxHead = 6;
 for (var i = 0; i < headers.length; i++) {
+  $(headers[i]).attr("data-localize", $(headers[i]).text());
   var currentHead = parseInt(headers[i].tagName[1]);
   if (currentHead < maxHead) {
     maxHead = currentHead;
@@ -61,7 +62,7 @@ for (var i = 0; i < headers.length; i++) {
   } 
   //<a href="#title_0" data-localize="Gender List">Gender List</a>
   lastLi = $("<li></li>").append(
-    $("<a></a>").attr("href", "#" + headers[i].id).attr("data-localize",$(headers[i]).text()).text($(headers[i]).text())
+    $("<a></a>").attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text())
   );
   currentParent.append(lastLi);
 }
