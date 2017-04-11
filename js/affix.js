@@ -35,13 +35,6 @@ links.append(
   )
 );
 
-$("a[affix-to]").click(function() {
-  var target = $(this).attr("affix-to");
-  $(document.body).animate({
-    'scrollTop':   $(target).offset().top
-  }, 1500);
-});
-
 var currentParent = links;
 var lastLi = null;
 var currentClass = maxHead;
@@ -80,5 +73,13 @@ links.append(
     )
   )
 );
+
+$("a[affix-to]").click(function() {
+  var target = $(this).attr("affix-to");
+  $(document.body).animate({
+    'scrollTop':   $(target).offset().top
+  }, 1500);
+});
+
 $("#affix-nav-pannel").append(links);
 $('body').scrollspy({ target: '#affix-nav-pannel' })
