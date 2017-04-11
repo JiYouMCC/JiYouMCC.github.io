@@ -13,8 +13,6 @@ $(function() {
   $(window).resize(function () {
     $('#affix-nav').width($('#rss_nav').width());
   });
-  
-  $("body").attr("data-spy", "scroll").attr("data-target", "#affix-nav");
 });
 
 
@@ -76,3 +74,5 @@ links.append(
     )
   )
 );
+$("#affix-nav-pannel").append(links);
+$('body').scrollspy({ target: '#affix-nav-pannel' })
