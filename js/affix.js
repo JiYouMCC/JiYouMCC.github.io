@@ -15,7 +15,6 @@ $(function() {
   });
 });
 
-
 var headers = $("#blog_content").find("h1,h2,h3,h4,h5,h6");
 var maxHead = 6;
 for (var i = 0; i < headers.length; i++) {
@@ -30,11 +29,18 @@ var links = $("<ol></ol>").attr("id", "affix-nav-ul").attr("class", "nav nav-sta
 
 links.append(
   $("<li></li").append(
-    $("<a></a>").attr("href", "#top").append(
+    $("<a></a>").attr('affix-to', '#top').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-triangle-top")
     )
   )
 );
+
+$("a[affix-to]").click(function() {
+  var target = $(this).attr("affix-to");
+  $(document.body).animate({
+    'scrollTop':   $(target).offset().top
+  }, 1500);
+});
 
 var currentParent = links;
 var lastLi = null;
@@ -69,7 +75,7 @@ for (var i = 0; i < headers.length; i++) {
 
 links.append(
   $("<li></li").append(
-    $("<a></a>").attr("href", "#bottom").append(
+    $("<a></a>").attr('affix-to', '#bottom').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-triangle-bottom")
     )
   )
