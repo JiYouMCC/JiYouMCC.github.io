@@ -13,6 +13,9 @@ $(function() {
   $(window).resize(function () {
     $('#affix-nav').width($('#rss_nav').width());
   });
+  $(window).scroll(function() {
+    $('#affix-nav').width($('#rss_nav').width());
+  });
 });
 
 var headers = $("#blog_content").find("h1,h2,h3,h4,h5,h6");
@@ -29,7 +32,7 @@ var links = $("<ol></ol>").attr("id", "affix-nav-ul").attr("class", "nav nav-sta
 
 links.append(
   $("<li></li").append(
-    $("<a></a>").attr('href', '#top').append(
+    $("<a></a>").attr("affix_to","#top").attr('href', '#top').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-triangle-top")
     )
   )
@@ -61,18 +64,29 @@ for (var i = 0; i < headers.length; i++) {
   } 
   
   lastLi = $("<li></li>").append(
-    $("<a></a>").attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text())
+    $("<a></a>").attr("affix_to","#" + headers[i].id).attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text())
   );
   currentParent.append(lastLi);
 }
 
 links.append(
   $("<li></li").append(
-    $("<a></a>").attr('href', '#bottom').append(
+    $("<a></a>").attr("affix_to","#bottom").attr('href', '#bottom').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-triangle-bottom")
     )
   )
 );
+
+$("a[affix_to]").click(function(){
+  var target = $(this).attr("affix_to");
+  var target_offset = 0;  
+  if (target) {
+    target_offset = target.offset().top
+  }
+  
+  $("html,body").animate({scrollTop: target_offset}, 1500);
+  return false;
+});
 
 $("#affix-nav-pannel").append(links);
 $('body').scrollspy({ target: '#affix-nav-pannel' })
