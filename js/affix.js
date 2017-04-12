@@ -2,7 +2,7 @@ $(function() {
   $('#affix-nav').affix({
     offset: {
       top: function() {
-        return $('#rss_nav').offset().top + $('#rss_nav').outerHeight(true) + 20;
+        return $('#rss_nav').offset().top + $('#rss_nav').outerHeight(true);
       },
       bottom: function() {
         return $('#bottom').outerHeight(true) + 20;
