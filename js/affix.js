@@ -78,7 +78,7 @@ links.append(
 );
 
 $("a[affix_to]").click(function(){
-  var target = $(this).attr("affix_to");
+  var target = $($(this).attr("affix_to"));
   var target_offset = 0;  
   if (target) {
     target_offset = target.offset().top
