@@ -83,7 +83,7 @@ $('body').scrollspy({ target: '#affix-nav-pannel' });
 $("a[affix_to]").click(function(){
   var target = $($(this).attr("affix_to"));
   var target_offset = 0;  
-  if (target) {
+  if ($(this).attr("affix_to") != "#top") {
     target_offset = target.offset().top
   }
   
