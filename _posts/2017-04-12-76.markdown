@@ -88,7 +88,7 @@ Sinaapp\gutools\1\static\js\blog_post.js：
     $("body").attr("data-spy", "scroll");
     $("body").attr("data-target", "#affix-nav");
 
-然后是[养龙结婚证的数据页面](http://fr.jithee.name/data.html)上用的代码，基本上是复用，不过一开始没直接迁移过来：
+然后是[养龙结婚证的数据页面](http://fr.jithee.name/data.html){:target="_blank"}上用的代码，基本上是复用，不过一开始没直接迁移过来：
 
     $("body").attr("data-spy", "scroll");
 
