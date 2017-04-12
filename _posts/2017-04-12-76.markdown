@@ -201,19 +201,18 @@ django版本的时候就写了的
         display: initial;
     }
     
-目前版本的：
+## 目前版本的 ##
 
-https://github.com/JiYouMCC/JiYouMCC.github.io/blob/master/js/affix.js
+[affix.js](https://github.com/JiYouMCC/JiYouMCC.github.io/blob/master/js/affix.js)
 
+### 触发affix ###
 我也没想明白为什么突然就用offset().top了。。
-
-其实我还想加个scrollto的效果，回头再说了
 
     $(function() { 
       $('#affix-nav').affix({
         offset: {
           top: function() {
-            return $('#rss_nav').offset().top + $('#affix-nav-ul').height() + 20;
+            return $('#rss_nav').offset().top + $('#rss_nav').outerHeight(true);
           },
           bottom: function() {
             return $('#bottom').outerHeight(true) + 20;
@@ -224,7 +223,14 @@ https://github.com/JiYouMCC/JiYouMCC.github.io/blob/master/js/affix.js
       $(window).resize(function () {
         $('#affix-nav').width($('#rss_nav').width());
       });
+      $(window).scroll(function() {
+        $('#affix-nav').width($('#rss_nav').width());
+      });
     });
+
+### 查找header ###
+
+基本是照抄，不过有些细节不同
 
     var headers = $("#blog_content").find("h1,h2,h3,h4,h5,h6");
     var maxHead = 6;
@@ -240,7 +246,7 @@ https://github.com/JiYouMCC/JiYouMCC.github.io/blob/master/js/affix.js
 
     links.append(
       $("<li></li").append(
-        $("<a></a>").attr('href', '#top').append(
+        $("<a></a>").attr("affix_to","#top").attr('href', '#top').append(
           $("<span></span>").attr("class", "glyphicon glyphicon-triangle-top")
         )
       )
@@ -272,18 +278,49 @@ https://github.com/JiYouMCC/JiYouMCC.github.io/blob/master/js/affix.js
       } 
 
       lastLi = $("<li></li>").append(
-        $("<a></a>").attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text())
+        $("<a></a>").attr("affix_to","#" + headers[i].id).attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text())
       );
       currentParent.append(lastLi);
     }
 
     links.append(
       $("<li></li").append(
-        $("<a></a>").attr('href', '#bottom').append(
+        $("<a></a>").attr("affix_to","#comments").attr('href', '#comments').append(
+          $("<span></span>").attr("class", "glyphicon glyphicon-comment")
+        ).append(" 评论")
+      )
+    );
+
+    links.append(
+      $("<li></li").append(
+        $("<a></a>").attr("affix_to","#bottom").attr('href', '#bottom').append(
           $("<span></span>").attr("class", "glyphicon glyphicon-triangle-bottom")
         )
       )
     );
 
     $("#affix-nav-pannel").append(links);
-    $('body').scrollspy({ target: '#affix-nav-pannel' })
+
+### 挂载监听 ###
+直接用了scrollspy()
+
+    $('body').scrollspy({ target: '#affix-nav-pannel' });
+
+### animate scroll to ###
+随便弄了个scroll to的方法，把a link到锚记都覆盖了
+
+原来的版本是不管哪儿到哪儿都是1.5秒，后来感觉太慢了，改成1秒，后来又觉得不爽，就改成了固定1500px秒的速度
+
+其实还有点儿不爽，我是不是要写个什么奇怪的函数……
+
+    $("a[affix_to]").click(function(){
+      var target = $($(this).attr("affix_to"));
+      var target_offset = 0;
+      if ($(this).attr("affix_to") != "#top") {
+        target_offset = target.offset().top
+      }
+
+      var current_position = document.documentElement.scrollTop || document.body.scrollTop;  
+      $("html,body").animate({scrollTop: target_offset}, Math.floor(Math.abs(current_position - target_offset)/1.5));
+      return false;
+    });
