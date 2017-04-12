@@ -77,6 +77,9 @@ links.append(
   )
 );
 
+$("#affix-nav-pannel").append(links);
+$('body').scrollspy({ target: '#affix-nav-pannel' });
+
 $("a[affix_to]").click(function(){
   var target = $($(this).attr("affix_to"));
   var target_offset = 0;  
@@ -84,9 +87,6 @@ $("a[affix_to]").click(function(){
     target_offset = target.offset().top
   }
   
-  $("html,body").animate({scrollTop: target_offset}, 1500);
+  $("html,body").animate({scrollTop: target_offset}, 1000);
   return false;
 });
-
-$("#affix-nav-pannel").append(links);
-$('body').scrollspy({ target: '#affix-nav-pannel' })
