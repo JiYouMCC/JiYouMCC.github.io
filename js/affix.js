@@ -90,11 +90,12 @@ $('body').scrollspy({ target: '#affix-nav-pannel' });
 
 $("a[affix_to]").click(function(){
   var target = $($(this).attr("affix_to"));
-  var target_offset = 0;  
+  var target_offset = 0;
   if ($(this).attr("affix_to") != "#top") {
     target_offset = target.offset().top
   }
   
-  $("html,body").animate({scrollTop: target_offset}, 1000);
+  var current_position = document.documentElement.scrollTop || document.body.scrollTop;  
+  $("html,body").animate({scrollTop: target_offset}, floor(abs(current_position - target_offset)));
   return false;
 });
