@@ -14,15 +14,6 @@ use_code: true
 
 偶尔看看自己以前写的代码也很有意思，特别是一些C的代码
 
-# 目录 #
-（等把目录插件弄了就不用这个了，也许）
-
-## euler project:problem 1 ##
-
-## euler project:problem 2斐波那契 ##
-
-## euler project:problem 3质因数 ##
-
 <!--more-->
 
 --------
