@@ -59,7 +59,7 @@ for (var i = 0; i < headers.length; i++) {
       currentParent = currentParent.parent().parent();
     }
   } 
-  //<a href="#title_0" data-localize="Gender List">Gender List</a>
+  
   lastLi = $("<li></li>").append(
     $("<a></a>").attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text())
   );
