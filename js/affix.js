@@ -71,6 +71,14 @@ for (var i = 0; i < headers.length; i++) {
 
 links.append(
   $("<li></li").append(
+    $("<a></a>").attr("affix_to","#bottom").attr('href', '#comments').append(
+      $("<span></span>").attr("class", "glyphicon glyphicon-comment")
+    ).append(" 评论")
+  )
+);
+
+links.append(
+  $("<li></li").append(
     $("<a></a>").attr("affix_to","#bottom").attr('href', '#bottom').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-triangle-bottom")
     )
