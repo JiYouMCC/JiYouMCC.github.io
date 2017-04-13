@@ -17,8 +17,15 @@ function getCommentByCommentId(commentId) {
 }
 
 function showComments(page) {
-  Comments.comment.listCallback(page, function(comments) {
+  $('div[id^=comments_]').remove();
+  var refresh = $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
+    $("<span></span>").addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate")
+  ).append(" 载入中……");  
+  refresh.insertAfter($("#div_comments"));  
+  
+  Comments.comment.listCallback(page, function(comments) {    
     comments_messages = comments;
+    $('#refresh_comments').remove();
     $('div[id^=comments_]').remove();
     for (var i = 0; i < comments.length; i++) {
       var comment = comments[i];
