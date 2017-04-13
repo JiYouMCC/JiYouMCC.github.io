@@ -1,5 +1,10 @@
+$("#recent-comments").append(
+    $("<div></div>").addClass("list-group-item").append(
+      $("<span></span>").addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate")
+    ).append(" 载入中……")
+  );
 Comments.comment.recent.updateCallback(7, function(comments) {
-  $("#recent-comments").text("");
+  $("#recent-comments").text("");  
   for (var i = 0; i < comments.length; i++) {
     var comment = comments[i];
     var commentId = comment.id;
