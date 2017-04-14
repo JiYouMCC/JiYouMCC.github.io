@@ -131,6 +131,7 @@ The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor
     }
 
 我差点就去查费马小定理了，以为花了太多时间在验证是不是素数上面了，发现还是number/=i没有用上。
+
 --------
 
 ## euler project:problem 4回文数 ##
