@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "【更新到3】Project Eulor Problem 1-26,30"
+title:  "【更新到4】Project Eulor Problem 1-26,30"
 date:   2016-11-08 22:28:17 +0800
 categories: 技术
 tags: projecteulor java c
@@ -131,3 +131,38 @@ The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor
     }
 
 我差点就去查费马小定理了，以为花了太多时间在验证是不是素数上面了，发现还是number/=i没有用上。
+--------
+
+## euler project:problem 4回文数 ##
+2013-02-01 10:48:18
+
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91*99.
+
+Find the largest palindrome made from the product of two 3-digit numbers.
+
+一个数如果从前往后和从后往前念都相同，那么它就是回文数。
+
+由两个两位数相乘组成的最大回文数是9009=91*99。
+
+求由两个三位数相乘组成的最大回文数。
+
+    #include <stdio.h>
+
+    int isPalindromic(int number)
+    {
+        int i = number, result = 0;  
+        for(; i != 0; i /= 10)
+            result = result * 10 + i;
+        return result == number;  
+    }
+
+    int main()
+    {
+        int og1 = 1000, og2, result = 0;
+        for(; og1 > 99; og1--)
+            for(og2 = og1; og2 > 99; og2--)
+                if(isPalindromic(og1 * og2))
+                    if(og1 * og2 > result)
+                        result = og1 * og2;
+        printf("%d\n",result); 
+    } 
