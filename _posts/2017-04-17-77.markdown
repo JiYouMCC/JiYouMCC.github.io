@@ -22,7 +22,10 @@ The next three expansions are 99/70, 239/169, and 577/408, but the eighth expans
 In the first one-thousand expansions, how many fractions contain a numerator with more digits than denominator?
 
 <!--more-->
-## 平方根逼近 ##
+
+*****
+
+### 平方根逼近 ###
 
 2的平方根可以用一个无限连分数表示：
 
