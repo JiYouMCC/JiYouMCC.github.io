@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Problem 58 Square root convergents"
+title:  "Problem 58 Spiral primes"
 date:   2017-04-18 13:50:00 +0800
 categories: 技术
 tags: python projecteulor
