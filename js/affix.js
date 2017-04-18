@@ -95,7 +95,8 @@ $("a[affix_to]").click(function(){
     target_offset = target.offset().top
   }
   
-  var current_position = document.documentElement.scrollTop || document.body.scrollTop;  
-  $("html,body").animate({scrollTop: target_offset}, Math.floor(Math.abs(current_position - target_offset)/1.5));
+  //var current_position = document.documentElement.scrollTop || document.body.scrollTop;  
+  //$("html,body").animate({scrollTop: target_offset}, Math.floor(Math.abs(current_position - target_offset)/1.5));
+  $("html,body").animate({scrollTop: target_offset}, 2000);
   return false;
 });
