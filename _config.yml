@@ -19,9 +19,12 @@ gems:
 excerpt_separator: <!--more-->
 timezone: Asia/Shanghai
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: posts
     values:
       is_post: true
+  - scope:
+      path: "img"
+    values:
+      image: true
