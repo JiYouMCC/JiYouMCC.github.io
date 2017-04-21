@@ -25,6 +25,6 @@ defaults:
     values:
       is_post: true
   - scope:
-      path: "img"
+      path: "photo"
     values:
-      image: true
+      photo: true
