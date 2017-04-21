@@ -2,18 +2,7 @@
 layout: default
 title: "相册"
 ---
-<div class="row">
-  {% assign image_files = site.static_files | where: "photo", true | sort: 'path' %}
-  {% for myimage in image_files %}
-  {% assign words = myimage.path | split: '/' %}
-  {% assign index = words[2] %}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="{{ myimage.path }}"> {{ index }}
-    </div>
-  </div>
-  {% endfor %}
-</div>
+<div id="folders" class="row"></div>
 <script type="text/javascript">
     Array.prototype.removeAll = function() {
         var what, a = arguments, L = a.length, ax;
@@ -45,4 +34,14 @@ title: "相册"
         }
     }
 
+    var folderNames = Object.keys(folders);
+    for (var i = 0; i < folderNames.length; i++) {
+        $("#folders").append(
+            $("<div></div>").addClass("col-sm-6 col-md-4").append(
+                $("<div></div>").addClass("thumbnail").append(
+                    $("<img>").attr("src", folders[folderNames[i]][0].path)
+                ).append(folderNames[i])
+            )
+        );
+    }
 </script>
