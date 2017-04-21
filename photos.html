@@ -45,7 +45,7 @@ title: "相册"
             for (var i = 0; i < paths.length; i++) {
                 $(".breadcrumb").append(
                     $("<li></li>").append(
-                        $("<a></a>").attr("breakcrumb", paths).attr('href', '#').text(paths)
+                        $("<a></a>").attr("breakcrumb", paths[i]).attr('href', '#').text(paths[i])
                     )
                 );
             }
@@ -54,6 +54,7 @@ title: "相册"
             });
         },
         showFolders: function() {
+            Photos.clearPhotos();
             for (var i = 0; i < Photos._folderNames.length; i++) {
                 $("#folders").append(
                     $("<div></div>").addClass("col-sm-6 col-md-4").append(
@@ -65,6 +66,8 @@ title: "相册"
                     )
                 );
             }
+
+            Photos.setBreadcrumb("相册");
         }
     }
 
