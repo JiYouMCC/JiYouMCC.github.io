@@ -48,5 +48,11 @@ is_sticky: true
 
 {% assign image_files = site.static_files | where: "photo", true %}
 {% for myimage in image_files %}
-  {{ myimage.path }}
+  {{ myimage.path }}  
+  {% assign words = myimage.path | split: '/' %}
+  {% for word in words %}
+  {{ word }}
+  {% endfor %}
 {% endfor %}
+
+
