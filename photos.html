@@ -67,17 +67,26 @@ title: "相册"
                         $("<div></div>").addClass("thumbnail").append(
                             $("<img>").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
                         ).append(
-                            $("<h1></h1>").addClass("text-center").text(Photos._folderNames[i] + " (" + Photos._folders[Photos._folderNames[i]].length + ")")
+                            $("<a></a>").attr("folder", Photos._folderNames[i]).attr("href", "#").append(
+                                $("<h1></h1>").addClass("text-center").text(Photos._folderNames[i] + " (" + Photos._folders[Photos._folderNames[i]].length + ")")
+                            )
                         )
                     )
                 );
             }
+            $("a[folder]").click(function(){
+                var folder = $(this).attr("folder");
+                if (folder) {
+                    Photos.showFolder(folder);
+                }
+                return false;
+            });
 
             Photos.setBreadcrumb(["相册"]);
         },
         showFolder: function(folderName) {
             Photos.clearPhotos();
-            for (var i = 0; i < Photos._folders[Photos._folderNames[folderName]].length; i++) {
+            for (var i = 0; i < Photos._folders[folderName].length; i++) {
                 $("#folders").append(
                     $("<div></div>").addClass("col-sm-6 col-md-4").append(
                         $("<div></div>").addClass("thumbnail").append(
