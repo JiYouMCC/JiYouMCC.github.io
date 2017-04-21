@@ -21,8 +21,8 @@ title: "相册"
     }
 
     var Photos = {
-        _folders = {},
-        _folderNames = [],
+        _folders : {},
+        _folderNames : [],
         init : function(imagePaths){
             for (var i = 0; i < imagePaths.length; i++) {
                 var image = imagePaths[i];
@@ -67,7 +67,7 @@ title: "相册"
             }
         }
     }
-    
+
     var imageFiles = [{% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}{
         "path":"{{ myimage.path }}",
         "modified_time":"{{ myimage.modified_time }}"
