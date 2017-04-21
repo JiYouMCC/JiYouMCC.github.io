@@ -14,7 +14,7 @@ title: "相册"
   </div>
   {% endfor %}
 </div>
-<javascript>
+<script type="text/javascript">
   var image_files=[
     {% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}"{{ myimage.path }}",{% endfor %}];
-</javascript>
+</script>
