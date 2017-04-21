@@ -2,6 +2,11 @@
 layout: default
 title: "相册"
 ---
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Library</a></li>
+  <li class="active">Data</li>
+</ol>
 <div id="folders" class="row"></div>
 <script type="text/javascript">
     Array.prototype.removeAll = function() {
@@ -15,35 +20,58 @@ title: "相册"
         return this;
     }
 
+    var Photos = {
+        _folders = {},
+        _folderNames = [],
+        init : function(imagePaths){
+            for (var i = 0; i < imagePaths.length; i++) {
+                var image = imagePaths[i];
+                var pathArray = image.path.split("/").removeAll("");
+                var folder = pathArray[1];
+                image["folder"] = folder;
+                if (Photos._folders[folder]) {
+                    Photos._folders[folder].push(image);
+                } else {
+                    Photos._folders[folder] = [image];
+                }
+            }
+            Photos._folderNames = Object.keys(Photos._folders);
+        },
+        clearPhotos: function() {
+            $("#folders").text(" ");
+        },
+        setBreadcrumb: function(paths) {
+            $(".breadcrumb").text("");
+            for (var i = 0; i < paths.length; i++) {
+                $(".breadcrumb").append(
+                    $("<li></li>").append(
+                        $("<a></a>").attr("breakcrumb", paths).attr('href', '#').text(paths)
+                    )
+                );
+            }
+            $("a[breakcrumb]").click(function(){
+                return false;
+            });
+        },
+        showFolders: function() {
+            for (var i = 0; i < Photos._folderNames.length; i++) {
+                $("#folders").append(
+                    $("<div></div>").addClass("col-sm-6 col-md-4").append(
+                        $("<div></div>").addClass("thumbnail").append(
+                            $("<img>").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
+                        ).append(
+                            $("<h1></h1>").addClass("text-center").text(Photos._folderNames[i] + " (" + Photos._folders[Photos._folderNames[i]].length + ")")
+                        )
+                    )
+                );
+            }
+        }
+    }
+    
     var imageFiles = [{% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}{
         "path":"{{ myimage.path }}",
         "modified_time":"{{ myimage.modified_time }}"
-    },{% endfor %}]
-
-    var folders = {};
-
-    for (var i = 0; i < imageFiles.length; i++) {
-        var image = imageFiles[i];
-        var pathArray = image.path.split("/").removeAll("");
-        var folder = pathArray[1];
-        image["folder"] = folder;
-        if (folders[folder]) {
-            folders[folder].push(image);
-        } else {
-            folders[folder] = [image];
-        }
-    }
-
-    var folderNames = Object.keys(folders);
-    for (var i = 0; i < folderNames.length; i++) {
-        $("#folders").append(
-            $("<div></div>").addClass("col-sm-6 col-md-4").append(
-                $("<div></div>").addClass("thumbnail").append(
-                    $("<img>").attr("src", folders[folderNames[i]][0].path)
-                ).append(
-                    $("<h1></h1>").addClass("text-center").text(folderNames[i] + " (" + folders[folderNames[i]].length + ")")
-                )
-            )
-        );
-    }
+    },{% endfor %}];
+    Photos.init(imageFiles);
+    Photos.showFolders();
 </script>
