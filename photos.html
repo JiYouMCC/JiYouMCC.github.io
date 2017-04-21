@@ -40,7 +40,9 @@ title: "相册"
             $("<div></div>").addClass("col-sm-6 col-md-4").append(
                 $("<div></div>").addClass("thumbnail").append(
                     $("<img>").attr("src", folders[folderNames[i]][0].path)
-                ).append(folderNames[i])
+                ).append(
+                    $("<h1></h1>").addClass("text-center").text(folderNames[i] + " (" + folders[folderNames[i]].Length + ")")
+                )
             )
         );
     }
