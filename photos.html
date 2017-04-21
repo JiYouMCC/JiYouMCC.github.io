@@ -15,6 +15,34 @@ title: "相册"
   {% endfor %}
 </div>
 <script type="text/javascript">
-  var image_files=[
-    {% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}"{{ myimage.path }}",{% endfor %}];
+    Array.prototype.removeAll = function() {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+            what = a[--L];
+            while ((ax = this.indexOf(what)) !== -1) {
+                this.splice(ax, 1);
+            }
+        }
+        return this;
+    }
+
+    var imageFiles = [{% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}{
+        "path":"{{ myimage.path }}",
+        "modified_time":"{{ myimage.modified_time }}"
+    },{% endfor %}]
+
+    var folders = {};
+
+    for (var i = 0; i < imageFiles.length; i++) {
+        var image = imageFiles[i];
+        var pathArray = image.path.split("/").removeAll("");
+        var folder = pathArray[1];
+        image["folder"] = folder;
+        if (folders[folder]) {
+            folders[folder].push(image);
+        } else {
+            folders[folder] = [image];
+        }
+    }
+
 </script>
