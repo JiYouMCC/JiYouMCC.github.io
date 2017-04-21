@@ -3,7 +3,7 @@ layout: default
 title: "相册"
 ---
 <div class="row">
-  {% assign image_files = site.static_files | where: "photo", true %}
+  {% assign image_files = site.static_files | where: "photo", true | sort: 'path' %}
   {% for myimage in image_files %}
   {% assign words = myimage.path | split: '/' %}
   {% assign index = words[2] %}
@@ -14,3 +14,7 @@ title: "相册"
   </div>
   {% endfor %}
 </div>
+<javascript>
+  var image_files=[
+    {% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}"{{ myimage.path }}",{% endfor %}];
+</javascript>
