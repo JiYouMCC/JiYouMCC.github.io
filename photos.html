@@ -1,0 +1,23 @@
+---
+layout: default
+title: "相册"
+---
+{% assign image_files = site.static_files | where: "photo", true %}
+{% for myimage in image_files %}
+  {{ myimage.path }}  
+  {% assign words = myimage.path | split: '/' %}
+  {% for word in words %}
+  {{ word }}
+  {% endfor %}
+{% endfor %}
+
+
+TEST TEST　ＴＥＳＴ
+
+
+{% assign image_files = site.static_files | where_exp:"item", "item.path contains '/photo/test/'" %}
+{% for myimage in image_files %}
+  {{ myimage.path }}  
+  {% assign words = myimage.path | split: '/' %}
+  {{ words[1] }}
+{% endfor %}
