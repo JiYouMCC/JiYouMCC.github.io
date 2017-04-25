@@ -354,8 +354,28 @@ blockquote {
 }
 
 .photo-div {
-    transition:opacity 1s;
-    -moz-transition:opacity 1s, -moz-transform 1s; /* Firefox 4 */
-    -webkit-transition:opacity 1s, -webkit-transform 1s; /* Safari and Chrome */
-    -o-transition:opacity 1s, -o-transform 1s; /* Opera */
+    animation: photo 1s;
+    -moz-animation: photo 1s;
+    -webkit-animation: photo 1s;
+    -o-animation: photo 1s;
+}
+    
+@keyframes photo {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-moz-keyframes photo {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-webkit-keyframes photo {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-o-keyframes photo {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
