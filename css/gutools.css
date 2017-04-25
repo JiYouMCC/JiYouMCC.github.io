@@ -352,3 +352,10 @@ blockquote {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+.photo-div {
+    transition:opacity 1s;
+    -moz-transition:opacity 1s, -moz-transform 1s; /* Firefox 4 */
+    -webkit-transition:opacity 1s, -webkit-transform 1s; /* Safari and Chrome */
+    -o-transition:opacity 1s, -o-transform 1s; /* Opera */
+}
