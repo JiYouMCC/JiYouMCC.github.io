@@ -12,16 +12,16 @@ use_code: true
 
 <!--more-->
 <div>
-    <div class="form-group"><label for="startDate">Last date:</label>
+    <div class="form-group"><label for="startDate">末次月经第一天</label>
         <input class="form-control" id="startDate" type="date">
     </div>
     <div class="text-center">
-        <button class="btn btn-default" onclick="getResult()">转换</button>
+        <button class="btn btn-default" onclick="getResult()">计算</button>
     </div>
-    <div class="form-group"><label for="resultDate">Result date:</label>
+    <div class="form-group"><label for="resultDate">预产期</label>
         <input class="form-control" id="resultDate" type="date" disabled="">
     </div>
-    <div class="form-group"><label for="currentWeek">Current week:</label>
+    <div class="form-group"><label for="currentWeek">当前周数</label>
         <input class="form-control" id="currentWeek" type="text" disabled="">
     </div>
 </div>
