@@ -11,7 +11,7 @@ use_code: true
 今天想动动爪子，不想给某些网站添加流量了
 
 <!--more-->
-<div class="form-horizontal">
+<div>
     <div class="form-group"><label for="startDate">Last date:</label>
         <input class="form-control" id="startDate" type="date">
     </div>
