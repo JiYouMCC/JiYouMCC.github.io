@@ -1,0 +1,244 @@
+---
+layout: post
+title:  "关于某些的小工具(扩展)"
+date:   2017-08-10 12:11:16
+categories: 生活
+tags: javassript
+use_code: true
+---
+上回小工具的扩展
+
+<!--more-->
+
+<div>
+    <div class="form-group"><label for="startDate">末次月经第一天</label>
+        <input class="form-control" id="startDate" type="date">
+    </div>
+    <div class="text-center">
+        <button class="btn btn-default" onclick="getResult()">计算</button>
+    </div>
+    <div class="form-group"><label for="resultDate">预产期</label>
+        <input class="form-control" id="resultDate" type="date" disabled="">
+    </div>
+    <div class="form-group"><label for="currentWeek">当前周数</label>
+        <input class="form-control" id="currentWeek" type="text" disabled="">
+    </div>
+    <canvas id="clock" width="300" height="300"></canvas>
+</div>
+
+<script type="text/javascript">
+    var currentDate = new Date();
+    document.getElementById('startDate').value = currentDate.getFullYear() + '-' + formatPad(currentDate.getMonth() + 1) + '-' + formatPad(currentDate.getDate());
+
+    function formatPad(string) {
+        var pad = "00";
+        string = String(string);
+        return pad.substring(0, pad.length - string.length) + string;
+    }
+
+    function clock(week, day, canvas) {
+        var now = new Date();
+        var ctx = document.getElementById(canvas).getContext('2d');
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0,0,300,300);
+
+        ctx.beginPath();
+        ctx.arc(150, 150, 145, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(150, 150, 115, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(150, 150, 85, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.translate(150, 150);
+        ctx.rotate(-Math.PI/2);
+        for (var i = 0; i < 40; i++){
+            ctx.beginPath();
+            ctx.rotate(Math.PI/20);
+            ctx.moveTo(115,0);
+            ctx.lineTo(85,0);
+            ctx.stroke();
+        }
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.translate(150, 150);
+        ctx.rotate(-Math.PI/2);
+        for (var i = 0; i < 7; i++){
+            ctx.beginPath();
+            ctx.rotate(Math.PI/3.5);
+            ctx.moveTo(145,0);
+            ctx.lineTo(115,0);
+            ctx.stroke();
+            
+        }
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.translate(150,150);
+        ctx.rotate(-Math.PI/2);
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.rotate((week + day / 7) * Math.PI / 20);
+        ctx.moveTo(-15,0);
+        ctx.lineTo(100,0);
+        ctx.stroke();
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.translate(150,150);
+        ctx.rotate(-Math.PI/2);
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.rotate((day + (now.getHours() * 60 * 60 + now.getMinutes() * 60 + now.getSeconds())/( 24 * 60 * 60 )) * Math.PI/3.5);
+        ctx.moveTo(-15,0);
+        ctx.lineTo(130,0);
+        ctx.stroke();
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.translate(150,150);
+        ctx.rotate(-Math.PI/2);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.beginPath();
+        ctx.arc(150, 150, 10, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+    }
+
+    var it = undefined;
+    function getResult() {
+        var now = new Date();
+        var start = new Date(document.getElementById('startDate').value);
+        var result = new Date(start);
+        result.setDate(start.getDate() + 280);
+        document.getElementById('resultDate').value = result.getFullYear() + '-' + formatPad(result.getMonth() + 1) + '-' + formatPad(result.getDate());
+
+        var week = (now - start) / 1000 / 60 / 60 / 24 / 7;
+        var day = Math.floor((week - Math.floor(week)) * 7);
+        document.getElementById('currentWeek').value = Math.floor(week) +"W";
+        if (day > 0) {
+            document.getElementById('currentWeek').value = document.getElementById('currentWeek').value + "+" + day;
+        }
+
+        if (it) {
+            window.clearInterval(it);
+        }
+        
+        it = self.setInterval("clock("+week+", "+day+", 'clock')", 50);
+    }
+</script>
+
+# 源代码
+
+    <script type="text/javascript">
+       function clock(week, day, canvas) {
+            var now = new Date();
+            var ctx = document.getElementById(canvas).getContext('2d');
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0,0,300,300);
+
+            ctx.beginPath();
+            ctx.arc(150, 150, 145, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(150, 150, 115, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(150, 150, 85, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.translate(150, 150);
+            ctx.rotate(-Math.PI/2);
+            for (var i = 0; i < 40; i++){
+                ctx.beginPath();
+                ctx.rotate(Math.PI/20);
+                ctx.moveTo(115,0);
+                ctx.lineTo(85,0);
+                ctx.stroke();
+            }
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.translate(150, 150);
+            ctx.rotate(-Math.PI/2);
+            for (var i = 0; i < 7; i++){
+                ctx.beginPath();
+                ctx.rotate(Math.PI/3.5);
+                ctx.moveTo(145,0);
+                ctx.lineTo(115,0);
+                ctx.stroke();
+                
+            }
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.translate(150,150);
+            ctx.rotate(-Math.PI/2);
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.rotate((week + day / 7) * Math.PI / 20);
+            ctx.moveTo(-15,0);
+            ctx.lineTo(100,0);
+            ctx.stroke();
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.translate(150,150);
+            ctx.rotate(-Math.PI/2);
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.rotate((day + (now.getHours() * 60 * 60 + now.getMinutes() * 60 + now.getSeconds())/( 24 * 60 * 60 )) * Math.PI/3.5);
+            ctx.moveTo(-15,0);
+            ctx.lineTo(130,0);
+            ctx.stroke();
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.translate(150,150);
+            ctx.rotate(-Math.PI/2);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.beginPath();
+            ctx.arc(150, 150, 10, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
+    </script>
+
+
