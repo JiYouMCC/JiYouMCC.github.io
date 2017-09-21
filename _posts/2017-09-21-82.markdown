@@ -18,13 +18,13 @@ categories: 生活
 
 ![](http://stitchworkssoftware.com/img/screenshots/1-create-wedge.png)
 
-钩针画图解的最顺眼的是这个东西，[它自己网址在这里。] (http://stitchworkssoftware.com/){:target="_blank"}
+钩针画图解的最顺眼的是这个东西，[它自己网址在这里。](http://stitchworkssoftware.com/){:target="_blank"}
 
 Github repo 发现了2个，一个人弄的+hash都一样但是居然没看到Fork痕迹：
 
-[https://github.com/iPenguin/CrochetCharts] (https://github.com/iPenguin/CrochetCharts){:target="_blank"}
+[https://github.com/iPenguin/CrochetCharts](https://github.com/iPenguin/CrochetCharts){:target="_blank"}
 
-[https://github.com/StitchworksSoftware/CrochetCharts] (https://github.com/StitchworksSoftware/CrochetCharts){:target="_blank"}
+[https://github.com/StitchworksSoftware/CrochetCharts](https://github.com/StitchworksSoftware/CrochetCharts){:target="_blank"}
 
 我最开心的是：支！持！linux！安！装！（虽然还没试）
 
