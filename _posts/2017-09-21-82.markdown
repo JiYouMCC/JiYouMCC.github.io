@@ -14,21 +14,17 @@ categories: 生活
 
 然后搜了下github，搜出很多好玩的东西，除了画图解的，还有根据钩针针数生成3D形状的（我用不太遛，针法缩写背不出）
 
-<!--more-->
-
-# CrochetCharts
+# Crochet Charts
 
 ![](http://stitchworkssoftware.com/img/screenshots/1-create-wedge.png)
 
-钩针画图解的最顺眼的是这个东西，它自己网址如下： 
-
-http://stitchworkssoftware.com/
+钩针画图解的最顺眼的是这个东西，[它自己网址在这里。] (http://stitchworkssoftware.com/){:target="_blank"}
 
 Github repo 发现了2个，一个人弄的+hash都一样但是居然没看到Fork痕迹：
 
-https://github.com/iPenguin/CrochetCharts
+[https://github.com/iPenguin/CrochetCharts] (https://github.com/iPenguin/CrochetCharts){:target="_blank"}
 
-https://github.com/StitchworksSoftware/CrochetCharts
+[https://github.com/StitchworksSoftware/CrochetCharts] (https://github.com/StitchworksSoftware/CrochetCharts){:target="_blank"}
 
 我最开心的是：支！持！linux！安！装！（虽然还没试）
 
