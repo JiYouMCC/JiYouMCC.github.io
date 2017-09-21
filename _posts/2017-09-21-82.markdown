@@ -1,0 +1,35 @@
+---
+layout: post
+title:  "画钩针图解的工具"
+date:   2017-09-21 17:39:00
+categories: 生活
+---
+最近在研究棒针和钩针，还是挺有意思的（呸，明显是因为禁止或者暂停做很多事时间太多了:sob:）
+
+然后就在考虑，那种书上的图解都是怎么做的。
+
+棒针还好，Excel还能凑合
+
+钩针这种360°各种旋转扭曲的就……
+
+然后搜了下github，搜出很多好玩的东西，除了画图解的，还有根据钩针针数生成3D形状的（我用不太遛，针法缩写背不出）
+
+<!--more-->
+
+# CrochetCharts
+
+![](http://stitchworkssoftware.com/img/screenshots/1-create-wedge.png)
+
+钩针画图解的最顺眼的是这个东西，它自己网址如下： 
+
+http://stitchworkssoftware.com/
+
+Github repo 发现了2个，一个人弄的+hash都一样但是居然没看到Fork痕迹：
+
+https://github.com/iPenguin/CrochetCharts
+
+https://github.com/StitchworksSoftware/CrochetCharts
+
+我最开心的是：支！持！linux！安！装！（虽然还没试）
+
+虽然相比较我们家CDD来说，用起来不是很舒服，但是我很满意了！！！
