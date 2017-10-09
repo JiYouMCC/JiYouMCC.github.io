@@ -15,9 +15,11 @@ use_code: true
 <div class="form-group"><label for="input_start_time">开始时间</label>
 <input id="input_start_time" type="text" class="form-control" disabled="disabled"></div>
 <div class="form-group"><label for="input_last_gap">上次间隔</label>
-<input id="input_last_gap" type="text" class="form-control" disabled="disabled">秒</div>
+<input id="input_last_gap" type="text" class="form-control" disabled="disabled">
+<div class="input-group-addon">秒</div></div>
 <div class="form-group"><label for="input_gap">间隔设置</label>
-<input id="input_gap" type="number" class="form-control" value="120">秒</div>
+<input id="input_gap" type="number" class="form-control" value="120">
+<div class="input-group-addon">秒</div></div>
 <div class="form-group"><label for="input_move_count">次数统计</label>
 <input id="input_move_count" type="number" class="form-control" disabled="disabled"></div>
 <div class="form-group"><label for="time_records">时间记录</label>
