@@ -6,7 +6,7 @@ categories: 生活
 tags: javascript
 use_code: true
 ---
-
+![](/img/moving.gif)
 随手写的，感觉手残了不少
 
 <!--more-->
