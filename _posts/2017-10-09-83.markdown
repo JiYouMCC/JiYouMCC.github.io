@@ -33,54 +33,54 @@ use_code: true
 </div>
 
 <script type="text/javascript">
-  var start_time = undefined;
-  var last_time = undefined;
-  var move_count = 0;
+var start_time = undefined;
+var last_time = undefined;
+var move_count = 0;
   
-  function leftPad(inValue, padStr, count) {
-    var str = "" + inValue;
-    var pad = "";
-    for (var i = 0; i < count; i++) {
-      pad = pad + padStr;
-    }
+function leftPad(inValue, padStr, count) {
+var str = "" + inValue;
+var pad = "";
+for (var i = 0; i < count; i++) {
+pad = pad + padStr;
+}
     
-    var result = pad.substring(0, pad.length - str.length) + str;
-    return result;
- }
+var result = pad.substring(0, pad.length - str.length) + str;
+return result;
+}
  
- function Record() {
-  var theTime = new Date();
-  if (start_time) {
-    if (theTime - start_time > 1000 * 60 * 60) {
-      var button = document.getElementById("button_records");
-      button.innerHTML = "已经数满1小时了！";
-      button.disabled = "disabled";
-      return;
-    }
-  }
+function Record() {
+var theTime = new Date();
+if (start_time) {
+if (theTime - start_time > 1000 * 60 * 60) {
+var button = document.getElementById("button_records");
+button.innerHTML = "已经数满1小时了！";
+button.disabled = "disabled";
+return;
+}
+}
   
-  if (last_time) {
-    var theGap = (theTime - last_time) / 1000;
-    document.getElementById("input_last_gap").value = theGap;
-    var gap = Number(document.getElementById("input_gap").value);
-    if (theGap >= gap) {
-      move_count += 1;
-    }
-  } else {
-    move_count += 1;
-  }
+if (last_time) {
+var theGap = (theTime - last_time) / 1000;
+document.getElementById("input_last_gap").value = theGap;
+var gap = Number(document.getElementById("input_gap").value);
+if (theGap >= gap) {
+move_count += 1;
+}
+} else {
+move_count += 1;
+}
   
-  document.getElementById("input_move_count").value = move_count;
+document.getElementById("input_move_count").value = move_count;
   
-  var timeRecordText = leftPad(theTime.getHours(), '0', 2) + ":" + leftPad(theTime.getMinutes(), '0', 2) + ":" + leftPad(theTime.getSeconds(), '0', 2);
-  document.getElementById("time_records").value += timeRecordText + "\n";
+var timeRecordText = leftPad(theTime.getHours(), '0', 2) + ":" + leftPad(theTime.getMinutes(), '0', 2) + ":" + leftPad(theTime.getSeconds(), '0', 2);
+document.getElementById("time_records").value += timeRecordText + "\n";
   
-  if (!start_time) {
-    start_time = theTime;
-    document.getElementById("input_start_time").value = timeRecordText;
-  }
+if (!start_time) {
+start_time = theTime;
+document.getElementById("input_start_time").value = timeRecordText;
+}
   
-  last_time = theTime;
+last_time = theTime;
 }
 </script>
     
