@@ -3,7 +3,7 @@ layout: post
 title:  "关于某些的小工具"
 date:   2017-08-02 09:33:00
 categories: 生活
-tags: javassript
+tags: javasript
 use_code: true
 ---
 最近因为某些那啥的事儿，好多事情都给搁置了，包括学锯子之类的各种事情
