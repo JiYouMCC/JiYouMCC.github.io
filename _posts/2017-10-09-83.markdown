@@ -82,71 +82,69 @@ last_time = theTime;
 </script>
 
 
-# 源代码 
-     <!DOCTYPE html>
+# 源代码
+    <!DOCTYPE html>
     <html>
-    <head>
-        <title>test</title>
-    </head>
-    <body>
-        <div><label>开始时间：</label> <input id="input_start_time" type="text" disabled="disabled"></div>
-        <div><label>上次间隔：</label> <input id="input_last_gap" type="text" disabled="disabled">秒</div>
-        <div><label>次数统计：</label> <input id="input_move_count" type="number" disabled="disabled"></div>
-        <div><label>时间记录：</label> <textarea rows=12 id="time_records" disabled="disabled"></textarea></div>
-        <div><label>间隔设置：</label> <input id="input_gap" type="number" value=120> 秒</div>
+        <head>
+            <title>数胎动小工具</title>
+        </head>
+        <body>
+            <div><label>开始时间：</label> <input id="input_start_time" type="text" disabled="disabled"></div>
+            <div><label>上次间隔：</label> <input id="input_last_gap" type="text" disabled="disabled">秒</div>
+            <div><label>次数统计：</label> <input id="input_move_count" type="number" disabled="disabled"></div>
+            <div><label>时间记录：</label> <textarea rows=12 id="time_records" disabled="disabled"></textarea></div>
+            <div><label>间隔设置：</label> <input id="input_gap" type="number" value=120> 秒</div>
+            <button id="button_records" onclick="Record()">动了一下</button>
 
+            <script type="text/javascript">
+                var start_time = undefined;
+                var last_time = undefined;
+                var move_count = 0;
 
-        <button id="button_records" onclick="Record()">动了一下</button>
-        <script type="text/javascript">
-            var start_time = undefined;
-            var last_time = undefined;
-            var move_count = 0;
-
-            function leftPad(inValue, padStr, count){
-                var str = "" + inValue;
-                var pad = "";
-                for (var i = 0; i < count; i++) {
-                    pad = pad + padStr;
-                }
-                var result = pad.substring(0, pad.length - str.length) + str;
-                return result;
-            }
-
-            function Record() {
-                var theTime = new Date();
-                if (start_time) {
-                    if (theTime - start_time > 1000 * 60 * 60){
-                        var button = document.getElementById("button_records");
-                        button.innerHTML = "已经数满1小时了！";
-                        button.disabled = "disabled";
-                        return;
+                function leftPad(inValue, padStr, count){
+                    var str = "" + inValue;
+                    var pad = "";
+                    for (var i = 0; i < count; i++) {
+                        pad = pad + padStr;
                     }
+                    var result = pad.substring(0, pad.length - str.length) + str;
+                    return result;
                 }
 
-                if (last_time) {
-                    var theGap = (theTime - last_time) / 1000;
-                    document.getElementById("input_last_gap").value = theGap;
-                    var gap = Number(document.getElementById("input_gap").value);
-                    if (theGap >= gap) {
+                function Record() {
+                    var theTime = new Date();
+                    if (start_time) {
+                        if (theTime - start_time > 1000 * 60 * 60){
+                            var button = document.getElementById("button_records");
+                            button.innerHTML = "已经数满1小时了！";
+                            button.disabled = "disabled";
+                            return;
+                        }
+                    }
+
+                    if (last_time) {
+                        var theGap = (theTime - last_time) / 1000;
+                        document.getElementById("input_last_gap").value = theGap;
+                        var gap = Number(document.getElementById("input_gap").value);
+                        if (theGap >= gap) {
+                            move_count += 1;
+                        }
+                    } else {
                         move_count += 1;
                     }
-                } else {
-                    move_count += 1;
+
+                    document.getElementById("input_move_count").value = move_count;
+
+                    var timeRecordText = leftPad(theTime.getHours(), '0', 2) + ":" + leftPad(theTime.getMinutes(), '0', 2) + ":" + leftPad(theTime.getSeconds(), '0', 2);
+                    document.getElementById("time_records").value += timeRecordText + "\n";
+
+                    if (!start_time) {
+                        start_time = theTime;
+                        document.getElementById("input_start_time").value = timeRecordText;
+                    }
+
+                    last_time = theTime;
                 }
-
-                document.getElementById("input_move_count").value = move_count;
-
-                var timeRecordText = leftPad(theTime.getHours(), '0', 2) + ":" + leftPad(theTime.getMinutes(), '0', 2) + ":" + leftPad(theTime.getSeconds(), '0', 2);
-                document.getElementById("time_records").value += timeRecordText + "\n";
-
-                if (!start_time) {
-                    start_time = theTime;
-                    document.getElementById("input_start_time").value = timeRecordText;
-                }
-
-                last_time = theTime;
-            }
-        </script>
-
-    </body>
+            </script>
+        </body>
     </html>
