@@ -3,7 +3,7 @@ layout: post
 title:  "数胎动小工具"
 date:   2017-08-10 12:11:16
 categories: 生活
-tags: javasript
+tags: javascript
 use_code: true
 ---
 
