@@ -80,7 +80,7 @@ var Photos = {
         for (var i = 0; i < Photos._folders[folderName].length; i++) {
             $("#folders").append(
                 $("<div></div>").addClass("col-sm-6 col-md-4 photo-div").append(
-                    $("<a></a>").attr("imgPath", Photos._folders[folderName][i].path).attr("href", "#").append(
+                    $("<a></a>").attr("imgPath", Photos._folders[folderName][i].path).attr("title", Photos._folders[folderName][i].basename).attr("href", "#").append(
                         $("<div></div>").addClass("thumbnail").append(
                             $("<img>").attr("src", Photos._folders[folderName][i].path)
                         )
