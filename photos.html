@@ -8,12 +8,11 @@ title: "相册"
 <!-- Big picture Modal -->
 <div class="modal fade bs-example-modal-lg" id="modal_photo" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel">
   <div class="modal-dialog modal-lg" role="document">
-    <p class="text-center"><img id="big_img" src="" class="img-responsive"></p>
+    <div class="thumbnail">
+      <img id="big_img" src="" class="img-responsive">
+    </div>
   </div>
 </div>
-
-
-
 <script src="{{ "/js/photos.js"}}"></script>
 <script type="text/javascript">
     var imageFiles = [{% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}{
