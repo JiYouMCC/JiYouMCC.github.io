@@ -15,7 +15,8 @@ title: "相册"
 <script type="text/javascript">
     var imageFiles = [{% assign image_files = site.static_files | where: "photo", true %}{% for myimage in image_files %}{
         "path":"{{ myimage.path }}",
-        "modified_time":"{{ myimage.modified_time }}"
+        "modified_time":"{{ myimage.modified_time }}",
+        "basename":"{{ myimage.basename }}",
     },{% endfor %}];
     Photos.init(imageFiles);
     Photos.showFolders();
