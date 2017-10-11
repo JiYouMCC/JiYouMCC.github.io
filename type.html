@@ -9,7 +9,7 @@ title: "分类"
   {% for cat in site.categories %}
     {% if cat[0] != "sticky" %}
     <li role="presentation">
-      <a id="tag_{{ cat[0] | uri_escape }}" href="#{{ cat[0] | uri_escape }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
+      <a id="tag_{{ cat[0] | uri_escape }}" href="#{{ cat[0] | uri_escape }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
     </li>
     {% endif %}
   {% endfor %}
@@ -70,7 +70,7 @@ title: "分类"
   </div>
   {% for cat in site.categories %}
     {% if cat[0] != "sticky" %}
-    <div role="tabpanel" class="tab-pane" id="{{ cat[0] }}">
+    <div role="tabpanel" class="tab-pane" id="{{ cat[0] | uri_escape }}">
       <div class="table-responsive">
       <table class="table table-striped">
         <thead>
