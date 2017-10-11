@@ -1,7 +1,7 @@
 ---
 layout: default
-use_math: true
-use_code: true
+use_math: false
+use_code: false
 ---
 {% if paginator.page == 1 %}
   {% assign sticky_posts = (site.posts | where: "is_sticky" ,"true") %}
