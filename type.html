@@ -9,7 +9,7 @@ title: "分类"
   {% for cat in site.categories %}
     {% if cat[0] != "sticky" %}
     <li role="presentation">
-      <a id="tag_{{ cat[0] }}" href="#{{ cat[0] }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
+      <a id="tag_{{ cat[0] | uri_escape }}" href="#{{ cat[0] | uri_escape }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
     </li>
     {% endif %}
   {% endfor %}
@@ -35,7 +35,7 @@ title: "分类"
           <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
           <td class="text-center">{% for cat in post.categories %}
                 {% if cat != 'sticky' %}
-                <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
+                <span><a class="label label-default" href="/type#{{ cat | uri_escape }}">{{ cat }}</a></span>
                 {% endif %}
               {% endfor %}</td>
           <td class="text-center">
@@ -57,7 +57,7 @@ title: "分类"
             <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
             <td class="text-center">{% for cat in post.categories %}
                   {% if cat != 'sticky' %}
-                  <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
+                  <span><a class="label label-default" href="/type#{{ cat | uri_escape }}">{{ cat }}</a></span>
                   {% endif %}
                 {% endfor %}</td>
             <td class="text-center"><span comments-count="{{ post.id }}" class="badge ds-thread-count"></span></td>
@@ -88,7 +88,7 @@ title: "分类"
               {% if post.categories.size > 0 %}
                 {% for cat in post.categories %}
                   {% if cat != 'sticky' %}
-                  <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
+                  <span><a class="label label-default" href="/type#{{ cat | uri_escape }}">{{ cat }}</a></span>
                   {% endif %}
                 {% endfor %}
               {% endif %}
