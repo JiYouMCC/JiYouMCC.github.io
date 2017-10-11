@@ -26,7 +26,7 @@
             {% for cat in site.categories %}
               {% if cat[0] != 'sticky'%}
               <li>
-                <a href="/type#{{ cat[0] | uri_escape }}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
+                <a href="/type#{{ cat[0] }}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
               </li>
               {% endif %}
             {% endfor %}
@@ -45,7 +45,7 @@
               {% assign tagitems = tag | split: '#' %}
               <li>
                 <h4>
-                  <a class="label label-default" href="/tag#{{ tagitems[1] | uri_escape }}" rel="{{ tagitems[1].size }}">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></a>
+                  <a class="label label-default" href="/tag#{{ tagitems[1] }}" rel="{{ tagitems[1].size }}">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></a>
                 </h4>
               </li>
             {% endfor %}
