@@ -36,7 +36,7 @@ use_code: true
     <strong>
         <span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论&nbsp;</a><span comments-count="{{ post.id }}" class="badge ds-thread-count"></span></span>
         {% if post.categories.size > 0 %}<span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
-        {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a href='/tag#{{ tag }}' class="label label-default">{{ tag }}</a>{% endfor %}</span></script>{% endif %}&nbsp;
+        {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a href="/tag#{{ post.tags[0] }}" class="label label-default">{{ tag }}</a>{% endfor %}</span></script>{% endif %}&nbsp;
       </strong>
     </div>
   </div>
