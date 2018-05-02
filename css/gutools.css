@@ -62,6 +62,11 @@
 
 .task-list {
     list-style-type: none;
+    padding-left: 20px;
+}
+
+.task-list-item-checkbox {
+    margin-right: 5px;
 }
 
 .checkbox_true,
