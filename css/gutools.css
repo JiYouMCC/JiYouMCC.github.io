@@ -60,15 +60,16 @@
     display: inline-block;
 }
 
-.task-list-item-checkbox,
+.task-list {
+    list-style-type: none;
+}
+
 .checkbox_true,
 .checkbox_false {
     list-style-type: none;
     margin: 0 0 0 -20px;
     padding: 0px;
 }
-
-.task-list-item-checkbox:checked:before,
 .checkbox_true:before {
   font-weight: bold;
   content: "\2611\  ";
