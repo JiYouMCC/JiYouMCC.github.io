@@ -6,10 +6,15 @@ tags: django python
 is_sticky: true
 ---
 [ ] 小工具-还款计算表
+
 [ ] 二维码解析
+
 [ ] 相册
+
 [ ] 共享文档
+
 [ ] 轮子：标签云<https://github.com/atizo/PyTagCloud> 文字碰撞 <http://www.wordle.net/>
+
 [ ] ascii art全js化
 
 <!--more-->
