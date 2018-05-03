@@ -65,28 +65,8 @@
     padding-left: 20px;
 }
 
-.task-list-item-checkbox {
+input.task-list-item-checkbox {
     margin-right: 5px;
-}
-
-.checkbox_true,
-.checkbox_false {
-    list-style-type: none;
-    margin: 0 0 0 -20px;
-    padding: 0px;
-}
-.checkbox_true:before {
-  font-weight: bold;
-  content: "\2611\  ";
-  font-size: 15pt;
-  line-height: 15pt;
-}
-
-.checkbox_false:before {
-  font-weight: bold;
-  content: "\2610\  ";
-  font-size: 15pt;
-  line-height: 15pt;
 }
 
 .page_blog_content table {
