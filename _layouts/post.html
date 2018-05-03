@@ -7,7 +7,7 @@ layout: default
     <span class="page_datetime">{{ page.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
   </div>
   <article id="blog_content" class="panel-body page_blog_content">
-    {{ content | replace: '<li>[ ]', '<li class="post_check list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="post_check list-unstyled"><input type="checkbox" disabled checked>'  }}
+    {{ content }}
 
   </article>
   <div class="panel-footer page_blog_footer">
