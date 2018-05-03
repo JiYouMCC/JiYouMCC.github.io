@@ -7,7 +7,6 @@ is_sticky: true
 ---
 * [ ] 小工具-还款计算表
 * [ ] 二维码解析
-* [ ] 相册
 * [ ] 共享文档
 * [ ] 轮子：标签云<https://github.com/atizo/PyTagCloud> 文字碰撞 <http://www.wordle.net/>
 * [ ] ascii art全js化
@@ -18,6 +17,7 @@ is_sticky: true
 * [ ] ~~简易账本 bootstrap化/ 优化/ 支持分类筛选~~
 * [ ] ~~简易待办事项~~
 * [ ] ~~简易进销存~~
+* [x] 2018-5-3相册
 * [x] 清理七牛上面的图片
 * [x] 2017-2-27 美化猫命抽签器
 * [x] 2016-10-30 迁移到github.io
