@@ -2,7 +2,7 @@
 layout: post
 title:  "相册"
 date:   2018-05-03 09:54:16
-categories: 技术
+categories: 技术 编织
 tags: javascript
 ---
 ![](/img/2018-05-03_photo.PNG)
