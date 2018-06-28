@@ -1,0 +1,66 @@
+---
+layout: default
+title: "留言本"
+issue: 3
+---
+github comments的测试用留言本
+
+
+<div class="panel panel-default">
+  <div id="comments" class="list-group">
+    <div class="list-group-item">
+      {% if page.disable_comment %}
+        评论已关闭。
+      {% else %}
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="name">名字</label>
+          <div class="col-sm-10">
+            <span id="name" class="page_blog_comment_name"></span>
+          </div>
+        </div>
+        <input id="reply" type="hidden" value="" />
+        <div id="reply_to" style="display:none;" class="form-group">
+          <label class="col-sm-2 control-label" for="reply_input">回复</label>
+          <div class="col-sm-10">
+            <span id="reply_user" class="page_blog_comment_name"></span><button id="reply_clear" title="清除" type="button" class="btn btn-link"><span class="glyphicon glyphicon-remove"></span></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="comment">*评论</label>
+          <div class="col-sm-10">
+            <textarea id="comment" class="form-control" name="comment"></textarea>
+          </div>
+        </div>
+        <div class="text-center">
+          <button id="add_comment" class="btn btn-default">评论</button>
+          <button type="reset" class="btn btn-default">重置</button>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <div id="div_comments" class="list-group-item">
+      <strong>评论共<span comments-count="{{ page.issue }}"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></span>条</strong>
+    </div>
+  </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal fade" id="modal_error" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="errorModalLabel">评论失败</h4>
+      </div>
+      <div id="error_message" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ "/js/git-comments-count.js"}}"></script>
+<script src="{{ "/js/comment.min.js"}}"></script>
