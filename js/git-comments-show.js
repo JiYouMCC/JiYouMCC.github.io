@@ -24,10 +24,10 @@ function addComment(comment) {
   });
   var html = converter.makeHtml(GithubComments.Emoji.Parse(comment.body));
   comment_detail.append(
-    $("<div></div>").addClass('page_blog_comment_message').html(GithubComments.Emoji.Parse(html))
+    $("<div></div>").addClass('page_blog_comment_message').innerHTML(GithubComments.Emoji.Parse(html))
   );
   var name_div = $("<div></div>");
-  name_div.append("<img class='img-circle' style='width: 16px;height: 16px;display: inline-block;padding-right: 5px;vertical-align: text-top;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
+  name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
   name_div.append($("<span></span>").addClass("page_blog_comment_name").text(userName)).append(" ");
   name_div.append($("<span></span>").addClass("page_datetime").text(Comments.formatDate(date)));
   name_div.append(" ").append(
