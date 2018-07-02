@@ -72,5 +72,5 @@ function showComments(issueId) {
     } else {
       handleError(result.data);
     }
-  }
+  });
 }
