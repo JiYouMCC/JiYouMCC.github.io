@@ -1,6 +1,6 @@
 var comments_messages = undefined;
 
-function handleError = function(error) {
+function handleError(error) {
   var message = error.message ? error.message : error;
   $("#modal_error").modal('show');
   $("#error_message").text(message);
