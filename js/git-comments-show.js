@@ -14,17 +14,8 @@ function addComment(comment) {
   var date = new Date(comment.created_at);
 
   var comment_detail = $("<div></div>");
-  var converter = new showdown.Converter({
-    ghMentions: true,
-    tables: true,
-    tasklists: true,
-    simpleLineBreaks: true,
-    openLinksInNewWindow: true,
-    simplifiedAutoLink: true
-  });
-  var html = converter.makeHtml(GithubComments.Emoji.Parse(comment.body));
   comment_detail.append(
-    $("<div></div>").addClass('page_blog_comment_message').innerHTML(GithubComments.Emoji.Parse(html))
+    $("<div></div>").attr('id', 'comment_text_' + commentId).addClass('page_blog_comment_message')
   );
   var name_div = $("<div></div>");
   name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
@@ -45,6 +36,16 @@ function addComment(comment) {
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
   d_comments.insertAfter($("#div_comments"));
+    var converter = new showdown.Converter({
+    ghMentions: true,
+    tables: true,
+    tasklists: true,
+    simpleLineBreaks: true,
+    openLinksInNewWindow: true,
+    simplifiedAutoLink: true
+  });
+  var html = converter.makeHtml(GithubComments.Emoji.Parse(comment.body));
+  document.getElementById('comment_text_' + commentId).innerHTML = GithubComments.Emoji.Parse(html);
 }
 
 function showComments(issueId) {
