@@ -15,13 +15,13 @@ function addComment(comment) {
 
   var comment_detail = $("<div></div>");
   var converter = new showdown.Converter({
-      ghMentions: true,
-      tables: true,
-      tasklists: true,
-      simpleLineBreaks: true,
-      openLinksInNewWindow: true,
-      simplifiedAutoLink: true
-    });
+    ghMentions: true,
+    tables: true,
+    tasklists: true,
+    simpleLineBreaks: true,
+    openLinksInNewWindow: true,
+    simplifiedAutoLink: true
+  });
   var html = converter.makeHtml(GithubComments.Emoji.Parse(commentData.body));
   comment_detail.append(
     $("<div></div>").addClass('page_blog_comment_message').text(GithubComments.Emoji.Parse(html))
@@ -72,4 +72,5 @@ function showComments(issueId) {
     } else {
       handleError(result.data);
     }
-  });
+  }
+}
