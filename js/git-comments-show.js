@@ -22,7 +22,7 @@ function addComment(comment) {
     openLinksInNewWindow: true,
     simplifiedAutoLink: true
   });
-  var html = converter.makeHtml(GithubComments.Emoji.Parse(commentData.body));
+  var html = converter.makeHtml(GithubComments.Emoji.Parse(comment.body));
   comment_detail.append(
     $("<div></div>").addClass('page_blog_comment_message').text(GithubComments.Emoji.Parse(html))
   );
