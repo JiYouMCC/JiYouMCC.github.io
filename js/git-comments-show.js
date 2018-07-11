@@ -62,6 +62,7 @@ function showComments(issueId) {
       for (var i = 0; i < result.data.length; i++) {
         addComment(result.data[i]);
       }
+      $("[comments-count='" + issueId + "']").text(result.data.length);
 
       $("button[id^=button_reply_]").click(function() {
         var reply = $(this).attr("reply");
