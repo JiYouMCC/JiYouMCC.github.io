@@ -77,7 +77,7 @@ function showComments(issueId) {
   });
 }
 
-function showForm() {
+function showForm(issueId) {
   GithubComments.User.Get(function(userInfo) {
       if (userInfo) {
         $("#name").text(userInfo.login);
@@ -86,6 +86,15 @@ function showForm() {
         $("#comment_logout").click(function(){
           GithubComments.User.Logout();
           showForm();
+        });
+        $("#add_comment").click(funcion(){
+          GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
+            if (result.status) {
+              $("#comment").val("");
+              addComment(result.data);
+              $("#comment_count").text(parseInt($("#comment_count").text()) + 1);
+            }
+          });
         });
       } else {
         $("#comment_login").show();
