@@ -83,14 +83,14 @@ function showForm() {
         $("#name").text(userInfo.login);
         $("#comment_login").hide();
         $("#comment_form").show();
-        $("#Comment_logout").click(function(){
+        $("#comment_logout").click(function(){
           GithubComments.User.Logout();
           showForm();
         });
       } else {
         $("#comment_login").show();
         $("#comment_form").hide();
-        $("#Comment_login").click(function(){
+        $("#comment_login").click(function(){
           GithubComments.User.Login();
         });
       }
