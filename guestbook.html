@@ -10,13 +10,14 @@ issue: 3
     <div class="list-group-item">
       {% if page.issue %}
       <div id="comment_login">
-      <a click="GithubComments.User.Login();">登录</a>
+        <button type="button" class="btn btn-link" click="GithubComments.User.Login();">登录</button>
       </div>
       <div id="comment_form" class="form-horizontal">
         <div class="form-group">
           <label class="col-sm-2 control-label" for="name"> </label>
           <div class="col-sm-10">
-            <span id="name" class="page_blog_comment_name"></span><a click="GithubComments.User.Logout();showForm();">退出</a>
+            <span id="name" class="page_blog_comment_name"></span>
+            <button type="button" class="btn btn-link" click="GGithubComments.User.Logout();showForm();">退出</button>
           </div>
         </div>
         <input id="reply" type="hidden" value="" />
