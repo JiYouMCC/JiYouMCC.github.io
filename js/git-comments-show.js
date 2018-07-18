@@ -86,4 +86,5 @@ function showForm() {
         $("#comment_login").show();
         $("#comment_form").hide();
       }
+    }
 }
