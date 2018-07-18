@@ -9,10 +9,10 @@ issue: 3
   <div id="comments" class="list-group">
     <div class="list-group-item">
       {% if page.issue %}
-      <div id="comment_login">
+      <div id="comment_login" style="display: none;">
         <button type="button" class="btn btn-link" click="GithubComments.User.Login();">登录</button>
       </div>
-      <div id="comment_form" class="form-horizontal">
+      <div id="comment_form" class="form-horizontal" style="display: none;">
         <div class="form-group">
           <label class="col-sm-2 control-label" for="name"> </label>
           <div class="col-sm-10">
