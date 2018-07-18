@@ -76,3 +76,14 @@ function showComments(issueId) {
     }
   });
 }
+
+function showForm() {
+  GithubComments.User.Get(function(userInfo) {
+      if (userInfo) {
+        $("#comment_login").hide();
+        $("#comment_form").show();
+      } else {
+        $("#comment_login").show();
+        $("#comment_form").hide();
+      }
+}
