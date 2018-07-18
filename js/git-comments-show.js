@@ -87,7 +87,7 @@ function showForm(issueId) {
           GithubComments.User.Logout();
           showForm();
         });
-        $("#add_comment").click(funcion(){
+        $("#add_comment").click(function(){
           GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
             if (result.status) {
               $("#comment").val("");
