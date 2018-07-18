@@ -9,20 +9,20 @@ github comments的测试用留言本
 <div class="panel panel-default">
   <div id="comments" class="list-group">
     <div class="list-group-item">
-      {% if page.disable_comment %}
+      {% if page.issue %}
         评论已关闭。
       {% else %}
       <div class="form-horizontal">
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="name">名字</label>
-          <div class="col-sm-10">
+          <label class="col-sm-1 control-label" for="name">名字</label>
+          <div class="col-sm-11">
             <span id="name" class="page_blog_comment_name"></span>
           </div>
         </div>
         <input id="reply" type="hidden" value="" />
         <div class="form-group">
-          <label class="col-sm-2 control-label" for="comment">*评论</label>
-          <div class="col-sm-10">
+          <label class="col-sm-1 control-label" for="comment">*评论</label>
+          <div class="col-sm-11">
             <textarea id="comment" class="form-control" name="comment"></textarea>
           </div>
         </div>
