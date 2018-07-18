@@ -5,12 +5,14 @@ issue: 3
 ---
 <h1>github comments的测试用留言本</h1>
 
-
 <div class="panel panel-default">
   <div id="comments" class="list-group">
     <div class="list-group-item">
       {% if page.issue %}
-      <div class="form-horizontal">
+      <div id="comment_login">
+      <a class="list-group-item" click="GithubComments.User.Login();">登录</a>
+      </div>
+      <div id="comment_form" class="form-horizontal">
         <div class="form-group">
           <label class="col-sm-1 control-label" for="name">名字</label>
           <div class="col-sm-11">
@@ -26,9 +28,8 @@ issue: 3
         </div>
         <div class="text-center">
           <button id="add_comment" class="btn btn-default">评论</button>
-          <button type="reset" class="btn btn-default">重置</button>
         </div>
-      </div>        
+      </div>
       {% else %}
       评论已关闭。
       {% endif %}
@@ -57,7 +58,6 @@ issue: 3
     </div>
   </div>
 </div>
-
 
 <script src="{{ "/js/comment.min.js"}}"></script>
 <script type="text/javascript">
