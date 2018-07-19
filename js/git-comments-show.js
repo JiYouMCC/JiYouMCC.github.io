@@ -122,7 +122,7 @@ function showUserForm(issueId, userName) {
           $("#comment").val("");
           addComment(result.data);
           $("[comments-count='" + issueId + "']").text(
-            $("[comments-count='" + issueId + "']").text() + 1
+            parseInt($("[comments-count='" + issueId + "']").text()) + 1
           );
         } else {
           handleError(result.data);
