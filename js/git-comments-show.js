@@ -114,9 +114,9 @@ function showUserForm(issueId, userName) {
         GithubComments.User.Logout();
         showForm();
     });
-    $("#add_comment").click(function() {
-    $("#add_comment").prop('disabled', true);
+    $("#add_comment").click(function() {    
     if ($("#comment").val()) {
+      $("#add_comment").prop('disabled', true);
       GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
         if (result.status) {
           $("#comment").val("");
@@ -128,11 +128,12 @@ function showUserForm(issueId, userName) {
           handleError(result.data);
         }
       });
+      $("#add_comment").prop('disabled', false);
     } else {
       handleError("评论不能为空！");
     }
   });
-    $("#add_comment").prop('disabled', false);
+    
 }
 
 function showForm(issueId) {
