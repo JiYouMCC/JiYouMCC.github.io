@@ -66,10 +66,11 @@ function showComments(issueId) {
 
       $("button[id^=button_reply_]").click(function() {
         var reply = $(this).attr("reply");
-        $("#commnet_text").val($("#comment").val() + "@" + reply + " ");
+        $("#comment").val($("#comment").val() + "@" + reply + " ");
         $("html,body").animate({
-          scrollTop: $("#comments").offset().top
-        }, 1000)
+          scrollTop: $("#comment").offset().top
+        }, 1000);
+        $("#comment").focus();
       });
     } else {
       handleError(result.data);
