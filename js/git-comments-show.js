@@ -115,6 +115,7 @@ function showUserForm(issueId, userName) {
         showForm();
     });
     $("#add_comment").click(function(){
+      if ($("#comment").val()) {
         GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
             if (result.status) {
                 $("#comment").val("");
@@ -127,6 +128,9 @@ function showUserForm(issueId, userName) {
             }
         });
     });
+    } else {
+        handleError("评论不能为空！");          
+    }
 }
 
 function showForm(issueId) {
