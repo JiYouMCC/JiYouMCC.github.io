@@ -77,31 +77,56 @@ function showComments(issueId) {
   });
 }
 
+function showLogin() {
+    $("#comment_form").text("");
+    $("#comment_form").append(
+        $("<button></button>").attr('type', 'button').attr('id', 'comment_button_login').addClass('btn btn-link').text('登录')
+    );
+    $("#comment_button_login").click(function (){
+        GithubComments.User.Login();
+    });
+}
+
+function showUserForm(issueId, userName) {
+    $("#comment_form").text("");
+    $("#comment_form").append(
+        $("<div></div>").addClass('form-group').append(
+            $("<span></span>").attr('id', 'label_name').addClass('page_blog_comment_name')
+        ).append(
+            $("<button></button>").attr('type', 'button').attr('id', 'comment_button_logout').addClass('btn btn-link').text('退出')
+        )
+    );
+    $("#comment_form").append(
+        $("<div></div>").addClass('form-group').append(
+            $("<textarea></textarea>").attr('name', 'comment').attr('id', 'comment').addClass('form-control').text(userName)
+        )
+    );
+    $("#comment_form").append(
+        $("<div></div>").addClass('text-center').append(
+            $("<button></button>").attr('id', 'add_comment').addClass('btn btn-default').text('评论')
+        )
+    );
+    $("#comment_button_logout").click(function(){
+        GithubComments.User.Logout();
+        showForm();
+    });
+    $("#add_comment").click(function(){
+        GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
+            if (result.status) {
+                $("#comment").val("");
+                addComment(result.data);
+                $("#comment_count").text(parseInt($("#comment_count").text()) + 1);
+            }
+        });
+    });
+}
+
 function showForm(issueId) {
   GithubComments.User.Get(function(userInfo) {
       if (userInfo) {
-        $("#name").text(userInfo.login);
-        $("#comment_login").hide();
-        $("#comment_form").show();
-        $("#comment_logout").click(function(){
-          GithubComments.User.Logout();
-          showForm();
-        });
-        $("#add_comment").click(function(){
-          GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
-            if (result.status) {
-              $("#comment").val("");
-              addComment(result.data);
-              $("#comment_count").text(parseInt($("#comment_count").text()) + 1);
-            }
-          });
-        });
+        showUserForm(issueId, userInfo.login);
       } else {
-        $("#comment_login").show();
-        $("#comment_form").hide();
-        $("#comment_login").click(function(){
-          GithubComments.User.Login();
-        });
+        showLogin();
       }
     })
 }
