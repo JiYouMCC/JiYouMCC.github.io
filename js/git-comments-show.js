@@ -95,7 +95,7 @@ function showUserForm(issueId, userInfo) {
         $("<div></div>").addClass('form-group').append(
           $("<img class='img-circle' style='width: 20px;height: 20px;' src='" + userInfo.avatar_url + "' />").append(" ")
         ).append(
-            $("<span></span>").attr('id', 'label_name').addClass('page_blog_comment_name').text(userName)
+            $("<span></span>").attr('id', 'label_name').addClass('page_blog_comment_name').text(userInfo.login)
         ).append(
             $("<button></button>").attr('type', 'button').attr('id', 'comment_button_logout').addClass('btn btn-link').text('退出')
         )
