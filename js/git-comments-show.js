@@ -91,14 +91,14 @@ function showUserForm(issueId, userName) {
     $("#comment_form").text("");
     $("#comment_form").append(
         $("<div></div>").addClass('form-group').append(
-            $("<span></span>").attr('id', 'label_name').addClass('page_blog_comment_name')
+            $("<span></span>").attr('id', 'label_name').addClass('page_blog_comment_name').text(userName)
         ).append(
             $("<button></button>").attr('type', 'button').attr('id', 'comment_button_logout').addClass('btn btn-link').text('退出')
         )
     );
     $("#comment_form").append(
         $("<div></div>").addClass('form-group').append(
-            $("<textarea></textarea>").attr('name', 'comment').attr('id', 'comment').addClass('form-control').text(userName)
+            $("<textarea></textarea>").attr('name', 'comment').attr('id', 'comment').addClass('form-control')
         )
     );
     $("#comment_form").append(
