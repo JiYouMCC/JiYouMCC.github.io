@@ -114,24 +114,24 @@ function showUserForm(issueId, userName) {
         GithubComments.User.Logout();
         showForm();
     });
-    $("#add_comment").click(function(){
-      $("#add_comment").prop('disabled', true);
-      if ($("#comment").val()) {
-        GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
-            if (result.status) {
-                $("#comment").val("");
-                addComment(result.data);
-                $("[comments-count='" + issueId + "']").text(
-                  $("[comments-count='" + issueId + "']").text() + 1
-                );
-            } else {
-                handleError(result.data);
-            }
-        });
-    });
+    $("#add_comment").click(function() {
+    $("#add_comment").prop('disabled', true);
+    if ($("#comment").val()) {
+      GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
+        if (result.status) {
+          $("#comment").val("");
+          addComment(result.data);
+          $("[comments-count='" + issueId + "']").text(
+            $("[comments-count='" + issueId + "']").text() + 1
+          );
+        } else {
+          handleError(result.data);
+        }
+      });
     } else {
-        handleError("评论不能为空！");          
+      handleError("评论不能为空！");
     }
+  });
     $("#add_comment").prop('disabled', false);
 }
 
