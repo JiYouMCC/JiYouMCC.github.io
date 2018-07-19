@@ -115,6 +115,7 @@ function showUserForm(issueId, userName) {
         showForm();
     });
     $("#add_comment").click(function(){
+      $("#add_comment").prop('disabled', true);
       if ($("#comment").val()) {
         GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
             if (result.status) {
@@ -131,6 +132,7 @@ function showUserForm(issueId, userName) {
     } else {
         handleError("评论不能为空！");          
     }
+    $("#add_comment").prop('disabled', false);
 }
 
 function showForm(issueId) {
