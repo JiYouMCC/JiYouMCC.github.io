@@ -7,24 +7,8 @@ issue: 3
 
 <div class="panel panel-default">
   <div id="comments" class="list-group">
-    <div id="comment_login" class="list-group-item">&nbsp;</div>
     {% if page.issue %}
-    <div id="comment_login" class="list-group-item" style="display: none;">
-      <button id="comment_login" type="button" class="btn btn-link">登录</button>
-    </div>
-    <div id="comment_form" class="list-group-item" style="display: none;">
-      <div class="form-group">
-        <span id="name" class="page_blog_comment_name"></span>
-        <button id="comment_logout" type="button" class="btn btn-link">退出</button>
-      </div>
-      <input id="reply" type="hidden" value="" />
-      <div class="form-group">
-        <textarea id="comment" class="form-control" name="comment"></textarea>
-      </div>
-      <div class="text-center">
-        <button id="add_comment" class="btn btn-default">评论</button>
-      </div>
-    </div>
+    <div id="comment_form" class="list-group-item"></div>    
     {% else %}
     <div class="list-group-item">
     评论已关闭。
@@ -35,7 +19,6 @@ issue: 3
       <strong>评论共<span comments-count="{{ page.issue }}"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></span>条</strong>
     </div>
     {% endif %}
-    <div id="comment_login" class="list-group-item">&nbsp;</div>
   </div>
 </div>
 
