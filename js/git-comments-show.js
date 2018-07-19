@@ -120,6 +120,8 @@ function showUserForm(issueId, userName) {
                 $("#comment").val("");
                 addComment(result.data);
                 $("#comment_count").text(parseInt($("#comment_count").text()) + 1);
+            } else {
+                handleError(result.data);
             }
         });
     });
