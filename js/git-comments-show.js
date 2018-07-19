@@ -137,6 +137,10 @@ function showUserForm(issueId, userInfo) {
 }
 
 function showForm(issueId) {
+  $("#comment_form").text("");
+  $("#comment_form").append(
+    $("<span class=\"glyphicon glyphicon-refresh glyphicon-refresh-animate\"></span>")
+  );  
   GithubComments.User.Get(function(userInfo) {
       if (userInfo) {
         showUserForm(issueId, userInfo);
