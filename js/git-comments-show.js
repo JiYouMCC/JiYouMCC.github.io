@@ -119,7 +119,9 @@ function showUserForm(issueId, userName) {
             if (result.status) {
                 $("#comment").val("");
                 addComment(result.data);
-                $("#comment_count").text(parseInt($("#comment_count").text()) + 1);
+                $("[comments-count='" + issueId + "']").text(
+                  $("[comments-count='" + issueId + "']").text() + 1
+                );
             } else {
                 handleError(result.data);
             }
