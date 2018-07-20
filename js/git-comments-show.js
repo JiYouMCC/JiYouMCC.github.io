@@ -59,6 +59,7 @@ function addComment(comment) {
     simplifiedAutoLink: true,
     backslashEscapesHTMLTags: true
   });
+  converter.setFlavor('github');
   var html = converter.makeHtml(GithubComments.Emoji.Parse(comment.body));
   document.getElementById('comment_text_' + commentId).innerHTML = GithubComments.Emoji.Parse(html);
 }
