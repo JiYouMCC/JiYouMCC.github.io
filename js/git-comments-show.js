@@ -50,7 +50,7 @@ function addComment(comment) {
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
   d_comments.insertAfter($("#div_comments"));
-  var newBody = comment.body.replace(/\</g , "\\<");
+  var newBody = comment.body;//.replace(/\</g , "\\<");
   var converter = new showdown.Converter({
     ghMentions: true,
     tables: true,
@@ -60,7 +60,7 @@ function addComment(comment) {
     simplifiedAutoLink: true,
     backslashEscapesHTMLTags: true
   });
-  var html = converter.makeHtml(GithubComments.Emoji.Parse(newBody));
+  var html = GithubComments.Emoji.Parse(newBody);// converter.makeHtml(GithubComments.Emoji.Parse(newBody));
   document.getElementById('comment_text_' + commentId).innerHTML = GithubComments.Emoji.Parse(html);
 }
 
