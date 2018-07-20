@@ -50,18 +50,7 @@ function addComment(comment) {
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
   d_comments.insertAfter($("#div_comments"));
-  //var newBody = comment.body;//.replace(/\</g , "\\<");
-  var converter = new showdown.Converter({
-    ghMentions: true,
-    tables: true,
-    tasklists: true,
-    simpleLineBreaks: true,
-    openLinksInNewWindow: true,
-    simplifiedAutoLink: true,
-    backslashEscapesHTMLTags: true
-  });
-  var html = comment.body_html;// converter.makeHtml(GithubComments.Emoji.Parse(newBody));
-  document.getElementById('comment_text_' + commentId).innerHTML = html;
+  document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
 }
 
 function showComments(issueId) {
