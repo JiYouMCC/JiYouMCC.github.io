@@ -49,9 +49,9 @@ function addComment(comment) {
   );
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
-  var newBody = comment.body.insertAfter($("#div_comments"));
-  mystring.replace(/\</g , "\\<");
-    var converter = new showdown.Converter({
+  comment.body.insertAfter($("#div_comments"));
+  var newBody = comment.body.replace(/\</g , "\\<");
+  var converter = new showdown.Converter({
     ghMentions: true,
     tables: true,
     tasklists: true,
