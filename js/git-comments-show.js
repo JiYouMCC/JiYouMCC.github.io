@@ -1,3 +1,19 @@
+var emojiList = [":smile:",
+":grin:",
+":joy:",
+":flushed:",
+":heart_eyes:",
+":sweat:",
+":cry:",
+":angry:",
+":sleepy:",
+":+1:",
+":fist:",
+":sunny:",
+":trollface:",
+":octocat:",
+":squirrel:"];
+
 function handleError(error) {
   var message = error.message ? error.message : error;
   $("#modal_error").modal('show');
@@ -99,6 +115,20 @@ function showUserForm(issueId, userInfo) {
             $("<button></button>").attr('type', 'button').attr('id', 'comment_button_logout').addClass('btn btn-link').text('退出')
         )
     );
+    var bar = $("<div></div>").addClass('form-group').attr('id', 'emoji-bar');
+    for (var i = 0; i < emojiList.length; i++) {
+        var emoji = emojiList[i];
+        bar.append(
+            $("<a></a>").attr('id', 'emoji-' + i).attr('emoji', emoji).append(
+                GithubComments.Emoji.Parse(emoji)
+            )
+        );
+    };
+    $("#comment_form").append(bar);
+    $("a[id^=emoji-]").click(function() {
+        var emoji = $(this).attr("emoji");
+        $("#comment").val($("#comment").val() + emoji);
+    });  
     $("#comment_form").append(
         $("<div></div>").addClass('form-group').append(
             $("<textarea></textarea>").attr('name', 'comment').attr('id', 'comment').addClass('form-control')
