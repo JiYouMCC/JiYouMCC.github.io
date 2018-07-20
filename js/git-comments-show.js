@@ -176,6 +176,7 @@ function emojiProcess() {
   for (var i = 0; i < elements.length; i++) {
     var element = $(elements[i]);
     var alias = element.attr('alias');
-    element.text(GithubComments.Emoji.Parse(":"+alias+":"));
+    element.insertAfter($(GithubComments.Emoji.Parse(":"+alias+":")));
+    element.remove();
   }
 }
