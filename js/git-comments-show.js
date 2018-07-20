@@ -56,7 +56,8 @@ function addComment(comment) {
     tasklists: true,
     simpleLineBreaks: true,
     openLinksInNewWindow: true,
-    simplifiedAutoLink: true
+    simplifiedAutoLink: true,
+    backslashEscapesHTMLTags: true
   });
   var html = converter.makeHtml(GithubComments.Emoji.Parse(comment.body));
   document.getElementById('comment_text_' + commentId).innerHTML = GithubComments.Emoji.Parse(html);
