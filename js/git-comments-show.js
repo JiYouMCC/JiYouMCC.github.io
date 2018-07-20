@@ -60,8 +60,8 @@ function addComment(comment) {
     simplifiedAutoLink: true,
     backslashEscapesHTMLTags: true
   });
-  var html = GithubComments.Emoji.Parse(comment.body_html);// converter.makeHtml(GithubComments.Emoji.Parse(newBody));
-  document.getElementById('comment_text_' + commentId).innerHTML = GithubComments.Emoji.Parse(html);
+  var html = comment.body_html;// converter.makeHtml(GithubComments.Emoji.Parse(newBody));
+  document.getElementById('comment_text_' + commentId).innerHTML = html;
 }
 
 function showComments(issueId) {
