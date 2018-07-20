@@ -51,6 +51,7 @@ function addComment(comment) {
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
   d_comments.insertAfter($("#div_comments"));
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
+  emojiProcess();
 }
 
 function showComments(issueId) {
@@ -168,4 +169,13 @@ function showForm(issueId) {
         showLogin();
       }
     })
+}
+
+function emojiProcess() {
+  var elements = $("g-emoji");
+  for (var i = 0; i < elements.length; i++) {
+    var element = $(elements[i]);
+    var alias = element.attr('alias');
+    element.text(GithubComments.Emoji.Parse(":"+alias+":"));
+  }
 }
