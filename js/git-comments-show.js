@@ -49,7 +49,7 @@ function addComment(comment) {
   );
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
-  comment.body.insertAfter($("#div_comments"));
+  d_comments.insertAfter($("#div_comments"));
   var newBody = comment.body.replace(/\</g , "\\<");
   var converter = new showdown.Converter({
     ghMentions: true,
