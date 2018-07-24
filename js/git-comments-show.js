@@ -15,6 +15,11 @@ var emojiList = [":smile:",
   ":squirrel:"
 ];
 
+var pageButtonTitle = {
+  'Next': '下一页',
+  'Last': '最末页'
+}
+
 function handleError(error) {
   var message = error.message ? error.message : error;
   $("#modal_error").modal('show');
@@ -55,7 +60,10 @@ function addComment(comment) {
   emojiProcess();
 }
 
-function showComments(issueId) {
+function showComments(issueId, page) {
+  if (!page) {
+    page = 1;
+  }
   $('div[id^=comments_]').remove();
   var refresh = $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
     $("<span></span>").addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate")
@@ -72,15 +80,19 @@ function showComments(issueId) {
     $('#refresh_comments').remove();
     $('div[id^=comments_]').remove();
     if (result.status) {
-      
-    var pages = $("<div></div>").addClass("list-group-item").attr('id', "comments_page");
-    var buttons = $('<div class="btn-group" role="group"></div>');
-    for (index in result.links) {
-      buttons.append($('<button type="button" class="btn btn-default">'+result.links[index].ref+'</button>'));
-    }
-    pages.append(buttons);
-    $("#comments").append(pages);      
-      
+      var pages = $("<div></div>").addClass("list-group-item").attr('id', "comments_page");
+      var buttons = $('<div class="btn-group" role="group"></div>');
+      for (index in result.links) {
+        var title = result.links[index].ref;
+        if (pageButtonTitle[title]) {
+          title = pageButtonTitle[title];
+        }
+
+        buttons.append($('<button type="button" class="btn btn-default">' + title + '</button>').attr('id', 'button_page_' + result.links[index].ref).attr('issueId', issueId).attr('page', result.links[index].page));
+      }
+      pages.append(buttons);
+      $("#comments").append(pages);
+
       for (var i = 0; i < result.data.length; i++) {
         addComment(result.data[i]);
       }
@@ -93,10 +105,16 @@ function showComments(issueId) {
         }, 1000);
         $("#comment").focus();
       });
+
+      $("button[id^=button_page_]").click(function() {
+        var b_page = $(this).attr("page");
+        var b_issue = $(this).attr("issueId");
+        showComments(b_issue, b_page);
+      });
     } else {
       handleError(result.data);
     }
-  });
+  }, page);
 }
 
 function showLogin() {
