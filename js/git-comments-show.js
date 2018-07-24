@@ -16,8 +16,10 @@ var emojiList = [":smile:",
 ];
 
 var pageButtonTitle = {
-  'Next': '下一页',
-  'Last': '最末页'
+  'next': '下页',
+  'last': '尾页',
+  'prev': '上页',
+  'first': '首页'
 }
 
 function handleError(error) {
