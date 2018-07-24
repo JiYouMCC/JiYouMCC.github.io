@@ -8,7 +8,7 @@ issue: 3
 <div class="panel panel-default">
   <div id="comments" class="list-group">
     {% if page.issue %}
-    <div id="comment_form" class="list-group-item"></div>    
+    <div id="comment_form" class="list-group-item"></div>
     {% else %}
     <div class="list-group-item">
     评论已关闭。
@@ -43,6 +43,5 @@ issue: 3
 <script type="text/javascript">
 GithubComments.Init("JiYouMCC", "JiYouMCC.github.io", "ca1f2f2f0b71983065c5", "48f6a24d710cc1012011fce5824f89a26fc49970");
 </script>
-<script src="{{ site.baseurl }}/js/showdown.min.js"></script>
 <script src="{{ "/js/git-comments-show.js"}}"></script>
 <script type="text/javascript">showComments("{{ page.issue }}");showForm("{{ page.issue }}");</script>
