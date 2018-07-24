@@ -72,6 +72,15 @@ function showComments(issueId) {
     $('#refresh_comments').remove();
     $('div[id^=comments_]').remove();
     if (result.status) {
+      
+    var pages = $("<div></div>").addClass("list-group-item").attr('id', "comments_page");
+    var buttons = $('<div class="btn-group" role="group"></div>');
+    for (index in result.links) {
+      buttons.append($('<button type="button" class="btn btn-default">'+result.links[index].ref+'</button>'));
+    }
+    pages.append(buttons);
+    $("#comments").append(pages);      
+      
       for (var i = 0; i < result.data.length; i++) {
         addComment(result.data[i]);
       }
