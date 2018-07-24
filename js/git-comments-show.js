@@ -177,6 +177,9 @@ function showUserForm(issueId, userInfo) {
         if (result.status) {
           $("#comment").val("");
           addComment(result.data);
+          $("html,body").animate({
+          scrollTop: $("#comment_text_" + result.Id).offset().top
+        }, 1000);
           $("[comments-count='" + issueId + "']").text(
             parseInt($("[comments-count='" + issueId + "']").text()) + 1
           );
