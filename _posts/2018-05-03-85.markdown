@@ -4,6 +4,7 @@ title:  "相册"
 date:   2018-05-03 09:54:16
 categories: 技术
 tags: javascript 编织
+issue: 6
 ---
 ![](/img/2018-05-03_photo.PNG)
 
