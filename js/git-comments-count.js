@@ -6,7 +6,7 @@ $(function() {
         if (issueId) {
             GithubComments.Comments.Count(issueId, function(result) {
                 if (result.status) {
-                    $("[comments-count='" + issueId + "']").text(result.count);
+                    $("[comments-count='" + result.number + "']").text(result.count);
                 }
             });
         }
