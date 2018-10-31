@@ -88,15 +88,18 @@ function showComments(issueId, page) {
     $('div[id^=comments_]').remove();
     if (result.status) {
       var pages = $("<div></div>").addClass("list-group-item").attr('id', "comments_page");
-      var buttons = $('<div class="btn-group" role="group"></div>');
-      for (index in result.links) {
-        var title = result.links[index].ref;
-        if (pageButtonTitle[title]) {
-          title = pageButtonTitle[title];
-        }
+      if (result.links) {
+        var buttons = $('<div class="btn-group" role="group"></div>');
+        for (index in result.links) {
+          var title = result.links[index].ref;
+          if (pageButtonTitle[title]) {
+            title = pageButtonTitle[title];
+          }
 
-        buttons.append($('<button type="button" class="btn btn-default">' + title + '</button>').attr('id', 'button_page_' + result.links[index].ref).attr('issueId', issueId).attr('page', result.links[index].page));
+          buttons.append($('<button type="button" class="btn btn-default">' + title + '</button>').attr('id', 'button_page_' + result.links[index].ref).attr('issueId', issueId).attr('page', result.links[index].page));
+        }
       }
+
       pages.append(buttons);
       $("#comments").append(pages);
 
