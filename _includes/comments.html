@@ -33,4 +33,9 @@
 </div>
 
 <script src="{{ "/js/git-comments-show.js"}}"></script>
-<script type="text/javascript">showComments("{{ page.issue }}");showForm("{{ page.issue }}");</script>
+<script type="text/javascript">
+  if ("{{ page.issue }}") {
+    showComments("{{ page.issue }}");
+    showForm("{{ page.issue }}");
+  }
+</script>
