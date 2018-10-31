@@ -22,6 +22,11 @@ var pageButtonTitle = {
   'first': '首页'
 }
 
+function formatDate: function(e) {
+  return e.getFullYear() + "-" + ("0" + (e.getMonth() + 1)).slice(-2) + "-" + ("0" + e.getDate()).slice(-2) + " " + ("0" + e.getHours()).slice(-2) + ":" + ("0" + e.getMinutes()).slice(-2) + ":" + ("0" + e.getSeconds()).slice(-2) + " "
+}
+
+
 function handleError(error) {
   var message = error.message ? error.message : error;
   $("#modal_error").modal('show');
@@ -42,7 +47,7 @@ function addComment(comment) {
   var name_div = $("<div></div>");
   name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
   name_div.append($("<span></span>").addClass("page_blog_comment_name").text(userName)).append(" ");
-  name_div.append($("<span></span>").addClass("page_datetime").text(Comments.formatDate(date)));
+  name_div.append($("<span></span>").addClass("page_datetime").text(formatDate(date)));
   name_div.append(" ").append(
     $("<a></a>").attr("href", userLink).attr("target", "_blank").attr("title", "Github page").append(
       $("<button></button>").addClass("btn btn-link").append(
