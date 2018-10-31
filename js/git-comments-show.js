@@ -87,7 +87,7 @@ function showComments(issueId, page) {
     $('#refresh_comments').remove();
     $('div[id^=comments_]').remove();
     if (result.status) {
-      if (result.links) {
+      if (result.links.length) {
         var pages = $("<div></div>").addClass("list-group-item").attr('id', "comments_page");
         var buttons = $('<div class="btn-group" role="group"></div>');
         for (index in result.links) {
