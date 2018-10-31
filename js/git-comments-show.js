@@ -22,7 +22,7 @@ var pageButtonTitle = {
   'first': '首页'
 }
 
-function formatDate: function(e) {
+function formatDate(e) {
   return e.getFullYear() + "-" + ("0" + (e.getMonth() + 1)).slice(-2) + "-" + ("0" + e.getDate()).slice(-2) + " " + ("0" + e.getHours()).slice(-2) + ":" + ("0" + e.getMinutes()).slice(-2) + ":" + ("0" + e.getSeconds()).slice(-2) + " "
 }
 
