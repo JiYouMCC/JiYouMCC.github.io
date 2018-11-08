@@ -39,7 +39,7 @@ title: "分类"
                 {% endif %}
               {% endfor %}</td>
           <td class="text-center">
-            <span comments-count="{{ post.id }}" class="badge ds-thread-count"></span>
+            <span comments-count="{{ post.issue }}" class="badge ds-thread-count"></span>
           </td>
         </tr>
         {% endfor %}
@@ -60,7 +60,7 @@ title: "分类"
                   <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                   {% endif %}
                 {% endfor %}</td>
-            <td class="text-center"><span comments-count="{{ post.id }}" class="badge ds-thread-count"></span></td>
+            <td class="text-center"><span comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
           </tr>
           {% endunless %}
         {% endfor %}
@@ -93,7 +93,7 @@ title: "分类"
                 {% endfor %}
               {% endif %}
             </td>
-            <td class="text-center"><span comments-count="{{ post.id }}" class="badge ds-thread-count"></span></td>
+            <td class="text-center"><span comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -108,4 +108,4 @@ title: "分类"
     $("#tag_" + location.hash.replace("#","")).tab('show');
   }
 </script>
-<script src="{{ site.baseurl }}/js/comments-count.js"></script>
+<script src="{{ site.baseurl }}/js/git-comments-count.js"></script>
