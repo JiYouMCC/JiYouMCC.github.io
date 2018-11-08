@@ -134,6 +134,7 @@ input.task-list-item-checkbox {
     display: block;
     unicode-bidi: embed;
     white-space: pre-wrap;
+    font-size: 11pt;
 }
 
 .page_blog_comment_message_reply {
