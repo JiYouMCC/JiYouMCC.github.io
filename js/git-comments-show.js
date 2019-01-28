@@ -11,8 +11,7 @@ var emojiList = [":smile:",
   ":fist:",
   ":sunny:",
   ":trollface:",
-  ":octocat:",
-  ":squirrel:"
+  ":octocat:"
 ];
 
 var pageButtonTitle = {
