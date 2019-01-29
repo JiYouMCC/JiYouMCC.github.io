@@ -3,7 +3,6 @@ layout: post
 title:  "To do list"
 date:    2015-1-30 11:17:00 +0800
 tags: django python
-is_sticky: true
 issue: 5
 ---
 * [ ] 把野狗剥离，迁移旧评论为js
