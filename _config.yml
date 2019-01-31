@@ -28,3 +28,4 @@ defaults:
       path: "photo"
     values:
       photo: true
+exclude: [vendor]
