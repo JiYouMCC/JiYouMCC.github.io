@@ -25,8 +25,8 @@
             <li role="separator" class="divider"></li>
             {% for cat in site.categories %}
               {% if cat[0] != 'sticky'%}
-              <li>
-                <a href="/type#{{ cat[0] }}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
+              <li>| cgi_escape
+                <a href="/type#{{ cat[0] | cgi_escape}}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
               </li>
               {% endif %}
             {% endfor %}
