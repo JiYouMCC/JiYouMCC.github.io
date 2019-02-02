@@ -4,18 +4,18 @@ title: "分类"
 ---
 <ul class="nav nav-tabs nav-justified" role="tablist">
   <li role="presentation" class="active">
-    <a id="tag_all" href="#all" title="所有文章" rel="{{ site.posts.size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">所有文章 <span class="badge">{{ site.posts.size }}</span></a>
+    <a id="tag_all" href="#list_all" title="所有文章" rel="{{ site.posts.size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">所有文章 <span class="badge">{{ site.posts.size }}</span></a>
   </li>
   {% for cat in site.categories %}
     {% if cat[0] != "sticky" %}
     <li role="presentation">
-      <a id="tag_{{ cat[0] }}" href="#{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
+      <a id="tag_{{ cat[0] }}" href="#list_{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
     </li>
     {% endif %}
   {% endfor %}
 </ul>
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="all">
+  <div role="tabpanel" class="tab-pane active" id="list_all">
     <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -70,7 +70,7 @@ title: "分类"
   </div>
   {% for cat in site.categories %}
     {% if cat[0] != "sticky" %}
-    <div role="tabpanel" class="tab-pane" id="{{ cat[0] | escape}}">
+    <div role="tabpanel" class="tab-pane" id="list_{{ cat[0] }}">
       <div class="table-responsive">
       <table class="table table-striped">
         <thead>
