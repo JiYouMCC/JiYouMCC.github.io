@@ -49,6 +49,6 @@ title: "标签"
 {% endfor %}
 </div>
 <script type="text/javascript">
-  $("#tag_"+location.hash.replace("#","")).tab('show');
+  $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
 </script>
 <script src="{{ site.baseurl }}/js/git-comments-count.js"></script>
