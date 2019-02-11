@@ -14,7 +14,7 @@ title: "标签"
   {% for tag in sortedtags reversed %}
     {% assign tagitems = tag | split: '#' %}
     <li role="presentation" style="display: inline-block;">
-      <h4><a id="tag_{{ tagitems[1] }}" href="#{{ tagitems[1] }}" title="{{ tagitems[1] }}" rel="{{ tagitems[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true" class="label label-default">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></a></h4>
+      <h4><a id="tag_{{ tagitems[1] }}" href="#list_{{ tagitems[1] }}" title="{{ tagitems[1] }}" rel="{{ tagitems[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true" class="label label-default">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></a></h4>
     </li>
   {% endfor %}
 </ul>
