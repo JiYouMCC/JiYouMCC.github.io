@@ -5,6 +5,7 @@ date:   2017-04-12 09:25:00 +0800
 categories: 技术
 tags: javascript jquery bootstrapt
 use_code: true
+issue: 19
 ---
 这个东西其实在django版本的时候我已经弄过了，但是在各种博客的迁移过程中没有一起搬上来
 
