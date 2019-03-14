@@ -39,8 +39,8 @@
 <script src="{{ "/js/old-comments.js"}}"></script>
 
 <script type="text/javascript">
-  if ("{{ page.issue }}") {
-    OldComments.showOldComments("{{ page.id }}");
+  OldComments.showOldComments("{{ page.id }}");
+  if ("{{ page.issue }}") {    
     showComments("{{ page.issue }}");
     showForm("{{ page.issue }}");
   }
