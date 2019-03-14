@@ -466,7 +466,7 @@ var OldComments = {
   showOldComments: function(postId) {
     var comments = OldComments.GetComments(postId);
     $('div[id^=old_comments_]').remove();
-    $("#old-comments-count]").text(comments.count);
+    $("#old-comments-count]").text(comments.length);
     comments = comments.sort(function(a, b){
       if (a.timestamp - b.timestamp >= 0) {
         return 1;
