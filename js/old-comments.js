@@ -466,7 +466,6 @@ var OldComments = {
   showOldComments: function(postId) {
     var comments = OldComments.GetComments(postId);
     $('div[id^=old_comments_]').remove();
-    $("#old-comments-count").text(comments.length);
     comments = comments.sort(function(a, b){
       if (a.timestamp - b.timestamp >= 0) {
         return 1;
@@ -476,6 +475,10 @@ var OldComments = {
     });
     for (var i = 0; i < comments.length; i++) {
       OldComments.addOldComment(comments[i]);
+    }
+    if (comments.length > 0) {
+      var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "old_comments_line").text("----- 以上为旧评论 -----");
+      $("#comments").append(d_comments);
     }
   },
   addOldComment:function(comment) {
@@ -502,15 +505,8 @@ var OldComments = {
         )
       );
     }
-    /*name_div.append(" ").append(
-      $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', userName).append(
-        $("<span></span>").addClass("glyphicon glyphicon-comment")
-      )
-    );*/
-
     var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "old_comments_" + commentId).append(name_div).append(comment_detail);
     $("#comments").append(d_comments);
     $('#comment_text_' + commentId).text(comment.comment);
-    //emojiProcess();
   },
 }
