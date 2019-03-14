@@ -232,9 +232,9 @@ var OldComments = {
     }
   },
   GetComments: function(postId) {
+    var result = [];
     for (commentID in OldComments.data.comments) {
-      var comment = OldComments.data.comments[commentID];
-      var result = [];
+      var comment = OldComments.data.comments[commentID];      
       if (comment.post == postId) {
         comment["id"] = commentID;
         result.push(comment);
