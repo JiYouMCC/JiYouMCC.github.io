@@ -66,7 +66,7 @@ function addComment(comment) {
   emojiProcess();
 }
 
-function showComments(issueId, page) {
+function showComments(issueId, page, postId) {
   if (!page) {
     page = 1;
   }
@@ -78,7 +78,7 @@ function showComments(issueId, page) {
 
   GithubComments.Comments.Count(issueId, function(result) {
     if (result.status) {
-      $("[comments-count='" + issueId + "']").text(result.count);
+      $("[comments-count='" + issueId + "']").text(result.count + OldComments GetCommentsCount(postId));
     }
   });
 
