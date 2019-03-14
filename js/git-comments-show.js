@@ -117,7 +117,7 @@ function showComments(issueId, page, postId) {
       $("button[id^=button_page_]").click(function() {
         var b_page = $(this).attr("page");
         var b_issue = $(this).attr("issueId");
-        showComments(b_issue, b_page);
+        showComments(b_issue, b_page, postId);
       });
     } else {
       handleError(result.data);
