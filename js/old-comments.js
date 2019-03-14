@@ -231,6 +231,9 @@ var OldComments = {
       }
     }
   },
+  GetCommentsCount: function(postId){
+    return OldComments.GetComments(postId).length;
+  },
   GetComments: function(postId) {
     var result = [];
     for (commentID in OldComments.data.comments) {
