@@ -5,6 +5,7 @@ date:   2017-04-01 17:03:45 +0800
 categories: 技术
 tags: javascript firebase wilddog jquery
 use_code: true
+issue: 18
 ---
 # 更新 #
 4/4 前端：修改首页最新评论的锚记名字；添加加载后滑动到指定锚记；添加用cookies记录已经发送评论的昵称邮箱网址。
