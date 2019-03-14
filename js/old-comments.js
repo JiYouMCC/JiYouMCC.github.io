@@ -232,7 +232,7 @@ var OldComments = {
     }
   },
   GetComments: function(postId) {
-    for (commentID in OldComments.data) {
+    for (commentID in OldComments.data.comments) {
       var comment = OldComments.data[commentID];
       var result = [];
       if (comment.post == postId) {
