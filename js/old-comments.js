@@ -481,7 +481,7 @@ var OldComments = {
       OldComments.addOldComment(comments[i]);
     }
     if (comments.length > 0) {
-      var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "old_comments_line").text("----- 以上为旧评论 -----");
+      var d_comments = $("<div></div>").addClass("list-group-item").addClass("text-center").attr('id', "old_comments_line").append($("<strong></strong>").text("----- 以上为旧评论 -----"));
       $("#comments").append(d_comments);
     }
   },
