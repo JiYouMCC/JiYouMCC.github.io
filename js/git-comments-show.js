@@ -78,7 +78,7 @@ function showComments(issueId, page, postId) {
 
   GithubComments.Comments.Count(issueId, function(result) {
     if (result.status) {
-      $("[comments-count='" + issueId + "']").text(result.count + OldComments GetCommentsCount(postId));
+      $("[comments-count='" + issueId + "']").text(result.count + OldComments.GetCommentsCount(postId));
     }
   });
 
