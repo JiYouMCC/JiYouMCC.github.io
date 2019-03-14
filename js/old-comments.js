@@ -479,7 +479,7 @@ var OldComments = {
     }
   },
   addOldComment:function(comment) {
-    var commitId = comment.id;
+    var commentId = comment.id;
     var userName = comment.name;
     var userAvatar = OldComments.getGravatar(comment.email, 20);
     var userLink = comment.url;
