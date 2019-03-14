@@ -5,10 +5,11 @@ $(function() {
         var issueId = element.attr('comments-count');
         var postId = element.attr('post-id');
         var oldCount = OldComments.GetCommentsCount(postId);
+        element.attr('old-count', oldCount);
         if (issueId) {
             GithubComments.Comments.Count(issueId, function(result) {
                 if (result.status) {
-                    $("[comments-count='" + result.number + "']").text(result.count + oldCount);
+                    $("[comments-count='" + result.number + "']").text(result.count + $("[comments-count='" + result.number + "']").attr('old-count'));
                 }
             });
         } else {
