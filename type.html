@@ -39,7 +39,7 @@ title: "分类"
                 {% endif %}
               {% endfor %}</td>
           <td class="text-center">
-            <span comments-count="{{ post.issue }}" class="badge ds-thread-count"></span>
+            <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span>
           </td>
         </tr>
         {% endfor %}
@@ -60,7 +60,7 @@ title: "分类"
                   <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                   {% endif %}
                 {% endfor %}</td>
-            <td class="text-center"><span comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
+            <td class="text-center"><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
           </tr>
           {% endunless %}
         {% endfor %}
@@ -93,7 +93,7 @@ title: "分类"
                 {% endfor %}
               {% endif %}
             </td>
-            <td class="text-center"><span comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
+            <td class="text-center"><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
           </tr>
           {% endfor %}
         </tbody>
