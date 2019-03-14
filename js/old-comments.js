@@ -475,7 +475,7 @@ var OldComments = {
       }
     });
     for (var i = 0; i < comments.length; i++) {
-      addOldComment(comments[i]);
+      OldComments.addOldComment(comments[i]);
     }
   },
   addOldComment:function(comment) {
