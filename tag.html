@@ -39,7 +39,7 @@ title: "标签"
                 <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                 {% endif %}
               {% endfor %}</td>
-          <td class="text-center"><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
+          <td class="text-center">{% if post.issue %}<span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span>{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
