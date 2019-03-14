@@ -510,7 +510,7 @@ var OldComments = {
 
     var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "old_comments_" + commentId).append(name_div).append(comment_detail);
     $("#comments").append(d_comments);
-    document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
+    document.getElementById('comment_text_' + commentId).innerHTML = comment.comment;
     //emojiProcess();
   },
 }
