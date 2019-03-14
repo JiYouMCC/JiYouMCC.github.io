@@ -471,7 +471,7 @@ var OldComments = {
     $('div[id^=old_comments_]').remove();
     $("[comments-count]").text(comments.length);
     comments = comments.sort(function(a, b){
-      if (a.timestamp - b.timestamp >= 0) {
+      if (a.timestamp - b.timestamp <= 0) {
         return 1;
       } else {
         return 0;
