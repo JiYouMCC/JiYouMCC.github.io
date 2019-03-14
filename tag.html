@@ -39,7 +39,7 @@ title: "标签"
                 <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                 {% endif %}
               {% endfor %}</td>
-          <td class="text-center"><span comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
+          <td class="text-center"><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -52,3 +52,4 @@ title: "标签"
   $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
 </script>
 <script src="{{ site.baseurl }}/js/git-comments-count.js"></script>
+<script src="{{ site.baseurl }}/js/old-comments.js"></script>
