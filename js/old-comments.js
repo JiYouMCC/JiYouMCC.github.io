@@ -235,7 +235,7 @@ var OldComments = {
     for (commentID in OldComments.data) {
       var comment = OldComments.data[commentID];
       var result = [];
-      if (comment.post == "/blog/post/" + postId) {
+      if (comment.post == postId) {
         comment["id"] = commentID;
         result.push(comment);
       }
