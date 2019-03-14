@@ -7,11 +7,9 @@
     评论已关闭。
     </div>
     {% endif %}
-    {% if page.issue %}   
     <div id="div_comments" class="list-group-item">
       <strong>评论共<span comments-count="{{ page.issue }}"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></span>条</strong>
     </div>
-    {% endif %}
   </div>
 </div>
 
@@ -38,7 +36,7 @@
 <script type="text/javascript">
   OldComments.showOldComments("{{ page.id }}");
   if ("{{ page.issue }}") {    
-    showComments("{{ page.issue }}");
+    showComments("{{ page.issue }}", "{{ page.id }}");
     showForm("{{ page.issue }}");
   }
 </script>
