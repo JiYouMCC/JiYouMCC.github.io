@@ -478,6 +478,7 @@ var OldComments = {
       var old_head = $("<div></div>").attr('id', "old_comments_head").addClass("panel-heading").append($("<strong></strong>").text("旧评论"));
       var old_comments_line = $("<div></div>").attr('id', "old_comments_line").addClass("list-group");
       old_head.insertBefore($("#comments"));
+      old_comments_line.insertBefore($("#comments"));
     }
     for (var i = 0; i < comments.length; i++) {
       OldComments.addOldComment(comments[i]);
