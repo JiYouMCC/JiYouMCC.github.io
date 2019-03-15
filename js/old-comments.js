@@ -231,13 +231,13 @@ var OldComments = {
       }
     }
   },
-  GetCommentsCount: function(postId){
+  GetCommentsCount: function(postId) {
     return OldComments.GetComments(postId).length;
   },
   GetComments: function(postId) {
     var result = [];
     for (commentID in OldComments.data.comments) {
-      var comment = OldComments.data.comments[commentID];      
+      var comment = OldComments.data.comments[commentID];
       if (comment.post == postId) {
         comment["id"] = commentID;
         result.push(comment);
@@ -471,7 +471,7 @@ var OldComments = {
     $('#old_comments_head').remove();
     $('#old_comments_line').remove();
     $("[comments-count]").text(comments.length);
-    comments = comments.sort(function(a, b){
+    comments = comments.sort(function(a, b) {
       return a.timestamp - b.timestamp;
     });
     if (comments.length > 0) {
@@ -480,16 +480,16 @@ var OldComments = {
         .addClass("panel-heading")
         .attr('role', "tab")
         .append($("<a></a>")
-           .attr('role', "button")
-           .attr('data-toggle', "collapse")
-           .attr('data-parent', "#comment_panel")
-           .attr('href', "#old_comments_line")
-           .attr('aria-expanded', "true")
-           .attr('aria-controls', "old_comments_line")
-           .append($("<strong></strong>")
-               .text("旧评论")
-           )           
-        ); 
+          .attr('role', "button")
+          .attr('data-toggle', "collapse")
+          .attr('data-parent', "#comments")
+          .attr('href', "#old_comments")
+          .attr('aria-expanded', "true")
+          .attr('aria-controls', "old_comments_line")
+          .append($("<strong></strong>")
+            .text("旧评论")
+          )
+        );
       var old_comments_line = $("<div></div>")
         .attr('id', "old_comments_line")
         .addClass("list-group")
@@ -497,14 +497,14 @@ var OldComments = {
         .addClass('collapse')
         .attr('role', "tabpanel")
         .attr('aria-labelledby', "old_comments_head");
-      old_head.insertBefore($("#comments"));
-      old_comments_line.insertBefore($("#comments"));
+      old_head.insertBefore($("#git_comments"));
+      old_comments_line.insertBefore($("#git_comments"));
     }
     for (var i = 0; i < comments.length; i++) {
       OldComments.addOldComment(comments[i]);
     }
   },
-  addOldComment:function(comment) {
+  addOldComment: function(comment) {
     var commentId = comment.id;
     var userName = comment.name;
     var userAvatar = OldComments.getGravatar(comment.email, 20);
@@ -529,7 +529,7 @@ var OldComments = {
       );
     }
     var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "old_comments_" + commentId).append(name_div).append(comment_detail);
-    $("#old_comments_line").append(d_comments);
+    $("#old_comments").append(d_comments);
     $('#comment_text_' + commentId).append($("<p></p>").text(comment.comment));
   },
 }
