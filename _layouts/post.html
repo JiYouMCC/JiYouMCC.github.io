@@ -22,13 +22,13 @@ layout: default
   <ul class="pager">
     {% if page.next.url %} 
     <li class="previous">
-      <a title="{{ page.next.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.next.url }}"><span class="glyphicon glyphicon glyphicon-chevron-left"></span> {{ page.next.title }}</a>
+      <a title="{{ page.next.title | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.next.url }}"><span class="glyphicon glyphicon glyphicon-chevron-left"></span> 下一篇</a>
     </li>
     {% endif %}
     
     {% if page.previous.url %} 
     <li class="next">
-      <a title="{{ page.previous.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.previous.url }}">{{ page.previous.title }} <span class="glyphicon glyphicon glyphicon-chevron-right"></span></a> 
+      <a title="{{ page.previous.title | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.previous.url }}">上一篇 <span class="glyphicon glyphicon glyphicon-chevron-right"></span></a> 
     </li>
     {% endif %} 
   </ul>
