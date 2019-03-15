@@ -468,17 +468,19 @@ var OldComments = {
   },
   showOldComments: function(postId) {
     var comments = OldComments.GetComments(postId);
-    $('div[id^=old_comments_]').remove();
+    $('#old_comments_head').remove();
+    $('#old_comments_line').remove();
     $("[comments-count]").text(comments.length);
     comments = comments.sort(function(a, b){
       return a.timestamp - b.timestamp;
     });
+    if (comments.length > 0) {
+      var old_head = $("<div></div>").attr('id', "old_comments_head").addClass("panel-heading").append($("<strong></strong>").text("旧评论"));
+      var old_comments_line = $("<div></div>").attr('id', "old_comments_line").addClass("list-group");
+      old_head.insertBefore($("#comments"));
+    }
     for (var i = 0; i < comments.length; i++) {
       OldComments.addOldComment(comments[i]);
-    }
-    if (comments.length > 0) {
-      var d_comments = $("<div></div>").addClass("list-group-item").addClass("text-center").attr('id', "old_comments_line").append($("<strong></strong>").text("----- 以上为旧评论 -----"));
-      $("#comments").append(d_comments);
     }
   },
   addOldComment:function(comment) {
@@ -506,7 +508,7 @@ var OldComments = {
       );
     }
     var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "old_comments_" + commentId).append(name_div).append(comment_detail);
-    $("#comments").append(d_comments);
+    $("#old_comments_line").append(d_comments);
     $('#comment_text_' + commentId).append($("<p></p>").text(comment.comment));
   },
 }
