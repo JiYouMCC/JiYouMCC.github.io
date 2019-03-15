@@ -5,12 +5,11 @@
     {% else %}
     <div class="list-group-item">评论已关闭。</div>
     {% endif %}
-  </div>
-  <div id="comments" class="list-group">
     <div id="div_comments" class="list-group-item">
       <strong>评论共<span comments-count="{{ page.issue }}"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></span>条</strong>
     </div>
   </div>
+  <div id="comments" class="list-group"></div>
 </div>
 
 <!-- Error Modal -->
