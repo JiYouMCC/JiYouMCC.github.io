@@ -478,9 +478,16 @@ var OldComments = {
       var old_head = $("<div></div>")
         .attr('id', "old_comments_head")
         .addClass("panel-heading")
-        .append($("<strong></strong>")
         .attr('role', "tab")
-        .text("旧评论"));
+        .append($("<a></a>")
+           .attr('role', "button")
+           .attr('data-toggle', "collapse")
+           .attr('data-parent', "#comment_panel")
+           .attr('href', "#old_comments_line")
+           .attr('aria-expanded', "true")
+           .attr('aria-controls', "old_comments_line")
+           .text("旧评论")
+        ); 
       var old_comments_line = $("<div></div>")
         .attr('id', "old_comments_line")
         .addClass("list-group")
