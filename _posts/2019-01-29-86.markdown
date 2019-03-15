@@ -5,8 +5,10 @@ date:    2019-01-29 13:55:00 +0800
 is_sticky: true
 issue: 10
 ---
-* [ ] 把野狗剥离，迁移旧评论为js
-* [ ] 迁移到github issue评论
 * [ ] 重构搜索
-* [ ] 重构标签和分类
+* [ ] 赞服地铁通相关技术整理： Dijkstra d3.js+svg 
+
 <!--more-->
+* [x] 把野狗剥离，迁移旧评论为js
+* [x] 迁移到github issue评论
+* [x] 重构标签和分类
