@@ -507,6 +507,6 @@ var OldComments = {
     }
     var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "old_comments_" + commentId).append(name_div).append(comment_detail);
     $("#comments").append(d_comments);
-    $('#comment_text_' + commentId).text(comment.comment);
+    $('#comment_text_' + commentId).append($("<p></p>").text(comment.comment));
   },
 }
