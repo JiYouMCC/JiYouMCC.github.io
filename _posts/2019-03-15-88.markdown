@@ -22,17 +22,17 @@ issue: 22
 
 - Idea：主意完全是别人的
 - Login的逻辑： 我纠结了好久怎么总是登陆不了，查文档也搞不定，最后是抄了他的login URL才搞定的。 相关的文档好像就是在[这里](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/){:target="_blank"}
-- CORS的header的修改：相关的文档好像就是在[这里](https://developer.github.com/v3/#cross-origin-resource-sharing){:target="_blank"}。事实上就是要弄个东西可以改一下request的header，但是jekyll好像不太好弄的样子。我完全[fork了imsun的node server](https://github.com/JiYouMCC/gh-oauth-server)，自己在Azure上面搭了一个。这个是免费的，所以如果有其他人要用的话也最好自己搭一下，还方便配置http或者https。因为搭这个东西，我还被Azure中国的客服给关心了一下。
+- CORS的header的修改：相关的文档好像就是在[这里](https://developer.github.com/v3/#cross-origin-resource-sharing){:target="_blank"}。事实上就是要弄个东西可以改一下request的header，但是jekyll好像不太好弄的样子。我完全[fork了imsun的node server](https://github.com/JiYouMCC/gh-oauth-server){:target="_blank"}，自己在Azure上面搭了一个。这个是免费的，所以如果有其他人要用的话也最好自己搭一下，还方便配置http或者https。因为搭这个东西，我还被Azure中国的客服给关心了一下。
 
 其他用到的相关文档有：
-- [Github REST API v3](https://developer.github.com/v3/)
-- [JQuery API Documentation](http://api.jquery.com/)
+- [Github REST API v3](https://developer.github.com/v3/){:target="_blank"}
+- [JQuery API Documentation](http://api.jquery.com/){:target="_blank"}
 
 # 依赖项 #
 - JQuery：我很想把它拿掉，但是因为ajax用得实在太多了，失败了。
 
 # 代码 #
-:arrow_right: [项目代码](https://github.com/JiYouMCC/github-comments) :arrow_left:
+:arrow_right: [项目代码](https://github.com/JiYouMCC/github-comments){:target="_blank"} :arrow_left:
 
 最近还是保持了一种愿意写代码不愿意解释代码的状态，如果感兴趣的人可以和我交流。
 
