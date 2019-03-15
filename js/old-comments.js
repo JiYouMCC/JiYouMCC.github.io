@@ -475,8 +475,19 @@ var OldComments = {
       return a.timestamp - b.timestamp;
     });
     if (comments.length > 0) {
-      var old_head = $("<div></div>").attr('id', "old_comments_head").addClass("panel-heading").append($("<strong></strong>").text("旧评论"));
-      var old_comments_line = $("<div></div>").attr('id', "old_comments_line").addClass("list-group");
+      var old_head = $("<div></div>")
+        .attr('id', "old_comments_head")
+        .addClass("panel-heading")
+        .append($("<strong></strong>")
+        .attr('role', "tab")
+        .text("旧评论"));
+      var old_comments_line = $("<div></div>")
+        .attr('id', "old_comments_line")
+        .addClass("list-group")
+        .addClass('panel-collapse')
+        .addClass('collapse')
+        .attr('role', "tabpanel")
+        .attr('aria-labelledby', "old_comments_head");
       old_head.insertBefore($("#comments"));
       old_comments_line.insertBefore($("#comments"));
     }
