@@ -486,7 +486,9 @@ var OldComments = {
            .attr('href', "#old_comments_line")
            .attr('aria-expanded', "true")
            .attr('aria-controls', "old_comments_line")
-           .text("旧评论")
+           .append($("<strong></strong>")
+               .text("旧评论")
+           )           
         ); 
       var old_comments_line = $("<div></div>")
         .attr('id', "old_comments_line")
