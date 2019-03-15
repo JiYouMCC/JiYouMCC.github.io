@@ -1,15 +1,15 @@
-<div id='comment_panel' class="panel panel-default">
+<div id='comments' class="panel panel-default">
   <div id='list_comment_form' class="list-group">
     {% if page.issue %}
     <div id="comment_form" class="list-group-item"></div>
     {% else %}
     <div class="list-group-item">评论已关闭。</div>
     {% endif %}
-    <div id="div_comments" class="list-group-item">
+    <div class="list-group-item">
       <strong>评论共<span comments-count="{{ page.issue }}"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></span>条</strong>
     </div>
   </div>
-  <div id="comments" class="list-group"></div>
+  <div id="git_comments" class="list-group"></div>
 </div>
 
 <!-- Error Modal -->
