@@ -71,7 +71,7 @@ for (var i = 0; i < headers.length; i++) {
 
 links.append(
   $("<li></li").append(
-    $("<a></a>").attr("affix_to","#comments").attr('href', '#comments').append(
+    $("<a></a>").attr("affix_to","#comments").attr('href', '#comment_panel').append(
       $("<span></span>").attr("class", "glyphicon glyphicon-comment")
     ).append(" 评论")
   )
