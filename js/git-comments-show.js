@@ -96,7 +96,6 @@ function addComment(comment) {
   $("#git_comments").append(d_comments);
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
   emojiProcess();
-  $('[data-toggle="tooltip"]').tooltip();
 }
 
 function showComments(issueId, page, postId) {
