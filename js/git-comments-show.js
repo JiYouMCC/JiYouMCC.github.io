@@ -74,7 +74,7 @@ function addComment(comment) {
   name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
   name_div.append($("<span></span>").addClass("page_blog_comment_name").text(userName)).append(" ");
   name_div.append($("<span></span>").addClass("page_datetime").text(timeSince(date)).attr("data-toggle","tooltip")
-    .attr("data-placement","right")
+    .attr("data-placement","top")
     .attr("data-original-title",formatDate(date)));  
   name_div.append(" ").append(
     $("<a></a>").attr("href", userLink).attr("target", "_blank").attr("title", "Github page").append(
