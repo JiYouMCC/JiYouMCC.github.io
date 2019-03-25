@@ -38,7 +38,7 @@ function timeSince(when) {
     if (years >= 1) {
         return(parseInt(years) + "年前");
     } else if (month >= 1) {
-        return(parseInt(month) + "月前");
+        return(parseInt(month) + "个月前");
     } else if (day >= 1) {
         return(parseInt(day) + "天前");
     } else if (hours >= 1) {
