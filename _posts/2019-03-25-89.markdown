@@ -1,0 +1,50 @@
+---
+layout: post
+title:  "time ago"
+date:   2019-03-25 17:00:00
+categories: 技术
+tags: javascript
+use_code: true
+issue: 23
+---
+
+抽空做了一个很小很小的修改，但是这个功能以前设想了很久。
+
+就是把一些显示时间的地方改成“X天前”“X年前”。
+
+现成有很多很多的js库都可以做到。但是实际上，只要那么几行就行了。
+
+<!--more-->
+
+原来还想加个ruby jekyll的插件把文章的时间也改了，但是github好像不太好弄（或者不能弄？）custom plugin，于是暂时放弃了。
+
+代码如下，简单吧！
+
+    function timeSince(when) {
+        var now = new Date();
+        var span = now.valueOf() - when.valueOf();
+        var years = span / (1000 * 60 * 60 * 24 * 365);
+        var month = span / (1000 * 60 * 60 * 24 * 30);
+        var day = span / (1000 * 60 * 60 * 24);
+        var hours = span / (1000 * 60 * 60);
+        var minutes = span / (1000 * 60);
+        var seconds = span / (1000);
+
+        if (years >= 1) {
+            return(parseInt(years) + "年前");
+        } else if (month >= 1) {
+            return(parseInt(month) + "个月前");
+        } else if (day >= 1) {
+            return(parseInt(day) + "天前");
+        } else if (hours >= 1) {
+            return(parseInt(hours) + "小时前");
+        } else if (minutes >= 1) {
+            return(parseInt(minutes) + "分钟前");
+        } else if (seconds >= 1) {
+            return(parseInt(seconds) + "秒前");
+        } else {
+            return("刚刚");
+        }
+    }
+
+留了个小坑，old-comments里面直接调用了git-comments-show的2个function。虽然直接导入的时候没有报错，但是这个是坑。
