@@ -25,6 +25,33 @@ function formatDate(e) {
   return e.getFullYear() + "-" + ("0" + (e.getMonth() + 1)).slice(-2) + "-" + ("0" + e.getDate()).slice(-2) + " " + ("0" + e.getHours()).slice(-2) + ":" + ("0" + e.getMinutes()).slice(-2) + ":" + ("0" + e.getSeconds()).slice(-2) + " "
 }
 
+function timeSince(when) {
+    var now = new Date();
+    var span = now.valueOf() - when.valueOf();
+    var years = span / (1000 * 60 * 60 * 24 * 365);
+    var month = span / (1000 * 60 * 60 * 24 * 30);
+    var day = span / (1000 * 60 * 60 * 24);
+    var hours = span / (1000 * 60 * 60);
+    var minutes = span / (1000 * 60);
+    var seconds = span / (1000);
+
+    if (years >= 1) {
+        return(parseInt(years) + "年前");
+    } else if (month >= 1) {
+        return(parseInt(month) + "月前");
+    } else if (day >= 1) {
+        return(parseInt(day) + "天前");
+    } else if (hours >= 1) {
+        return(parseInt(hours) + "小时前");
+    } else if (minutes >= 1) {
+        return(parseInt(minutes) + "分钟前");
+    } else if (seconds >= 1) {
+        return(parseInt(seconds) + "秒前");
+    } else {
+        return("刚刚");
+    }
+}
+
 
 function handleError(error) {
   var message = error.message ? error.message : error;
@@ -46,7 +73,9 @@ function addComment(comment) {
   var name_div = $("<div></div>");
   name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
   name_div.append($("<span></span>").addClass("page_blog_comment_name").text(userName)).append(" ");
-  name_div.append($("<span></span>").addClass("page_datetime").text(formatDate(date)));
+  name_div.append($("<span></span>").addClass("page_datetime").text(timeSince(date))).attr("data-toggle","tooltip")
+    .attr("data-placement","right")
+    .attr("data-original-title",formatDate(date));  
   name_div.append(" ").append(
     $("<a></a>").attr("href", userLink).attr("target", "_blank").attr("title", "Github page").append(
       $("<button></button>").addClass("btn btn-link").append(
@@ -64,6 +93,7 @@ function addComment(comment) {
   $("#git_comments").append(d_comments);
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
   emojiProcess();
+  $('[data-toggle="tooltip"]').tooltip();
 }
 
 function showComments(issueId, page, postId) {
