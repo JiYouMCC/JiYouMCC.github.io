@@ -126,7 +126,7 @@ Q中距离A最近的是D
 
     DC = 4
 
-经过D到达C的长度为 Dist(D) + E(D, C) = 7 < Dist(C) 填入Dist
+经过D到达C的长度为 $$Dist(D) + E(D, C) = 7 < Dist(C)$$ 填入Dist
 
     Dist = {
         A = 0
@@ -149,9 +149,9 @@ Q中距离A最近的是B
     BE = 5
     BF = 7
 
-经过B到达C的长度为 Dist(B) + E(B, C) = 8 > Dist(C) 跳过
-经过B到达E的长度为 Dist(B) + E(B, C) = 11 < Dist(E) 填入Dist
-经过B到达F的长度为 Dist(B) + E(B, F) = 13 < Dist(F) 填入Dist
+经过B到达C的长度为 $$Dist(B) + E(B, C) = 8 > Dist(C)$$ 跳过
+经过B到达E的长度为 $$Dist(B) + E(B, C) = 11 < Dist(E)$$ 填入Dist
+经过B到达F的长度为 $$Dist(B) + E(B, F) = 13 < Dist(F)$$ 填入Dist
 
     Dist = {
         A = 0
@@ -172,7 +172,7 @@ Q中距离A最近的是C
 
     CF = 8
 
-经过C到达F的长度为 Dist(C) + E(C, F) = 15 > Dist(F) 跳过
+经过C到达F的长度为 $$Dist(C) + E(C, F) = 15 > Dist(F)$$ 跳过
 
 Q中距离A最近的是E
 
@@ -184,7 +184,7 @@ Q中距离A最近的是E
 
     EF = 3
 
-经过E到达F的长度为 Dist(E) + E(E, F) = 14 > Dist(F) 跳过
+经过E到达F的长度为 $$Dist(E) + E(E, F) = 14 > Dist(F)$$ 跳过
 
 Q中距离A最近的是F
 
