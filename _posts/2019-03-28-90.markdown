@@ -150,7 +150,9 @@ Q中距离A最近的是B
     BF = 7
 
 经过B到达C的长度为 $$Dist(B) + E(B, C) = 8 > Dist(C)$$ 跳过
+
 经过B到达E的长度为 $$Dist(B) + E(B, C) = 11 < Dist(E)$$ 填入Dist
+
 经过B到达F的长度为 $$Dist(B) + E(B, F) = 13 < Dist(F)$$ 填入Dist
 
     Dist = {
