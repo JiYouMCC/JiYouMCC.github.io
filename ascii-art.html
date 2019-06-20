@@ -26,27 +26,25 @@ title: "ASCII 图片"
     box-shadow:none;
   }
 </style>
-<div class="row">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <img id="img"></img>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <img id="img"></img>
+    <div class="form-group">
+      <label for="img_input">选择图片</label>
+      <input id="img_input" type="file" name="pic" accept="image/*" onchange="updateCanvas()">
     </div>
-    <div class="panel-body">
-      <input id="img_input" class="form-control" type="file" name="pic" accept="image/*" onchange="updateCanvas()">
-    </div>
-    <div class="panel-body">
+    <div class="form-group">
+      <label for="color">字符列表</label>
       <input id="color" class="form-control" type="text" value="■$&M#%0OGDC*+;, ">
     </div>
-    <div class="panel-body">
-      <button class="form-control" onclick="go()">GO</button>
+    <div class="form-group">
+      <button class="btn btn-default" onclick="go()">走你！</button>
     </div>
-    <div class="panel-body">
-      <input id="range" class="form-control" type="range" min="0.001" max="1" step=0.001 value=0.1 oninput="setZoom();"/>
-    </div>
-    <div class="panel-body">
-      <div class="out">
-        <div id="ascii" class="ascii"></div>
-      </div>
+  </div>
+  <div class="panel-body">
+    <input id="range" class="form-control" type="range" min="0.001" max="1" step=0.001 value=0.1 oninput="setZoom();"/>
+    <div class="out">
+      <div id="ascii" class="ascii"></div>
     </div>
   </div>
 </div>
