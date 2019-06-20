@@ -70,7 +70,7 @@ title: "ASCII 图片"
     ctx.fillStyle="#ffffff";
     ctx.fillRect(0, 0, canvashide.width, canvashide.height);
     ctx.drawImage(img, 0, 0, img.width, img.height);
-    document.getElementById('ascii').innerHTML = getASCIICode(ctx, anvashide.width, canvashide.height, colorStr);
+    document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvashide.width, canvashide.height, colorStr);
   }
 </script>
 <script src="{{ "/js/ascii-art.js"}}"></script>
