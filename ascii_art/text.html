@@ -1,0 +1,41 @@
+---
+layout: default
+title: "ASCII 文字"
+---
+<link rel="stylesheet" href="{{ "/css/ascii-art.css" }}" />
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span class="page_blog_title">{{ page.title }}</span>
+  </div>
+  <div class="panel-body">
+    <canvas id="canvas" style="border:1px solid black"></canvas>
+    <div class="form-group">
+      <label for="img_input">画布大小</label>
+      <input class="form-control" id="canvas_width" type="number" min="100" max="600" value="300"> * 
+      <input class="form-control" id="canvas_height" type="number" min="100" max="600" value="100">
+    </div>
+    <div class="form-group">
+      <label for="text">文字</label>
+      <input class="form-control" id="text" type="text" value="Hello world">
+    </div>
+    <div class="form-group">
+      <label for="font">字体</label>
+      <input id="font" type="text" value="36pt fantasy">
+    </div>
+    <div class="form-group">
+      <label for="color">字符列表</label>
+      <input id="color" class="form-control" type="text" value="$&M#%0OGDC*+;, ">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-default" onclick="showText()">文字预览</button>
+      <button class="btn btn-default" onclick="generateText()">生成结果</button>
+    </div>
+  </div>
+  <div class="panel-body">
+    <input id="range" class="form-control" type="range" min="0.025" max="1" step=0.001 value=0.1 oninput="setZoom();"/>
+    <div class="out">
+      <div id="ascii" class="ascii"></div>
+    </div>
+  </div>
+</div>
+<script src="{{ "/js/ascii-art.js"}}"></script>

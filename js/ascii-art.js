@@ -90,6 +90,21 @@ function getASCIICode(ctx, width, height, colorStr) {
   return ascii;
 }
 
+function showText() {
+  var textWidth = document.getElementById("canvas_width").value;
+  var textHeight = document.getElementById("canvas_height").value;
+  var canvas = document.getElementById("canvas");
+  canvas.width = textWidth;
+  canvas.height = textHeight;
+  var text = document.getElementById("text").value;
+  var ctx = canvas.getContext("2d");
+  var font = document.getElementById("font").value;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = font;
+  ctx.fillText(text, textWidth / 2, textHeight / 2);
+}
+
 function generateImg() {
   document.getElementById('ascii').innerHTML = "";
   var ascii = "";
@@ -104,4 +119,14 @@ function generateImg() {
   ctx.fillRect(0, 0, canvashide.width, canvashide.height);
   ctx.drawImage(img, 0, 0, img.width, img.height);
   document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvashide.width, canvashide.height, colorStr);
+}
+
+function generateText(){
+  document.getElementById('ascii').innerHTML = "";
+  var ascii = "";
+  var colorStr = getColorChars(document.getElementById("color").value);
+
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext("2d");
+  document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvas.width, canvas.height, colorStr);
 }
