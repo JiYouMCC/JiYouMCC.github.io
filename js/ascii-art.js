@@ -28,7 +28,7 @@ function getColorChars(colorStr) {
   }
 
   if (colorStr == undefined || colorStr == "") {
-    colorStr = "■$&M#%0OGDC*+;, ";
+    colorStr = "$&M#%0OGDC*+;, ";
   }
 
   var colorArray = colorStr.split("");
