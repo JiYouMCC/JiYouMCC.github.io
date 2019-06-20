@@ -97,12 +97,17 @@ function showText() {
   canvas.width = textWidth;
   canvas.height = textHeight;
   var text = document.getElementById("text").value;
-  var ctx = canvas.getContext("2d");
   var font = document.getElementById("font").value;
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, textWidth, textHeight);
+  ctx.fillStyle = "#000000";
+  
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.font = font;
   ctx.fillText(text, textWidth / 2, textHeight / 2);
+
 }
 
 function generateImg() {
