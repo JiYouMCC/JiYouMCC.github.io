@@ -42,11 +42,11 @@ function getColorChars(colorStr) {
   colorArray = tempArray.sort(function(a, b) {
     if (getCharDensity(a) > getCharDensity(b)) {
       return -1;
-    } else if (calrou(a) < calrou(b)) {
+    } else if (getCharDensity(a) < getCharDensity(b)) {
       return 1;
     } else {
       return 0
     }
   });
-  return color_array.join("");
+  return colorArray.join("");
 }
