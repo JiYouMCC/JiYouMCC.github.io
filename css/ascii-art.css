@@ -1,9 +1,14 @@
+@font-face {
+    font-family:UbuntuMono;
+    src:url("/fonts/UbuntuMono-R.ttf");
+}
+
 .ascii {
   font-size: 12pt;
   line-height: 8pt;
   transform: scale(0.1);
   transform-origin: 0% 0%;
-  font-family: Courier, monospace;
+  font-family: UbuntuMono;
   white-space: pre;
 }
 
