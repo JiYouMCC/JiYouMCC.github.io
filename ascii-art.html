@@ -1,0 +1,158 @@
+---
+layout: default
+title: "ASCII 图片"
+---
+<style type="text/css">
+  .ascii {
+    font-size: 12pt;
+    line-height: 8pt;
+    transform: scale(0.1);
+    transform-origin: 0% 0%;
+    font-family: Courier, monospace;
+    white-space: pre;
+  }
+
+  .out {
+      width:650px;
+      height:600px;
+      overflow:scroll;
+  }
+
+  input[type=range]
+  {
+    width: 500px;
+    border:none;
+    background:none;
+    box-shadow:none;
+  }
+</style>
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <img id="img"></img>
+    </div>
+    <div class="panel-body">
+      <input id="img_input" class="form-control" type="file" name="pic" accept="image/*" onchange="updateCanvas()">
+    </div>
+    <div class="panel-body">
+      <input id="color" class="form-control" type="text" value="■$&M#%0OGDC*+;, ">
+    </div>
+    <div class="panel-body">
+      <button class="form-control" onclick="go()">GO</button>
+    </div>
+    <div class="panel-body">
+      <input id="range" class="form-control" type="range" min="0.001" max="1" step=0.001 value=0.1 oninput="setZoom();"/>
+    </div>
+    <div class="panel-body">
+      <div class="out">
+        <div id="ascii" class="ascii"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function updateCanvas() {
+      var imgInput = document.getElementById("img_input");
+      if (imgInput.files && imgInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var img = document.getElementById("img");
+          img.src = e.target.result;
+        }
+        reader.readAsDataURL(imgInput.files[0]);
+      }
+  }
+
+  function getColorChars() {
+      function calrou(char) {
+        var canvas = document.createElement("canvas");
+        canvas.width = 12;
+        canvas.height = 12;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle="#ffffff";
+        ctx.fillRect(0, 0, 12, 12);
+        ctx.fillStyle="#000000";
+        ctx.textBaseline = "middle"; 
+        ctx.textAlign = "center"; 
+        ctx.font = "12pt Courier, monospace";
+        ctx.fillText(char, 6, 6);
+
+        var sourceImg = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var sourceData = sourceImg.data;
+
+        var point = 0;
+        var s = sourceData.length / 4;
+
+        for(i = 0; i < sourceData.length; i += 4) {
+          luma = Math.floor((sourceData[i] + sourceData[i+1] + sourceData[i+2])/3);
+          if (luma!=255){
+           point+=1;
+         }
+        }
+        console.log(char + "-"+point/s)
+        return point/s;
+      }
+
+      var color = document.getElementById("color").value;
+      if (color == "") {
+        color = "■$&M#%0OGDC*+;, ";
+      }
+
+      var color_array = color.split("");
+      var temp_array = [];
+      for (i in color_array) {
+        if (!temp_array.includes(color_array[i])) {
+          temp_array.push(color_array[i]);
+        }
+      }
+
+      color_array = temp_array.sort(function(a,b) {
+        if (calrou(a) > calrou(b)) {
+          return -1;
+        } else if (calrou(a) < calrou(b)) {
+          return 1;
+        } else{
+          return 0
+        }
+      });
+      
+      return color_array.join("");
+  }
+
+  function go() {
+      var ascii = "";
+      var color = getColorChars();
+
+      var img = document.getElementById('img');
+      var canvashide = document.createElement('canvas');
+      var ctx = canvashide.getContext("2d");
+      canvashide.width = img.width;
+      canvashide.height = img.height;
+      ctx.fillStyle="#ffffff";
+      ctx.fillRect(0, 0, canvashide.width, canvashide.height);
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+
+      var greyImg = ctx.createImageData(canvashide.width, canvashide.height);
+      var greyData = greyImg.data;
+      var sourceImg = ctx.getImageData(0, 0, canvashide.width, canvashide.height);
+      var sourceData = sourceImg.data;
+
+      for(i = 0; i < sourceData.length; i += 4) {
+        luma = Math.floor((sourceData[i] + sourceData[i+1] + sourceData[i+2])/3);
+        greyData[i] = greyData[i+1] = greyData[i+2] = luma;
+        ascii += color[Math.floor(luma * color.length / 256)];
+
+        greyData[i+3] = sourceData[i+3];
+        if ((i / 4 +1) % canvashide.width == 0) {
+          ascii += "\n";
+        }
+      }
+      document.getElementById('ascii').innerHTML = ascii;
+  }
+
+  function setZoom() {
+      var range = document.getElementById("range");
+      var range_value=range.value;
+      document.getElementById("ascii").style.transform = "scale("+(range_value).toString() +")";
+  }
+</script>
