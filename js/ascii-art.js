@@ -89,3 +89,19 @@ function getASCIICode(ctx, width, height, colorStr) {
   }
   return ascii;
 }
+
+function generateImg() {
+  document.getElementById('ascii').innerHTML = "";
+  var ascii = "";
+  var colorStr = getColorChars(document.getElementById("color").value);
+
+  var img = document.getElementById('img');
+  var canvashide = document.createElement('canvas');
+  var ctx = canvashide.getContext("2d");
+  canvashide.width = img.width;
+  canvashide.height = img.height;
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvashide.width, canvashide.height);
+  ctx.drawImage(img, 0, 0, img.width, img.height);
+  document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvashide.width, canvashide.height, colorStr);
+}
