@@ -68,66 +68,11 @@ title: "ASCII 图片"
       }
   }
 
-  function getColorChars() {
-      function calrou(char) {
-        var canvas = document.createElement("canvas");
-        canvas.width = 12;
-        canvas.height = 12;
-        var ctx = canvas.getContext("2d");
-        ctx.fillStyle="#ffffff";
-        ctx.fillRect(0, 0, 12, 12);
-        ctx.fillStyle="#000000";
-        ctx.textBaseline = "middle"; 
-        ctx.textAlign = "center"; 
-        ctx.font = "12pt Courier, monospace";
-        ctx.fillText(char, 6, 6);
-
-        var sourceImg = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        var sourceData = sourceImg.data;
-
-        var point = 0;
-        var s = sourceData.length / 4;
-
-        for(i = 0; i < sourceData.length; i += 4) {
-          luma = Math.floor((sourceData[i] + sourceData[i+1] + sourceData[i+2])/3);
-          if (luma!=255){
-           point+=1;
-         }
-        }
-        console.log(char + "-"+point/s)
-        return point/s;
-      }
-
-      var color = document.getElementById("color").value;
-      if (color == "") {
-        color = "■$&M#%0OGDC*+;, ";
-      }
-
-      var color_array = color.split("");
-      var temp_array = [];
-      for (i in color_array) {
-        if (!temp_array.includes(color_array[i])) {
-          temp_array.push(color_array[i]);
-        }
-      }
-
-      color_array = temp_array.sort(function(a,b) {
-        if (calrou(a) > calrou(b)) {
-          return -1;
-        } else if (calrou(a) < calrou(b)) {
-          return 1;
-        } else{
-          return 0
-        }
-      });
-      
-      return color_array.join("");
-  }
-
   function go() {
       var ascii = "";
-      var color = getColorChars();
+      var color = getColorChars(document.getElementById("color").value);
 
+      // get img
       var img = document.getElementById('img');
       var canvashide = document.createElement('canvas');
       var ctx = canvashide.getContext("2d");
@@ -137,6 +82,7 @@ title: "ASCII 图片"
       ctx.fillRect(0, 0, canvashide.width, canvashide.height);
       ctx.drawImage(img, 0, 0, img.width, img.height);
 
+      // make grey
       var greyImg = ctx.createImageData(canvashide.width, canvashide.height);
       var greyData = greyImg.data;
       var sourceImg = ctx.getImageData(0, 0, canvashide.width, canvashide.height);
@@ -157,7 +103,8 @@ title: "ASCII 图片"
 
   function setZoom() {
       var range = document.getElementById("range");
-      var range_value=range.value;
+      var range_value = range.value;
       document.getElementById("ascii").style.transform = "scale("+(range_value).toString() +")";
   }
 </script>
+<script src="{{ "/js/ascii-art.js"}}"></script>
