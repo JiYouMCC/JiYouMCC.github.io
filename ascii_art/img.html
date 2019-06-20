@@ -49,62 +49,28 @@ title: "ASCII 图片"
     </div>
   </div>
   <div class="panel-body">
-    <input id="range" class="form-control" type="range" min="0.001" max="1" step=0.001 value=0.1 oninput="setZoom();"/>
+    <input id="range" class="form-control" type="range" min="0.025" max="1" step=0.001 value=0.1 oninput="setZoom();"/>
     <div class="out">
       <div id="ascii" class="ascii"></div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
-  function updateCanvas() {
-      var imgInput = document.getElementById("img_input");
-      if (imgInput.files && imgInput.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          var img = document.getElementById("img");
-          img.src = e.target.result;
-        }
-        reader.readAsDataURL(imgInput.files[0]);
-      }
-  }
-
   function go() {
-      var ascii = "";
-      var color = getColorChars(document.getElementById("color").value);
+    document.getElementById('ascii').innerHTML = "";
+    var ascii = "";
+    var colorStr = getColorChars(document.getElementById("color").value);
 
-      // get img
-      var img = document.getElementById('img');
-      var canvashide = document.createElement('canvas');
-      var ctx = canvashide.getContext("2d");
-      canvashide.width = img.width;
-      canvashide.height = img.height;
-      ctx.fillStyle="#ffffff";
-      ctx.fillRect(0, 0, canvashide.width, canvashide.height);
-      ctx.drawImage(img, 0, 0, img.width, img.height);
-
-      // make grey
-      var greyImg = ctx.createImageData(canvashide.width, canvashide.height);
-      var greyData = greyImg.data;
-      var sourceImg = ctx.getImageData(0, 0, canvashide.width, canvashide.height);
-      var sourceData = sourceImg.data;
-
-      for(i = 0; i < sourceData.length; i += 4) {
-        luma = Math.floor((sourceData[i] + sourceData[i+1] + sourceData[i+2])/3);
-        greyData[i] = greyData[i+1] = greyData[i+2] = luma;
-        ascii += color[Math.floor(luma * color.length / 256)];
-
-        greyData[i+3] = sourceData[i+3];
-        if ((i / 4 +1) % canvashide.width == 0) {
-          ascii += "\n";
-        }
-      }
-      document.getElementById('ascii').innerHTML = ascii;
-  }
-
-  function setZoom() {
-      var range = document.getElementById("range");
-      var range_value = range.value;
-      document.getElementById("ascii").style.transform = "scale("+(range_value).toString() +")";
+    // get img
+    var img = document.getElementById('img');
+    var canvashide = document.createElement('canvas');
+    var ctx = canvashide.getContext("2d");
+    canvashide.width = img.width;
+    canvashide.height = img.height;
+    ctx.fillStyle="#ffffff";
+    ctx.fillRect(0, 0, canvashide.width, canvashide.height);
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+    document.getElementById('ascii').innerHTML = getASCIICode(ctx, anvashide.width, canvashide.height, colorStr);
   }
 </script>
 <script src="{{ "/js/ascii-art.js"}}"></script>
