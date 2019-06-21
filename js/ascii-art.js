@@ -1,6 +1,6 @@
 var REC_601 = [0.299, 0.587, 0.114];
-var BT_709 = [0.2126, 0.7152, 0.0722];
-var BT_2100 = [0.2627, 0.6780, 0.0593];
+var REC_709 = [0.2126, 0.7152, 0.0722];
+var REC_2100 = [0.2627, 0.6780, 0.0593];
 var AVERAGE = [1/3, 1/3, 1/3];
 
 function getColorChars(colorStr) {
@@ -133,7 +133,18 @@ function generateImg() {
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, canvashide.width, canvashide.height);
   ctx.drawImage(img, 0, 0, img.width, img.height);
-  document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvashide.width, canvashide.height, colorStr, REC_601);
+
+  var greyScale = REC_601;
+  if (document.getElementById("grey_scale_601").checked) {
+    greyScale = REC_601;
+  } else if(document.getElementById("grey_scale_709").checked) {
+    greyScale = REC_709;
+  } else if(document.getElementById("grey_scale_2100").checked) {
+    greyScale = REC_2100;
+  } else if(document.getElementById("grey_scale_average").checked) {
+    greyScale = AVERAGE;
+  } 
+  document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvashide.width, canvashide.height, colorStr, greyScale);
 }
 
 function generateText(){
