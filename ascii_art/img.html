@@ -13,12 +13,20 @@ title: "ASCII 图片"
       <label for="img_input">选择图片</label>
       <input id="img_input" type="file" name="pic" accept="image/*" onchange="updateCanvas()">
     </div>
-    <div class="radio-inline">
+    <div class="form-group">
       <label for="grey_scale">灰度标准</label>
-      <input type="radio" id="grey_scale_601" name="grey_scale" checked> Rec. 601
-      <input type="radio" id="grey_scale_709" name="grey_scale">Rec. 709
-      <input type="radio" id="grey_scale_2100" name="grey_scale"> Rec. 2100
-      <input type="radio" id="grey_scale_average" name="grey_scale"> 平均
+      <label class="radio-inline">
+        <input type="radio" id="grey_scale_601" name="grey_scale" checked> Rec. 601
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="grey_scale_709" name="grey_scale">Rec. 709
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="grey_scale_2100" name="grey_scale"> Rec. 2100
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="grey_scale_average" name="grey_scale"> 平均
+      </label>
     </div>
     <div class="form-group">
       <label for="color">字符列表</label>
