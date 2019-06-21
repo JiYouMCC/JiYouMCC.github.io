@@ -1,6 +1,6 @@
 var REC_601 = [0.299, 0.587, 0.114];
 var BT_709 = [0.2126, 0.7152, 0.0722];
-var BT_2100 [0.2627, 0.6780, 0.0593];
+var BT_2100 = [0.2627, 0.6780, 0.0593];
 var AVERAGE = [1/3, 1/3, 1/3];
 
 function getColorChars(colorStr) {
@@ -33,7 +33,7 @@ function getColorChars(colorStr) {
   }
 
   if (colorStr == undefined || colorStr == "") {
-    colorStr = "$&M#%0OGDC*+;, ";
+    colorStr = "MNHQ$OC?7>!:-;. ";
   }
 
   var colorArray = colorStr.split("");
