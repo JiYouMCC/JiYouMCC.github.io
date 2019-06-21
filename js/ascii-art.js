@@ -1,3 +1,8 @@
+var REC_601 = [0.299, 0.587, 0.114];
+var BT_709 = [0.2126, 0.7152, 0.0722];
+var BT_2100 [0.2627, 0.6780, 0.0593];
+var AVERAGE = [1/3, 1/3, 1/3];
+
 function getColorChars(colorStr) {
   function getCharDensity(char) {
     var canvas = document.createElement("canvas");
@@ -71,15 +76,20 @@ function updateCanvas() {
   }
 }
 
-function getASCIICode(ctx, width, height, colorStr) {
+function getASCIICode(ctx, width, height, colorStr, greyScale) {
   var ascii = "";
   var greyImg = ctx.createImageData(width, height);
   var greyData = greyImg.data;
   var sourceImg = ctx.getImageData(0, 0, width, height);
   var sourceData = sourceImg.data;
-
+  if (greyScale == undefined) {
+    greyScale = REC_601;
+  }
+  var r_s = greyScale[0];
+  var g_s = greyScale[1];
+  var b_s = greyScale[2];
   for (i = 0; i < sourceData.length; i += 4) {
-    luma = Math.floor((sourceData[i] + sourceData[i + 1] + sourceData[i + 2]) / 3);
+    luma = Math.floor(sourceData[i] * r_s + sourceData[i + 1] * g_s + sourceData[i + 2] * b_s);
     greyData[i] = greyData[i + 1] = greyData[i + 2] = luma;
     ascii += colorStr[Math.floor(luma * colorStr.length / 256)];
     greyData[i + 3] = sourceData[i + 3];
@@ -123,7 +133,7 @@ function generateImg() {
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, canvashide.width, canvashide.height);
   ctx.drawImage(img, 0, 0, img.width, img.height);
-  document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvashide.width, canvashide.height, colorStr);
+  document.getElementById('ascii').innerHTML = getASCIICode(ctx, canvashide.width, canvashide.height, colorStr, REC_601);
 }
 
 function generateText(){
