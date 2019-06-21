@@ -10,12 +10,16 @@ use_code: true
   </div>
   <div class="panel-body">
     <canvas id="canvas" style="border:1px solid black"></canvas>
-    <div class="form-group">
-      <div class="input-group">
+    <div class="form-inline">
+      <div class="form-group">
         <label for="img_input">画布大小</label>
-        <input class="form-control" id="canvas_width" type="number" min="100" max="600" value="130">
-        <div class="input-group-addon">$</div>
-        <input class="form-control" id="canvas_height" type="number" min="100" max="600" value="30">
+        <div class="form-group">
+          <input class="form-control" id="canvas_width" type="number" min="100" max="600" value="130">
+        </div>
+        <div class="sr-only">*</div>
+        <div class="form-group">
+          <input class="form-control" id="canvas_height" type="number" min="100" max="600" value="30">
+        </div>
       </div>
     </div>
     <div class="form-group">
