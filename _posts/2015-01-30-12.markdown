@@ -5,15 +5,15 @@ date:    2015-1-30 11:17:00 +0800
 tags: django python
 issue: 5
 ---
-* [ ] 把野狗剥离，迁移旧评论为js
-* [ ] 迁移到github issue评论
 * [ ] 小工具-还款计算表
 * [ ] 二维码解析
 * [ ] 共享文档
 * [ ] 轮子：标签云<https://github.com/atizo/PyTagCloud> 文字碰撞 <http://www.wordle.net/>
-* [ ] ascii art全js化
 
 <!--more-->
+* [x] 2019-6-21 ascii art全js化
+* [x] 把野狗剥离，迁移旧评论为js
+* [x] 迁移到github issue评论
 * [ ] ~~修改密码昵称ajax化~~
 * [ ] ~~支持找回密码~~
 * [ ] ~~简易账本 bootstrap化/ 优化/ 支持分类筛选~~
