@@ -356,6 +356,11 @@ blockquote {
     -o-animation: photo 1s;
 }
     
+.modal-photo {
+    top: 50%;
+    transform: translateY(-50%);
+}
+    
 @keyframes photo {
     from {opacity: 0;}
     to {opacity: 1;}
