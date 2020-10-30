@@ -10,137 +10,143 @@
   <script type="text/javascript">
     var svg = d3.select("#myCanvas")
       .append("svg")
-      .attr("width", 700)
+      .attr("width", 1000)
       .attr("height", 150);
     var data = [{
-      "date": new Date("10/13/20"),
+      "date": "10/13/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("10/17/20"),
+      "date": "10/17/20",
       "received": "0",
       "sent": "4"
     }, {
-      "date": new Date("10/18/20"),
+      "date": "10/18/20",
       "received": "0",
       "sent": "3"
     }, {
-      "date": new Date("10/20/20"),
+      "date": "10/20/20",
       "received": "4",
       "sent": "5"
     }, {
-      "date": new Date("10/22/20"),
+      "date": "10/22/20",
       "received": "2",
       "sent": "0"
     }, {
-      "date": new Date("10/25/20"),
+      "date": "10/25/20",
       "received": "1",
       "sent": "8"
     }, {
-      "date": new Date("10/26/20"),
+      "date": "10/26/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("10/28/20"),
+      "date": "10/28/20",
       "received": "2",
       "sent": "0"
-    }, {
-      "date": new Date("10/3/20"),
+    },
+    {
+      "date": "10/29/20",
+      "received": "2",
+      "sent": "0"
+    }, 
+    {
+      "date": "10/3/20",
       "received": "0",
       "sent": "8"
     }, {
-      "date": new Date("10/4/20"),
+      "date": "10/4/20",
       "received": "0",
       "sent": "13"
     }, {
-      "date": new Date("10/8/20"),
+      "date": "10/8/20",
       "received": "0",
       "sent": "1"
     }, {
-      "date": new Date("10/8/20"),
+      "date": "10/8/20",
       "received": "2",
       "sent": "0"
     }, {
-      "date": new Date("4/19/20"),
+      "date": "4/19/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("4/4/20"),
+      "date": "4/4/20",
       "received": "0",
       "sent": "1"
     }, {
-      "date": new Date("5/12/20"),
+      "date": "5/12/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("5/13/20"),
+      "date": "5/13/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("5/15/20"),
+      "date": "5/15/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("5/9/20"),
+      "date": "5/9/20",
       "received": "0",
       "sent": "3"
     }, {
-      "date": new Date("6/26/20"),
+      "date": "6/26/20",
       "received": "0",
       "sent": "7"
     }, {
-      "date": new Date("6/29/20"),
+      "date": "6/29/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("6/30/20"),
+      "date": "6/30/20",
       "received": "2",
       "sent": "0"
     }, {
-      "date": new Date("7/12/20"),
+      "date": "7/12/20",
       "received": "0",
       "sent": "4"
     }, {
-      "date": new Date("7/15/20"),
+      "date": "7/15/20",
       "received": "3",
       "sent": "0"
     }, {
-      "date": new Date("7/17/20"),
+      "date": "7/17/20",
       "received": "2",
       "sent": "0"
     }, {
-      "date": new Date("7/20/20"),
+      "date": "7/20/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("7/3/20"),
+      "date": "7/3/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("7/5/20"),
+      "date": "7/5/20",
       "received": "1",
       "sent": "5"
     }, {
-      "date": new Date("7/7/20"),
+      "date": "7/7/20",
       "received": "2",
       "sent": "0"
     }, {
-      "date": new Date("8/26/20"),
+      "date": "8/26/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("8/9/20"),
+      "date": "8/9/20",
       "received": "1",
       "sent": "0"
     }, {
-      "date": new Date("9/1/20"),
+      "date": "9/1/20",
       "received": "1",
       "sent": "0"
     }]
 
-    var offset = 10;
-    var gap = 1;
-    var size = 10;
+    var offset = 15;
+    var gap = 3;
+    var size = 15;
 
     var box = svg.append("g");
     var ruler = svg.append("g");
@@ -162,32 +168,31 @@
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "central")
         .text(dayName[i])
-        .attr("font-size", "8px")
+        .attr("font-size", (size-2) +"px")
         .attr("fill", "#055");
     }
 
     for (var i = 0; i <= dayCount; i++) {
-      var theData = data.find(i => i.date.toDateString() == date.toDateString());
+      var theData = data.find(i => new Date(i.date).toDateString() == date.toDateString());
       var received = 0;
       var sent = 0;
       if (theData) {
         received = theData.received || 0;
         sent = theData.sent || 0;
       }
-
+      var baseColor = 0xE;
       var color = "#" +
-        (15 - Math.min(Math.round(received / 2), 6)).toString(16) +
-        (15 - Math.min(Math.round(sent / 2), 6)).toString(16) +
-        "f";
-      console.log(color)
+        (baseColor - Math.min(Math.round(sent), baseColor - 1)).toString(16) +
+        (baseColor - Math.min(Math.round(sent) + Math.round(received), baseColor - 1)).toString(16) +
+        (baseColor - Math.min(Math.round(received), baseColor - 1)).toString(16);
       var rect = box.append("rect")
         .attr("x", offset + (size + gap) * (Math.floor(i / 7) + 1))
         .attr("y", offset + (size + gap) * date.getDay())
         .attr("width", size)
         .attr("height", size)
         .attr("fill", color)
-        .attr("stroke", "#aaa")
-        .attr("stroke-width", 0.5)
+        .attr("rx", size/5)
+        .attr("ry", size/5)
         .append("svg:title")
         .text(date.toLocaleDateString() + " 收：" + received + " 发：" + sent);
       if (date.getDate() == 1) {
@@ -197,7 +202,7 @@
           .attr("text-anchor", "left")
           .attr("alignment-baseline", "central")
           .text(monthName[date.getMonth()])
-          .attr("font-size", "8px")
+          .attr("font-size", (size-2)+"px")
           .attr("fill", "#055");
       }
       date.setDate(date.getDate() + 1);
