@@ -5,14 +5,8 @@
   </head>
   <body>
     <div id="myCanvas" width="666" height="500"></div>
-  </body>
-  <script src="https://d3js.org/d3.v5.js"></script>
-  <script type="text/javascript">
-    var svg = d3.select("#myCanvas")
-      .append("svg")
-      .attr("width", 1000)
-      .attr("height", 150);
-    var data = [{
+    <p>数据</p>
+    <textarea id="data" style="width: 950px;height: 200px">[{
       "date": "10/13/20",
       "received": "1",
       "sent": "0"
@@ -142,70 +136,84 @@
       "date": "9/1/20",
       "received": "1",
       "sent": "0"
-    }]
+    }]</textarea>
+    <button onclick="go();">更新</button>
+  </body>
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script type="text/javascript">
+    function go() {
+      document.getElementById("myCanvas").innerHTML="";
+      var svg = d3.select("#myCanvas")
+        .append("svg")
+        .attr("width", 1000)
+        .attr("height", 150);
+      var data = eval(document.getElementById("data").value);
 
-    var offset = 15;
-    var gap = 3;
-    var size = 15;
+      var offset = 15;
+      var gap = 3;
+      var size = 15;
 
-    var box = svg.append("g");
-    var ruler = svg.append("g");
+      var box = svg.append("g");
+      var ruler = svg.append("g");
 
-    var dayName = ['日', '一', '二', '三', '四', '五', '六'];
-    var monthName = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
-    var dayCount = 365;
-    var now = new Date();
-    var start = new Date();
-    start.setDate(now.getDate() - dayCount);
-    dayCount += start.getDay();
-    var date = new Date();
-    date.setDate(date.getDate() - dayCount)
+      var dayName = ['日', '一', '二', '三', '四', '五', '六'];
+      var monthName = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+      var dayCount = 365;
+      var now = new Date();
+      var start = new Date();
+      start.setDate(now.getDate() - dayCount);
+      dayCount += start.getDay();
+      var date = new Date();
+      date.setDate(date.getDate() - dayCount)
 
-    for (var i = 0; i < 7; i++) {
-      var text = box.append("text")
-        .attr("x", offset + size / 2)
-        .attr("y", offset + size / 2 + i * (size + gap))
-        .attr("text-anchor", "middle")
-        .attr("alignment-baseline", "central")
-        .text(dayName[i])
-        .attr("font-size", (size-2) +"px")
-        .attr("fill", "#055");
-    }
-
-    for (var i = 0; i <= dayCount; i++) {
-      var theData = data.find(i => new Date(i.date).toDateString() == date.toDateString());
-      var received = 0;
-      var sent = 0;
-      if (theData) {
-        received = theData.received || 0;
-        sent = theData.sent || 0;
-      }
-      var baseColor = 0xE;
-      var color = "#" +
-        (baseColor - Math.min(Math.round(sent), baseColor - 1)).toString(16) +
-        (baseColor - Math.min(Math.round(sent) + Math.round(received), baseColor - 1)).toString(16) +
-        (baseColor - Math.min(Math.round(received), baseColor - 1)).toString(16);
-      var rect = box.append("rect")
-        .attr("x", offset + (size + gap) * (Math.floor(i / 7) + 1))
-        .attr("y", offset + (size + gap) * date.getDay())
-        .attr("width", size)
-        .attr("height", size)
-        .attr("fill", color)
-        .attr("rx", size/5)
-        .attr("ry", size/5)
-        .append("svg:title")
-        .text(date.toLocaleDateString() + " 收：" + received + " 发：" + sent);
-      if (date.getDate() == 1) {
+      for (var i = 0; i < 7; i++) {
         var text = box.append("text")
-          .attr("x", offset + (size + gap) * (Math.floor(i / 7) + 1) + 1)
-          .attr("y", offset - (size / 2))
-          .attr("text-anchor", "left")
+          .attr("x", offset + size / 2)
+          .attr("y", offset + size / 2 + i * (size + gap))
+          .attr("text-anchor", "middle")
           .attr("alignment-baseline", "central")
-          .text(monthName[date.getMonth()])
-          .attr("font-size", (size-2)+"px")
+          .text(dayName[i])
+          .attr("font-size", (size-2) +"px")
           .attr("fill", "#055");
       }
-      date.setDate(date.getDate() + 1);
-    }
+
+      for (var i = 0; i <= dayCount; i++) {
+        var theData = data.find(i => new Date(i.date).toDateString() == date.toDateString());
+        var received = 0;
+        var sent = 0;
+        if (theData) {
+          received = theData.received || 0;
+          sent = theData.sent || 0;
+        }
+        var baseColor = 0xE;
+        var color = "#" +
+          (baseColor - Math.min(Math.round(sent), baseColor - 1)).toString(16) +
+          (baseColor - Math.min(Math.round(sent) + Math.round(received), baseColor - 1)).toString(16) +
+          (baseColor - Math.min(Math.round(received), baseColor - 1)).toString(16);
+        var rect = box.append("rect")
+          .attr("x", offset + (size + gap) * (Math.floor(i / 7) + 1))
+          .attr("y", offset + (size + gap) * date.getDay())
+          .attr("width", size)
+          .attr("height", size)
+          .attr("fill", color)
+          .attr("rx", size/5)
+          .attr("ry", size/5)
+          .append("svg:title")
+          .text(date.toLocaleDateString() + " 收：" + received + " 发：" + sent);
+        if (date.getDate() == 1) {
+          var text = box.append("text")
+            .attr("x", offset + (size + gap) * (Math.floor(i / 7) + 1) + 1)
+            .attr("y", offset - (size / 2))
+            .attr("text-anchor", "left")
+            .attr("alignment-baseline", "central")
+            .text(monthName[date.getMonth()])
+            .attr("font-size", (size-2)+"px")
+            .attr("fill", "#055");
+        }
+        date.setDate(date.getDate() + 1);
+      }
+    };
+    go();
+    
   </script>
 </html>
