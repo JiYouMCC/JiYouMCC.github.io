@@ -4,140 +4,17 @@
     <title>ICY日历</title>
   </head>
   <body>
-    <div id="myCanvas" width="666" height="500"></div>
+    <div id="myCanvas" width="1000" height="500"></div>
+    
+    <p>收</p>
+    <textarea id="received" style="width: 950px;height: 200px"></textarea>
+    <p>发</p>
+    <textarea id="sent" style="width: 950px;height: 200px"></textarea>
+    <p><button onclick="process();">生成数据</button></p>
     <p>数据</p>
-    <textarea id="data" style="width: 950px;height: 200px">[{
-      "date": "10/13/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "10/17/20",
-      "received": "0",
-      "sent": "4"
-    }, {
-      "date": "10/18/20",
-      "received": "0",
-      "sent": "3"
-    }, {
-      "date": "10/20/20",
-      "received": "4",
-      "sent": "5"
-    }, {
-      "date": "10/22/20",
-      "received": "2",
-      "sent": "0"
-    }, {
-      "date": "10/25/20",
-      "received": "1",
-      "sent": "8"
-    }, {
-      "date": "10/26/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "10/28/20",
-      "received": "2",
-      "sent": "0"
-    },
-    {
-      "date": "10/29/20",
-      "received": "2",
-      "sent": "0"
-    }, 
-    {
-      "date": "10/3/20",
-      "received": "0",
-      "sent": "8"
-    }, {
-      "date": "10/4/20",
-      "received": "0",
-      "sent": "13"
-    }, {
-      "date": "10/8/20",
-      "received": "0",
-      "sent": "1"
-    }, {
-      "date": "10/8/20",
-      "received": "2",
-      "sent": "0"
-    }, {
-      "date": "4/19/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "4/4/20",
-      "received": "0",
-      "sent": "1"
-    }, {
-      "date": "5/12/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "5/13/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "5/15/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "5/9/20",
-      "received": "0",
-      "sent": "3"
-    }, {
-      "date": "6/26/20",
-      "received": "0",
-      "sent": "7"
-    }, {
-      "date": "6/29/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "6/30/20",
-      "received": "2",
-      "sent": "0"
-    }, {
-      "date": "7/12/20",
-      "received": "0",
-      "sent": "4"
-    }, {
-      "date": "7/15/20",
-      "received": "3",
-      "sent": "0"
-    }, {
-      "date": "7/17/20",
-      "received": "2",
-      "sent": "0"
-    }, {
-      "date": "7/20/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "7/3/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "7/5/20",
-      "received": "1",
-      "sent": "5"
-    }, {
-      "date": "7/7/20",
-      "received": "2",
-      "sent": "0"
-    }, {
-      "date": "8/26/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "8/9/20",
-      "received": "1",
-      "sent": "0"
-    }, {
-      "date": "9/1/20",
-      "received": "1",
-      "sent": "0"
-    }]</textarea>
-    <button onclick="go();">更新</button>
+    <textarea id="data" style="width: 950px;height: 200px"></textarea>
+    <p><button onclick="go();">更新</button></p>
+    
   </body>
   <script src="https://d3js.org/d3.v5.js"></script>
   <script type="text/javascript">
@@ -145,7 +22,7 @@
       document.getElementById("myCanvas").innerHTML="";
       var svg = d3.select("#myCanvas")
         .append("svg")
-        .attr("width", 1000)
+        .attr("width", 1024)
         .attr("height", 150);
       var data = eval(document.getElementById("data").value);
 
@@ -213,7 +90,50 @@
         date.setDate(date.getDate() + 1);
       }
     };
+    function process() {
+      var result = [];
+      var receivedData = document.getElementById("received").value;
+      var sentData = document.getElementById("sent").value;
+      receivedData = receivedData.split("\n");
+      for (i in receivedData) {
+        var line = receivedData[i];
+        a= [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
+        if (a.length == 2){
+          var date = a[1][0];
+          var theData = result.find(i => new Date(i.date).toDateString() == new Date(date).toDateString());
+          if (theData) {
+            theData.received += 1;
+          } else {
+            result.push({
+              "date": date,
+              "received": 1,
+              "sent": 0
+            })
+          }
+        }
+      }
+      sentData = sentData.split("\n");
+      for (i in sentData) {
+        var line = sentData[i];
+        a= [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
+        if (a.length == 2 || a.length == 1){
+          var date = a[0][0];
+          var theData = result.find(i => new Date(i.date).toDateString() == new Date(date).toDateString());
+          if (theData) {
+            theData.sent += 1;
+          } else {
+            result.push({
+              "date": date,
+              "received": 0,
+              "sent": 1
+            })
+          }
+        }
+      }
+      document.getElementById("data").value = JSON.stringify(result);
+      go();
+    }
+    document.getElementById("data").value = "[{'date':'2020-11-02','received':4,'sent':0},{'date':'2020-10-26','received':1,'sent':0},{'date':'2020-10-30','received':2,'sent':0},{'date':'2020-10-28','received':2,'sent':0},{'date':'2020-10-22','received':2,'sent':0},{'date':'2020-10-29','received':2,'sent':0},{'date':'2020-10-20','received':4,'sent':5},{'date':'2020-10-25','received':1,'sent':8},{'date':'2020-10-13','received':1,'sent':0},{'date':'2020-10-08','received':2,'sent':1},{'date':'2020-07-17','received':2,'sent':0},{'date':'2020-08-26','received':1,'sent':0},{'date':'2020-07-15','received':3,'sent':0},{'date':'2020-07-07','received':2,'sent':0},{'date':'2020-08-09','received':1,'sent':0},{'date':'2020-07-20','received':1,'sent':0},{'date':'2020-06-30','received':2,'sent':0},{'date':'2020-09-01','received':1,'sent':0},{'date':'2020-07-05','received':1,'sent':5},{'date':'2020-06-29','received':1,'sent':0},{'date':'2020-07-03','received':1,'sent':0},{'date':'2020-05-15','received':1,'sent':0},{'date':'2020-05-13','received':1,'sent':0},{'date':'2020-05-12','received':1,'sent':0},{'date':'2020-04-19','received':1,'sent':0},{'date':'2020-11-01','received':0,'sent':9},{'date':'2020-10-18','received':0,'sent':3},{'date':'2020-10-17','received':0,'sent':4},{'date':'2020-10-04','received':0,'sent':13},{'date':'2020-10-03','received':0,'sent':8},{'date':'2020-07-12','received':0,'sent':4},{'date':'2020-06-26','received':0,'sent':7},{'date':'2020-05-09','received':0,'sent':3},{'date':'2020-04-04','received':0,'sent':1}]"
     go();
-    
   </script>
 </html>
