@@ -67,7 +67,7 @@ function addComment(comment) {
   var date = new Date(comment.created_at);
 
   var comment_detail = $("<div></div>");
-  comment_detail.append(
+  comment_detail.prepend(
     $("<div></div>").attr('id', 'comment_text_' + commentId).addClass('page_blog_comment_message')
   );
   var name_div = $("<div></div>");
