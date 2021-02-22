@@ -67,7 +67,7 @@ function addComment(comment) {
   var date = new Date(comment.created_at);
 
   var comment_detail = $("<div></div>");
-  comment_detail.prepend(
+  comment_detail.append(
     $("<div></div>").attr('id', 'comment_text_' + commentId).addClass('page_blog_comment_message')
   );
   var name_div = $("<div></div>");
@@ -93,7 +93,7 @@ function addComment(comment) {
   );
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
-  $("#git_comments").append(d_comments);
+  $("#git_comments").prepend(d_comments);
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
   emojiProcess();
 }
