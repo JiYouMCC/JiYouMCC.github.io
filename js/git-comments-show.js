@@ -92,8 +92,8 @@ function addComment(comment) {
   );
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
-  //$("#git_comments").append(d_comments);
-  d_comments.insertAfter("#div_comments");
+  $("#git_comments").append(d_comments);
+  //d_comments.insertAfter("#div_comments");
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
   emojiProcess();
 }
@@ -130,6 +130,7 @@ function showComments(issueId, page, postId) {
           buttons.append($('<button type="button" class="btn btn-default">' + title + '</button>').attr('id', 'button_page_' + result.links[index].ref).attr('issueId', issueId).attr('page', result.links[index].page));
         }
         pages.append(buttons);
+        //pages.insertAfter("#comment_form");
         $("#git_comments").append(pages);
       }
 
