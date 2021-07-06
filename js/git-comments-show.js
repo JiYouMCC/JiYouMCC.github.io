@@ -133,7 +133,7 @@ function showComments(issueId, page, postId) {
         $("#git_comments").append(pages);
       }
 
-      for (var i = result.data.length; i >= 0; i--) {
+      for (var i = 0; i < result.data.length; i++) {
         addComment(result.data[i]);
       }
 
