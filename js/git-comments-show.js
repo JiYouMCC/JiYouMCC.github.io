@@ -26,30 +26,30 @@ function formatDate(e) {
 }
 
 function timeSince(when) {
-    var now = new Date();
-    var span = now.valueOf() - when.valueOf();
-    var years = span / (1000 * 60 * 60 * 24 * 365);
-    var month = span / (1000 * 60 * 60 * 24 * 30);
-    var day = span / (1000 * 60 * 60 * 24);
-    var hours = span / (1000 * 60 * 60);
-    var minutes = span / (1000 * 60);
-    var seconds = span / (1000);
+  var now = new Date();
+  var span = now.valueOf() - when.valueOf();
+  var years = span / (1000 * 60 * 60 * 24 * 365);
+  var month = span / (1000 * 60 * 60 * 24 * 30);
+  var day = span / (1000 * 60 * 60 * 24);
+  var hours = span / (1000 * 60 * 60);
+  var minutes = span / (1000 * 60);
+  var seconds = span / (1000);
 
-    if (years >= 1) {
-        return(parseInt(years) + "年前");
-    } else if (month >= 1) {
-        return(parseInt(month) + "个月前");
-    } else if (day >= 1) {
-        return(parseInt(day) + "天前");
-    } else if (hours >= 1) {
-        return(parseInt(hours) + "小时前");
-    } else if (minutes >= 1) {
-        return(parseInt(minutes) + "分钟前");
-    } else if (seconds >= 1) {
-        return(parseInt(seconds) + "秒前");
-    } else {
-        return("刚刚");
-    }
+  if (years >= 1) {
+    return (parseInt(years) + "年前");
+  } else if (month >= 1) {
+    return (parseInt(month) + "个月前");
+  } else if (day >= 1) {
+    return (parseInt(day) + "天前");
+  } else if (hours >= 1) {
+    return (parseInt(hours) + "小时前");
+  } else if (minutes >= 1) {
+    return (parseInt(minutes) + "分钟前");
+  } else if (seconds >= 1) {
+    return (parseInt(seconds) + "秒前");
+  } else {
+    return ("刚刚");
+  }
 }
 
 
@@ -75,10 +75,9 @@ function addComment(comment) {
   name_div.append($("<span></span>").addClass("page_blog_comment_name").text(userName)).append(" ");
   name_div.append(
     $("<span></span>")
-      .addClass("page_datetime")
-      .text(timeSince(date))
-      .attr("title",formatDate(date)
-  ));  
+    .addClass("page_datetime")
+    .text(timeSince(date))
+    .attr("title", formatDate(date)));
   name_div.append(" ").append(
     $("<a></a>").attr("href", userLink).attr("target", "_blank").attr("title", "Github page").append(
       $("<button></button>").addClass("btn btn-link").append(
@@ -93,6 +92,7 @@ function addComment(comment) {
   );
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
+  //$("#git_comments").append(d_comments);
   d_comments.insertAfter("#div_comments");
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
   emojiProcess();
@@ -133,7 +133,7 @@ function showComments(issueId, page, postId) {
         $("#git_comments").append(pages);
       }
 
-      for (var i = result.data.length - 1; i >= 0; i--) {
+      for (var i = 0; i < result.data.length; i++) {
         addComment(result.data[i]);
       }
 
