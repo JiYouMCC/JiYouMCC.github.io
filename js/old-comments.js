@@ -497,12 +497,12 @@ var OldComments = {
         .addClass('collapse')
         .attr('role', "tabpanel")
         .attr('aria-labelledby', "old_comments_head");
-      old_head.insertBefore($("#git_comments"));
+      $("#comments").append(old_head);
+      //old_head.insertBefore($("#git_comments"));
       $("#comments").append(old_comments_line);
       //old_comments_line.insertBefore($("#git_comments"));
     }
     for (var i = comments.length - 1;i >=0;i--){
-    //for (var i = 0; i < comments.length; i++) {
       OldComments.addOldComment(comments[i]);
     }
   },
