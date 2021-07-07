@@ -26,3 +26,8 @@
   title: 图片转换ASCII艺术字符画
   href: /ascii_art/img
   blank: true
+
+- name: ICY收发日历
+  title: 明信片交换收发方格日历
+  href: /play/icy.html
+  blank: true
