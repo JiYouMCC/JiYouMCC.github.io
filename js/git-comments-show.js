@@ -111,6 +111,14 @@ function showComments(issueId, postId) {
           for (var i = 0; i < result.data.length; i++) {
             addComment(result.data[i]);
           }
+          $("button[id^=button_reply_]").click(function() {
+            var reply = $(this).attr("reply");
+            $("#comment").val($("#comment").val() + "@" + reply + " ");
+            $("html,body").animate({
+              scrollTop: $("#comment").offset().top
+            }, 1000);
+            $("#comment").focus();
+          });
         } else {
           handleError(result.data);
         }
