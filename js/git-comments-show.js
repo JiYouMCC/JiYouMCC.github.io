@@ -14,13 +14,6 @@ var emojiList = [":smile:",
   ":octocat:"
 ];
 
-var pageButtonTitle = {
-  'next': '下页',
-  'last': '尾页',
-  'prev': '上页',
-  'first': '首页'
-}
-
 function formatDate(e) {
   return e.getFullYear() + "-" + ("0" + (e.getMonth() + 1)).slice(-2) + "-" + ("0" + e.getDate()).slice(-2) + " " + ("0" + e.getHours()).slice(-2) + ":" + ("0" + e.getMinutes()).slice(-2) + ":" + ("0" + e.getSeconds()).slice(-2) + " "
 }
@@ -92,21 +85,42 @@ function addComment(comment) {
   );
 
   var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
-  //$("#list_comment_form").after(d_comments);
   $("#git_comments").prepend(d_comments);
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
   emojiProcess();
 }
 
-function showComments(issueId, page, postId) {
-  if (!page) {
-    page = 1;
-  }
+function showComments(issueId, postId) {
+  $('#refresh_comments').remove();
   $('div[id^=comments_]').remove();
-  var refresh = $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
-    $("<span></span>").addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate")
-  ).append(" 载入中……");
-  refresh.insertAfter($("#div_comments"));
+  function loopShowComments(issueId, page) {
+    GithubComments.Comments.Get(
+      issueId, 
+      function(result) {
+        if (result.status) {
+          if (result.links.length) {
+            for (index in result.links) {
+              var title = result.links[index].ref;
+              if (title == 'next') {
+                loopShowComments(issueId, page + 1);
+              }
+            }
+          }
+          for (var i = 0; i < result.data.length; i++) {
+            addComment(result.data[i]);
+          }
+        } else {
+          handleError(result.data);
+        }
+      },
+      page
+    )
+  };
+
+  $('div[id^=comments_]').remove();
+  $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
+      $("<span></span>").addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate")
+     ).append(" 载入中……").insertAfter($("#div_comments"));
 
   GithubComments.Comments.Count(issueId, function(result) {
     if (result.status) {
@@ -114,48 +128,7 @@ function showComments(issueId, page, postId) {
     }
   });
 
-  GithubComments.Comments.Get(issueId, function(result) {
-    $('#refresh_comments').remove();
-    $('div[id^=comments_]').remove();
-    if (result.status) {
-      if (result.links.length) {
-        var pages = $("<div></div>").addClass("list-group-item").attr('id', "comments_page");
-        var buttons = $('<div class="btn-group" role="group"></div>');
-        for (index in result.links) {
-          var title = result.links[index].ref;
-          if (pageButtonTitle[title]) {
-            title = pageButtonTitle[title];
-          }
-
-          buttons.append($('<button type="button" class="btn btn-default">' + title + '</button>').attr('id', 'button_page_' + result.links[index].ref).attr('issueId', issueId).attr('page', result.links[index].page));
-        }
-        pages.append(buttons);
-        //pages.insertAfter("#comment_form");
-        $("#git_comments").append(pages);
-      }
-
-      for (var i = 0; i < result.data.length; i++) {
-        addComment(result.data[i]);
-      }
-
-      $("button[id^=button_reply_]").click(function() {
-        var reply = $(this).attr("reply");
-        $("#comment").val($("#comment").val() + "@" + reply + " ");
-        $("html,body").animate({
-          scrollTop: $("#comment").offset().top
-        }, 1000);
-        $("#comment").focus();
-      });
-
-      $("button[id^=button_page_]").click(function() {
-        var b_page = $(this).attr("page");
-        var b_issue = $(this).attr("issueId");
-        showComments(b_issue, b_page, postId);
-      });
-    } else {
-      handleError(result.data);
-    }
-  }, page);
+  loopShowComments(issueId, 1);
 }
 
 function showLogin() {
