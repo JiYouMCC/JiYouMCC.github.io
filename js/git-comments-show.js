@@ -91,8 +91,10 @@ function addComment(comment) {
 }
 
 function showComments(issueId, postId) {
-  $('#refresh_comments').remove();
   $('div[id^=comments_]').remove();
+  $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
+      $("<span></span>").addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate")
+     ).append(" 载入中……").insertAfter($("#div_comments"));
   function loopShowComments(issueId, page) {
     GithubComments.Comments.Get(
       issueId, 
@@ -116,18 +118,12 @@ function showComments(issueId, postId) {
       page
     )
   };
-
-  $('div[id^=comments_]').remove();
-  $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
-      $("<span></span>").addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate")
-     ).append(" 载入中……").insertAfter($("#div_comments"));
-
   GithubComments.Comments.Count(issueId, function(result) {
     if (result.status) {
       $("[comments-count='" + issueId + "']").text(result.count + OldComments.GetCommentsCount(postId));
     }
   });
-
+  $('#refresh_comments').remove();
   loopShowComments(issueId, 1);
 }
 
