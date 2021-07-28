@@ -16,17 +16,17 @@ issue: 30
   <div id="myCanvas" width="650" height="490"></div>
   <div class="form-group">
     <label for="input_start_time">我收到的</label>
-    <textarea class="form-control" id="received" placeholder="直接从网页版【明信片】->【我收到的】粘贴过来，不包括表头"></textarea>
+    <textarea class="form-control" id="received" rows="12" placeholder="直接从网页版【明信片】->【我收到的】粘贴过来，不包括表头"></textarea>
   </div>
   <div class="form-group">
     <label for="input_start_time">我发出的</label>
-    <textarea class="form-control" id="sent" placeholder="直接从网页版【明信片】->【我发出的】粘贴过来，不包括表头"></textarea>
+    <textarea class="form-control" id="sent" rows="12" placeholder="直接从网页版【明信片】->【我发出的】粘贴过来，不包括表头"></textarea>
   </div>
   <div class="text-center">
     <button class="btn btn-default" onclick="process();">生成数据</button>
   </div>
   <div class="form-group">
-    <textarea class="form-control" id="data"></textarea>
+    <textarea class="form-control" id="data" rows="12"></textarea>
   </div>
   <div class="text-center">
     <button class="btn btn-default" onclick="go();">更新日历</button>
@@ -37,10 +37,6 @@ issue: 30
   <script type="text/javascript">
     function go() {
       document.getElementById("myCanvas").innerHTML="";
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
-      ctx.fillStyle = "white";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
       var svg = d3.select("#myCanvas")
         .append("svg")
         .attr("width", 650)
@@ -54,6 +50,12 @@ issue: 30
 
       var box = svg.append("g");
       var ruler = svg.append("g");
+      var rect = box.append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 650)
+          .attr("height", 490)
+          .attr("fill", "#ffffff");
 
       var dayName = ['日', '一', '二', '三', '四', '五', '六'];
       var monthName = ["㋀", "㋁", "㋂", "㋃", "㋄", "㋅", "㋆", "㋇", "㋈", "㋉", "㋊", "㋋"];
