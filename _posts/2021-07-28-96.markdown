@@ -25,6 +25,7 @@ issue: 30
   <div class="text-center">
     <button class="btn btn-default" onclick="process();">生成数据</button>
   </div>
+  <p></p>
   <div class="form-group">
     <textarea class="form-control" id="data" rows="12"></textarea>
   </div>
