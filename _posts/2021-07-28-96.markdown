@@ -4,7 +4,7 @@ title:  "ICY收发日历"
 date:   2021-07-28 12:00:00
 categories: 生活
 tags: 明信片 javascript
-use_code: true
+issue: 30
 ---
 ![](/img/blog_icy_calendar.gif)
 
@@ -23,9 +23,6 @@ use_code: true
     <textarea class="form-control" id="sent" placeholder="直接从网页版【明信片】->【我发出的】粘贴过来，不包括表头"></textarea>
   </div>
   <div class="text-center">
-    <button id="button_records" class="btn btn-default" onclick="process();">生成数据</button>
-  </div>
-  <div class="text-center">
     <button class="btn btn-default" onclick="process();">生成数据</button>
   </div>
   <div class="form-group">
@@ -40,6 +37,10 @@ use_code: true
   <script type="text/javascript">
     function go() {
       document.getElementById("myCanvas").innerHTML="";
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       var svg = d3.select("#myCanvas")
         .append("svg")
         .attr("width", 650)
