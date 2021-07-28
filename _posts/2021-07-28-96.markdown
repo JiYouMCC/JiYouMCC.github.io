@@ -10,6 +10,7 @@ issue: 30
 
 在ICardYou上偶尔收发明信片，心血来潮做了个日历。
 原来做成了独立页面，这里整理一下。
+感觉可以放在明信片的背面作为背景之类的。
 
 <!--more-->
 <div>
@@ -41,7 +42,7 @@ issue: 30
       var svg = d3.select("#myCanvas")
         .append("svg")
         .attr("width", 650)
-        .attr("height", 490);
+        .attr("height", 380);
       var data = eval(document.getElementById("data").value);
 
       var offset = 20;
@@ -55,7 +56,7 @@ issue: 30
           .attr("x", 0)
           .attr("y", 0)
           .attr("width", 650)
-          .attr("height", 490)
+          .attr("height", 380)
           .attr("fill", "#ffffff");
 
       var dayName = ['日', '一', '二', '三', '四', '五', '六'];
