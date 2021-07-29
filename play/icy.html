@@ -4,11 +4,15 @@
     <title>ICY日历</title>
   </head>
   <body>
-    <div id="myCanvas" width="700" height="1000"></div>
+    <div id="myCanvas" width="815" height="300"></div>
+    <p><input id="showWeekday" type="checkbox" checked="checked"> 显示星期标示</p>
+    <p><input id="showMonth" type="checkbox" checked="checked"> 显示月份标示</p>
     <p>页边距：<input id="offset" type="number" value="15"></p>
-    <p>间隙：<input id="gap" type="number" value="2"></p>
+    <p>行间隙：<input id="lineGap" type="number" value="0"></p>
+    <p>方块间隙：<input id="gap" type="number" value="1"></p>
     <p>方块尺寸：<input id="size" type="number" value="20"></p>
-    <p>日期范围年度(整数)（实际长度=年度*364-7）：<input id="yearCount" type="number" value="1"></p>
+    <p>每行显示周数：<input id="weekinline" type="number" value="52"></p>
+    <p>日期范围天数：<input id="dayCount" type="number" value="720"> 实际天数会根据星期来补足，所以需要微调</p>
     <p><button onclick="go();">更新</button></p>
     <p>收</p>
     <textarea id="received" style="width: 650px;height: 200px"></textarea>
@@ -21,105 +25,19 @@
   <script src="https://d3js.org/d3.v5.js"></script>
   <script type="text/javascript">
     function go() {
-      var yearCount = parseInt(document.getElementById("yearCount").value);
+      var dayCount = parseInt(document.getElementById("dayCount").value);
       var offset = parseInt(document.getElementById("offset").value);
       var gap = parseInt(document.getElementById("gap").value);
-      var size = parseInt(document.getElementById("size").value);;
+      var lineGap = parseInt(document.getElementById("lineGap").value);
+      var size = parseInt(document.getElementById("size").value);
+      var showWeekday = document.getElementById("showWeekday").checked;
+      var showMonth = document.getElementById("showMonth").checked;
+      var weekinline = parseInt(document.getElementById("weekinline").value);
       var fontFamily = "Segoe UI, Tahoma, Arial, Microsoft YaHei, sans-serif";
-
-      var canvasWidth = offset + size + gap + 26 * (size + gap) + offset;
-      var canvasHeight = offset + yearCount * 2 * (size + gap + (size + gap) * 7 + offset);
-
-      document.getElementById("myCanvas").innerHTML="";
-      var svg = d3.select("#myCanvas")
-        .append("svg")
-        .attr("width", canvasWidth)
-        .attr("height", canvasHeight);
-      var data = eval(document.getElementById("data").value);
-
-      var box = svg.append("g");
-      var ruler = svg.append("g");
-
-      ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", 0)
-        .attr("y1", 0)
-        .attr("x2", 0)
-        .attr("y2", canvasHeight);
-
-      ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", 0)
-        .attr("y1", 0)
-        .attr("x2", canvasWidth)
-        .attr("y2", 0);
-
-        ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", 0)
-        .attr("y1", canvasHeight)
-        .attr("x2", canvasWidth)
-        .attr("y2", canvasHeight);
-
-
-      ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", offset)
-        .attr("y1", 0)
-        .attr("x2", offset)
-        .attr("y2", canvasHeight);
-
-      for (var i = 0; i < 26; i++) {
-        ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", offset + size + i * (size + gap))
-        .attr("y1", 0)
-        .attr("x2", offset + size + i * (size + gap))
-        .attr("y2", canvasHeight);
-
-        ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", offset + size + gap + i * (size + gap))
-        .attr("y1", 0)
-        .attr("x2", offset + size + gap + i * (size + gap))
-        .attr("y2", canvasHeight);
-      }
-
-      ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", offset + size + gap + 26 * (size + gap) - gap)
-        .attr("y1", 0)
-        .attr("x2", offset + size + gap + 26 * (size + gap) - gap)
-        .attr("y2", canvasHeight);
-
-
-      ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", offset + size + gap + 26 * (size + gap) )
-        .attr("y1", 0)
-        .attr("x2", offset + size + gap + 26 * (size + gap) )
-        .attr("y2", canvasHeight);
-
-        ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", offset + size + gap + 26 * (size + gap) + offset )
-        .attr("y1", 0)
-        .attr("x2", offset + size + gap + 26 * (size + gap) + offset)
-        .attr("y2", canvasHeight);
-
 
       var dayName = ['日', '一', '二', '三', '四', '五', '六'];
       var monthName = ["㋀", "㋁", "㋂", "㋃", "㋄", "㋅", "㋆", "㋇", "㋈", "㋉", "㋊", "㋋"];
-      var dayCount = 364 * yearCount - 7;
+      var dayCount = dayCount;
       var now = new Date();
       var start = new Date();
       start.setDate(now.getDate() - dayCount);
@@ -127,78 +45,36 @@
       var date = new Date();
       date.setDate(date.getDate() - dayCount)
 
-      // week day name
-      for (var j = 0; j < dayCount / 7 / 26; j++)
-      {
-        for (var i = 0; i < 7; i++) {
-          var text = box.append("text")
-            .attr("x", offset + size / 2)
-            .attr("y", offset + size / 2 + size + gap + i * (size + gap) 
-              + j * (offset + size + gap + 7 * (size + gap))
+      var canvasWidth = offset + (showWeekday ? (size + gap) : 0) + weekinline * (size + gap) + offset;
+      var canvasHeight = offset + Math.ceil(dayCount / weekinline / 7) * ((showMonth ? (size + gap) : 0) + (size + gap) * 7 + lineGap) - lineGap + offset;
+
+      document.getElementById("myCanvas").innerHTML = "";
+      var svg = d3.select("#myCanvas")
+        .append("svg")
+        .attr("width", canvasWidth)
+        .attr("height", canvasHeight);
+      var data = eval(document.getElementById("data").value);
+
+      var box = svg.append("g");
+      var weekdayText = svg.append("g");
+      var monthText = svg.append("g");
+
+      if (showWeekday) {
+        for (var j = 0; j < dayCount / 7 / weekinline; j++) {
+          for (var i = 0; i < 7; i++) {
+            weekdayText.append("text")
+              .attr("x", offset + size / 2)
+              .attr("y", offset + size / 2 + (showMonth ? (size + gap) : 0) + i * (size + gap) +
+                j * (lineGap + gap + (showMonth ? (size + gap) : 0) + 7 * (size + gap))
               )
-            .attr("text-anchor", "middle")
-            .attr("alignment-baseline", "middle")
-            .text(dayName[i])
-            .attr("font-size", (size-3) +"px")
-            .attr("font-family", fontFamily)
-            .attr("fill", "#055");
-
-            ruler.append('line')
-            .style("stroke", "black")
-            .style("stroke-width", 1)
-            .attr("x1", 0)
-            .attr("y1", offset + size + gap + j * (offset + size + gap + 7 * (size + gap))+ i * (size + gap))
-            .attr("x2", canvasWidth)
-            .attr("y2", offset + size + gap + j * (offset + size + gap + 7 * (size + gap))+ i * (size + gap));
-
-            ruler.append('line')
-            .style("stroke", "black")
-            .style("stroke-width", 1)
-            .attr("x1", 0)
-            .attr("y1", offset + size + j * (offset + size + gap + 7 * (size + gap))+ i * (size + gap))
-            .attr("x2", canvasWidth)
-            .attr("y2", offset + size + j * (offset + size + gap + 7 * (size + gap))+ i * (size + gap));
+              .attr("text-anchor", "middle")
+              .attr("alignment-baseline", "middle")
+              .text(dayName[i])
+              .attr("font-size", (size - 3) + "px")
+              .attr("font-family", fontFamily)
+              .attr("fill", "#055");
           }
-
-          ruler.append('line')
-            .style("stroke", "black")
-            .style("stroke-width", 1)
-            .attr("x1", 0)
-            .attr("y1", offset + size + j * (offset + size + gap + 7 * (size + gap))+ 7 * (size + gap))
-            .attr("x2", canvasWidth)
-            .attr("y2", offset + size + j * (offset + size + gap + 7 * (size + gap))+ 7 * (size + gap));
-
-            ruler.append('line')
-            .style("stroke", "black")
-            .style("stroke-width", 1)
-            .attr("x1", 0)
-            .attr("y1", offset + size+ gap + j * (offset + size + gap + 7 * (size + gap))+ 7 * (size + gap))
-            .attr("x2", canvasWidth)
-            .attr("y2", offset + size+ gap + j * (offset + size + gap + 7 * (size + gap))+ 7 * (size + gap));
-
-        ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", 0)
-        .attr("y1", offset + j * (offset + size + gap + 7 * (size + gap)))
-        .attr("x2", canvasWidth)
-        .attr("y2", offset + j * (offset + size + gap + 7 * (size + gap)));
-
-        ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", 0)
-        .attr("y1", offset + size + gap + j * (offset + size + gap + 7 * (size + gap)))
-        .attr("x2", canvasWidth)
-        .attr("y2", offset + size + gap + j * (offset + size + gap + 7 * (size + gap)));
-
-        ruler.append('line')
-        .style("stroke", "black")
-        .style("stroke-width", 1)
-        .attr("x1", 0)
-        .attr("y1", offset + size + j * (offset + size + gap + 7 * (size + gap)))
-        .attr("x2", canvasWidth)
-        .attr("y2", offset + size + j * (offset + size + gap + 7 * (size + gap)));
+        }
       }
 
       for (var i = 0; i <= dayCount; i++) {
@@ -214,39 +90,41 @@
           (baseColor - Math.min(Math.round(sent), baseColor - 1)).toString(16) +
           (baseColor - Math.min(Math.round(sent) + Math.round(received), baseColor - 1)).toString(16) +
           (baseColor - Math.min(Math.round(received), baseColor - 1)).toString(16);
-        var x = offset + (size + gap) * (Math.floor(i / 7) + 1);
-        var y = offset + size + gap + (size + gap) * date.getDay();
+        var x = offset + (showWeekday ? (size + gap) : 0) + (size + gap) * (Math.floor(i / 7));
+        var y = offset + (showMonth ? (size + gap) : 0) + (size + gap) * date.getDay();
         var monthY = offset + (size / 2);
-        x -= Math.floor(i / 7 / 26) * 26 * (size + gap)
-        y += Math.floor(i / 7 / 26) * (size + gap + 7 * (size + gap) + offset);
-        monthY += Math.floor(i / 7 / 26) * ( size + gap + 7 * (size + gap) + offset);
+        x -= Math.floor(i / 7 / weekinline) * weekinline * (size + gap)
+        y += Math.floor(i / 7 / weekinline) * ((showMonth ? (size + gap) : 0) + 7 * (size + gap) + lineGap);
+        monthY += Math.floor(i / 7 / weekinline) * ((showMonth ? (size + gap) : 0) + 7 * (size + gap) + lineGap);
 
-
-        var rect = box.append("rect")
+        box.append("rect")
           .attr("x", x)
           .attr("y", y)
           .attr("width", size)
           .attr("height", size)
           .attr("fill", color)
-          .attr("rx", size/10)
-          .attr("ry", size/10)
+          .attr("rx", size / 10)
+          .attr("ry", size / 10)
           .append("svg:title")
           .text(date.toLocaleDateString() + "\n收：" + received + "\n发：" + sent);
-        if (date.getDate() == 1) {
-          var text = box.append("text")
-            .attr("x", x + size / 2)
-            .attr("y", monthY)
-            .attr("text-anchor", "middle")
-            .attr("alignment-baseline", "central")
-            .text(monthName[date.getMonth()])
-            .attr("font-size", (size - 3) + "px")
-            .attr("font-family", fontFamily)
-            .attr("fill", "#055");
+        if (showMonth) {
+          if (date.getDate() == 1) {
+            monthText.append("text")
+              .attr("x", x + size / 2)
+              .attr("y", monthY)
+              .attr("text-anchor", "middle")
+              .attr("alignment-baseline", "central")
+              .text(monthName[date.getMonth()])
+              .attr("font-size", (size - 3) + "px")
+              .attr("font-family", fontFamily)
+              .attr("fill", "#055");
+          }
         }
+
         date.setDate(date.getDate() + 1);
       }
-      ruler.remove();
     };
+
     function process() {
       var result = [];
       var receivedData = document.getElementById("received").value;
@@ -254,8 +132,8 @@
       receivedData = receivedData.split("\n");
       for (i in receivedData) {
         var line = receivedData[i];
-        a= [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
-        if (a.length == 2){
+        a = [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
+        if (a.length == 2) {
           var date = a[1][0];
           var theData = result.find(i => new Date(i.date).toDateString() == new Date(date).toDateString());
           if (theData) {
@@ -272,8 +150,8 @@
       sentData = sentData.split("\n");
       for (i in sentData) {
         var line = sentData[i];
-        a= [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
-        if (a.length == 2 || a.length == 1){
+        a = [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
+        if (a.length == 2 || a.length == 1) {
           var date = a[0][0];
           var theData = result.find(i => new Date(i.date).toDateString() == new Date(date).toDateString());
           if (theData) {
@@ -290,6 +168,7 @@
       document.getElementById("data").value = JSON.stringify(result);
       go();
     }
+
     document.getElementById("data").value = "[{'date':'2020-07-15','received':3,'sent':0},{'date':'2020-07-07','received':2,'sent':0},{'date':'2020-07-03','received':1,'sent':0},{'date':'2020-06-30','received':2,'sent':0},{'date':'2020-05-15','received':1,'sent':0},{'date':'2020-05-13','received':1,'sent':0},{'date':'2020-05-12','received':1,'sent':0},{'date':'2020-04-19','received':1,'sent':0},{'date':'2021-01-06','received':2,'sent':0},{'date':'2020-12-10','received':3,'sent':0},{'date':'2020-12-05','received':1,'sent':3},{'date':'2020-11-13','received':1,'sent':0},{'date':'2020-11-06','received':1,'sent':0},{'date':'2020-11-23','received':1,'sent':0},{'date':'2020-12-01','received':1,'sent':1},{'date':'2020-11-02','received':9,'sent':0},{'date':'2020-11-05','received':2,'sent':0},{'date':'2020-10-26','received':1,'sent':0},{'date':'2020-10-30','received':2,'sent':0},{'date':'2020-10-28','received':2,'sent':0},{'date':'2020-10-22','received':2,'sent':0},{'date':'2020-10-29','received':2,'sent':0},{'date':'2020-10-20','received':4,'sent':5},{'date':'2020-10-25','received':1,'sent':8},{'date':'2020-10-13','received':1,'sent':0},{'date':'2020-10-08','received':2,'sent':1},{'date':'2020-07-17','received':2,'sent':0},{'date':'2020-08-26','received':1,'sent':0},{'date':'2020-08-09','received':1,'sent':0},{'date':'2020-07-20','received':1,'sent':0},{'date':'2020-09-01','received':1,'sent':0},{'date':'2020-07-05','received':1,'sent':5},{'date':'2020-06-29','received':1,'sent':0},{'date':'2021-07-03','received':2,'sent':4},{'date':'2021-06-24','received':1,'sent':0},{'date':'2021-06-22','received':1,'sent':0},{'date':'2021-06-14','received':1,'sent':0},{'date':'2021-05-31','received':4,'sent':0},{'date':'2021-05-28','received':1,'sent':3},{'date':'2021-05-26','received':1,'sent':0},{'date':'2021-06-06','received':1,'sent':0},{'date':'2021-05-19','received':1,'sent':0},{'date':'2021-05-18','received':2,'sent':3},{'date':'2021-06-07','received':1,'sent':2},{'date':'2021-05-20','received':1,'sent':1},{'date':'2021-05-23','received':1,'sent':0},{'date':'2021-05-06','received':1,'sent':0},{'date':'2021-05-02','received':1,'sent':2},{'date':'2021-04-10','received':1,'sent':0},{'date':'2021-04-06','received':1,'sent':0},{'date':'2021-04-01','received':3,'sent':0},{'date':'2021-03-24','received':1,'sent':0},{'date':'2021-04-17','received':1,'sent':0},{'date':'2021-04-03','received':1,'sent':0},{'date':'2021-03-26','received':1,'sent':0},{'date':'2021-03-22','received':1,'sent':0},{'date':'2021-06-26','received':1,'sent':2},{'date':'2021-03-29','received':1,'sent':0},{'date':'2021-03-13','received':1,'sent':0},{'date':'2021-03-10','received':1,'sent':0},{'date':'2021-03-07','received':2,'sent':0},{'date':'2021-03-16','received':1,'sent':0},{'date':'2021-03-09','received':1,'sent':0},{'date':'2021-03-12','received':2,'sent':4},{'date':'2021-03-02','received':2,'sent':0},{'date':'2021-03-01','received':1,'sent':0},{'date':'2021-02-24','received':1,'sent':0},{'date':'2021-02-17','received':1,'sent':3},{'date':'2021-01-23','received':1,'sent':0},{'date':'2020-12-28','received':1,'sent':0},{'date':'2020-12-23','received':1,'sent':0},{'date':'2020-07-12','received':0,'sent':4},{'date':'2020-06-26','received':0,'sent':7},{'date':'2020-05-09','received':0,'sent':3},{'date':'2020-04-04','received':0,'sent':1},{'date':'2020-11-01','received':0,'sent':9},{'date':'2020-11-07','received':0,'sent':1},{'date':'2020-10-18','received':0,'sent':3},{'date':'2020-10-17','received':0,'sent':4},{'date':'2020-10-04','received':0,'sent':13},{'date':'2020-10-03','received':0,'sent':8},{'date':'2021-03-06','received':0,'sent':5},{'date':'2021-02-28','received':0,'sent':8},{'date':'2021-02-27','received':0,'sent':6},{'date':'2021-02-22','received':0,'sent':3},{'date':'2021-02-12','received':0,'sent':8},{'date':'2020-12-14','received':0,'sent':1},{'date':'2020-11-09','received':0,'sent':1},{'date':'2021-02-25','received':0,'sent':5},{'date':'2021-02-19','received':0,'sent':1},{'date':'2021-06-23','received':0,'sent':2},{'date':'2021-05-16','received':0,'sent':6},{'date':'2021-04-25','received':0,'sent':3},{'date':'2021-03-20','received':0,'sent':9}]"
     go();
   </script>
