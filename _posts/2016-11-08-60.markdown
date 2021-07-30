@@ -5,6 +5,7 @@ date:   2016-11-08 22:28:17 +0800
 categories: 技术
 tags: projecteulor java c
 use_code: true
+
 ---
 至少我以前做过2波欧拉，当然也是各种搁置。
 
@@ -235,6 +236,6 @@ What is the smallest positive number that is evenly divisible by all of the numb
  
  　11 1 13 7 1 4 17 3 19 1
   
-结果=2　*　2　*　3　*　5　*　11　*　13　*　7　*　4　*　17　*　3　*　19
+结果=$$2　*　2　*　3　*　5　*　11　*　13　*　7　*　4　*　17　*　3　*　19$$
 
 c的long long你妹啊！
