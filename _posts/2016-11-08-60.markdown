@@ -144,7 +144,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 一个数如果从前往后和从后往前念都相同，那么它就是回文数。
 
-由两个两位数相乘组成的最大回文数是9009= $$91*99$$ 。
+由两个两位数相乘组成的最大回文数是9009= \(91*99\) 。
 
 求由两个三位数相乘组成的最大回文数。
 
