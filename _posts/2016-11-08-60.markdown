@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "【更新到4】Project Eulor Problem 1-26,30"
+title:  "【更新到5】Project Eulor Problem 1-26,30"
 date:   2016-11-08 22:28:17 +0800
 categories: 技术
 tags: projecteulor java c
@@ -167,3 +167,74 @@ Find the largest palindrome made from the product of two 3-digit numbers.
                         result = og1 * og2;
         printf("%d\n",result); 
     } 
+
+--------
+
+## euler project:problem 5最小公倍数 ##
+2013-02-01 11:09:08
+
+2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+求1～20的最小公倍数
+
+    #include<stdio.h>
+    
+    long long GCD(long long a,long long b)
+    {
+        if(b==0)
+        {
+            return a;
+        }  
+        else
+        {
+            return GCD(b,a%b);
+        }
+    }
+    
+    long long LCM( long long a,long long b)  
+    {  
+        return a*b/GCD(a,b);  
+    }  
+    
+    int main()  
+    {  
+        long long i=2,result=1;
+        for(;i<=20;i++)  
+        {  
+            result=LCM(result,i);  
+        }  
+        
+        printf("%lld\n",result);  
+    } 
+
+输出结果之后再
+
+    printf("%d\n",2*2*3*5*11*13*7*4*17*3*19 );
+
+两数最小公倍数等于两数之积除以最大公约数。虽然我是wiki搜到的公式，但是能够理解。
+
+其实最大公约数也是wiki搜到的算法，没看懂。如果要短除求最大公约和最小公倍貌似我还记得，不过当时老师也只是教了方法没说为什么。
+
+2┃11 12 13 14 15 16 17 18 19 20
+
+　┗━━━━━━━━━━━━━━━━
+ 
+2┃11 6 13 7 15 8 17 9 19 10
+
+　┗━━━━━━━━━━━━━━━━
+ 
+3┃11 3 13 7 15 4 17 9 19 5
+
+　┗━━━━━━━━━━━━━━━━
+ 
+5┃11 1 13 7 5 4 17 3 19 5
+
+　┗━━━━━━━━━━━━━━━━
+ 
+ 　11 1 13 7 1 4 17 3 19 1
+  
+结果=2*2*3*5*11*13*7*4*17*3*19
+
+c的long long你妹啊！
