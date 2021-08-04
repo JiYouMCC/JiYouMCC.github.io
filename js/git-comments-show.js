@@ -134,6 +134,9 @@ function showComments(issueId, postId) {
       } else {
         $("#comment_all_count").removeAttr('style');
       }
+      if (result.count>0){
+        $("#comment_all_count").css('border-bottom','0');
+      }
     }
   });
   $('#refresh_comments').remove();
@@ -202,6 +205,7 @@ function showUserForm(issueId, userInfo) {
             parseInt($("[comments-count='" + issueId + "']").text()) + 1
           );
           $("#comment_all_count").removeAttr('style');
+          $("#comment_all_count").css('border-bottom','0');
         } else {
           handleError(result.data);
         }
