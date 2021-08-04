@@ -201,6 +201,7 @@ function showUserForm(issueId, userInfo) {
           $("[comments-count='" + issueId + "']").text(
             parseInt($("[comments-count='" + issueId + "']").text()) + 1
           );
+          $("#comment_all_count").removeAttr('style');
         } else {
           handleError(result.data);
         }
