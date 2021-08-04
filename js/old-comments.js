@@ -486,6 +486,10 @@ var OldComments = {
           .attr('href', "#old_comments")
           .attr('aria-expanded', "true")
           .attr('aria-controls', "old_comments")
+          .css({ 
+            border-top: "1px solid",
+            border-top-left-radius: "0",
+            border-top-right-radius: "0"})
           .append($("<strong></strong>")
             .text("旧评论")
           )
