@@ -475,6 +475,7 @@ var OldComments = {
       return a.timestamp - b.timestamp;
     });
     if (comments.length > 0) {
+      $("#comment_all_count").attr("with_old", "true");
       var old_head = $("<div></div>")
         .attr('id', "old_comments_head")
         .addClass("panel-heading")
