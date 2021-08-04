@@ -501,10 +501,16 @@ var OldComments = {
         .addClass('collapse')
         .attr('role', "tabpanel")
         .attr('aria-labelledby', "old_comments_head");
+      var old_comments_count = $("<div></div>")
+        .attr('id', "old_comments_count")
+        .addClass("list-group-item")
+        .css({border-bottom: "0px"})
+        .append($("<strong>&nbsp</strong>"));      
       $("#comments").append(old_head);
       //old_head.insertBefore($("#git_comments"));
       $("#comments").append(old_comments_line);
       //old_comments_line.insertBefore($("#git_comments"));
+      $("#comments").append(old_comments_count);
     }
     for (var i = comments.length - 1;i >=0;i--){
       OldComments.addOldComment(comments[i]);
