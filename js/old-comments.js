@@ -470,7 +470,7 @@ var OldComments = {
     var comments = OldComments.GetComments(postId);
     $('#old_comments_head').remove();
     $('#old_comments_line').remove();
-    $("[comments-count]").text(comments.length);
+    $("[comments-count]").text(parseInt($("[comments-count]").text()) + comments.length);
     comments = comments.sort(function(a, b) {
       return a.timestamp - b.timestamp;
     });
