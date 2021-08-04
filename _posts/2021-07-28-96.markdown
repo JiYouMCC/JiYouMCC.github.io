@@ -8,10 +8,12 @@ issue: 30
 ---
 ![](/img/blog_icy_calendar.gif)
 
-在ICardYou上偶尔收发明信片，心血来潮做了个日历。
+在[ICardYou](https://www.icardyou.icu/){:target="_blank"} 上偶尔收发明信片，心血来潮做了个日历。
 <!--more-->
 
-原来做成了独立页面，这里整理一下。
+原来做成了独立页面，这里整理一个预览版本。
+
+包含魔改功能的[独立页面](/play/icy.html){:target="_blank"} 
 
 感觉可以放在明信片的背面作为背景之类的。
 
