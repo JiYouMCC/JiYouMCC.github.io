@@ -380,3 +380,7 @@ blockquote {
     from {opacity: 0;}
     to {opacity: 1;}
 }
+
+.brb {
+    border-bottom: 0px;
+}
