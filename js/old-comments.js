@@ -470,7 +470,7 @@ var OldComments = {
     var comments = OldComments.GetComments(postId);
     $('#old_comments_head').remove();
     $('#old_comments_line').remove();
-    $("[comments-count]").text(parseInt($("[comments-count]").text()) + comments.length);
+    $("[comments-count]").text(comments.length);
     comments = comments.sort(function(a, b) {
       return a.timestamp - b.timestamp;
     });
@@ -507,7 +507,7 @@ var OldComments = {
       //old_head.insertBefore($("#git_comments"));
       $("#comments").append(old_comments_line);
       //old_comments_line.insertBefore($("#git_comments"));
-      $("#comments").append(old_comments_count);
+      //$("#comments").append(old_comments_count);
     }
     for (var i = comments.length - 1;i >=0;i--){
       OldComments.addOldComment(comments[i]);
