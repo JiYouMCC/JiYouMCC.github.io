@@ -129,6 +129,11 @@ function showComments(issueId, postId) {
   GithubComments.Comments.Count(issueId, function(result) {
     if (result.status) {
       $("[comments-count='" + issueId + "']").text(result.count + OldComments.GetCommentsCount(postId));
+      if (result.count ==0) {
+        $("#comment_all_count").attr('style', 'border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;')
+      } else {
+        $("#comment_all_count").removeAttr('style');
+      }
     }
   });
   $('#refresh_comments').remove();
