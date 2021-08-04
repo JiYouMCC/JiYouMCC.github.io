@@ -501,7 +501,7 @@ var OldComments = {
       var old_comments_count = $("<div></div>")
         .attr('id', "old_comments_count")
         .addClass("list-group-item")
-        .css({border-bottom: "0px"})
+        .attr('style', "border-bottom: '0px'")
         .append($("<strong>&nbsp</strong>"));      
       $("#comments").append(old_head);
       //old_head.insertBefore($("#git_comments"));
