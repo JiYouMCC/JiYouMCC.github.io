@@ -6,6 +6,7 @@ categories: 生活
 tags: javascript 猫
 use_code: true
 use_math: true
+issue: 32
 ---
 一直拿计算器计算我家灰灰应该吃多少，觉得太麻烦了。
 
