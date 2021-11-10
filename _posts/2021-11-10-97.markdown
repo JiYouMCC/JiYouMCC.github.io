@@ -10,7 +10,7 @@ use_math: true
 
 # 基础代谢公式（Resting Energy Requirements）
 
-RER (kcal) = $$[体重(kg)^(0.75)]*70$$
+RER (kcal) = $$[体重(kg)^0.75]*70$$
 
 # 对应系数表
 
@@ -78,4 +78,5 @@ function get_result() {
   var foodK = foodKcal/foodUnit;
   var result = (catWeight ** 0.75) * 70 * catK / foodK;
   document.getElementById("result").value = result;
+ }
 </script>
