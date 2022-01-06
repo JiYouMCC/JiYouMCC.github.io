@@ -123,6 +123,9 @@ input.task-list-item-checkbox {
 .page_blog_content table > tbody > tr:nth-of-type(odd) {
   background-color: #F3F8F1;
 }
+.page_blog_content ol {
+    padding-inline: 20px;
+}
 
 .page_blog_comment_name {
     font-weight: bold;
@@ -384,3 +387,4 @@ blockquote {
 .brb {
     border-bottom: 0px;
 }
+    
