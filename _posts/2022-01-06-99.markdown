@@ -43,7 +43,7 @@ issue: 34
 最后我探索了一下python各种库的使用，踩了很多坑，记录一下。
 
 1. 首先，老牌[xlrd](https://xlrd.readthedocs.io/){:target="_blank"}是不能用的，因为它不支持xlsx:worried:，虽然我平时都用它
-2. 然后，现在推荐的[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}它不支持图形和图片等等，虽然它里面有_drawing还有shape的包，但是捣鼓了半天没用，列表都是空的。
+2. 接着，现在推荐的[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}它不支持图形和图片等等，虽然它里面有_drawing还有shape的包，但是捣鼓了半天没用，列表都是空的。
 3. 然后，[xlwings](https://www.xlwings.org/){:target="_blank"}是可以用的，但是它本质是个插件，还是会起一个excel的app进行操作，虽然可以让它不显示窗口，但是实际应用的时候发现删除shape是一个一个删除的，于是就会有这样的画风:dizzy_face:：
 ```
     python excel.py
@@ -95,7 +95,7 @@ issue: 34
     app.quit()
 ```
 
-4. 最后我突然灵光一闪。主要还是在搜怎么删除图形又不用打开后台。我一直怀疑xlwings是删一个存一个或者删一个渲染一个才会那么那么慢，发现有人在steakoverflow上说，[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}不支持图形和图片，如果打开已有的会ignore！于是出现了以下代码：
+4. 最后，我突然灵光一闪。主要还是在搜怎么删除图形又不用打开后台。我一直怀疑xlwings是删一个存一个或者删一个渲染一个才会那么那么慢，发现有人在steakoverflow上说，[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}不支持图形和图片，如果打开已有的会ignore！于是出现了以下代码：
 ```
     import openpyxl
     import xlwings
