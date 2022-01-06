@@ -1,0 +1,130 @@
+---
+layout: post
+title:  "python删除Excel(.xlsx)中的图形"
+date:   2022-01-06 12:30:00 +0800
+categories: 技术
+tags: python excel
+use_code: true
+issue: 34
+use_math: true
+---
+
+今天小伙伴（下称:butterfly:Exceler）遇到了很恶心的问题，有个Excel卡得完全打不开。大家探索了一下发现里面有很多（具体多少当时还不知道）肉眼看不见的不显示的图形。
+
+<!--more-->
+
+群里有小伙伴(下称:leaves:VBAer)用VBA写了清理的脚本(手打复制，没有跑过，概不负责)，他的反馈是“我刚才让电脑删，花了10分钟。不过比预想的快”。
+
+```
+    Sub deleteobject()
+        Dim i As Integer
+        For i = 1 To ActiveWorkbook.Worksheets.Count
+            Dim o As Object
+            For Each o In Sheets(i).Shapes
+                o.Delete
+            Next o
+        Next i
+    End Sub
+```
+
+在他删的期间，我忍不住用python尝试写脚本。主要还是不熟悉吧，进度很慢，不过倒是把图形的数量给弄出来了。
+
+```
+53074
+[Finished in 444ms]
+```
+我：有5万个图形
+
+:leaves:VBAer：这是谁干的，拉出去毙了吧。。。
+
+:butterfly:Exceler：我们都抗议了几个月了
+
+:leaves:VBAer：故意让你们卡的吗？
+
+最后我探索了一下python各种库的使用，踩了很多坑，记录一下。
+
+1. 首先，老牌[xlrd](https://xlrd.readthedocs.io/en/latest/){:target="_blank"}是不能用的，因为它不支持xlsx:facepalm:，虽然我平时都用它
+2. 然后，[xlwings](https://www.xlwings.org/)是可以用的，但是它本质还是会起一个excel的app进行操作，虽然可以让它不显示窗口，但是实际应用的时候发现删除shape是一个一个删除的，于是就会有这样的画风:face_with_spiral_eyes:：
+```
+    python excel.py
+    里面有53074个图形
+    [                                        ] 0% 192/53074 已跑2分31秒 还有11小时33分17秒    
+```
+代码如下，如果图形比较少的情况还是可以等，几万个就算了吧
+```
+    import xlwings
+    import sys
+    import time
+
+
+    def sec_to_ch(second):
+        hours = int(second / 60 / 60)
+        minutes = int((second - hours * 60*60) / 60)
+        sec = int((second - hours * 60*60 - minutes * 60) % 60)
+        result = ''
+        if hours:
+            result += '%s小时' % hours
+        if minutes:
+            result += '%s分' % minutes
+        if sec:
+            result += '%s秒' % sec
+        return result
+
+
+    excel_app = xlwings.App(visible=False)
+    wb = excel_app.books.open('source.xlsx')
+    app = xlwings.apps.active
+    count = wb.sheets[0].shapes.count
+    print("里面有%s个图形" % count)
+
+    index = 0
+    start = time.time()
+    for shape in wb.sheets[0].shapes:
+        shape.delete()
+        the_time = time.time()
+        span = the_time - start
+        index += 1
+        per = 1.0 * index / count
+        sys.stdout.write('\r')
+        sys.stdout.write("[%-40s] %d%% %s/%s 已跑%s 还有%s" % ('=' * int(per*40), per *
+                                                           100, index, count, sec_to_ch(span), sec_to_ch((count-index)/index * span)))
+        sys.stdout.flush()
+
+    wb.save("result.xlsx")
+    wb.close()
+    app.quit()
+```
+3. 最后我突然灵光一闪。主要还是在搜怎么删除图形又不用打开后台。我一直怀疑xlwings是删一个存一个或者删一个渲染一个才会那么那么慢，发现有人在steakoverflow上说，openpyxl不支持图形和图片，如果打开已有的会ignore！于是出现了以下代码：
+```
+  import openpyxl
+  import xlwings
+
+  source = 'source.xlsx'
+  target = 'target.xlsx'
+
+  def get_result(source):
+      excel_app = xlwings.App(visible=False)
+      wb = excel_app.books.open(source)
+      app = xlwings.apps.active
+      count = wb.sheets[0].shapes.count
+      print("%s里面有%s个图形" % (source ,count))
+      app.quit()
+
+  get_result(source)
+  print ("处理中。。。")
+  wb = openpyxl.load_workbook(filename = source)
+  wb.save(filename = target)
+  # 解释： openpyxl的库比较垃圾，自己不会处理shape，也不知道里面有多少shape.
+  #       如果打开存在的Excel, 里面的shape和图形会丢失
+  #       所以只要用openpyxl打开再另存一下，shape就全删光光了。
+
+  get_result(target)
+```
+结果：
+```
+    source.xlsx里面有53074个图形
+    处理中。。。
+    target.xlsx里面有0个图形
+    [Finished in 24.4s]
+```
+如果不用xlwings去数里面有几个图形，估计会更快。主要的问题就是太投机取巧了，万一哪天openpyxl支持shape，不就不好用了嘛:laughing:。
