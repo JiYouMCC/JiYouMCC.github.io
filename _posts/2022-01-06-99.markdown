@@ -130,4 +130,4 @@ issue: 34
 ```
 如果不用xlwings去数里面有几个图形，估计会更快。主要的问题就是太投机取巧了，万一哪天openpyxl支持shape，不就不好用了嘛:laughing:。
 
-**参考** (http://www.python-excel.org/)[http://www.python-excel.org/]{:target="_blank"}
+**参考** [http://www.python-excel.org/](http://www.python-excel.org/){:target="_blank"}
