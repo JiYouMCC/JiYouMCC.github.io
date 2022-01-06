@@ -42,7 +42,7 @@ issue: 34
 
 最后我探索了一下python各种库的使用，踩了很多坑，记录一下。
 
-1. 首先，老牌[xlrd](https://xlrd.readthedocs.io/){:target="_blank"}是不能用的，因为它不支持xlsx:vomiting_face:，虽然我平时都用它
+1. 首先，老牌[xlrd](https://xlrd.readthedocs.io/){:target="_blank"}是不能用的，因为它不支持xlsx :vomiting_face: ，虽然我平时都用它
 2. 然后，现在推荐的[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}它不支持图形和图片等等，虽然它里面有_drawing还有shape的包，但是捣鼓了半天没用，列表都是空的。
 3. 然后，[xlwings](https://www.xlwings.org/){:target="_blank"}是可以用的，但是它本质是个插件，还是会起一个excel的app进行操作，虽然可以让它不显示窗口，但是实际应用的时候发现删除shape是一个一个删除的，于是就会有这样的画风:dizzy_face:：
 ```
