@@ -9,11 +9,11 @@ issue: 34
 use_math: true
 ---
 
-今天小伙伴（下称:butterfly:Exceler）遇到了很恶心的问题，有个Excel卡得完全打不开。大家探索了一下发现里面有很多（具体多少当时还不知道）肉眼看不见的不显示的图形。
+今天小伙伴（下称:butterfly:）遇到了很恶心的问题，有个Excel卡得完全打不开。大家探索了一下发现里面有很多（具体多少当时还不知道）肉眼看不见的不显示的图形。
 
 <!--more-->
 
-群里有小伙伴(下称:leaves:VBAer)用VBA写了清理的脚本(手打复制，没有跑过，概不负责)，他的反馈是“我刚才让电脑删，花了10分钟。不过比预想的快”。
+群里有小伙伴(下称:leaves:)用VBA写了清理的脚本(手打复制，没有跑过，概不负责)，他的反馈是“我刚才让电脑删，花了10分钟。不过比预想的快”。
 
 ```
     Sub deleteobject()
@@ -33,19 +33,19 @@ use_math: true
 53074
 [Finished in 444ms]
 ```
-我：有5万个图形
+我 ：有5万个图形
 
-:leaves:VBAer：这是谁干的，拉出去毙了吧。。。
+:leaves: ：这是谁干的，拉出去毙了吧。。。
 
-:butterfly:Exceler：我们都抗议了几个月了
+:butterfly: ：我们都抗议了几个月了
 
-:leaves:VBAer：故意让你们卡的吗？
+:leaves: ：故意让你们卡的吗？
 
 最后我探索了一下python各种库的使用，踩了很多坑，记录一下。
 
 1. 首先，老牌[xlrd](https://xlrd.readthedocs.io/){:target="_blank"}是不能用的，因为它不支持xlsx:facepalm:，虽然我平时都用它
 2. 然后，现在推荐的[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}它不支持图形和图片等等，虽然它里面有_drawing还有shape的包，但是捣鼓了半天没用，列表都是空的。
-3. 然后，[xlwings](https://www.xlwings.org/){:target="_blank"}是可以用的，但是它本质是个插件，还是会起一个excel的app进行操作，虽然可以让它不显示窗口，但是实际应用的时候发现删除shape是一个一个删除的，于是就会有这样的画风:face_with_spiral_eyes:：
+3. 然后，[xlwings](https://www.xlwings.org/){:target="_blank"}是可以用的，但是它本质是个插件，还是会起一个excel的app进行操作，虽然可以让它不显示窗口，但是实际应用的时候发现删除shape是一个一个删除的，于是就会有这样的画风:face_with_spiral_eyes: ：
 ```
     python excel.py
     里面有53074个图形
