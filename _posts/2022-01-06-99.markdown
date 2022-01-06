@@ -6,7 +6,6 @@ categories: 技术
 tags: python excel
 use_code: true
 issue: 34
-use_math: true
 ---
 
 今天小伙伴（下称:butterfly:）遇到了很恶心的问题，有个Excel卡得完全打不开。大家探索了一下发现里面有很多（具体多少当时还不知道）肉眼看不见的不显示的图形。
@@ -43,9 +42,9 @@ use_math: true
 
 最后我探索了一下python各种库的使用，踩了很多坑，记录一下。
 
-1. 首先，老牌[xlrd](https://xlrd.readthedocs.io/){:target="_blank"}是不能用的，因为它不支持xlsx:facepalm:，虽然我平时都用它
+1. 首先，老牌[xlrd](https://xlrd.readthedocs.io/){:target="_blank"}是不能用的，因为它不支持xlsx :facepalm: ，虽然我平时都用它
 2. 然后，现在推荐的[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}它不支持图形和图片等等，虽然它里面有_drawing还有shape的包，但是捣鼓了半天没用，列表都是空的。
-3. 然后，[xlwings](https://www.xlwings.org/){:target="_blank"}是可以用的，但是它本质是个插件，还是会起一个excel的app进行操作，虽然可以让它不显示窗口，但是实际应用的时候发现删除shape是一个一个删除的，于是就会有这样的画风:face_with_spiral_eyes: ：
+3. 然后，[xlwings](https://www.xlwings.org/){:target="_blank"}是可以用的，但是它本质是个插件，还是会起一个excel的app进行操作，虽然可以让它不显示窗口，但是实际应用的时候发现删除shape是一个一个删除的，于是就会有这样的画风 :face_with_spiral_eyes: ：
 ```
     python excel.py
     里面有53074个图形
@@ -97,7 +96,6 @@ use_math: true
 ```
 
 4. 最后我突然灵光一闪。主要还是在搜怎么删除图形又不用打开后台。我一直怀疑xlwings是删一个存一个或者删一个渲染一个才会那么那么慢，发现有人在steakoverflow上说，[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}不支持图形和图片，如果打开已有的会ignore！于是出现了以下代码：
-5. 
 ```
     import openpyxl
     import xlwings
