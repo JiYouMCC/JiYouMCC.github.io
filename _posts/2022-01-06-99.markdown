@@ -97,30 +97,31 @@ use_math: true
 ```
 
 4. 最后我突然灵光一闪。主要还是在搜怎么删除图形又不用打开后台。我一直怀疑xlwings是删一个存一个或者删一个渲染一个才会那么那么慢，发现有人在steakoverflow上说，[openpyxl](https://openpyxl.readthedocs.io/en/stable/){:target="_blank"}不支持图形和图片，如果打开已有的会ignore！于是出现了以下代码：
+5. 
 ```
-  import openpyxl
-  import xlwings
+    import openpyxl
+    import xlwings
 
-  source = 'source.xlsx'
-  target = 'target.xlsx'
+    source = 'source.xlsx'
+    target = 'target.xlsx'
 
-  def get_result(source):
-      excel_app = xlwings.App(visible=False)
-      wb = excel_app.books.open(source)
-      app = xlwings.apps.active
-      count = wb.sheets[0].shapes.count
-      print("%s里面有%s个图形" % (source ,count))
-      app.quit()
+    def get_result(source):
+        excel_app = xlwings.App(visible=False)
+        wb = excel_app.books.open(source)
+        app = xlwings.apps.active
+        count = wb.sheets[0].shapes.count
+        print("%s里面有%s个图形" % (source ,count))
+        app.quit()
 
-  get_result(source)
-  print ("处理中。。。")
-  wb = openpyxl.load_workbook(filename = source)
-  wb.save(filename = target)
-  # 解释： openpyxl的库比较垃圾，自己不会处理shape，也不知道里面有多少shape.
-  #       如果打开存在的Excel, 里面的shape和图形会丢失
-  #       所以只要用openpyxl打开再另存一下，shape就全删光光了。
+    get_result(source)
+    print ("处理中。。。")
+    wb = openpyxl.load_workbook(filename = source)
+    wb.save(filename = target)
+    # 解释： openpyxl的库比较垃圾，自己不会处理shape，也不知道里面有多少shape.
+    #       如果打开存在的Excel, 里面的shape和图形会丢失
+    #       所以只要用openpyxl打开再另存一下，shape就全删光光了。
 
-  get_result(target)
+    get_result(target)
 ```
 结果：
 ```
@@ -131,4 +132,4 @@ use_math: true
 ```
 如果不用xlwings去数里面有几个图形，估计会更快。主要的问题就是太投机取巧了，万一哪天openpyxl支持shape，不就不好用了嘛:laughing:。
 
-**参考** http://www.python-excel.org/
+**参考** ()[http://www.python-excel.org/]{:target="_blank"}
