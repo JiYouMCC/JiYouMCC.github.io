@@ -10,7 +10,8 @@
     {% endfor %}
   </div>
 </div>
-<script type="text/javascript" src="/lib/TagCloud.min.js"></script>
+{% endif %}
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <strong>标签云</strong>
@@ -25,7 +26,6 @@
     window.open('/tag/#' + $(this).text(), '_blank');
   });
 </script>
-{% endif %}
 
 <div class="panel panel-default">
   <div class="panel-heading">
