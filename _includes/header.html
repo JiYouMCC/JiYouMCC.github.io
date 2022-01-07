@@ -32,25 +32,6 @@
             {% endfor %}
             </ul>
           </li>
-          {% capture tags %}
-            {% for tag in site.tags %}
-              {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
-            {% endfor %}
-          {% endcapture %}
-          {% assign sortedtags = tags | split:' ' | sort %}
-          <li class="dropdown page_tag_dialog">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">标签<span class="caret"></span></a>
-            <ul class="dropdown-menu page_tag_dialog">
-            {% for tag in sortedtags reversed %}
-              {% assign tagitems = tag | split: '#' %}
-              <li>
-                <h4>
-                  <a class="label label-default" href="/tag#{{ tagitems[1] }}" rel="{{ tagitems[1].size }}">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></a>
-                </h4>
-              </li>
-            {% endfor %}
-            </ul>
-          </li>
           <li><a href="/archive">归档</a></li>
           <li><a href="/photos">相册</a></li>
           <li class="dropdown">

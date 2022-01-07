@@ -10,6 +10,21 @@
     {% endfor %}
   </div>
 </div>
+<script type="text/javascript" src="/lib/TagCloud.min.js"></script>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>标签云</strong>
+  </div>
+  <div class="panel-body tagcloud">
+  </div>
+</div>
+<script>
+  var texts = [ {% for tag in site.tags %}'{{ tag[0] }}',{% endfor %}];
+  var tc = TagCloud('.tagcloud', texts);
+  $(".tagcloud--item").click(function() {
+    window.open('/tag/#' + $(this).text(), '_blank');
+  });
+</script>
 {% endif %}
 
 <div class="panel panel-default">
