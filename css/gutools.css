@@ -390,6 +390,7 @@ blockquote {
 
 .tagcloud {
     width: unset !important;
+    overflow: hidden;
 }
 
 .tagcloud--item {
