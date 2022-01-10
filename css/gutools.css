@@ -411,3 +411,8 @@ blockquote {
     opacity: 1 !important;
     z-index: 100 !important;
 }
+  
+.bilibili iframe {    
+    width: 60vw;
+    height: 45vw;
+}
