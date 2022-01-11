@@ -46,7 +46,7 @@ issue: 18
 
 # 关于代码 #
 
-具体怎么用我在 [Demo Page](http://www.jithee.name/firebase-comments/){:target="_blank"} 里面已经写了2个，当然比较粗糙了
+具体怎么用我在 [Demo Page](/firebase-comments/){:target="_blank"} 里面已经写了2个，当然比较粗糙了
 
 ## firebase/wilddog 设置 ##
 
