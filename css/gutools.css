@@ -136,7 +136,6 @@ input.task-list-item-checkbox {
 .page_blog_comment_message_reply {
     display: block;
     unicode-bidi: embed;
-    white-space: pre-wrap;
     font-size: 11pt;
 }
 
