@@ -7,3 +7,8 @@
     <h5>
   </div>
 </footer>
+{% if page.use_mermaid %}
+<script>
+    mermaid.initialize({ startOnLoad: true });
+</script>
+{% endif %}
