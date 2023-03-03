@@ -18,7 +18,6 @@ issue: 10
 ```mermaid
 gantt
     title 2022年编织作品
-    todayMarker off
     section 棒针
     黄粉色星光爱心提花套头毛衣   :done,   2022-01-06, 2022-05-08
     黄色棒针短衫                :done,   2022-03-16, 2022-06-21
