@@ -3,7 +3,6 @@ layout: post
 title:  "To do list"
 date:    2019-01-29 13:55:00 +0800
 is_sticky: true
-use_mermaid: true
 issue: 10
 ---
 * [ ] 重构搜索
@@ -13,10 +12,3 @@ issue: 10
 * [x] 把野狗剥离，迁移旧评论为js
 * [x] 迁移到github issue评论
 * [x] 重构标签和分类
-
-```mermaid
-gantt
-    apple :a, 2017-07-20, 1w
-    banana :crit, b, 2017-07-23, 1d
-    cherry :active, c, after b a, 1d 
-```
