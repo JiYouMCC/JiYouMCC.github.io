@@ -17,7 +17,7 @@ issue: 10
 
 ```mermaid
 gantt
-    title 2022年编织作品总结甘特图
+    title 2022年编织作品
     axisFormat %m月%d日
     todayMarker off
     section 棒针
