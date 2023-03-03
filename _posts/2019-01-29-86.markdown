@@ -17,8 +17,9 @@ issue: 10
 
 ```mermaid
 gantt
-    title A Gantt Diagram
-    dateFormat  YYYY-MM-DD
+    title 2022年编织作品总结甘特图
+    axisFormat %m月%d日
+    todayMarker off
     section Section
     中文任务           :a1, 2014-01-01, 30d
     Another task     :after a1  , 20d
