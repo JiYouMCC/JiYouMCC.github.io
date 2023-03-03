@@ -12,18 +12,18 @@
     <script src="{{ "/lib/jquery.min.js"}}"></script>
     <script src="{{ "/lib/bootstrap.min.js"}}"></script>
     <script type="text/javascript" src="/lib/TagCloud.min.js"></script>
-    {% if page.use_code %}
-        <link rel="stylesheet" href="{{ "/css/docco.css" }}" />
-        <script src="{{ "/lib/highlight.pack.js" }}"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    {% endif %}
-    {% if page.use_math %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" />
-    {% endif %}
-    {% if page.use_mermaid %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.js"></script>
-    {% endif %}
+{% if page.use_code %}
+    <link rel="stylesheet" href="{{ "/css/docco.css" }}" />
+    <script src="{{ "/lib/highlight.pack.js" }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endif %}
+{% if page.use_math %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+{% endif %}
+{% if page.use_mermaid %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" />
+{% endif %}
     <script src="{{ "/js/comment.min.js"}}"></script>
     <script type="text/javascript">
         GithubComments.Init("JiYouMCC", "JiYouMCC.github.io", "ca1f2f2f0b71983065c5", "48f6a24d710cc1012011fce5824f89a26fc49970");
