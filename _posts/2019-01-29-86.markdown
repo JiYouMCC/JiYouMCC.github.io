@@ -13,7 +13,7 @@ issue: 10
 * [x] 把野狗剥离，迁移旧评论为js
 * [x] 迁移到github issue评论
 * [x] 重构标签和分类
-* [ ] 
+
 ```mermaid
 gantt
     title 2022年编织作品总结甘特图
