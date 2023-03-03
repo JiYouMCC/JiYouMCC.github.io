@@ -20,8 +20,10 @@ gantt
     title 2022年编织作品总结甘特图
     axisFormat %m/%d
     section 棒针
-    中文任务           :a1, 2014-01-01, 30d
-    Another task     :after a1  , 20d
+    黄粉色星光爱心提花套头毛衣   :done,   a1,2022-01-06, 2022-05-08
+    黄色棒针短衫                :done,   2022-03-16, 2022-06-21
+    宁夏套头镂空衫              :active  2022-06-23,191d
+    蓝白海浪纹毛衣              :active  2022-11-15, 46d 
     section Another
     Task in sec      :2014-01-12  , 12d
     another task      : 24d
