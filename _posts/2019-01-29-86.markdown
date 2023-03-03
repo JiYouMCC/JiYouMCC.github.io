@@ -14,6 +14,7 @@ issue: 10
 * [x] 迁移到github issue评论
 * [x] 重构标签和分类
 
+
 ```mermaid
 gantt
     title 2022年编织作品总结甘特图
@@ -32,3 +33,5 @@ gantt
     section 阿富汗钩针
     阿富汗钩针条纹粉色背心       :done,  2022-10-16, 2022-10-30    
 ```
+
+
