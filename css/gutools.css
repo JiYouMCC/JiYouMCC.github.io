@@ -1,40 +1,17 @@
+body {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.navbar-right {
+  margin-right: 0px !important;
+}
+
 .icon {
     width: 17px;
     height: 17px;
     display: inline-block;
     vertical-align: middle;
-}
-
-.page_head {
-    border-radius: 0 0 5px 5px;
-    border-top: none;
-}
-
-.page_head .panel-heading {
-    border: 0px;
-    border-radius: 0px;
-}
-
-.page_head .navbar {
-    margin-bottom: 0px;
-    border-radius: 0 0 3px 3px;
-    border: 0px;
-}
-
-.page_footer {
-    border-radius: 5px 5px 0 0;
-    margin-bottom: 0px;
-    border-bottom: none;
-}
-
-.page_footer .panel-footer {
-    border-radius: 4px 4px 0 0;
-    border: none;
-    text-align: right;
-}
-
-.page_footer span {
-    display: inline-block;
 }
 
 .page_datetime {
