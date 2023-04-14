@@ -40,6 +40,11 @@ body {
     padding: 0 15px 0 5px;
 }
 
+.blog_post_hr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .page_blog_footer span {
     display: inline-block;
 }
