@@ -6,11 +6,11 @@ layout: default
     <span class="page_blog_title">{{ page.title }}</span>
     <span class="page_datetime">{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
   </div>
-  <hr>
+  <hr class="blog_post_hr">
   <article id="blog_content" class="panel-body page_blog_content">
     {{ content }}
   </article>
-  <hr>
+  <hr class="blog_post_hr">
   <div class="page_blog_footer">
     <strong>
       {% if page.categories.size > 0 %}<span>分类{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
