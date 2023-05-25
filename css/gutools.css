@@ -34,18 +34,15 @@ body {
 }
 
 .page_blog_title {
-    font-size: 18pt;
-    font-weight: bolder;
-    padding: 0 15px 0 5px;
+  font-size: 20pt;
+  font-weight: bolder;
+  padding: 10px 0 10px 0;
 }
 
 .blog_post_hr {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.page_blog_footer span {
-    display: inline-block;
+height: 10px;
+border: 0;
+box-shadow: inset 0 5px 5px -5px #a1afc9;
 }
 
 .task-list {

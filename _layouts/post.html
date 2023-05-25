@@ -3,21 +3,15 @@ layout: default
 ---
 <div>
   <div>
-    <span class="page_blog_title">{{ page.title }}</span>
+    <div class="page_blog_title">{{ page.title }}</div>
     <span class="page_datetime">{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
+    {% if page.categories.size > 0 %}&nbsp&nbsp<span>分类{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %} 
+    {% if page.tags.size > 0 %}&nbsp&nbsp<span>标签{% for tag in page.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}
+    <hr class="blog_post_hr">
   </div>
-  <hr class="blog_post_hr">
   <article id="blog_content" class="panel-body page_blog_content">
     {{ content }}
   </article>
-  <hr class="blog_post_hr">
-  <div class="page_blog_footer">
-    <strong>
-      {% if page.categories.size > 0 %}<span>分类{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
-      {% if page.tags.size > 0 %}<span>标签{% for tag in page.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}&nbsp;
-    </strong>
-    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可"><img alt="知识共享许可协议" style="float: right;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
-  </div>
 </div>
 <nav>
   <ul class="pager">
