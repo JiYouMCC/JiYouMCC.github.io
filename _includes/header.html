@@ -13,7 +13,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;分类<span class="caret"></span></a>
             <ul class="dropdown-menu">
             <li>
                 <a href="/type" rel="{{ site.posts.size }}">所有文章 <span class="badge">{{ site.posts.size }}</span></a>
@@ -28,10 +28,10 @@
             {% endfor %}
             </ul>
           </li>
-          <li><a href="/archive">归档</a></li>
-          <li><a href="/photos">相册</a></li>
+          <li><a href="/archive"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;归档</a></li>
+          <li><a href="/photos"><span class="glyphicon glyphicon-camera"></span>&nbsp;相册</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">工具<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span>&nbsp;工具<span class="caret"></span></a>
             <ul class="dropdown-menu">
               {% for tool in site.data.tools %}
               <li>
@@ -40,7 +40,7 @@
               {% endfor %}
             </ul>
           </li>
-          <li><a href="/guestbook">留言</a></li>
+          <li><a href="/guestbook"><span class="glyphicon glyphicon-comment"></span>&nbsp;留言</a></li>
         </ul>
         <form class="navbar-form navbar-right" role="search" action="/search/" method="get">
           <div class="input-group">
