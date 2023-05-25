@@ -48,13 +48,17 @@
 </div>
 
 {% if page.is_post %}
-<div id="affix-nav" class="hidden-xs hidden-sm">
-  <div id="affix-nav-pannel" class="panel panel-default">
-    <!--<ol id="affix-nav-ul" class="nav nav-stacked" role="tablist">
-      <li id="nav_top"><a href="#top"><span class="glyphicon glyphicon-triangle-top"></span></a></li>
-      <li id="nav_bottom"><a href="#bottom"><span class="glyphicon glyphicon-triangle-bottom"></span></a></li>
-    </ol>-->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>知识共享许可协议</strong>
   </div>
+  <div class="list-group">
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" title="本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可"><img class="list-group-item" alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+  </div>
+</div>
+
+<div id="affix-nav" class="hidden-xs hidden-sm">
+  <div id="affix-nav-pannel" class="panel panel-default"></div>
 </div>
 <script src="{{ site.baseurl }}/js/affix.js"></script>
 {% endif %}
