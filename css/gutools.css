@@ -338,6 +338,8 @@ blockquote {
   
 .thumbnail > img {
   height: 150px;
+  width: 100%;
+  object-fit: cover;
 }
     
 .modal-photo {
