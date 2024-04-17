@@ -17,24 +17,24 @@ tags: 街景
 4. 应该早点写个image的配置模块，sae storage上传太麻烦了
 
 <!--more-->
-![](/img/blog_pingliang_IMG_0875.JPG)
+![](/photo/street_view/IMG_0875.JPG)
 
-![](/img/blog_pingliang_IMG_0876.JPG)
+![](/photo/street_view/IMG_0876.JPG)
 
-![](/img/blog_pingliang_IMG_0878.JPG)
+![](/photo/street_view/IMG_0878.JPG)
 
-![](/img/blog_pingliang_IMG_0879.JPG)
+![](/photo/street_view/IMG_0879.JPG)
 
-![](/img/blog_pingliang_IMG_0880.JPG)
+![](/photo/street_view/IMG_0880.JPG)
 
-![](/img/blog_pingliang_IMG_0881.JPG)
+![](/photo/street_view/IMG_0881.JPG)
 
-![](/img/blog_pingliang_IMG_0883.JPG)
+![](/photo/street_view/IMG_0883.JPG)
 
-![](/img/blog_pingliang_IMG_0884.JPG)
+![](/photo/street_view/IMG_0884.JPG)
 
-![](/img/blog_pingliang_IMG_0886.JPG)
+![](/photo/street_view/IMG_0886.JPG)
 
-![](/img/blog_pingliang_IMG_0887.JPG)
+![](/photo/street_view/IMG_0887.JPG)
 
-![](/img/blog_pingliang_IMG_0888.JPG)
+![](/photo/street_view/IMG_0888.JPG)
