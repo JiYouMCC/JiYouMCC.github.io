@@ -175,7 +175,7 @@ function showUserForm(issueId, userInfo) {
   $("#comment_form").append(bar);
   $("a[id^=emoji-]").click(function() {
     var emoji = $(this).attr("emoji");
-    $("#comment").val($("#comment").val() + emoji);
+    $("#comment").val($("#comment").val() + " " + emoji + " ");
   });
   $("#comment_form").append(
     $("<div></div>").addClass('form-group').append(
