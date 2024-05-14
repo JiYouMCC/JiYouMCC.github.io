@@ -59,7 +59,9 @@ var Photos = {
                         $("<div></div>").addClass("thumbnail").append(
                             $("<img>").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
                         ).append(
-                            $("<h1></h1>").addClass("text-center").text(Photos._folderNames[i] + " (" + Photos._folders[Photos._folderNames[i]].length + ")")
+                            $("<h1></h1>").addClass("text-center").text(Photos._folderNames[i] + "  ").append(
+                                $("<span></span>").addClass("badge").text(Photos._folders[Photos._folderNames[i]].length)
+                            )
                         )
                     )
                 )
