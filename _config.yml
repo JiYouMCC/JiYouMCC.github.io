@@ -29,3 +29,4 @@ defaults:
     values:
       photo: true
 exclude: [vendor]
+plugins: [jekyll-paginate]

@@ -5,7 +5,7 @@ use_code: true
 use_mermaid: true
 ---
 {% if paginator.page == 1 %}
-  {% assign sticky_posts = (site.posts | where: "is_sticky" ,"true") %}
+  {% assign sticky_posts = site.posts | where: "is_sticky" ,"true" %}
   {% for post in sticky_posts %}
   <div class="panel panel-default">
     <div class="panel-heading">
