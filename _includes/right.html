@@ -23,9 +23,9 @@
   var texts = [ {% for tag in site.tags %}'{{ tag[0] }}',{% endfor %}];
   var tc = TagCloud('.tagcloud', texts);
   $(".tagcloud--item").click(function() {
-    extraWindow = window.open('/tag/#' + $(this).text(), '_self');
-    if(extraWindow){
-     extraWindow.location.reload();
+    window.open('/tag/#' + $(this).text(), '_self');
+    if (window.location.href.startsWith(window.location.origin+"/tag/")) {
+      location.reload();
     }
   });
 </script>
