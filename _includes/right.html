@@ -23,7 +23,7 @@
   var texts = [ {% for tag in site.tags %}'{{ tag[0] }}',{% endfor %}];
   var tc = TagCloud('.tagcloud', texts);
   $(".tagcloud--item").click(function() {
-    window.open('/tag/#' + $(this).text());
+    window.open('/tag/#' + $(this).text(), '_self');
   });
 </script>
 
