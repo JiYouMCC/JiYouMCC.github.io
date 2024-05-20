@@ -25,7 +25,7 @@
   $(".tagcloud--item").click(function() {
     window.open('/tag/#' + $(this).text(), '_self');
     if (window.location.href.startsWith(window.location.origin+"/tag/")) {
-      location.reload();
+      $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
     }
   });
 </script>
