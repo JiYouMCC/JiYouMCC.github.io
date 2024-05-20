@@ -26,20 +26,19 @@ title: "标签"
     <table class="table table-striped">
       <thead>
         <tr>
-          <th></th><th></th><th class="text-center page_list_item">分类</th><th class="text-center page_list_item">评论</th>
+          <th></th><th></th><th class="text-center page_list_item">分类</th>
         </tr>
       </thead>
       <tbody>
         {% for post in tag[1] %}
         <tr>
           <td><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></td>
-          <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</td>
+          <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d"}}</td>
           <td class="text-center">{% for cat in post.categories %}
                 {% if cat != 'sticky' %}
                 <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
                 {% endif %}
               {% endfor %}</td>
-          <td class="text-center">{% if post.issue %}<span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span>{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
@@ -51,5 +50,3 @@ title: "标签"
 <script type="text/javascript">
   $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
 </script>
-<script src="{{ site.baseurl }}/js/git-comments-count.js"></script>
-<script src="{{ site.baseurl }}/js/old-comments.js"></script>
