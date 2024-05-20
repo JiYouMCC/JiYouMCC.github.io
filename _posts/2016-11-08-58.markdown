@@ -2,6 +2,7 @@
 layout: post
 title:  "欧拉项目好友键值 Project Eulor friend key"
 date:   2016-11-08 10:58:00 +0800
+tags:    projecteulor
 categories: 技术
 ---
 好久以前就开始玩[欧拉](https://projecteuler.net/)刷题（>800天），但是显然我做题速度远远低于它出题速度
