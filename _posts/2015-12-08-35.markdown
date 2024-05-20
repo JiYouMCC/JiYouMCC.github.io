@@ -23,6 +23,7 @@ use_code: true
 ## 各种配置文件链接##
 
     ln -s /home/XX/XX/XX/uwsgi.ini /etc/uwsgi/apps-enabled/
+
 nginx同理
 
 ## nginx配置
