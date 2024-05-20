@@ -20,7 +20,7 @@ use_code: true
 
     uwsgi --http-socket :9090 --plugin python --wsgi-file XXXX.py --process 3
 
-## 各种配置文件链接##
+## 各种配置文件链接 ##
 
     ln -s /home/XX/XX/XX/uwsgi.ini /etc/uwsgi/apps-enabled/
 
