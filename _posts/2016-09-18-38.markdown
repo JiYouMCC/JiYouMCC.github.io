@@ -4,7 +4,7 @@ title:  "再见sae"
 date:   2016-9-18 9:21:00 +0800
 categories: 技术
 ---
-![](http://www.jithee.name/img/sinacloud.PNG)
+![](/img/sinacloud.PNG)
 
 8月的时候其实sae已经欠费停应用了，已经开始大规模迁移github.io了
 
