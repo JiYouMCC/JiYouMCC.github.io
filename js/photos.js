@@ -97,7 +97,7 @@ var Photos = {
         });
 
         Photos.setBreadcrumb(["相册", folderName]);
-        window.location = window.location + "#" + folderName;
+        window.location = window.location.origin+ window.location.pathname + "#" + folderName;
     },
     showImg: function(imgPath) {
         $("#big_img").attr("src", imgPath);
