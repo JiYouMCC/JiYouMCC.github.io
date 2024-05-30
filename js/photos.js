@@ -77,6 +77,9 @@ var Photos = {
 
         Photos.setBreadcrumb(["相册"]);
         history.replaceState(null, '', "");
+        var url = new URL(window.location.href);
+        url.hash = '';
+        history.replaceState(null, '', url.href);
     },
     showFolder: function(folderName) {
         Photos.clearPhotos();
