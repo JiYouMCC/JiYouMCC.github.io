@@ -43,7 +43,7 @@ var Photos = {
         $("a[breakcrumb]").click(function() {
             var breakcrumb = $(this).attr("breakcrumb");
             if (breakcrumb == "相册") {
-                Photos.showFolders();
+                Photos.show folders();
             } else if (breakcrumb) {
                 Photos.showFolder(breakcrumb);
             }
@@ -97,6 +97,7 @@ var Photos = {
         });
 
         Photos.setBreadcrumb(["相册", folderName]);
+        window.location = window.location + "#" + folderName;
     },
     showImg: function(imgPath) {
         $("#big_img").attr("src", imgPath);
