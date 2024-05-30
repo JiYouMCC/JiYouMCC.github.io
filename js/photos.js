@@ -76,6 +76,7 @@ var Photos = {
         });
 
         Photos.setBreadcrumb(["相册"]);
+        history.replaceState(null, '', "");
     },
     showFolder: function(folderName) {
         Photos.clearPhotos();
@@ -97,7 +98,7 @@ var Photos = {
         });
 
         Photos.setBreadcrumb(["相册", folderName]);
-        window.location = window.location.origin+ window.location.pathname + "#" + folderName;
+        history.replaceState(null, '', "#" + folderName);
     },
     showImg: function(imgPath) {
         $("#big_img").attr("src", imgPath);
