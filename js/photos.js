@@ -43,7 +43,7 @@ var Photos = {
         $("a[breakcrumb]").click(function() {
             var breakcrumb = $(this).attr("breakcrumb");
             if (breakcrumb == "相册") {
-                Photos.show folders();
+                Photos.showfolders();
             } else if (breakcrumb) {
                 Photos.showFolder(breakcrumb);
             }
