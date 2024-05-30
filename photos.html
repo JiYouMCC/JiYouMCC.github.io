@@ -19,5 +19,9 @@ title: "相册"
         "basename":"{{ myimage.basename }}",
     },{% endfor %}];
     Photos.init(imageFiles);
-    Photos.showFolders();
+    if (location.hash != "") {
+      Photos.showFolder(decodeURI(location.hash.replace("#","")));
+    } else {
+      Photos.showFolders();
+    }  
 </script>
