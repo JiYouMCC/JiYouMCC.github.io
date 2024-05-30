@@ -43,20 +43,36 @@ use_mermaid: true
   </div>
   {% endunless %}
 {% endfor %}
-<nav>
-  <ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-      <a href="{{ paginator.previous_page_path }}">上一页</a>
-    </li>
+<nav class="text-center">
+  <ul class="pagination">
+    {% if paginator.page < 5 %}
+      {% for num in (1..paginator.page) %}
+        <li {% if num == paginator.page %}class="active"{% endif %}><a href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
+      {% endfor %}
+    {% else %}
+      <li><a href="/">1</a></li>
+      <li class="disabled"><a href="#">. . .</a></li>
+      {% assign startpage = paginator.page | minus: 2 %}
+        {% for num in (startpage..paginator.page) %}
+          <li {% if num == paginator.page %}class="active"{% endif %}><a href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
+        {% endfor %}
     {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-      <a href="{{ paginator.next_page_path }}">下一页</a>
-    </li>
+    {% assign remainpage = paginator.total_pages | minus: paginator.page %}
+    {% if remainpage < 4 %}
+      {% assign startpage = paginator.page | plus: 1 %}
+      {% for num in (startpage..paginator.total_pages) %}
+          <li><a href="/blog/index/{{num}}/">{{ num }}</a></li>
+        {% endfor %}
+    {% else %}
+      {% assign startpage = paginator.page | plus: 1 %}
+      {% assign endpage = paginator.page | plus: 2 %}
+        {% for num in (startpage..endpage) %}
+          <li><a href="/blog/index/{{num}}/">{{ num }}</a></li>
+        {% endfor %}
+        <li class="disabled"><a href="#">. . .</a></li>
+        <li><a href="/blog/index/{{ paginator.total_pages }}/">{{ paginator.total_pages }}</a></li>
     {% endif %}
   </ul>
 </nav>
 <script src="{{ site.baseurl }}/js/old-comments.js"></script>
 <script src="{{ site.baseurl }}/js/git-comments-count.js"></script>
-
