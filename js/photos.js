@@ -76,6 +76,7 @@ var Photos = {
         });
 
         Photos.setBreadcrumb(["相册"]);
+         window.location = window.location.origin+ window.location.pathname;
     },
     showFolder: function(folderName) {
         Photos.clearPhotos();
