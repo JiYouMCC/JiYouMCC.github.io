@@ -51,7 +51,7 @@ use_mermaid: true
       {% endfor %}
     {% else %}
       <li><a href="/">1</a></li>
-      <li class="disabled"><a href="#">...</a></li>
+      <li class="disabled"><a href="#">..</a></li>
       {% assign startpage = paginator.page | minus: 2 %}
         {% for num in (startpage..paginator.page) %}
           <li {% if num == paginator.page %}class="active"{% endif %}><a href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
@@ -69,7 +69,7 @@ use_mermaid: true
         {% for num in (startpage..endpage) %}
           <li><a href="/blog/index/{{num}}/">{{ num }}</a></li>
         {% endfor %}
-        <li class="disabled"><a href="#">...</a></li>
+        <li class="disabled"><a href="#">..</a></li>
         <li><a href="/blog/index/{{ paginator.total_pages }}/">{{ paginator.total_pages }}</a></li>
     {% endif %}
   </ul>
