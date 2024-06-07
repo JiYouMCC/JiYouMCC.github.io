@@ -402,5 +402,6 @@ blockquote {
 }
 
 #comment_all_count.list-group-item:last-child {
-    border-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
 }
