@@ -2,7 +2,6 @@
 layout: post
 title:  "To do list"
 date:    2019-01-29 13:55:00 +0800
-is_sticky: true
 use_mermaid: true
 issue: 10
 ---
