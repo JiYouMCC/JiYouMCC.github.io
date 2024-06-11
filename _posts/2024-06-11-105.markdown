@@ -1,0 +1,110 @@
+---
+layout: post
+title:  "GitHub emoji自动更新的列表"
+date:   2024-06-11 12:00:00 +0800
+categories: 技术
+tags: javascript jquery GithubAPI
+use_code: true
+issue: 43
+---
+
+因为我这里文章内容强依赖于GitHub，里面的Emoji也是用的GitHub Emoji，之前每次去用的时候都去Gist[别人的文章](https://gist.github.com/rxaviers/7360908){:target="_blank"}去查找，不仅不方便（家中无法访问），别人的文章还不更新（2014已经是10年前了），就随手写一个根据GitHub API自动更新的emoji列表。
+
+不过分类我是做不到了，我搜索了一下，自动分类都是用AI做的……
+
+<!--more-->
+
+# 列表 #
+
+<table id="emoji_table" style="table-layout: fixed;text-align: center;">
+</table>
+
+# 代码 #
+
+    var emojiJson = localStorage.getItem(GithubComments.EMOJI_JSON);
+    if (emojiJson) {
+        var result = [];
+        for(var i in JSON.parse(emojiJson))
+            result.push([i, JSON.parse(emojiJson) [i]]);
+        var flag = 0;
+        var key_list = [];
+        var value_list = [];
+
+        for(var i in result) {
+            if (flag == 0) {
+                key_list = [];
+                value_list = [];
+            }
+            key_list.push(result[i][0]);
+            value_list.push(result[i][1])
+            flag ++;
+            if (flag == 8) {
+                var images_tr = $("<tr></tr>");
+                var title_tr = $("<tr></tr>");
+                for (var j in value_list) {
+                    images_tr.append($("<td></td>").append($("<img></img>").attr("src", value_list[j])));
+                    title_tr.append($("<td>"+ key_list[j] + "</td>"));
+                }
+
+                $("#emoji_table").append(images_tr);
+                $("#emoji_table").append(title_tr);
+                flag = 0
+            }
+        }
+        var images_tr = $("<tr></tr>");
+        var title_tr = $("<tr></tr>");
+        for (var j in value_list) {
+            images_tr.append($("<td></td>").append($("<img></img>").attr("src", value_list[j])));
+            title_tr.append($("<td>"+ key_list[j] + "</td>"));
+        }
+
+        $("#emoji_table").append(images_tr);
+        $("#emoji_table").append(title_tr);
+    }
+
+# 参考 #
+
+[REST API endpoints for emojis](https://docs.github.com/en/rest/emojis){:target="_blank"}
+
+<script>
+    var emojiJson = localStorage.getItem(GithubComments.EMOJI_JSON);
+    if (emojiJson) {
+        var result = [];
+        for(var i in JSON.parse(emojiJson))
+            result.push([i, JSON.parse(emojiJson) [i]]);
+        var flag = 0;
+        var key_list = [];
+        var value_list = [];
+
+        for(var i in result) {
+            if (flag == 0) {
+                key_list = [];
+                value_list = [];
+            }
+            key_list.push(result[i][0]);
+            value_list.push(result[i][1])
+            flag ++;
+            if (flag == 8) {
+                var images_tr = $("<tr></tr>");
+                var title_tr = $("<tr></tr>");
+                for (var j in value_list) {
+                    images_tr.append($("<td></td>").append($("<img></img>").attr("src", value_list[j])));
+                    title_tr.append($("<td>"+ key_list[j] + "</td>"));
+                }
+
+                $("#emoji_table").append(images_tr);
+                $("#emoji_table").append(title_tr);
+                flag = 0
+            }
+        }
+        var images_tr = $("<tr></tr>");
+        var title_tr = $("<tr></tr>");
+        for (var j in value_list) {
+            images_tr.append($("<td></td>").append($("<img></img>").attr("src", value_list[j])));
+            title_tr.append($("<td>"+ key_list[j] + "</td>"));
+        }
+
+        $("#emoji_table").append(images_tr);
+        $("#emoji_table").append(title_tr);
+    }
+</script>
