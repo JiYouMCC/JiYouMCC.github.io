@@ -31,3 +31,13 @@
   title: 明信片交换收发方格日历
   href: /play/icy.html
   blank: true
+
+- name: Ji You's github-comments Demo
+  title: 基于GitHub Comments的留言系统Demo
+  href: /github-comments
+  blank: true
+
+- name: Ji You's jekyll-firebase-comments Demo
+  title: 基于Firebase的留言系统Demo
+  href: /firebase-comments
+  blank: true
