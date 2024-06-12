@@ -181,6 +181,76 @@ GitHub emoji = 1874
 | :hear_no_evil: |hear_no_evil|🙉|非礼勿听|
 | :speak_no_evil: |speak_no_evil|🙊|非礼勿言|
 
+## 人 ##
+
+### 手和身体部位（59） ###
+
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :wave: |wave|👋|挥手|
+| :raised_back_of_hand: |raised_back_of_hand|🤚|立起的手背|
+| :raised_hand_with_fingers_splayed: |raised_hand_with_fingers_splayed|🖐️|手掌|
+| :raised_hand: :hand: |raised_hand hand|✋|举起手|
+| :vulcan_salute: |vulcan_salute|🖖|瓦肯举手礼|
+| - |-|🫱|向右的手|
+| - |-|🫲|向左的手|
+| - |-|🫳|掌心向下的手|
+| - |-|🫴|掌心向上的手|
+| - |-|🫷|向左推的手|
+| - |-|🫸|向右推的手|
+| :ok_hand: |ok_hand|👌|Ok|
+| :pinched_fingers: |pinched_fingers|🤌|捏手指|
+| :pinching_hand: |pinching_hand|🤏|捏合的手势|
+| :v: |v|✌️|胜利手势|
+| :crossed_fingers: |crossed_fingers|🤞|交叉的手指|
+| - |-|🫰|食指和拇指交叉的手|
+| :love_you_gesture: |love_you_gesture|🤟|爱你的手势|
+| :metal: |metal|🤘|摇滚|
+| :call_me_hand: |call_me_hand|🤙|给我打电话|
+| :point_left: |point_left|👈|反手食指向左指|
+| :point_right: |point_right|👉|反手食指向右指|
+| :point_up_2: |point_up_2|👆|反手食指向上指|
+| :fu: |fu|🖕|竖中指|
+| :point_down: |point_down|👇|反手食指向下指|
+| :point_up: |point_up|☝️|食指向上指|
+| - |-|🫵|食指指向观众|
+| :+1: :thumbsup: |+1 thumbsup|👍|拇指向上|
+| :-1: :thumbsdown: |-1 thumbsdown|👎|拇指向下|
+| :fist: :fist_raised: |fist fist_raised|✊|举起拳头|
+| :facepunch: :fist_oncoming: :punch: |facepunch fist_oncoming punch|👊|出拳|
+| :fist_left: |fist_left|🤛|朝左的拳头|
+| :fist_right: |fist_right|🤜|朝右的拳头|
+| :clap: |clap|👏|鼓掌|
+| :raised_hands: |raised_hands|🙌|举双手|
+| - |-|🫶|心形手|
+| :open_hands: |open_hands|👐|张开双手|
+| :palms_up_together: |palms_up_together|🤲|掌心向上托起|
+| :handshake: |handshake|🤝|握手|
+| :pray: |pray|🙏|双手合十|
+| :writing_hand: |writing_hand|✍️|写字|
+| :nail_care: |nail_care|💅|涂指甲油|
+| :selfie: |selfie|🤳|自拍|
+| :muscle: |muscle|💪|肌肉|
+| :mechanical_arm: |mechanical_arm|🦾|机械手臂|
+| :mechanical_leg: |mechanical_leg|🦿|机械腿|
+| :leg: |leg|🦵|腿|
+| :foot: |foot|🦶|脚|
+| :ear: |ear|👂|耳朵|
+| :ear_with_hearing_aid: |ear_with_hearing_aid|🦻|戴助听器的耳朵|
+| :nose: |nose|👃|鼻子|
+| :brain: |brain|🧠|脑|
+| :anatomical_heart: |anatomical_heart|🫀|心脏器官|
+| :lungs: |lungs|🫁|肺|
+| :tooth: |tooth|🦷|牙齿|
+| :bone: |bone|🦴|骨头|
+| :eyes: |eyes|👀|双眼|
+| :tongue: |tongue|👅|舌头|
+| :lips: |lips|👄|嘴|
+| - |-|🫦|咬嘴唇|
+| :footprints: |footprints|👣|脚印|
+| :dna: |dna|🧬|DNA|
+| :drop_of_blood: |drop_of_blood|🩸|血滴|
+
 # 自动更新的列表 #
 
 <table id="emoji_table" style="table-layout: fixed;text-align: center;">
