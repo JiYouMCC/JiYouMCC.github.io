@@ -112,8 +112,8 @@ GitHub emoji = 1874
 | :hot_face: |hot_face|🥵|脸发烧|
 | :cold_face: |cold_face|🥶|冷脸|
 | :woozy_face: |woozy_face|🥴|头昏眼花|
-| :face_with_spiral_eyes: |face_with_spiral_eyes|😵|晕头转向|
-| :dizzy_face: |dizzy_face|😵‍💫|晕|
+| :dizzy_face: |dizzy_face|😵|晕头转向|
+| :face_with_spiral_eyes: |face_with_spiral_eyes|😵‍💫|晕|
 | :exploding_head: |exploding_head|🤯|爆炸头|
 | :yawning_face: |yawning_face|🥱|打呵欠|
 
