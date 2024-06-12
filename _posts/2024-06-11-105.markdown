@@ -95,6 +95,28 @@ GitHub emoji = 1874
 | - |-|🙂‍↔️|水平摇头|
 | - |-|🙂‍↕️|垂直摇头|
 
+### 困倦和不适（17） ###
+
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :relieved: |relieved|😌|松了口气|
+| :pensive: |pensive|😔|沉思|
+| :sleepy: |sleepy|😪|困|
+| :sleeping: |sleeping|😴|睡着了|
+| :mask: |mask|😷|感冒|
+| :face_with_thermometer: |face_with_thermometer|🤒|发烧|
+| :face_with_head_bandage: |face_with_head_bandage|🤕|受伤|
+| :nauseated_face: |nauseated_face|🤢|恶心|
+| :vomiting_face: |vomiting_face|🤮|呕吐|
+| :sneezing_face: |sneezing_face|🤧|打喷嚏|
+| :hot_face: |hot_face|🥵|脸发烧|
+| :cold_face: |cold_face|🥶|冷脸|
+| :woozy_face: |woozy_face|🥴|头昏眼花|
+| :face_with_spiral_eyes: |face_with_spiral_eyes|😵|晕头转向|
+| :dizzy_face: |dizzy_face|😵‍💫|晕|
+| :exploding_head: |exploding_head|🤯|爆炸头|
+| :yawning_face: |yawning_face|🥱|打呵欠|
+
 # 自动更新的列表 #
 
 <table id="emoji_table" style="table-layout: fixed;text-align: center;">
