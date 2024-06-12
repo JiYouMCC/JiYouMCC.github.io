@@ -74,6 +74,7 @@ GitHub emoji = 1874
 | :monocle_face: |monocle_face|🧐|带单片眼镜的脸|
 
 ### 中立和怀疑(11) ###
+
 | GitHub Emoji | GitHub name | Emoji | 中文名字 |
 | :----------: | :---------: | :---: | :------: |
 | :upside_down_face: |upside_down_face|🙃|倒脸|
@@ -84,7 +85,7 @@ GitHub emoji = 1874
 | :expressionless: |expressionless|😑|无语|
 | :no_mouth: |no_mouth|😶|沉默|
 | - |-|🫥|虚线表情|
-| - |-|😶‍🌫️|迷茫|
+| :face_in_clouds: |face_in_clouds|😶‍🌫️|迷茫|
 | :unamused: |unamused|😒|不高兴|
 | :roll_eyes: |roll_eyes|🙄|翻白眼|
 | :grimacing: |grimacing|😬|龇牙咧嘴|
