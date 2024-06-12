@@ -117,6 +117,41 @@ GitHub emoji = 1874
 | :exploding_head: |exploding_head|🤯|爆炸头|
 | :yawning_face: |yawning_face|🥱|打呵欠|
 
+### 忧虑和消极 ###
+
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :confused: |confused|😕|困扰|
+| - |-|🫤|歪嘴表情|
+| :worried: |worried|😟|担心|
+| :slightly_frowning_face: |slightly_frowning_face|🙁|微微不满|
+| :frowning_face: |frowning_face|☹️|不满|
+| :open_mouth: |open_mouth|😮|吃惊|
+| :hushed: |hushed|😯|缄默|
+| :astonished: |astonished|😲|震惊|
+| :flushed: |flushed|😳|脸红|
+| :pleading_face: |pleading_face|🥺|恳求的脸|
+| - |-|🥹|强忍泪水表情|
+| :frowning: |frowning|😦|啊|
+| :anguished: |anguished|😧|极度痛苦|
+| :fearful: |fearful|😨|害怕|
+| :cold_sweat: |cold_sweat|😰|冷汗|
+| :disappointed_relieved: |disappointed_relieved|😥|失望但如释重负|
+| :cry: |cry|😢|哭|
+| :sob: |sob|😭|放声大哭|
+| :scream: |scream|😱|吓死了|
+| :confounded: |confounded|😖|困惑|
+| :persevere: |persevere|😣|痛苦|
+| :disappointed: |disappointed|😞|失望|
+| :sweat: |sweat|😓|汗|
+| :weary: |weary|😩|累死了|
+| :tired_face: |tired_face|😫|累|
+| :triumph: |triumph|😤|傲慢|
+| :pout: :rage: |pout rage|😡|怒火中烧|
+| :angry: |angry|😠|生气|
+| :cursing_face: |cursing_face|🤬|嘴上有符号的脸|
+| :imp: |imp|👿|生气的恶魔|
+
 # 自动更新的列表 #
 
 <table id="emoji_table" style="table-layout: fixed;text-align: center;">
