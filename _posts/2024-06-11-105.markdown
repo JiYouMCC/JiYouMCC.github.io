@@ -14,7 +14,7 @@ issue: 43
 
 <!--more-->
 
-# 人工整理（2024/6） #
+# 人工整理（2024/6）进行中 #
 
 分类方式参照[emojipedia](https://emojipedia.org){:target="_blank"}
 
@@ -47,7 +47,31 @@ issue: 43
 | :smiling_face_with_tear: |smiling_face_with_tear|🥲|含泪的笑脸|
 | :smirk: |smirk|😏|得意|
 
-# 列表 #
+### 语言、手和饰物 ###
+
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :yum: |yum|😋|好吃|
+| :stuck_out_tongue: |stuck_out_tongue|😛|吐舌|
+| :stuck_out_tongue_winking_eye: |stuck_out_tongue_winking_eye|😜|单眼吐舌|
+| :zany_face: |zany_face|🤪|滑稽|
+| :stuck_out_tongue_closed_eyes: |stuck_out_tongue_closed_eyes|😝|眯眼吐舌|
+| :hugs: |hugs|🤗|抱抱|
+| :hand_over_mouth: |hand_over_mouth|🤭|不说|
+| - |-|🫢|睁着眼睛、手捂住嘴的表情|
+| - |-|🫣|偷看表情|
+| :shushing_face: |shushing_face|🤫|安静的脸|
+| :thinking: |thinking|🤔|想一想|
+| - |-|🫡|敬礼表情|
+| :drooling_face: |drooling_face|🤤|流口水|
+| :cowboy_hat_face: |cowboy_hat_face|🤠|牛仔帽脸|
+| :partying_face: |partying_face|🥳|聚会笑脸|
+| :disguised_face: |disguised_face|🥸|伪装的脸|
+| :sunglasses: |sunglasses|😎|墨镜笑脸|
+| :nerd_face: |nerd_face|🤓|书呆子脸|
+| :monocle_face: |monocle_face|🧐|带单片眼镜的脸|
+
+# 自动更新的列表 #
 
 <table id="emoji_table" style="table-layout: fixed;text-align: center;">
 </table>
