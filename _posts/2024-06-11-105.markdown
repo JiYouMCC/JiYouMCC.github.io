@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "GitHub emoji自动更新的列表"
+title:  "GitHub emoji自动更新的列表(人工整理中)"
 date:   2024-06-11 12:00:00 +0800
 categories: 技术
 tags: javascript jquery GithubAPI
@@ -14,7 +14,9 @@ issue: 43
 
 <!--more-->
 
-# 人工整理（2024/6）进行中 #
+# 人工整理（2024/6）2.67%进行中 #
+
+GitHub emoji = 1874
 
 分类方式参照[emojipedia](https://emojipedia.org){:target="_blank"}
 
@@ -70,6 +72,27 @@ issue: 43
 | :sunglasses: |sunglasses|😎|墨镜笑脸|
 | :nerd_face: |nerd_face|🤓|书呆子脸|
 | :monocle_face: |monocle_face|🧐|带单片眼镜的脸|
+
+### 中立和怀疑(11) ###
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :upside_down_face: |upside_down_face|🙃|倒脸|
+| - |-|🫠|融化表情|
+| :zipper_mouth_face: |zipper_mouth_face|🤐|闭嘴|
+| :raised_eyebrow: |raised_eyebrow|🤨|挑眉|
+| :neutral_face: |neutral_face|😐|冷漠|
+| :expressionless: |expressionless|😑|无语|
+| :no_mouth: |no_mouth|😶|沉默|
+| - |-|🫥|虚线表情|
+| - |-|😶‍🌫️|迷茫|
+| :unamused: |unamused|😒|不高兴|
+| :roll_eyes: |roll_eyes|🙄|翻白眼|
+| :grimacing: |grimacing|😬|龇牙咧嘴|
+| :face_exhaling: |face_exhaling|😮‍💨|呼气|
+| :lying_face: |lying_face|🤥|说谎|
+| - |-|🫨|晃动的脸|
+| - |-|🙂‍↔️|水平摇头|
+| - |-|🙂‍↕️|垂直摇头|
 
 # 自动更新的列表 #
 
