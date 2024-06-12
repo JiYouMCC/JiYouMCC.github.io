@@ -3,7 +3,7 @@ layout: post
 title:  "批量处理图片大小"
 date:   2024-06-07 11:00:00 +0800
 categories: 技术
-tags: python PIL
+tags: python PIL 街景
 use_code: true
 issue: 42
 ---
