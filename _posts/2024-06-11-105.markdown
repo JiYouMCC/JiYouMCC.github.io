@@ -22,7 +22,7 @@ GitHub emoji = 1874
 
 ## 笑脸 ##
 
-### 微笑和喜爱(23) ###
+### 微笑和喜爱（23） ###
 
 | GitHub Emoji | GitHub name | Emoji | 中文名字 |
 | :----------: | :---------: | :---: | :------: |
@@ -49,7 +49,7 @@ GitHub emoji = 1874
 | :smiling_face_with_tear: |smiling_face_with_tear|🥲|含泪的笑脸|
 | :smirk: |smirk|😏|得意|
 
-### 语言、手和饰物(17) ###
+### 语言、手和饰物（17） ###
 
 | GitHub Emoji | GitHub name | Emoji | 中文名字 |
 | :----------: | :---------: | :---: | :------: |
@@ -73,7 +73,7 @@ GitHub emoji = 1874
 | :nerd_face: |nerd_face|🤓|书呆子脸|
 | :monocle_face: |monocle_face|🧐|带单片眼镜的脸|
 
-### 中立和怀疑(12) ###
+### 中立和怀疑（12） ###
 
 | GitHub Emoji | GitHub name | Emoji | 中文名字 |
 | :----------: | :---------: | :---: | :------: |
@@ -117,7 +117,7 @@ GitHub emoji = 1874
 | :exploding_head: |exploding_head|🤯|爆炸头|
 | :yawning_face: |yawning_face|🥱|打呵欠|
 
-### 忧虑和消极（29） ###
+### 忧虑和消极（28） ###
 
 | GitHub Emoji | GitHub name | Emoji | 中文名字 |
 | :----------: | :---------: | :---: | :------: |
@@ -150,7 +150,36 @@ GitHub emoji = 1874
 | :pout: :rage: |pout rage|😡|怒火中烧|
 | :angry: |angry|😠|生气|
 | :cursing_face: |cursing_face|🤬|嘴上有符号的脸|
+
+
+### 服装、生物和动物（26） ###
+
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :smiling_imp: |smiling_imp|😈|恶魔微笑|
 | :imp: |imp|👿|生气的恶魔|
+| :skull: |skull|💀|头骨|
+| :skull_and_crossbones: |skull_and_crossbones|☠️|骷髅|
+| :hankey: :poop: :shit: | hankey poop shit |💩|大便|
+| :clown_face: |clown_face|🤡|小丑脸|
+| :japanese_ogre: |japanese_ogre|👹|食人魔|
+| :japanese_goblin: |japanese_goblin|👺|小妖精|
+| :ghost: |ghost|👻|鬼|
+| :alien: |alien|👽|外星人|
+| :space_invader: |space_invader|👾|外星怪物|
+| :robot: |robot|🤖|机器人|
+| :smiley_cat: |smiley_cat|😺|大笑的猫|
+| :smile_cat: |smile_cat|😸|微笑的猫|
+| :joy_cat: |joy_cat|😹|笑出眼泪的猫|
+| :heart_eyes_cat: |heart_eyes_cat|😻|花痴的猫|
+| :smirk_cat: |smirk_cat|😼|奸笑的猫|
+| :kissing_cat: |kissing_cat|😽|亲亲猫|
+| :scream_cat: |scream_cat|🙀|疲倦的猫|
+| :crying_cat_face: |crying_cat_face|😿|哭泣的猫|
+| :pouting_cat: |pouting_cat|😾|生气的猫|
+| :see_no_evil: |see_no_evil|🙈|非礼勿视|
+| :hear_no_evil: |hear_no_evil|🙉|非礼勿听|
+| :speak_no_evil: |speak_no_evil|🙊|非礼勿言|
 
 # 自动更新的列表 #
 
