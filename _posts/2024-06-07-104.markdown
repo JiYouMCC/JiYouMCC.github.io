@@ -17,6 +17,8 @@ issue: 42
 
 [2018年街拍](/photos/#street_view_2018){:target="_blank"}
 
+[2019年街拍](/photos/#street_view_2019){:target="_blank"}
+
 [2022年街拍](/photos/#street_view_2022){:target="_blank"}
 
 [2023年街拍](/photos/#street_view_2023){:target="_blank"}
