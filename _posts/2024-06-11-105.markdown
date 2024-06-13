@@ -290,7 +290,7 @@ GitHub emoji = 1874
 | :man_with_turban: |man_with_turban|👳‍♂️|戴头巾的男人|
 | :woman_with_turban: |woman_with_turban|👳‍♀️|戴头巾的女人|
 | :man_with_gua_pi_mao: |man_with_gua_pi_mao|👲|带皮冒的人|
-| :person_with_headscarf: |person_with_headscarf|🧕|戴头饰的女人|
+| :woman_with_headscarf: |woman_with_headscarf|🧕|戴头饰的女人|
 | :pregnant_woman: |pregnant_woman|🤰|孕妇|
 | - |-|🫃|怀孕的男人|
 | - |-|🫄|怀孕的人|
