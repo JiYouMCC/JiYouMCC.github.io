@@ -20,7 +20,7 @@ GitHub emoji = 1874
 
 分类方式参照[emojipedia](https://emojipedia.org){:target="_blank"}
 
-## 笑脸 ##
+## 笑脸（112） ##
 
 ### 微笑和喜爱（23） ###
 
@@ -49,7 +49,7 @@ GitHub emoji = 1874
 | :smiling_face_with_tear: |smiling_face_with_tear|🥲|含泪的笑脸|
 | :smirk: |smirk|😏|得意|
 
-### 语言、手和饰物（17） ###
+### 语言、手和饰物（16） ###
 
 | GitHub Emoji | GitHub name | Emoji | 中文名字 |
 | :----------: | :---------: | :---: | :------: |
@@ -250,6 +250,61 @@ GitHub emoji = 1874
 | :footprints: |footprints|👣|脚印|
 | :dna: |dna|🧬|DNA|
 | :drop_of_blood: |drop_of_blood|🩸|血滴|
+
+### 人物与外表（42） ###
+
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :baby: |baby|👶|小宝贝|
+| :child: |child|🧒|儿童|
+| :boy: |boy|👦|男孩|
+| :girl: |girl|👧|女孩|
+| :adult: |adult|🧑|成人|
+| :blond_haired_person: |blond_haired_person|👱|金色头发的人|
+| :man: |man|👨|男人|
+| :bearded_person: |bearded_person|🧔|有胡子的人|
+| :man_beard: |man_beard|🧔‍♂️|有络腮胡子的人|
+| :woman_beard: |woman_beard|🧔‍♀️|有络腮胡子的女人|
+| :red_haired_man: |red_haired_man|👨‍🦰|男人：红发|
+| :curly_haired_man: |curly_haired_man|👨‍🦱|男人：卷发|
+| :white_haired_man: |white_haired_man|👨‍🦳|男人：白发|
+| :bald_man: |bald_man|👨‍🦲|男人：秃顶|
+| :woman: |woman|👩|女人|
+| :red_haired_woman: |red_haired_woman|👩‍🦰|女人：红发|
+| :person_red_hair: |person_red_hair|🧑‍🦰|成人：红发|
+| :curly_haired_woman: |curly_haired_woman|👩‍🦱|女人：卷发|
+| :person_curly_hair: |person_curly_hair|🧑‍🦱|成人：卷发|
+| :white_haired_woman: |white_haired_woman|👩‍🦳|女人：白发|
+| :person_white_hair: |person_white_hair|🧑‍🦳|成人：白发|
+| :bald_woman: |bald_woman|👩‍🦲|女人：秃顶|
+| :person_bald: |person_bald|🧑‍🦲|成人：秃顶|
+| :blond_haired_woman: :blonde_woman: |blond_haired_woman blonde_woman|👱‍♀️|金发女|
+| :blond_haired_man: |blond_haired_man|👱‍♂️|金发男|
+| :older_adult: |older_adult|🧓|老年人|
+| :older_man: |older_man|👴|老爷爷|
+| :older_woman: |older_woman|👵|老奶奶|
+| :deaf_person: |deaf_person|🧏|失聪者|
+| :deaf_man: |deaf_man|🧏‍♂️|失聪的男人|
+| :deaf_woman: |deaf_woman|🧏‍♀️|失聪的女人|
+| :person_with_turban: |person_with_turban|👳|戴头巾的人|
+| :man_with_turban: |man_with_turban|👳‍♂️|戴头巾的男人|
+| :woman_with_turban: |woman_with_turban|👳‍♀️|戴头巾的女人|
+| :man_with_gua_pi_mao: |man_with_gua_pi_mao|👲|带皮冒的人|
+| :person_with_headscarf: |person_with_headscarf|🧕|戴头饰的女人|
+| :pregnant_woman: |pregnant_woman|🤰|孕妇|
+| - |-|🫃|怀孕的男人|
+| - |-|🫄|怀孕的人|
+| :angel: |angel|👼|小天使|
+| :speaking_head: |speaking_head|🗣️|说话|
+| :bust_in_silhouette: |bust_in_silhouette|👤|人像|
+| :busts_in_silhouette: |busts_in_silhouette|👥|双人像|
+| - |-|🦰|红发|
+| - |-|🦱|卷发|
+| - |-|🦲|秃顶|
+| - |-|🦳|白发|
+
+
+
 
 # 自动更新的列表 #
 
