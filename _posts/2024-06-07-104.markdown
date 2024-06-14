@@ -11,11 +11,11 @@ issue: 42
 
 感兴趣的可以：
 
-:camera:[2016年街拍](/photos/#street_view_2016){:target="_blank"} :camera:[2017年街拍](/photos/#street_view_2017){:target="_blank"} 
-:camera:[2018年街拍](/photos/#street_view_2018){:target="_blank"} :camera:[2019年街拍](/photos/#street_view_2019){:target="_blank"}
+:camera:[2016年街拍](/photos/#street_view_2016){:target="_blank"} :camera:[2017年街拍](/photos/#street_view_2017){:target="_blank"} :camera:[2018年街拍](/photos/#street_view_2018){:target="_blank"} 
 
-:camera:[2020年街拍](/photos/#street_view_2020){:target="_blank"} :camera:[2022年街拍](/photos/#street_view_2022){:target="_blank"} 
-:camera:[2023年街拍](/photos/#street_view_2023){:target="_blank"} :camera:[2024年街拍](/photos/#street_view_2024){:target="_blank"} 
+:camera:[2019年街拍](/photos/#street_view_2019){:target="_blank"} :camera:[2020年街拍](/photos/#street_view_2020){:target="_blank"} :camera:[2021年街拍](/photos/#street_view_2021){:target="_blank"}
+
+:camera:[2022年街拍](/photos/#street_view_2022){:target="_blank"} :camera:[2023年街拍](/photos/#street_view_2023){:target="_blank"} :camera:[2024年街拍](/photos/#street_view_2024){:target="_blank"} 
 
 本身没有什么技术含量，只是找个地方放下代码。
 
