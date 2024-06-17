@@ -1,17 +1,16 @@
 var emojiList = [":smile:",
-  ":grin:",
-  ":joy:",
+  ":rofl:",
   ":flushed:",
-  ":heart_eyes:",
-  ":sweat:",
-  ":cry:",
+  ":thinking:",
+  ":raised_eyebrow:",
+  ":face_in_clouds:",
+  ":face_exhaling:",
+  ":sleeping:",
+  ":face_with_spiral_eyes:",
+  ":sob:",
+  ":triumph:",
   ":angry:",
-  ":sleepy:",
-  ":+1:",
-  ":fist:",
-  ":sunny:",
-  ":trollface:",
-  ":octocat:"
+  ":selfie:"
 ];
 
 function formatDate(e) {
