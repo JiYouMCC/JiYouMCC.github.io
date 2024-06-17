@@ -302,8 +302,37 @@ GitHub emoji = 1874
 | - |-|🦲|秃顶|
 | - |-|🦳|白发|
 
+### 手势和表情（32） ###
 
-
+| GitHub Emoji | GitHub name | Emoji | 中文名字 |
+| :----------: | :---------: | :---: | :------: |
+| :frowning_person: |frowning_person|🙍|皱眉|
+| :frowning_man: |frowning_man|🙍‍♂️|皱眉男|
+| :frowning_woman: |frowning_woman|🙍‍♀️|皱眉女|
+| :pouting_face: |pouting_face|🙎|噘嘴|
+| :pouting_man: |pouting_man|🙎‍♂️|噘嘴男|
+| :pouting_woman: |pouting_woman|🙎‍♀️|噘嘴女|
+| :no_good: |no_good|🙅|禁止手势|
+| :ng_man: :no_good_man: |ng_man no_good_man|🙅‍♂️|禁止手势男|
+| :ng_woman: :no_good_woman: |ng_woman no_good_woman|🙅‍♀️|禁止手势女|
+| :ok_person: |ok_person|🙆|Ok手势|
+| :ok_man: |ok_man|🙆‍♂️|Ok手势男|
+| :ok_woman: |ok_woman|🙆‍♀️|Ok手势女|
+| :information_desk_person: :tipping_hand_person: |information_desk_person tipping_hand_person|💁|前台|
+| :sassy_man: :tipping_hand_man: |sassy_man tipping_hand_man|💁‍♂️|前台男|
+| :sassy_woman: :tipping_hand_woman: |sassy_woman tipping_hand_woman|💁‍♀️|前台女|
+| :raising_hand: |raising_hand|🙋|举手|
+| :raising_hand_man: |raising_hand_man|🙋‍♂️|男生举手|
+| :raising_hand_woman: |raising_hand_woman|🙋‍♀️|女生举手|
+| :bow: |bow|🙇|鞠躬|
+| :bowing_man: |bowing_man|🙇‍♂️|男生鞠躬|
+| :bowing_woman: |bowing_woman|🙇‍♀️|女生鞠躬|
+| :facepalm: |facepalm|🤦|捂脸|
+| :man_facepalming: |man_facepalming|🤦‍♂️|男生捂脸|
+| :woman_facepalming: |woman_facepalming|🤦‍♀️|女生捂脸|
+| :shrug: |shrug|🤷|耸肩|
+| :man_shrugging: |man_shrugging|🤷‍♂️|男生耸肩|
+| :woman_shrugging: |woman_shrugging|🤷‍♀️|女生耸肩|
 
 # 自动更新的列表 #
 
