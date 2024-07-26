@@ -29,4 +29,6 @@ defaults:
     values:
       photo: true
 exclude: [vendor]
-plugins: [jekyll-paginate]
+plugins: 
+  - jekyll-paginate
+  - jekyll-gist
