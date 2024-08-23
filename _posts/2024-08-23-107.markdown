@@ -47,8 +47,8 @@ issue: 45
       </div>
   </div>
   <div class="text-center">
-<button class="btn btn-default" id="generate" onclick="generate();">生成题目</button>
-<button class="btn btn-default" id="pdf" onclick="topdf();">导出pdf</button>
+<button class="btn btn-default" id="generate" onclick="generate();">生成题目（带答案）</button>
+<button class="btn btn-default" id="pdf" onclick="topdf();">导出pdf（空白卷子）</button>
 </div>
 
 <div style="display: flex;">
@@ -138,7 +138,7 @@ issue: 45
             if (operator == "/") {
                 operator = "÷"
             }
-            let newText = document.createTextNode(problems[pro_index][0] + " " +operator + " " +problems[pro_index][2] + " =");
+            let newText = document.createTextNode(problems[pro_index][0] + " " +operator + " " +problems[pro_index][2] + " = "+problems[pro_index][3]);
 
             div_list[div_flag].appendChild(newText);
             div_list[div_flag].appendChild(document.createElement("br"));
