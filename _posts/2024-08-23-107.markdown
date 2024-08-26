@@ -21,9 +21,9 @@ issue: 45
     <div class="form-group">
         <label for="input_problem_count" class="col-sm-2 control-label">出题数</label>
         <div class="input-group col-sm-10">
-            <input id="input_problem_count" type="number" value="10" step="1" min="1" class="form-control">
+            <input id="input_problem_count" type="number" value="81" step="1" min="1" class="form-control">
         </div>
-        <div class="alert alert-warning" role="alert">为了保证出的题目不重复，这里数字不要填太大，不然会随机不出来。对于加法来说，最大值是P(N,2)，对于减法来说是C(N,2),乘法除法需要根据积的最大值来遍历</div>
+        <div class="alert alert-warning" role="alert">为了保证出的题目不重复，这里数字不要填太大，不然会随机不出来。对于加法来说，不考虑和不超过某个数字，最大值是P(N,2)，对于减法来说是C(N,2),乘法除法需要根据积的最大值来遍历</div>
     </div>
     <div class="form-group">
         <label for="input_max_int" class="col-sm-2 control-label">运算最大数</label>
@@ -35,7 +35,7 @@ issue: 45
     <div class="form-group">
         <label for="input_max_result" class="col-sm-2 control-label">结果最大数</label>
         <div class="input-group col-sm-10">
-          <input id="input_max_result" type="number" value="20" step="1" min="1" class="form-control">
+          <input id="input_max_result" type="number" value="10" step="1" min="1" class="form-control">
         </div>
         <div class="alert alert-warning" role="alert">意思是结果最大值，指的是和/差/积/商最大值。</div>
       </div>
