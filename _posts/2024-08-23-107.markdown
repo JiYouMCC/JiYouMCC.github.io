@@ -30,14 +30,14 @@ issue: 45
         <div class="input-group col-sm-10">
             <input id="input_max_int" type="number" value="10" step="1" min="1" class="form-control">
         </div>
-        <div class="alert alert-warning" role="alert">意思是运算数最大值，比如说10以内加减法，加数/减数的最大值就是9。</div>
+        <div class="alert alert-warning" role="alert">加数/减数/被减数/乘数/被乘数/除数/被除数的最大值。</div>
     </div>
     <div class="form-group">
         <label for="input_max_result" class="col-sm-2 control-label">结果最大数</label>
         <div class="input-group col-sm-10">
           <input id="input_max_result" type="number" value="10" step="1" min="1" class="form-control">
         </div>
-        <div class="alert alert-warning" role="alert">意思是结果最大值，指的是和/差/积/商最大值。</div>
+        <div class="alert alert-warning" role="alert">和/差/积/商最大值。</div>
       </div>
       <div class="text-center">
         <input id="check_plus" type="checkbox" checked> 加  
@@ -83,7 +83,7 @@ issue: 45
             }
 
             var result = eval(number_A + operator + number_B)
-            if (result > 0 && result < max_answer && Number.isInteger(result)) {
+            if (result > 0 && result <= max_answer && Number.isInteger(result)) {
                 problems.push([number_A,operator,number_B,result])
                 i--;
             }
