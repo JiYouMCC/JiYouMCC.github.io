@@ -26,22 +26,26 @@ issue: 45
         <div class="alert alert-warning" role="alert">为了保证出的题目不重复，这里数字不要填太大，不然会随机不出来。对于加法来说，不考虑和不超过某个数字，最大值是P(N,2)，对于减法来说是C(N,2),乘法除法需要根据积的最大值来遍历</div>
     </div>
     <div class="form-group">
-        <label for="input_max_int" class="col-sm-2 control-label">运算最大数</label>
+        <label class="col-sm-2 control-label">运算数范围</label>
         <div class="input-group col-sm-10">
-            <input id="input_max_int" type="number" value="10" step="1" min="1" class="form-control">
+            <input id="input_min_int" type="number" value="1" step="1" class="form-control">
+            <span class="input-group-addon">~</span>
+            <input id="input_max_int" type="number" value="10" step="1" class="form-control">
         </div>
-        <div class="alert alert-warning" role="alert">加数/减数/被减数/乘数/被乘数/除数/被除数的最大值。</div>
+        <div class="alert alert-warning" role="alert">加数/减数/被减数/乘数/被乘数/除数/被除数的最小值和最大值。</div>
     </div>
     <div class="form-group">
-        <label for="input_max_result" class="col-sm-2 control-label">结果最大数</label>
+        <label class="col-sm-2 control-label">结果范围</label>
         <div class="input-group col-sm-10">
-          <input id="input_max_result" type="number" value="10" step="1" min="1" class="form-control">
+            <input id="input_min_result" type="number" value="1" step="1" class="form-control">
+            <span class="input-group-addon">~</span>
+            <input id="input_max_result" type="number" value="10" step="1" class="form-control">
         </div>
-        <div class="alert alert-warning" role="alert">和/差/积/商最大值。</div>
+        <div class="alert alert-warning" role="alert">和/差/积/商的最大值和最小值。</div>
       </div>
       <div class="text-center">
         <input id="check_plus" type="checkbox" checked> 加  
-        <input id="check_minus" type="checkbox" checked> 减（差会控制为必须大于0）  
+        <input id="check_minus" type="checkbox" checked> 减  
         <input id="check_times" type="checkbox"> 乘  
         <input id="check_divide" type="checkbox" > 除（商会控制为必须是整数）  
       </div>
@@ -60,17 +64,17 @@ issue: 45
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script type="text/javascript">
     var problems = [];
-    function random_int(max) {
-        var min = 1;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    function random_int(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + Number(min);
     }
-    function createPaper(max_int, max_answer, count, operators) {
+    function createPaper(min_int, max_int, min_answer, max_answer, count, operators) {
         var problems = [];
         for (var i = count - 1; i >= 0;) {
-            var number_A = random_int(max_int);
-            var number_B = random_int(max_int);
+            var number_A = random_int(min_int, max_int);
+            var number_B = random_int(min_int, max_int);
             var operator = operators[Math.floor(Math.random() * operators.length)];
-            var flag=false;
+            //console.log(number_A,operator,number_B);
+            var flag = false;
             for (var j = problems.length - 1; j >= 0; j--) {
                 if (problems[j][0] == number_A && problems[j][1] == operator && problems[j][2] == number_B) {
                     //console.log("重复题目");
@@ -82,8 +86,8 @@ issue: 45
                 continue;
             }
 
-            var result = eval(number_A + operator + number_B)
-            if (result > 0 && result <= max_answer && Number.isInteger(result)) {
+            var result = eval(number_A + operator + "(" + number_B + ")")
+            if (result >= min_answer && result <= max_answer && Number.isInteger(result)) {
                 problems.push([number_A,operator,number_B,result])
                 i--;
             }
@@ -93,7 +97,9 @@ issue: 45
     function generate() {
         var count = document.getElementById("input_problem_count").value;
         var max_int = document.getElementById("input_max_int").value;
-        var result_int = document.getElementById("input_max_result").value;
+        var min_int = document.getElementById("input_min_int").value;
+        var max_result = document.getElementById("input_max_result").value;
+        var min_result = document.getElementById("input_min_result").value;
         var operator = [];
         if (document.getElementById("check_plus").checked) {
             operator.push("+")
@@ -111,7 +117,7 @@ issue: 45
             alert("必须选择一种运算")
             return;
         }
-        problems = createPaper(max_int,result_int,count,operator)
+        problems = createPaper(min_int, max_int, min_result, max_result, count,operator)
         printToDiv(problems)
     }
 
@@ -138,7 +144,7 @@ issue: 45
             if (operator == "/") {
                 operator = "÷"
             }
-            let newText = document.createTextNode(problems[pro_index][0] + " " +operator + " " +problems[pro_index][2] + " = "+problems[pro_index][3]);
+            let newText = document.createTextNode((problems[pro_index][0]>=0?"":" ( ") + problems[pro_index][0] + (problems[pro_index][0]>=0?" ":" ) ") + operator + (problems[pro_index][2]>=0?" ":" ( ") +problems[pro_index][2] + (problems[pro_index][2]>=0?" = ":" ) = ") + problems[pro_index][3]);
 
             div_list[div_flag].appendChild(newText);
             div_list[div_flag].appendChild(document.createElement("br"));
@@ -169,7 +175,7 @@ issue: 45
             if (operator == "/") {
                 operator = "÷"
             }
-            doc.text(problems[pro_index][0] + " " +operator + " " +problems[pro_index][2] + " =",x + 10,20+10*y)
+            doc.text((problems[pro_index][0]>=0?"":" ( ") + problems[pro_index][0] + (problems[pro_index][0]>=0?" ":" ) ") +operator + (problems[pro_index][2]>=0?" ":" ( ") +problems[pro_index][2] + (problems[pro_index][2]>=0?" = ":" ) = "),x + 10,20+10*y)
             x+=70;
             if (x >150) {
                 x =10;
