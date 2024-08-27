@@ -1,0 +1,181 @@
+---
+layout: post
+title:  "算术题生成器"
+date:   2024-08-23 08:00:00 +0800
+categories: 技术
+tags: javascript
+use_code: true
+issue: 45
+---
+<style>
+.box {
+    width: 33.33%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+</style>
+
+随手写个数学题生成器，还有些细节以后再说。
+
+<div>
+    <div class="form-group">
+        <label for="input_problem_count" class="col-sm-2 control-label">出题数</label>
+        <div class="input-group col-sm-10">
+            <input id="input_problem_count" type="number" value="81" step="1" min="1" class="form-control">
+        </div>
+        <div class="alert alert-warning" role="alert">为了保证出的题目不重复，这里数字不要填太大，不然会随机不出来。对于加法来说，不考虑和不超过某个数字，最大值是P(N,2)，对于减法来说是C(N,2),乘法除法需要根据积的最大值来遍历</div>
+    </div>
+    <div class="form-group">
+        <label for="input_max_int" class="col-sm-2 control-label">运算最大数</label>
+        <div class="input-group col-sm-10">
+            <input id="input_max_int" type="number" value="10" step="1" min="1" class="form-control">
+        </div>
+        <div class="alert alert-warning" role="alert">加数/减数/被减数/乘数/被乘数/除数/被除数的最大值。</div>
+    </div>
+    <div class="form-group">
+        <label for="input_max_result" class="col-sm-2 control-label">结果最大数</label>
+        <div class="input-group col-sm-10">
+          <input id="input_max_result" type="number" value="10" step="1" min="1" class="form-control">
+        </div>
+        <div class="alert alert-warning" role="alert">和/差/积/商最大值。</div>
+      </div>
+      <div class="text-center">
+        <input id="check_plus" type="checkbox" checked> 加  
+        <input id="check_minus" type="checkbox" checked> 减（差会控制为必须大于0）  
+        <input id="check_times" type="checkbox"> 乘  
+        <input id="check_divide" type="checkbox" > 除（商会控制为必须是整数）  
+      </div>
+  </div>
+  <div class="text-center">
+<button class="btn btn-default" id="generate" onclick="generate();">生成题目（带答案）</button>
+<button class="btn btn-default" id="pdf" onclick="topdf();">导出pdf（空白卷子）</button>
+</div>
+
+<div style="display: flex;">
+<div class="box" id="problems_1"></div>
+<div class="box" id="problems_2"></div>
+<div class="box" id="problems_3"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="text/javascript">
+    var problems = [];
+    function random_int(max) {
+        var min = 1;
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    function createPaper(max_int, max_answer, count, operators) {
+        var problems = [];
+        for (var i = count - 1; i >= 0;) {
+            var number_A = random_int(max_int);
+            var number_B = random_int(max_int);
+            var operator = operators[Math.floor(Math.random() * operators.length)];
+            var flag=false;
+            for (var j = problems.length - 1; j >= 0; j--) {
+                if (problems[j][0] == number_A && problems[j][1] == operator && problems[j][2] == number_B) {
+                    //console.log("重复题目");
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                continue;
+            }
+
+            var result = eval(number_A + operator + number_B)
+            if (result > 0 && result <= max_answer && Number.isInteger(result)) {
+                problems.push([number_A,operator,number_B,result])
+                i--;
+            }
+        }
+        return problems;
+    }
+    function generate() {
+        var count = document.getElementById("input_problem_count").value;
+        var max_int = document.getElementById("input_max_int").value;
+        var result_int = document.getElementById("input_max_result").value;
+        var operator = [];
+        if (document.getElementById("check_plus").checked) {
+            operator.push("+")
+        }
+        if (document.getElementById("check_minus").checked) {
+            operator.push("-")
+        }
+        if (document.getElementById("check_times").checked) {
+            operator.push("*")
+        }
+        if (document.getElementById("check_divide").checked) {
+            operator.push("/")
+        }
+        if (operator.length ==0) {
+            alert("必须选择一种运算")
+            return;
+        }
+        problems = createPaper(max_int,result_int,count,operator)
+        printToDiv(problems)
+    }
+
+    function topdf() {
+        if(problems.length>0)
+        {
+        saveToPdf(problems)
+    }
+    }
+    function printToDiv(problems) {
+        let myDiv1 = document.getElementById("problems_1");
+        let myDiv2 = document.getElementById("problems_2");
+        let myDiv3 = document.getElementById("problems_3");
+        myDiv1.innerHTML = '';
+        myDiv2.innerHTML = '';
+        myDiv3.innerHTML = '';
+        let div_list=[myDiv1,myDiv2,myDiv3];
+        let div_flag = 0;
+        for (var pro_index = 0; pro_index < problems.length ; pro_index++) {
+            var operator = problems[pro_index][1];
+            if (operator == "*") {
+                operator = "×"
+            }
+            if (operator == "/") {
+                operator = "÷"
+            }
+            let newText = document.createTextNode(problems[pro_index][0] + " " +operator + " " +problems[pro_index][2] + " = "+problems[pro_index][3]);
+
+            div_list[div_flag].appendChild(newText);
+            div_list[div_flag].appendChild(document.createElement("br"));
+            div_flag +=1;
+            if (div_flag == 3) {
+                div_flag = 0;
+            }
+        }
+    }
+    function saveToPdf(problems) {
+        var page_count = 0;
+        doc = new jspdf.jsPDF()
+        y = 0;
+        x = 10;
+
+        for (var pro_index = 0; pro_index < problems.length ; pro_index++) {
+            if (pro_index != 0 && pro_index%81 == 0) {
+                page_count+=1;
+                doc.addPage();
+                y=0;
+                x=10
+            }
+
+            var operator = problems[pro_index][1];
+            if (operator == "*") {
+                operator = "×"
+            }
+            if (operator == "/") {
+                operator = "÷"
+            }
+            doc.text(problems[pro_index][0] + " " +operator + " " +problems[pro_index][2] + " =",x + 10,20+10*y)
+            x+=70;
+            if (x >150) {
+                x =10;
+                y +=1
+            }
+        }
+        doc.save("problems.pdf")
+    }
+</script>
