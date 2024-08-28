@@ -19,8 +19,7 @@ async function search(searchString) {
   var results = await Promise.all(search.results.map(r => r.data()));
 
   $("#pagefind_result").text(" ");
-  $("#search_word").text(searchString);
-  $("#search_count").text(results.length);
+  $("#search_message").html("搜索“" + searchString + "”，查找到 " + results.length + " 条记录");
   for (var i = 0; i < results.length; i++) {
     var div_left = $("<div></div>").addClass("media-left");
     if ("image" in results[i]["meta"]) {
