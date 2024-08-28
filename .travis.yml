@@ -7,6 +7,9 @@ before_install:
 script:
   - bundle install
   - bundle exec jekyll algolia
+  - ls
+  - npx -y pagefind --site public
+  - ls
 branches:
   only:
     # Change this to gh-pages if you're deploying using the gh-pages branch
