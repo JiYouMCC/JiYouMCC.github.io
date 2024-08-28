@@ -4,3 +4,4 @@ _site
 .jekyll-cache
 Gemfile.lock
 /pagefind.exe
+/pagefind_extended.exe

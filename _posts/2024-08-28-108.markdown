@@ -141,6 +141,8 @@ var results = await Promise.all(search.results.map(r => r.data()));
 
 其实我还想加一些什么根据日期/相关性排序之类的东西，这个稍后再说。
 
+## 一些问题和调整
+
 然后我就发现了一些问题，相应做了一些调整。
 
 首先，我发现搜索结果的meta的图片总是用了我link里面欧拉项目的图片，这八竿子打不着啊:scream:。根据文档```image will contain the src of the first img that follows the h1```，所以我需要把这个图片丢出搜索的范围。参考了一下[Configuring what content is indexed](https://pagefind.app/docs/indexing/){:target="_blank"}，我把blog的right部分全用```<aside data-pagefind-ignore="all">```扔了出去，以防止图片的干扰，用```<main data-pagefind-body>```包裹了一下所有post的真正的文章部分，然后就生效了。这样也防止了我搜索“评论”结果把所有的文章都搜索出来的窘境。
@@ -161,4 +163,24 @@ var results = await Promise.all(search.results.map(r => r.data()));
 
 不过除此以外，搜索标题、标签、分类已经不是问题了，体验还比原来的好很多，所以先将就着用一下。
 
-另一个小问题就是，每次jekyll有新的文章，都需要jekyll serve出_site，然后进行重新索引。从DevOps的角度来说，理论上可以在部署的时候加入这个index+拷贝文件夹的步骤，但是我有点懒，先不折腾了。
+后来我在[Installing and running Pagefind](https://pagefind.app/docs/installation/){:target="_blank"}上面终于找到了蛛丝马迹。
+
+```
+./pagefind --site "public"
+# or
+./pagefind_extended --site "public"
+
+Pagefind publishes two releases, pagefind and pagefind_extended. The extended release is a larger binary, but includes specialized support for indexing Chinese and Japanese pages.
+```
+
+```The extended release is a larger binary, but includes specialized support for indexing Chinese and Japanese pages.```
+
+居然为中文和日文特地搞了个版本！解决了分词的问题！
+
+相应的使用的现成可执行文件就是[pagefind_extended-v1.1.0-x86_64-pc-windows-msvc.tar.gz](https://github.com/CloudCannon/pagefind/releases/download/v1.1.0/pagefind_extended-v1.1.0-x86_64-pc-windows-msvc.tar.gz){:target="_blank"}，命令行更新为
+
+```
+pagefind_extended.exe --site C:\codes\JiYouMCC.github.io\_site --glob blog/post/**/*.html
+```
+
+另一个小问题就是，每次jekyll有新的文章，都需要jekyll serve出_site，然后进行重新索引。从DevOps的角度来说，理论上可以在部署的时候加入这个index+拷贝文件夹的步骤，但是我有点懒，先不折腾了。什么时候我高兴了研究下Github Action，和jekyll的编译部署都整合起来，说不定就成了。

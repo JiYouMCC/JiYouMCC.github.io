@@ -12,7 +12,7 @@ async function search(searchString) {
   var pagefind = await import("/pagefind/pagefind.js");
   await pagefind.options({
     showSubResults: false,
-    excerptLength: 15
+    excerptLength: 100
   });
   pagefind.init();
   var search = await pagefind.search(searchString);
