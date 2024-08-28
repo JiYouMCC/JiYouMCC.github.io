@@ -1,17 +1,19 @@
 ---
 layout: default
 ---
-<div>
-  <div class="page-header">
-    <div class="page_blog_title">{{ page.title }}</div>
-    <span class="page_datetime">{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
-    {% if page.categories.size > 0 %}&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}{% endif %} 
-    {% if page.tags.size > 0 %}&nbsp;&nbsp;<span class="glyphicon glyphicon-tags"></span>&nbsp;{% for tag in page.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}{% endif %}
+<main data-pagefind-body>
+  <div>
+    <div class="page-header">
+      <div class="page_blog_title" data-pagefind-meta="title">{{ page.title }}</div>
+      <span class="page_datetime">{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
+      {% if page.categories.size > 0 %}&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}{% endif %} 
+      {% if page.tags.size > 0 %}&nbsp;&nbsp;<span class="glyphicon glyphicon-tags"></span>&nbsp;{% for tag in page.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}{% endif %}
+    </div>
+    <article id="blog_content" class="panel-body page_blog_content">
+      {{ content }}
+    </article>
   </div>
-  <article id="blog_content" class="panel-body page_blog_content">
-    {{ content }}
-  </article>
-</div>
+</main>
 <nav>
   <ul class="pager">
     {% if page.next.url %} 

@@ -2,16 +2,11 @@
 layout: default
 title: "搜索"
 ---
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th></th><th></th><th class="page_list_item text-center">分类</th><th class="page_list_item text-center">评论</th>
-    </tr>
-  </thead>
-  <tbody id="result"></tbody>
-</table>
-<script src="{{ "/lib/lunr.js"}}"></script>
-<script src="{{ "/lib/tinyseg.js"}}"></script>
-<script src="{{ "/lib/lunr.stemmer.support.js"}}"></script>
-<script src="{{ "/lib/lunr.jp.js"}}"></script>
+<h1>搜索“<span id="search_word"></span>”，查找到 <span id="search_count">0</span> 条记录</h1>
+<div class="panel panel-default">
+  <ul id="pagefind_result" class="list-group"></ul>
+</div>
+
+<script src="/pagefind/pagefind-ui.js"></script>
 <script src="{{ "/js/search.js"}}"></script>
+
