@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-18.04
     steps:
     - uses: mikeal/npx@master
     - run: npx -y pagefind --site public --serve
