@@ -31,4 +31,3 @@ defaults:
 exclude: [vendor]
 plugins: 
   - jekyll-paginate
-  - jekyll-gist
