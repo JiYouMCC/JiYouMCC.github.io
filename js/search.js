@@ -1,56 +1,48 @@
 var params = {};
-  if (location.search) {
-    var parts = location.search.substring(1).split('&');
-    for (var i = 0; i < parts.length; i++) {
-        var nv = parts[i].split('=');
-        if (!nv[0]) continue;
-        params[nv[0]] = nv[1] || true;
-    }
+if (location.search) {
+  var parts = location.search.substring(1).split('&');
+  for (var i = 0; i < parts.length; i++) {
+    var nv = parts[i].split('=');
+    if (!nv[0]) continue;
+    params[nv[0]] = nv[1] || true;
   }
+}
 
-  window.idx = lunr(function () {
-    this.use(lunr.jp);
-    this.field('post_id');
-    this.field('title', { boost: 10 });
-    this.field('category');
-    this.field('tags');
+async function search(searchString) {
+  var pagefind = await import("/pagefind/pagefind.js");
+  await pagefind.options({
+    showSubResults: false,
+    excerptLength: 15
   });
+  pagefind.init();
+  var search = await pagefind.search(searchString);
+  var results = await Promise.all(search.results.map(r => r.data()));
 
-  window.data = $.getJSON('/search_data.json');
-  window.data.then(function(loaded_data){
-    $.each(loaded_data, function(index, value){
-      window.idx.add(
-        $.extend({ "id": index }, value)
-      );
-    });
-    var results = window.idx.search(decodeURIComponent(params['string']));
-    results.forEach(function(result) {
-      var item = loaded_data[result.ref];
-      var title = $("<td></td>").append($("<a></a>").text(item.title).attr("href", item.url));
-      var date = $("<td></td>").addClass("page_datetime").addClass("text-right").text(item.date);
-      var cat = $("<td></td>").addClass("text-center").append(
-        $("<span></span>").append(
-          $("<a></a>").attr("class", "label label-default").attr("href", "/type#" + item.category).text(item.category)));
-      var comments = $("<td></td").addClass("text-center").append($("<span></span>").attr("class", "badge ds-thread-count").attr("comments-count", item.post_id));
-      $("#result").append(
-        $("<tr></tr")
-          .append(title)
-          .append(date)
-          .append(cat)
-          .append(comments)
-          );
-      });
+  $("#pagefind_result").text(" ");
+  $("#search_word").text(searchString);
+  $("#search_count").text(results.length);
+  for (var i = 0; i < results.length; i++) {
+    var div_left = $("<div></div>").addClass("media-left");
+    if ("image" in results[i]["meta"]) {
+      div_left.append(
+        $("<img>").addClass("media-object").attr("src", results[i]["meta"]['image']).attr("title", results[i]["meta"]['title']).attr("alt", results[i]["meta"]['title']).css("max-width", "75px").css("max-height", "150px")
+      )
+    };
+    var div_body_title = $("<a></a>").attr('href', results[i]["url"]).attr('target', "_blank").append($("<h4></h4>").addClass("media-heading").text(results[i]["meta"]['title']));
+    var div_body_p = $("<p>" + results[i]['excerpt'] + "</p>");
+    var div_body = $("<div></div>").addClass("media-body");
+    div_body.append(div_body_title);
+    div_body.append(div_body_p);
 
-    var elements = $("[comments-count]");
-    for (var i = 0; i < elements.length; i++) {
-        var element = $(elements[i]);
-        var post = element.attr('comments-count');
-        if (post) {
-            Comments.post.commentCount.updateCallback(post, function(result) {
-                if (result) {
-                    $("[comments-count='" + result.post + "']").text(result.count);
-                }
-            });
-        }
-    }
-  });
+    var div_media = $("<div></div>").addClass("media");
+    div_media.append(div_left);
+    div_media.append(div_body);
+
+    $("#pagefind_result").append(
+      $("<li></li>").addClass("list-group-item").append(div_media)
+    )
+  }
+  //console.log(results)
+}
+
+search(decodeURIComponent(params['string']));
