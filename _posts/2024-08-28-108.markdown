@@ -1,0 +1,164 @@
+---
+layout: post
+title:  "Pagefind 整合 Jekyll 静态搜索"
+date:   2024-08-28 08:00:00 +0800
+categories: 技术
+tags: javascript jquery
+use_code: true
+issue: 46
+---
+其实我很早就想把这里的搜索给重写一下。
+
+<!--more-->
+
+# 旧方案：Lunr
+
+之前使用的是静态生成一个search_data.json，大概全站生成的格式是这样的：
+
+```
+{
+  
+    "blog-post-107": {
+      "post_id" : "/blog/post/107",
+      "title": "算术题生成器",
+      "url": "/blog/post/107/",
+      "date": "2024-08-23 08:00:00",
+      "category": "技术",
+      "tags": ["javascript"]
+    }
+    ,
+  
+    "blog-post-106": {
+      "post_id" : "/blog/post/106",
+      "title": "从MP4里面提取音频",
+      "url": "/blog/post/106/",
+      "date": "2024-07-30 08:00:00",
+      "category": "技术",
+      "tags": ["python","ffmpeg"]
+    }
+    ,
+    .............
+```
+
+我并没有把全文给放进去，所以搜索起来有很大的限制。
+
+然后再利用[Lunr](https://lunrjs.com/){:target="_blank"}来进行检索。其中我还用了[lunr-language](https://github.com/MihaiValentin/lunr-languages){:target="_blank"}进行了一下分词。虽然不明白当时为什么用了jp的库而不是zh的:face_in_clouds:，很久远的事情了，实在记不得了。
+
+用下来搜索的效果大概是这样的
+
+![旧版搜索效果](/img/blog_108_old-search.JPG)
+
+说白了就是只能用标题、标签和分类来搜索。
+
+虽然说Lunr其实很强大，如果我把全文都塞进去不见得搜不出来，但是我实在不高兴折腾了。
+
+备份下当时的代码
+
+```
+window.idx = lunr(function () {
+    this.use(lunr.jp);
+    this.field('post_id');
+    this.field('title', { boost: 10 });
+    this.field('category');
+    this.field('tags');
+});
+window.data = $.getJSON('/search_data.json');
+window.data.then(function(loaded_data){
+    $.each(loaded_data, function(index, value){
+        window.idx.add(
+            $.extend({ "id": index }, value)
+        );
+    });
+    var results = window.idx.search(decodeURIComponent(params['string']));
+});
+```
+
+之后我还搜索过一些其他方案，比如[Algolia](https://www.algolia.com/){:target="_blank"}，bootstrapt网站就用的这个，看上去特别酷炫，但是要收钱……所有需要收钱的方案在我这里基本都被干掉了
+
+# 初步了解Pagefind
+
+最近又没事搜索了一下，搜到了这篇文章[基于Pagefind实现静态博客站内搜索](https://mudan.me/post/original/2024/06/12/%E5%9F%BA%E4%BA%8EPagefind%E5%AE%9E%E7%8E%B0%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2.html){:target="_blank"}，非常感兴趣。
+
+于是就上手试了一下，感觉非常不错。
+
+![试用效果](/img/blog_108_autoui.JPG)
+
+首先[Pagefind](https://pagefind.app/){:target="_blank"}是先扫描站点生成index，然后提供默认的ui或者api进行检索。
+
+对于我的基于Jekyll，部署在Github Page的白嫖式网站非常友好。
+
+# 我的使用步骤
+
+按照[https://pagefind.app/docs/](https://pagefind.app/docs/){:target="_blank"}的步骤，比较简单，但是我之后微调之后有很多不一样的地方。
+
+首先我在上文《基于Pagefind实现静态博客站内搜索》里面发现搜索框和结果框可以分开，但是现在我拿到的版本并不能分开（或者我没有找到分开设置的方法），这造成了default UI和我现有页面的嵌入配合成了灾难。虽然说我可以把result部分设成一个悬浮的div，但是调整了很久的CSS，感觉还是非常丑。我思考了一下还是用原来的比较古板/傻的search.html页面，用调用api的方式在特定页面显示搜索的结果。
+
+## 生成索引
+
+我自己并不是很熟悉npm和npx，所以直接从它Release的里面拉了个[已经编译好的win版本](https://github.com/CloudCannon/pagefind/releases/download/v1.1.0/pagefind_extended-v1.1.0-x86_64-pc-windows-msvc.tar.gz){:target="_blank"}来索引。
+
+我的blog的本地目录大概是这样的，真正应该被检索的文章其实是在编译之后以全静态的格式放在_site下面的blog/post下面，其他都是一些照片/分类/标签/索引之类的杂七杂八的没有搜索价值的东西。
+
+```
+├─_data
+├─_includes
+├─_layouts
+├─_posts
+└─_site
+    ├─blog
+    │  ├─index
+    │  └─post
+    ├─photo
+    ├─photos
+    ├─search
+    ├─tag
+    └─type
+```
+
+所以我的本地生成index的命令是这样的
+
+```
+pagefind.exe --site C:\codes\JiYouMCC.github.io\_site --glob blog/post/**/*.html
+```
+
+在生成index之后，会在_site下面生成一个pagefind文件夹，所有的索引/界面/js东西都在里面。放在_site里面并不会真正生效，所以我需要拷到根目录下(C:\codes\JiYouMCC.github.io\pagefind)，让jekyll视为一堆静态库来引用。
+
+## 搜索页面的api调用
+
+大体上也是跟着文档走，稍微做了一些细节上的配置。
+
+
+```
+var pagefind = await import("/pagefind/pagefind.js");
+await pagefind.options({
+    showSubResults: false,
+    excerptLength: 15
+});
+pagefind.init();
+var search = await pagefind.search(searchString);
+var results = await Promise.all(search.results.map(r => r.data()));
+```
+
+其实我还想加一些什么根据日期/相关性排序之类的东西，这个稍后再说。
+
+然后我就发现了一些问题，相应做了一些调整。
+
+首先，我发现搜索结果的meta的图片总是用了我link里面欧拉项目的图片，这八竿子打不着啊:scream:。根据文档```image will contain the src of the first img that follows the h1```，所以我需要把这个图片丢出搜索的范围。参考了一下[Configuring what content is indexed](https://pagefind.app/docs/indexing/){:target="_blank"}，我把blog的right部分全用```<aside data-pagefind-ignore="all">```扔了出去，以防止图片的干扰，用```<main data-pagefind-body>```包裹了一下所有post的真正的文章部分，然后就生效了。这样也防止了我搜索“评论”结果把所有的文章都搜索出来的窘境。
+
+然后，在UI上做了一些调整，还是用jquery写了一推的append，处理了一下图片的格式，大概是这样的效果
+
+![搜索效果](/img/blog_108_new-search.JPG)
+
+感觉好像大功告成了（并不是！）
+
+然后我就发现了一个很麻烦的问题，中文分词非常糟糕。
+
+![搜索效果](/img/blog_108_new-search-wrong.JPG)
+
+同样是上面那个搜索，明明有一句话说的是“根据像素点的灰色深度”blablablab，我就搜索“像素”，结果什么都搜不出来。
+
+这个问题看上去已经非常致命了，我的感觉是，肯定有什么我不知道的配置还没搞定。
+
+不过除此以外，搜索标题、标签、分类已经不是问题了，体验还比原来的好很多，所以先将就着用一下。
+
+另一个小问题就是，每次jekyll有新的文章，都需要jekyll serve出_site，然后进行重新索引。从DevOps的角度来说，理论上可以在部署的时候加入这个index+拷贝文件夹的步骤，但是我有点懒，先不折腾了。
