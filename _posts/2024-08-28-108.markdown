@@ -290,12 +290,12 @@ jobs:
       - name: Correct Ownership in GITHUB_WORKSPACE directory
         uses: peter-murray/reset-workspace-ownership-action@v1
         with:
-          user_id: $\{\{ steps.get_uid.outputs.uid \}\}        
+          user_id: $\\{\\{ steps.get_uid.outputs.uid \\}\\}        
       - name: Index pagefind
         run: |
-          wget https://github.com/CloudCannon/pagefind/releases/download/$\{\{ vars.PAGEFIND_VERSION \}\}/$\{\{ vars.PAGEFIND_PACKAGE_NAME \}\}
-          tar -xvzf $\{\{ vars.PAGEFIND_PACKAGE_NAME \}\}
-          ./pagefind_extended --site $\{\{ github.workspace \}\}/_site --glob blog/post/**/*.html
+          wget https://github.com/CloudCannon/pagefind/releases/download/$\\{\\{ vars.PAGEFIND_VERSION \\}\\}/$\\{\\{ vars.PAGEFIND_PACKAGE_NAME \\}\\}
+          tar -xvzf $\\{\\{ vars.PAGEFIND_PACKAGE_NAME \\}\\}
+          ./pagefind_extended --site $\\{\\{ github.workspace \\}\\}/_site --glob blog/post/**/*.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
   deploy:
@@ -307,7 +307,7 @@ jobs:
         uses: actions/deploy-pages@v4
     environment:
       name: github-pages
-      url: $\{\{ steps.deployment.outputs.page_url \}\}
+      url: $\\{\\{ steps.deployment.outputs.page_url \\}\\}
 ```
 
 另带2个环境变量，想着方便以后维护吧，毕竟是从别人Release现成拉下来的。
