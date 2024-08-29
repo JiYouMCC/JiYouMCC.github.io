@@ -1,4 +1,4 @@
-name: CI
+name: Build Jekyll Site with Pagefind
 on:
  push:
    branches: ["master"]
