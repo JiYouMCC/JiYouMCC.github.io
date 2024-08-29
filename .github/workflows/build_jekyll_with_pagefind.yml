@@ -28,7 +28,6 @@ jobs:
           user_id: ${{ steps.get_uid.outputs.uid }}        
       - name: Index pagefind
         run: |
-          ls -l
           wget https://github.com/CloudCannon/pagefind/releases/download/v1.1.0/pagefind_extended-v1.1.0-x86_64-unknown-linux-musl.tar.gz
           tar -xvzf pagefind_extended-v1.1.0-x86_64-unknown-linux-musl.tar.gz
           ./pagefind_extended --site ${{ github.workspace }}/_site --glob blog/post/**/*.html
