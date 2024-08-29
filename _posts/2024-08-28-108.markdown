@@ -218,7 +218,7 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 Error: Process completed with exit code 101.
 ```
 
-一开始我还以为是pagefind的可执行文件权限不对，来了一波```chmod 755```之类的，一点儿都不管用。然后我'''ll'''了一下，才发现
+一开始我还以为是pagefind的可执行文件权限不对，来了一波```chmod 755```之类的，一点儿都不管用。然后我```ll```了一下，才发现
 
 ```
 -rw-r--r--  1 runner docker     3265 Aug 29 01:56 404.html
@@ -256,7 +256,7 @@ drwxr-xr-x  2 runner docker     4096 Aug 29 01:56 play
 
 中间这_site的root:root怎么就那么刺眼呢:facepalm:。原来jekyll build在docker里面出来的文件夹本身就root了。
 
-接着我就折腾了一波什么'''chown -R runner:docker'''之类的，各种不管用，也没找到```actions/jekyll-build-pages@v1```有什么配置可以设置docker的arg的地方，只有输出文件夹的地址啥的。
+接着我就折腾了一波什么```chown -R runner:docker```之类的，各种不管用，也没找到```actions/jekyll-build-pages@v1```有什么配置可以设置docker的arg的地方，只有输出文件夹的地址啥的。
 
 最后搜了一圈，找到了[Reset Workspace Ownership Action](https://github.com/marketplace/actions/reset-workspace-ownership-action){:target="_blank"}，终于好用了
 
