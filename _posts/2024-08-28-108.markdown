@@ -9,6 +9,15 @@ issue: 46
 ---
 其实我很早就想把这里的搜索给重写一下。
 
+- 旧方案：Lunr
+- 初步了解Pagefind
+- 我的使用步骤
+  -  搜索页面的api调用
+  -  一些问题和调整
+    - 限定搜索的标签范围
+    - pagefind_extended的中文支持
+    - Github Action和pagefind的整合
+
 <!--more-->
 
 # 旧方案：Lunr
@@ -324,3 +333,6 @@ PAGEFIND_VERSION=v1.1.0
 感觉Github Action真心强大，不知道能不能把我的评论系统之每次新建post都要手动建Issue这个问题也给解决了呢？
 
 现在还有一个小问题，就是搜索的结果里面会把emoji作为图片放在meta里，觉得怪怪的。我试了ignore却并不好用，回头想想怎么整。
+
+在Pagefind的Github发了相关的Issue: [exclude-selectors does not work](https://github.com/CloudCannon/pagefind/issues/692)){:target="_blank"}，虽然说结果并不能解决我的问题（反而得到了不太理想的解释），不过这个活跃的项目给我一种友好+富有活力的感觉，真的越来越喜欢它了！
+
