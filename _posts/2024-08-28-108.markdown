@@ -9,7 +9,14 @@ issue: 46
 ---
 其实我很早就想把这里的搜索给重写一下。
 
-{:toc}
+- 旧方案：Lunr
+- 初步了解Pagefind
+- 我的使用步骤
+  -  搜索页面的api调用
+  -  一些问题和调整
+    - 限定搜索的标签范围
+    - pagefind_extended的中文支持
+    - Github Action和pagefind的整合
 
 <!--more-->
 
