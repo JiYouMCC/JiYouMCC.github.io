@@ -334,5 +334,5 @@ PAGEFIND_VERSION=v1.1.0
 
 现在还有一个小问题，就是搜索的结果里面会把emoji作为图片放在meta里，觉得怪怪的。我试了ignore却并不好用，回头想想怎么整。
 
-在Pagefind的Github发了相关的Issue: [exclude-selectors does not work](https://github.com/CloudCannon/pagefind/issues/692)){:target="_blank"}，虽然说结果并不能解决我的问题（反而得到了不太理想的解释），不过这个活跃的项目给我一种友好+富有活力的感觉，真的越来越喜欢它了！
+在Pagefind的Github发了相关的Issue: [exclude-selectors does not work](https://github.com/CloudCannon/pagefind/issues/692){:target="_blank"}，虽然说结果并不能解决我的问题（反而得到了不太理想的解释），不过这个活跃的项目给我一种友好+富有活力的感觉，真的越来越喜欢它了！
 
