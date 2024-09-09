@@ -26,8 +26,8 @@ issue: 41
 
 <!--more-->
 
-# 准备工作
-## 现有图（文字）解解构
+## 准备工作
+### 现有图（文字）解解构
 原有的文字解如下：
 
 ![原文字解](/img/blog_103_original_diagram.jpg)
@@ -46,7 +46,7 @@ issue: 41
 
 （这样打出来就有一种傻乎乎的感觉:satisfied:）
 
-## 素材图片准备
+### 素材图片准备
 ![素材图片](/img/blog_103_source.jpg)
 
 大多数的图片我都是从 [Views of the Solar System](https://solarviews.com/cap/index/maps-cylindrical1.html){:target="_blank"}这个网站上下载的
@@ -57,7 +57,7 @@ issue: 41
 
 图片纵横比都是1:2，毕竟是墨卡托投影嘛。大多数大小是1440\*720，天王星和海王星是720\*360，也没什么大问题
 
-## 代码逻辑思考
+### 代码逻辑思考
 
 其实代码的最终需求是，把原图缩略成只有4个颜色的图并马赛克化，在两极的位置进行一下图片的缩放
 
@@ -86,7 +86,7 @@ issue: 41
 
 随手填了2个数值，大概是这样的效果，不过我觉得这个也只是在视觉上让自己好受一点，具体生成图解之后，还会受到毛线色号的制约
 
-## PIL函数准备
+### PIL函数准备
 
 在这个“面向AI编程”的时代，写代码真的是越来越简单了:satisfied:。我在Copilet里面输入“我想用python把一张图片马赛克化，并且只用4个颜色，代码怎么写？”Copilet就噼噼啪啪回复一堆乱七八糟但是挺好用的代码
 
@@ -143,8 +143,8 @@ issue: 41
     
     在图像上写字
 
-# 代码
-## 原图解构
+## 代码
+### 原图解构
 
     from PIL import Image, ImageDraw, ImageEnhance, ImageFont
     import math
@@ -163,7 +163,7 @@ issue: 41
     # 计算纵向切片高度
     double_piece_height = height/(8 + 10 + 8)
 
-## 拉伸绘图
+### 拉伸绘图
 
     # 把指定色块给压缩成1*1实现混色效果，然后用这个颜色填满这个色块
     def fill_color(image, x1, y1, x2, y2):
@@ -215,19 +215,19 @@ issue: 41
                                math.ceil(double_piece_height * (y + 19))
                                )
 
-## 缩色
+### 缩色
 
     image = image.convert("P", palette=Image.ADAPTIVE, colors=num_colors)
     image = image.convert("RGB")
 
-## 调整亮度和对比度
+### 调整亮度和对比度
 
     brightness_enhancer = ImageEnhance.Brightness(image)
     image = brightness_enhancer.enhance(brightness_e)
     contrast_enhancer = ImageEnhance.Contrast(image)
     image = contrast_enhancer.enhance(contrast_e)
 
-## 取色获取文字解
+### 取色获取文字解
 
     color_array = []
     color_line = []
@@ -308,7 +308,7 @@ issue: 41
 
 不管怎么说，我是想要上面那个Excel差不多格式的图解对吧
 
-## 调试用外框绘制
+### 调试用外框绘制
 
 如果不绘制外框，这里一个中间产物就会是在下面这样的效果
 
@@ -367,7 +367,7 @@ issue: 41
 
     image.save("filled_"+input_image_path)
 
-## 设置图解长度和宽度
+### 设置图解长度和宽度
 
     text_width = 50
     offset = 30
@@ -395,7 +395,7 @@ issue: 41
                               color="white")
     draw_diagram = ImageDraw.Draw(image_diagram)
 
-## 绘制图解
+### 绘制图解
 
     pattern_table = [
         "X       ",
@@ -511,7 +511,7 @@ issue: 41
                     )
     image_diagram.save("diagram_" + input_image_path)
 
-# 图解成品
+## 图解成品
 
 我根据自己的喜好调整了一下亮度和对比度
 
@@ -519,76 +519,76 @@ issue: 41
 
 如果有感兴趣的人可以自己用代码跑了试试结果
 
-## 五色色块图（用来调试）
+### 五色色块图（用来调试）
 ![五色色块图图解](/img/blog_103_diagram_00-color.png)
 
 亮度=1.7
 
 对比度=1.7
 
-## 太阳
+### 太阳
 ![太阳图解](/img/blog_103_diagram_11-suncyl1.png)
 
 亮度=1.3
 
 对比度=1.3
-## 月球
+### 月球
 ![月球图解](/img/blog_103_diagram_10-moonmap.png)
 
 亮度=1.1
 
 对比度=1.3
 
-## 水星
+### 水星
 ![水星图解](/img/blog_103_diagram_01-mercurycyl2.png)
 
 亮度=1
 
 对比度=1
 
-## 金星
+### 金星
 ![金星图解](/img/blog_103_diagram_02-venuscyl2.png)
 
 亮度=1
 
 对比度=1
 
-## 地球（无冰盖）
+### 地球（无冰盖）
 ![地球无冰盖图解](/img/blog_103_diagram_03-earthcyl1.png)
 
 亮度=0.7
 
 对比度=3
 
-## 火星
+### 火星
 ![火星图解](/img/blog_103_diagram_04-marscyl1.png)
 
 亮度=0.9
 
 对比度=1.5
 
-## 土星
+### 土星
 ![土星图解](/img/blog_103_diagram_06-saturncyl1.png)
 
 亮度=1
 
 对比度=1
 
-## 木星
+### 木星
 ![木星图解](/img/blog_103_diagram_05-jupitercyl2.png)
 
 亮度=1.3
 
 对比度=1
 
-## 天王星
+### 天王星
 ![天王星图解](/img/blog_103_diagram_07-uranuscyl1.png)
 
 亮度=1
 
 对比度=1
 
-## 海王星
+### 海王星
 ![海王星图解](/img/blog_103_diagram_08-neptunecyl1.png)
 
 亮度=0.9

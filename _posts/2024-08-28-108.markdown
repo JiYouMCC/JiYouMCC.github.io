@@ -20,7 +20,7 @@ issue: 46
 
 <!--more-->
 
-# 旧方案：Lunr
+## 旧方案：Lunr
 
 之前使用的是静态生成一个search_data.json，大概全站生成的格式是这样的：
 
@@ -84,7 +84,7 @@ window.data.then(function(loaded_data){
 
 之后我还搜索过一些其他方案，比如[Algolia](https://www.algolia.com/){:target="_blank"}，bootstrapt网站就用的这个，看上去特别酷炫，但是要收钱……所有需要收钱的方案在我这里基本都被干掉了
 
-# 初步了解Pagefind
+## 初步了解Pagefind
 
 最近又没事搜索了一下，搜到了这篇文章[基于Pagefind实现静态博客站内搜索](https://mudan.me/post/original/2024/06/12/%E5%9F%BA%E4%BA%8EPagefind%E5%AE%9E%E7%8E%B0%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2.html){:target="_blank"}，非常感兴趣。
 
@@ -96,13 +96,13 @@ window.data.then(function(loaded_data){
 
 对于我的基于Jekyll，部署在Github Page的白嫖式网站非常友好。
 
-# 我的使用步骤
+## 我的使用步骤
 
 按照[https://pagefind.app/docs/](https://pagefind.app/docs/){:target="_blank"}的步骤，比较简单，但是我之后微调之后有很多不一样的地方。
 
 首先我在上文《基于Pagefind实现静态博客站内搜索》里面发现搜索框和结果框可以分开，但是现在我拿到的版本并不能分开（或者我没有找到分开设置的方法），这造成了default UI和我现有页面的嵌入配合成了灾难。虽然说我可以把result部分设成一个悬浮的div，但是调整了很久的CSS，感觉还是非常丑。我思考了一下还是用原来的比较古板/傻的search.html页面，用调用api的方式在特定页面显示搜索的结果。
 
-## 生成索引
+### 生成索引
 
 我自己并不是很熟悉npm和npx，所以直接从它Release的里面拉了个[已经编译好的win版本](https://github.com/CloudCannon/pagefind/releases/download/v1.1.0/pagefind_extended-v1.1.0-x86_64-pc-windows-msvc.tar.gz){:target="_blank"}来索引。
 
@@ -132,7 +132,7 @@ pagefind.exe --site C:\codes\JiYouMCC.github.io\_site --glob blog/post/**/*.html
 
 在生成index之后，会在_site下面生成一个pagefind文件夹，所有的索引/界面/js东西都在里面。放在_site里面并不会真正生效，所以我需要拷到根目录下(C:\codes\JiYouMCC.github.io\pagefind)，让jekyll视为一堆静态库来引用。
 
-## 搜索页面的api调用
+### 搜索页面的api调用
 
 大体上也是跟着文档走，稍微做了一些细节上的配置。
 
@@ -150,11 +150,11 @@ var results = await Promise.all(search.results.map(r => r.data()));
 
 其实我还想加一些什么根据日期/相关性排序之类的东西，这个稍后再说。
 
-## 一些问题和调整
+### 一些问题和调整
 
 然后我就发现了一些问题，相应做了一些调整。
 
-### 限定搜索的标签范围
+#### 限定搜索的标签范围
 
 首先，我发现搜索结果的meta的图片总是用了我link里面欧拉项目的图片，这八竿子打不着啊:scream:。根据文档```image will contain the src of the first img that follows the h1```，所以我需要把这个图片丢出搜索的范围。参考了一下[Configuring what content is indexed](https://pagefind.app/docs/indexing/){:target="_blank"}，我把blog的right部分全用```<aside data-pagefind-ignore="all">```扔了出去，以防止图片的干扰，用```<main data-pagefind-body>```包裹了一下所有post的真正的文章部分，然后就生效了。这样也防止了我搜索“评论”结果把所有的文章都搜索出来的窘境。
 
@@ -164,7 +164,7 @@ var results = await Promise.all(search.results.map(r => r.data()));
 
 感觉好像大功告成了（并不是！）
 
-### pagefind_extended的中文支持
+#### pagefind_extended的中文支持
 
 然后我就发现了一个很麻烦的问题，中文分词非常糟糕。
 
@@ -196,7 +196,7 @@ Pagefind publishes two releases, pagefind and pagefind_extended. The extended re
 pagefind_extended.exe --site C:\codes\JiYouMCC.github.io\_site --glob blog/post/**/*.html
 ```
 
-### Github Action和pagefind的整合
+#### Github Action和pagefind的整合
 
 另一个小问题就是，每次jekyll有新的文章，都需要jekyll serve出_site，然后进行重新索引。从DevOps的角度来说，理论上可以在部署的时候加入这个index+拷贝文件夹的步骤，但是我有点懒，先不折腾了。什么时候我高兴了研究下Github Action，和jekyll的编译部署都整合起来，说不定就成了。
 

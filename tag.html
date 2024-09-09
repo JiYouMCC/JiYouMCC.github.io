@@ -1,52 +1,49 @@
 ---
 layout: default
 title: "标签"
+is_tag: true
 ---
+<!-- Bootstrapt 5 completed -->
 {% capture tags %}
   {% for tag in site.tags %}
     {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
   {% endfor %}
 {% endcapture %}
-
 {% assign sortedtags = tags | split:' ' | sort %}
 
-<ul role="tablist">
-  {% for tag in sortedtags reversed %}
-    {% assign tagitems = tag | split: '#' %}
-    <li role="presentation" style="display: inline-block;">
-      <h4><a id="tag_{{ tagitems[1] }}" href="#list_{{ tagitems[1] }}" title="{{ tagitems[1] }}" rel="{{ tagitems[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true" class="label label-default">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></a></h4>
-    </li>
-  {% endfor %}
+<ul class="ps-0 mb-4" role="tablist">
+{% for tag in sortedtags reversed %}
+  {% assign tagitems = tag | split: '#' %}
+  <li role="presentation" class="d-inline-block">
+    <a id="pills-{{ tagitems[1] }}-tab" href="#list_{{ tagitems[1] }}" title="{{ tagitems[1] }}" data-bs-toggle="pill" data-bs-target="#pills-{{ tagitems[1] }}" role="tab" aria-controls="pills-{{ tagitems[1] }}" aria-selected="false"><span class="badge text-bg-secondary">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></span></a>
+  </li>
+{% endfor %}
 </ul>
-
-<div class="tab-content">
+<div class="tab-content text-nowrap overflow-x-auto">
 {% for tag in site.tags %}
-  <div role="tabpanel" class="tab-pane" id="list_{{ tag[0] }}">
-    <div class="table-responsive">
+  <div class="tab-pane fade" id="pills-{{ tag[0] }}" role="tabpanel" aria-labelledby="pills-{{ tag[0] }}-tab" tabindex="0">
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th></th><th></th><th class="text-center page_list_item">分类</th>
-        </tr>
-      </thead>
       <tbody>
         {% for post in tag[1] %}
         <tr>
-          <td><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></td>
-          <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d"}}</td>
-          <td class="text-center">{% for cat in post.categories %}
-                {% if cat != 'sticky' %}
-                <span><a class="label label-default" href="/type#{{ cat }}">{{ cat }}</a></span>
-                {% endif %}
-              {% endfor %}</td>
+          <td><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></td>
+          <td class="fw-bold">
+            <i data-feather="calendar"></i>&nbsp;
+            {{ post.date | date: "%Y-%m-%d"}}
+          </td>
+          <td class="text-center">
+          {% for cat in post.categories %}
+            <i data-feather="folder"></i>&nbsp;
+            <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
+          {% endfor %}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-    </div>
   </div>
 {% endfor %}
 </div>
 <script type="text/javascript">
-  $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
+  const triggerTabList = document.querySelectorAll("#pills-" + decodeURI(location.hash.replace("#","")) + "-tab")
+  triggerTabList.forEach(triggerEl => {new bootstrap.Tab(triggerEl).show();})
 </script>

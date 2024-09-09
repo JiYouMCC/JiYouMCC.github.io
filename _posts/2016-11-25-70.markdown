@@ -17,7 +17,7 @@ Considering natural numbers of the form, a<sup>b</sup>, where a, b < 100, what i
             result = max(result, sum([eval(i)for i in list(str(a**b))]))
     print result
 
-有空一定要去研究一下python的**用的什么算法，真快
+有空一定要去研究一下python的\*\*用的什么算法，真快
 
     result = 0
     for a in range(1, 101):

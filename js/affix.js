@@ -28,13 +28,11 @@ for (var i = 0; i < headers.length; i++) {
   }
 }
 
-var links = $("<ol></ol>").attr("id", "affix-nav-ul").attr("class", "nav nav-stacked").attr("role", "tablist");
+var links = $("<ul></ul>").attr("id", "affix-nav-ul").attr("class", "list-group list-group-flush");
 
 links.append(
-  $("<li></li").append(
-    $("<a></a>").attr("affix_to","#top").attr('href', '#top').append(
-      $("<span></span>").attr("class", "glyphicon glyphicon-triangle-top")
-    )
+  $("<a></a>").attr("class", "list-group-item").attr("affix_to","#top").attr('href', '#top').append(
+    $("<i></i>").attr("data-feather", "chevron-up")
   )
 );
 
@@ -46,13 +44,13 @@ for (var i = 0; i < headers.length; i++) {
   var currentHead = parseInt(headers[i].tagName[1]);
   if (currentHead > currentClass) {
     while (currentHead > currentClass) {
-      var newUl = $("<ol></ol>").addClass("nav").addClass("nav-stacked");
+      var newUl = $("<ol></ol>").addClass("list-group p-0 m-0 mb-0");
       if (lastLi != null){
         lastLi.append(newUl)
       } else {
         currentParent.append(newUl);
-      }  
-      
+      } 
+
       currentClass += 1;
       currentParent = newUl;
     }
@@ -63,25 +61,19 @@ for (var i = 0; i < headers.length; i++) {
     }
   } 
   
-  lastLi = $("<li></li>").append(
-    $("<a></a>").attr("affix_to","#" + headers[i].id).attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text())
-  );
+  lastLi = $("<a></a>").attr("class", "list-group-item").attr("affix_to","#" + headers[i].id).attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text());
   currentParent.append(lastLi);
 }
 
 links.append(
-  $("<li></li").append(
-    $("<a></a>").attr("affix_to","#comments").attr('href', '#comments').append(
-      $("<span></span>").attr("class", "glyphicon glyphicon-comment")
-    ).append(" 评论")
-  )
+  $("<a></a>").attr("class", "list-group-item").attr("affix_to","#comments").attr('href', '#comments').append(
+    $("<i></i>").attr("data-feather", "message-square")
+  ).append(" 评论")
 );
 
 links.append(
-  $("<li></li").append(
-    $("<a></a>").attr("affix_to","#bottom").attr('href', '#bottom').append(
-      $("<span></span>").attr("class", "glyphicon glyphicon-triangle-bottom")
-    )
+  $("<a></a>").attr("class", "list-group-item").attr("affix_to","#bottom").attr('href', '#bottom').append(
+    $("<i></i>").attr("data-feather", "chevron-down")
   )
 );
 

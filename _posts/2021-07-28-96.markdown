@@ -17,27 +17,14 @@ issue: 30
 
 感觉可以放在明信片的背面作为背景之类的。
 
-<div>
-  <div id="myCanvas" width="650" height="490"></div>
-  <div class="form-group">
-    <label for="input_start_time">我收到的</label>
-    <textarea class="form-control" id="received" rows="12" placeholder="直接从网页版【明信片】->【我收到的】粘贴过来，不包括表头"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="input_start_time">我发出的</label>
-    <textarea class="form-control" id="sent" rows="12" placeholder="直接从网页版【明信片】->【我发出的】粘贴过来，不包括表头"></textarea>
-  </div>
-  <div class="form-group text-center">
-    <button class="btn btn-default" onclick="process();">生成数据</button>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" id="data" rows="12"></textarea>
-  </div>
-  <div class="form-group text-center">
-    <button class="btn btn-default" onclick="go();">更新日历</button>
-  </div>
-</div>
-
+<div id="myCanvas" width="650" height="490"></div>
+<label for="input_start_time">我收到的</label>
+<textarea id="received" rows="12" cols="100" placeholder="直接从网页版【明信片】->【我收到的】粘贴过来，不包括表头"></textarea>
+<label for="input_start_time">我发出的</label>
+<textarea id="sent" rows="12" cols="100" placeholder="直接从网页版【明信片】->【我发出的】粘贴过来，不包括表头"></textarea>
+<button onclick="process();">生成数据</button>
+<textarea id="data" rows="12" cols="100"></textarea>
+<button onclick="go();">更新日历</button>
 <script src="https://d3js.org/d3.v5.js"></script>
   <script type="text/javascript">
     function go() {

@@ -8,8 +8,8 @@ use_code: true
 ---
 这货很早以前就玩过一次，还是比较有趣
 
-6/4 python版本 更新
-==================
+## 6/4 python版本 更新
+
 数据截止到D804
 
 [代码点我](https://github.com/JiYouMCC/CivitasTool/blob/master/py_version/speech.py "代码")
@@ -31,8 +31,8 @@ use_code: true
 
 ![标签内容榜](/img/blog_civitas_speech_23.PNG "标签内容榜")
 
-6/2 C#老版本
-==================
+## 6/2 C#老版本
+
 数据截止到D802下午
 
 

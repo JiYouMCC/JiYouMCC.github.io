@@ -2,31 +2,32 @@
 layout: default
 ---
 <main data-pagefind-body>
-  <div>
-    <div class="page-header">
-      <div class="page_blog_title" data-pagefind-meta="title">{{ page.title }}</div>
-      <span class="page_datetime">{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
-      {% if page.categories.size > 0 %}&nbsp;&nbsp;<span class="glyphicon glyphicon-folder-open"></span>&nbsp;{% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}{% endif %} 
-      {% if page.tags.size > 0 %}&nbsp;&nbsp;<span class="glyphicon glyphicon-tags"></span>&nbsp;{% for tag in page.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}{% endif %}
-    </div>
-    <article id="blog_content" class="panel-body page_blog_content">
-      {{ content }}
-    </article>
+  <div class="page-header">
+    <h1 data-pagefind-meta="title">{{ page.title }}</h1>
+      <span class="fw-bold">
+        <i data-feather="calendar"></i>
+        {{ page.date | date: "%Y-%m-%d %H:%M:%S" }}
+      </span>
+      {% if page.categories.size > 0 %}&nbsp;
+        <i data-feather="folder"></i>
+        {% for cat in page.categories %}{% if cat != 'sticky' %}&nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}{% endif %} 
+      {% if page.tags.size > 0 %}&nbsp;<i data-feather="tag"></i>&nbsp;{% for tag in page.tags %}&nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}{% endif %}
   </div>
+  <article id="blog_content" class="p-2 mt-2">
+    {{ content }}
+  </article>
 </main>
 <nav>
-  <ul class="pager">
+  <ul class="pagination justify-content-between">
     {% if page.next.url %} 
-    <li class="previous">
-      <a title="{{ page.next.title | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.next.url }}"><span class="glyphicon glyphicon glyphicon-chevron-left"></span> 后一篇</a>
+    <li class="page-item">
+      <a class="page-link" title="{{ page.next.title | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.next.url }}"><i data-feather="chevron-left"></i> 后一篇</a>
     </li>
     {% endif %}
-    
-    {% if page.previous.url %} 
-    <li class="next">
-      <a title="{{ page.previous.title | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.previous.url }}">前一篇 <span class="glyphicon glyphicon glyphicon-chevron-right"></span></a> 
-    </li>
-    {% endif %} 
+    {% if page.previous.url %}
+    <li class="page-item">
+      <a class="page-link" title="{{ page.previous.title | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.previous.url }}">前一篇 <i data-feather="chevron-right"></i></a></li>
+    {% endif %}
   </ul>
 </nav>
 {% include comments.html %}

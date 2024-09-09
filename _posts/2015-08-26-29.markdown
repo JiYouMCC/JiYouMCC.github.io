@@ -12,8 +12,7 @@ affix: true
 ![100阶段的随机250X250生命游戏](/img/blog_ConwayLifeGame.gif "100阶段的随机250X250生命游戏")
 <!--more-->
 
-当年写C的时候的版本
-----------
+## 当年写C的时候的版本
 
 [【C】生命游戏](http://ycool.com/post/3mj8s5a "【C】生命游戏")
 
@@ -213,8 +212,8 @@ int main()
 }
 ~~~~
 
-python版本
---------
+## python版本
+
 ~~~~.python
 # https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 from images2gif import writeGif
