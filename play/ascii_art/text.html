@@ -3,48 +3,34 @@ layout: default
 title: "ASCII 文字"
 use_code: true
 ---
-<link rel="stylesheet" href="{{ "/play/ascii-art/ascii-art.css" }}" />
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <span class="page_blog_title">{{ page.title }}</span>
-  </div>
-  <div class="panel-body">
-    <canvas id="canvas" style="border:1px solid black"></canvas>
-    <div class="form-inline">
-      <div class="form-group">
-        <label for="img_input">画布大小</label>
-        <div class="form-group">
-          <input class="form-control" id="canvas_width" type="number" min="100" max="600" value="130">
-        </div>
-        <label>*</label>
-        <div class="form-group">
-          <input class="form-control" id="canvas_height" type="number" min="100" max="600" value="30">
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="text">文字</label>
-      <input class="form-control" id="text" type="text" value="Hello World">
-    </div>
-    <div class="form-group">
-      <label for="font">字体</label>
-      <input id="font" type="text" value="20pt fantasy">
-    </div>
-    <div class="form-group">
-      <label for="color">字符列表</label>
-      <input id="color" class="form-control" type="text" value="Hello World">
-    </div>
-    <div class="form-group">
-      <button class="btn btn-default" onclick="showText()">文字预览</button>
-      <button class="btn btn-default" onclick="generateText()">生成结果</button>
-    </div>
-  </div>
-  <div class="panel-body">
-    <div class="table-responsive">
-      <pre>
-        <code id="ascii"></code>
-      </pre>
-    </div>
-  </div>
-</div>
-<script src="{{ "/play/ascii-art/ascii-art.js"}}"></script>
+<link rel="stylesheet" href="{{ "/play/ascii_art/ascii-art.css" }}" />
+<h1>{{ page.title }}</h1>
+<canvas id="canvas" style="border:1px solid black"></canvas>
+<p>
+  <label for="img_input">画布大小</label>
+  <input id="canvas_width" type="number" min="100" max="600" value="130">
+  *
+  <input id="canvas_height" type="number" min="100" max="600" value="30">
+</p>
+<p>
+  <label for="text">文字</label>
+  <input id="text" type="text" value="Hello World">
+</p>
+<p>
+  <label for="font">字体</label>
+  <input id="font" type="text" value="20pt fantasy">
+</p>
+<p>
+  <label for="color">字符列表</label>
+  <input id="color" type="text" value="Hello World">
+</p>
+<p>
+  <button class="btn btn-default" onclick="showText()">文字预览</button>
+  <button class="btn btn-default" onclick="generateText()">生成结果</button>
+</p>
+<article>
+  <pre>
+    <code id="ascii"></code>
+  </pre>
+</article>
+<script src="{{ "/play/ascii_art/ascii-art.js"}}"></script>

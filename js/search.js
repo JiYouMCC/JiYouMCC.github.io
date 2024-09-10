@@ -20,9 +20,11 @@ async function search(searchString) {
   $("#pagefind_result").text(" ");
   $("#search_message").html("搜索“" + searchString + "”，查找到 " + results.length + " 条记录");
   for (var i = 0; i < results.length; i++) {
+    var group = $("<div></div>").addClass("list-group-item");
     var row = $("<div></div>").addClass("row g-0");
+    var text_div = null;
     if ("image" in results[i]["meta"]) {
-      var image_div = $("<div></div>").addClass("col-md-3");
+      var image_div = $("<div></div>").addClass("col-md-2");
       image_div.append(
         $("<img>")
           .attr("src", results[i]["meta"]['image'])
@@ -31,38 +33,27 @@ async function search(searchString) {
           .attr("style", "max-width: 100%")
       )
       row.append(image_div);
-
-      var text_div = $("<div></div>").addClass("col-md-9");
-      var div_body_title = $("<a></a>")
-        .attr('href', results[i]["url"])
-        .attr('target', "_blank")
-        .append($("<h4></h4>")
-          .text(results[i]["meta"]['title'])
-      );
-      var div_body_p = $("<p>" + results[i]['excerpt'] + "</p>");
-      var div_body = $("<div></div>").addClass("card-body");
-      div_body.append(div_body_title);
-      div_body.append(div_body_p);
-      text_div.append(div_body);
-      row.append(text_div);
+      text_div = $("<div></div>").addClass("col-md-10");
     } else {
-      var text_div = $("<div></div>").addClass("col-md-12");
-      var div_body_title = $("<a></a>")
-        .attr('href', results[i]["url"])
-        .attr('target', "_blank")
-        .append($("<h4></h4>")
-          .text(results[i]["meta"]['title'])
-      );
-      var div_body_p = $("<p>" + results[i]['excerpt'] + "</p>");
-      var div_body = $("<div></div>").addClass("card-body");
-      div_body.append(div_body_title);
-      div_body.append(div_body_p);
-      text_div.append(div_body);
-      row.append(text_div);
+      text_div = $("<div></div>").addClass("col-md-12");
     }
-    $("#pagefind_result").append(row);
+    var div_body_title = $("<a></a>")
+      .addClass('link-underline link-underline-opacity-0 link-underline-opacity-100-hover')
+      .attr('href', results[i]["url"])
+      .attr('target', "_blank")
+      .append($("<h4></h4>")
+        .text(results[i]["meta"]['title'])
+    );
+
+    var div_body_p = $("<p>" + results[i]['excerpt'] + "</p>");
+    var div_body = $("<div></div>").addClass("card-body");
+    div_body.append(div_body_title);
+    div_body.append(div_body_p);
+    text_div.append(div_body);
+    row.append(text_div);
+    group.append(row);
+    $("#pagefind_result").append(group);
   }
-  //console.log(results)
 }
 
 search(decodeURIComponent(params['string']));

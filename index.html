@@ -29,8 +29,8 @@ use_mermaid: true
       {% if post.issue %}
       <span>
         <i data-feather="message-circle"></i>&nbsp;
-        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论&nbsp;</a>
-        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span>&nbsp;
+        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
+        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-secondary"></span>&nbsp;
       </span>
       {% endif %}
       {% if post.categories.size > 0 %}
@@ -80,8 +80,8 @@ use_mermaid: true
       {% if post.issue %}
       <span>
         <i data-feather="message-circle"></i>&nbsp;
-        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论&nbsp;</a>
-        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span>&nbsp;
+        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
+        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-secondary"></span>&nbsp;
       </span>
       {% endif %}
       {% if post.categories.size > 0 %}

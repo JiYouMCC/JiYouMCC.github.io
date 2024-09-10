@@ -19,12 +19,12 @@
 
 - name: ASCII Art Text
   title: 文字转换ASCII艺术字符画
-  href: /ascii_art/text
+  href: /play/ascii_art/text
   blank: true
 
 - name: ASCII Art Img
   title: 图片转换ASCII艺术字符画
-  href: /ascii_art/img
+  href: /play/ascii_art/img
   blank: true
 
 - name: ICY收发日历

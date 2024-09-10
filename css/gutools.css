@@ -9,7 +9,7 @@
     vertical-align: middle;
 }
 
-.page_datetime {
+/*.page_datetime {
     text-shadow: 1px 1px 1px #161824;
     display: inline-block;
     line-height: 20pt;
@@ -20,9 +20,9 @@
 
 .table>tbody>tr .page_datetime{
     display: table-cell;
-}
+}*/
 
-.page_author {
+/*.page_author {
     line-height: 20pt;
     vertical-align: middle;
     font-weight: bolder;
@@ -33,7 +33,7 @@
   font-size: 23pt;
   font-weight: bolder;
   padding: 10px 0 10px 0;
-}
+}*/
 
 .task-list {
     list-style-type: none;
@@ -44,7 +44,7 @@ input.task-list-item-checkbox {
     margin-right: 5px;
 }
 
-.page_blog_content table {
+/*.page_blog_content table {
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
@@ -90,7 +90,8 @@ input.task-list-item-checkbox {
 
 .page_blog_content table > tbody > tr:nth-of-type(odd) {
   background-color: #F3F8F1;
-}
+}*/
+
 .page_blog_content ol {
     padding-inline: 20px;
 }
@@ -304,30 +305,6 @@ blockquote {
     border-bottom: 0px;
 }
 
-.tagcloud {
-    width: unset !important;
-    overflow: hidden;
-}
-
-.tagcloud--item {
-    padding: 2px 4px;
-    background-color: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-}
-
-.tagcloud--item:hover {
-    color: #161824;
-    text-shadow: 1px 1px 1px #88ada6;
-    font-weight: bold;
-    font-size: 18pt;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    opacity: 1 !important;
-    z-index: 100 !important;
-}
-  
 #comment_all_count.list-group-item:last-child {
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
@@ -424,7 +401,27 @@ article textarea {
   width: 100%;
 }
 
-.affix-nav {
-    max-height: 100vh;
-    overflow-y: auto;
+/*标签云*/
+.tagcloud {
+    width: unset !important;
+    overflow: hidden;
+}
+
+.tagcloud--item {
+    padding: 2px 4px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.tagcloud--item:hover {
+    color: #161824;
+    text-shadow: 1px 1px 1px #88ada6;
+    font-weight: bold;
+    font-size: 18pt;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    opacity: 1 !important;
+    z-index: 100 !important;
 }
