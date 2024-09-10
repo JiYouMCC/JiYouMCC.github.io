@@ -1,84 +1,96 @@
-$(function() { 
-  $('#affix-nav').affix({
-    offset: {
-      top: function() {
-        return $('#rss_nav').offset().top + $('#rss_nav').outerHeight(true);
-      },
-      bottom: function() {
-        return $('#bottom').outerHeight(true) + 20;
-      }
-    }
-  });
-  $('#affix-nav').width($('#rss_nav').width());
-  $(window).resize(function () {
-    $('#affix-nav').width($('#rss_nav').width());
-  });
-  $(window).scroll(function() {
-    $('#affix-nav').width($('#rss_nav').width());
-  });
+$('#affix-nav').css("position", "fixed");
+$('#affix-nav').width($('#bottom_nav').width());
+
+function change_position() {
+  $('#affix-nav').width($('#bottom_nav').width());
+  var bottom_position = $('#bottom_nav').offset().top + $('#bottom_nav').outerHeight(true)-$(window).scrollTop();
+  if(bottom_position < 0 ) {
+    $('#affix-nav').css("top", "69px");
+  } else {
+    $('#affix-nav').css("top", bottom_position);
+  }
+  if (($('#affix-nav').offset().top + $('#affix-nav').outerHeight(true)) > $('#comments').offset().top + $('#comments').outerHeight(true)) {
+    $('#affix-nav').offset({ top: $('#comments').offset().top + $('#comments').outerHeight(true) -$('#affix-nav').outerHeight(true)});
+  }
+}
+
+
+$(window).resize(function () {
+  change_position();
+});
+$(window).scroll(function() {
+  change_position();
 });
 
 var headers = $("#blog_content").find("h1,h2,h3,h4,h5,h6");
 var maxHead = 6;
+var minHead = 1;
 for (var i = 0; i < headers.length; i++) {
-  $(headers[i]).attr("data-localize", $(headers[i]).text());
   var currentHead = parseInt(headers[i].tagName[1]);
   if (currentHead < maxHead) {
     maxHead = currentHead;
+  }
+  if (currentHead > minHead) {
+    minHead = currentHead;
   }
 }
 
 var links = $("<ul></ul>").attr("id", "affix-nav-ul").attr("class", "list-group list-group-flush");
 
+// top
 links.append(
-  $("<a></a>").attr("class", "list-group-item").attr("affix_to","#top").attr('href', '#top').append(
-    $("<i></i>").attr("data-feather", "chevron-up")
+  $("<a></a>")
+    .attr("class", "list-group-item")
+    .attr("affix_to","#top")
+    .attr('href', '#top')
+    .append(
+      $("<i></i>")
+      .attr("data-feather", "chevron-up")
   )
 );
 
-var currentParent = links;
-var lastLi = null;
-var currentClass = maxHead;
-
+// links
 for (var i = 0; i < headers.length; i++) {
   var currentHead = parseInt(headers[i].tagName[1]);
-  if (currentHead > currentClass) {
-    while (currentHead > currentClass) {
-      var newUl = $("<ol></ol>").addClass("list-group p-0 m-0 mb-0");
-      if (lastLi != null){
-        lastLi.append(newUl)
-      } else {
-        currentParent.append(newUl);
-      } 
-
-      currentClass += 1;
-      currentParent = newUl;
-    }
-  } else if (currentHead < currentClass) {
-    while (currentHead < currentClass) {
-      currentClass -= 1;
-      currentParent = currentParent.parent().parent();
-    }
-  } 
-  
-  lastLi = $("<a></a>").attr("class", "list-group-item").attr("affix_to","#" + headers[i].id).attr("href", "#" + headers[i].id).attr("data-localize", $(headers[i]).text()).text($(headers[i]).text());
-  currentParent.append(lastLi);
+  var prefix="";
+  for (var j = currentHead - maxHead -1; j >= 0; j--) {
+    prefix+="　";
+  }
+  links.append($("<a></a>")
+    .attr("id", "content_" + headers[i].id)
+    .attr("class", currentHead == maxHead ? "list-group-item list-group-flush" : "list-group-item list-group-flush")
+    .attr("affix_to","#" + headers[i].id)
+    .attr("href", "#" + headers[i].id)
+    .html(prefix + $(headers[i]).text()));
 }
 
+// 评论
 links.append(
-  $("<a></a>").attr("class", "list-group-item").attr("affix_to","#comments").attr('href', '#comments').append(
-    $("<i></i>").attr("data-feather", "message-square")
-  ).append(" 评论")
+  $("<a></a>")
+    .attr("class", "list-group-item")
+    .attr("affix_to","#comments")
+    .attr('href', '#comments')
+    .append(
+      $("<i></i>")
+        .attr("data-feather", "message-square")
+    )
+    .append(" 评论")
 );
 
+// down
 links.append(
-  $("<a></a>").attr("class", "list-group-item").attr("affix_to","#bottom").attr('href', '#bottom').append(
-    $("<i></i>").attr("data-feather", "chevron-down")
+  $("<a></a>")
+    .attr("class", "list-group-item")
+    .attr("affix_to","#bottom")
+    .attr('href', '#bottom')
+    .append(
+      $("<i></i>")
+        .attr("data-feather", "chevron-down")
   )
 );
 
 $("#affix-nav-pannel").append(links);
-$('body').scrollspy({ target: '#affix-nav-pannel' });
+/*$('body').scrollspy({ target: '#affix-nav-pannel' });*/
 
 $("a[affix_to]").click(function(){
   var target = $($(this).attr("affix_to"));
@@ -86,9 +98,9 @@ $("a[affix_to]").click(function(){
   if ($(this).attr("affix_to") != "#top") {
     target_offset = target.offset().top
   }
-  
-  //var current_position = document.documentElement.scrollTop || document.body.scrollTop;  
-  //$("html,body").animate({scrollTop: target_offset}, Math.floor(Math.abs(current_position - target_offset)/1.5));
+
   $("html,body").animate({scrollTop: target_offset}, 2000);
   return false;
 });
+
+

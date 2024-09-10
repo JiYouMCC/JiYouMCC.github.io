@@ -34,7 +34,7 @@
             <ul class="dropdown-menu">
               {% for tool in site.data.tools %}
               <li>
-                <a class="dropdown-item" href="{{ tool.href }}" data-toggle="tooltip" data-placement="bottom" title="{{ tool.title }}" {% if tool.blank %}target="_blank"{% endif %}>{{ tool.name }}</a>
+                <a class="dropdown-item" href="{{ tool.href }}" data-placement="bottom" title="{{ tool.title }}" {% if tool.blank %}target="_blank"{% endif %}>{{ tool.name }}</a>
               </li>
               {% endfor %}
             </ul>
