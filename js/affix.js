@@ -12,6 +12,8 @@ function change_position() {
   if (($('#affix-nav').offset().top + $('#affix-nav').outerHeight(true)) > $('#comments').offset().top + $('#comments').outerHeight(true)) {
     $('#affix-nav').offset({ top: $('#comments').offset().top + $('#comments').outerHeight(true) -$('#affix-nav').outerHeight(true)});
   }
+  $('#affix-nav').css("max-height", "calc(100vh - 79px)");
+  $('#affix-nav').css("overflow-y", "auto");
 }
 
 
@@ -58,9 +60,10 @@ for (var i = 0; i < headers.length; i++) {
   }
   links.append($("<a></a>")
     .attr("id", "content_" + headers[i].id)
-    .attr("class", currentHead == maxHead ? "list-group-item list-group-flush" : "list-group-item list-group-flush")
+    .attr("class", "list-group-item list-group-flush text-nowrap overflow-x-hidden")
     .attr("affix_to","#" + headers[i].id)
     .attr("href", "#" + headers[i].id)
+    .attr('title', $(headers[i]).text())
     .html(prefix + $(headers[i]).text()));
 }
 

@@ -42,6 +42,7 @@ issue: 45
     <input id="check_times" type="checkbox"> 乘  
     <input id="check_divide" type="checkbox" > 除（商会控制为必须是整数）
 </p>
+<!--more-->
 <button id="generate" onclick="generate();">生成题目（带答案）</button>
 <button id="pdf" onclick="topdf();">导出pdf（空白卷子）</button>
 <table>

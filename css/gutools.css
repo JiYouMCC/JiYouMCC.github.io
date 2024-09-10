@@ -423,3 +423,8 @@ article a:hover {
 article textarea {
   width: 100%;
 }
+
+.affix-nav {
+    max-height: 100vh;
+    overflow-y: auto;
+}
