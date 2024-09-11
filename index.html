@@ -47,7 +47,7 @@ use_mermaid: true
       <span>
         <i data-feather="tag"></i>
         {% for tag in post.tags %}
-          &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/tag#{{ tag }}">{{ tag }}</a>
+        <a href="/tag#{{ tag }}"><span class="badge text-bg-primary">{{ tag }}</span></a>
         {% endfor %}
       </span>
       {% endif %}
@@ -98,7 +98,7 @@ use_mermaid: true
       <span>
         <i data-feather="tag"></i>
         {% for tag in post.tags %}
-          &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/tag#{{ tag }}">{{ tag }}</a>
+          <a href="/tag#{{ tag }}"><span class="badge text-bg-primary">{{ tag }}</span></a>
         {% endfor %}
       </span>
       {% endif %}
