@@ -79,6 +79,7 @@ title: "分类"
 </div>
 <script type="text/javascript">
   if (location.hash != "") {
-    $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
+    const triggerEl = document.querySelector("#" + decodeURI(location.hash.replace("#","")) + "-tab")
+    bootstrap.Tab.getInstance(triggerEl).show()
   }
 </script>
