@@ -30,7 +30,7 @@ use_mermaid: true
       <span>
         <i data-feather="message-circle"></i>&nbsp;
         <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
-        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-secondary"></span>&nbsp;
+        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
       </span>
       {% endif %}
       {% if post.categories.size > 0 %}
@@ -81,7 +81,7 @@ use_mermaid: true
       <span>
         <i data-feather="message-circle"></i>&nbsp;
         <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
-        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-secondary"></span>&nbsp;
+        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
       </span>
       {% endif %}
       {% if post.categories.size > 0 %}
@@ -115,7 +115,7 @@ use_mermaid: true
       {% endfor %}
     {% else %}
       <li class="page-item"><a class="page-link" href="/">1</a></li>
-      <li class="page-item disabled"><a class="page-link" href="#"><i data-feather="more-horizontal"></i></a></li>
+      <li class="page-item disabled"><a class="page-link" href="#">…</a></li>
       {% assign startpage = paginator.page | minus: 2 %}
         {% for num in (startpage..paginator.page) %}
           <li class="page-item{% if num == paginator.page %} active{% endif %}"><a class="page-link" href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
@@ -133,7 +133,7 @@ use_mermaid: true
         {% for num in (startpage..endpage) %}
           <li class="page-item"><a class="page-link" href="/blog/index/{{num}}/">{{ num }}</a></li>
         {% endfor %}
-        <li class="page-item disabled"><a class="page-link" href="#"><i data-feather="more-horizontal"></i></a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">…</a></li>
         <li class="page-item"><a class="page-link" href="/blog/index/{{ paginator.total_pages }}/">{{ paginator.total_pages }}</a></li>
     {% endif %}
 

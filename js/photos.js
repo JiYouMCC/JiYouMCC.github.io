@@ -56,12 +56,12 @@ var Photos = {
         for (var i = 0; i < Photos._folderNames.length; i++) {
             $("#folders").append(
                 $("<div></div>").addClass("col-xs-6 col-md-4 p-2").append(
-                    $("<div></div>").addClass("photo-div card p-2 text-center").append(
+                    $("<div></div>").addClass("photo-div card text-center").append(
                         $("<a></a>").addClass("text-decoration-none").attr("folder", Photos._folderNames[i]).attr("href", "#").append(
                             $("<div></div>").addClass("thumbnail").append(
-                                $("<img>").css("height","200px").attr("class", "rounded object-fit-cover w-100").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
+                                $("<img>").css("height","200px").attr("class", "card-img-top").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
                             ).append(
-                                $("<p></p>").addClass("mt-1 mb-0").text(Photos._folderNames[i] + "  ").append(
+                                $("<p></p>").addClass("mt-1 mb-2").text(Photos._folderNames[i] + "  ").append(
                                     $("<span></span>").addClass("badge rounded-pill text-bg-primary").text(Photos._folders[Photos._folderNames[i]].length)
                                 )
                             )

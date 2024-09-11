@@ -5,11 +5,11 @@ title: "分类"
 <!-- Bootstrapt 5 completed -->
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">所有文章 <span class="badge rounded-pill text-bg-secondary">{{ site.posts.size }}</span></button>
+    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">所有文章 <span class="badge rounded-pill text-bg-primary">{{ site.posts.size }}</span></button>
   </li>
   {% for cat in site.categories %}
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="{{ cat[0] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ cat[0] }}-tab-pane" type="button" role="tab" aria-controls="{{ cat[0] }}-tab-pane" aria-selected="false">{{ cat[0] }} <span class="badge rounded-pill text-bg-secondary">{{ cat[1].size }}</span></button>
+    <button class="nav-link" id="{{ cat[0] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ cat[0] }}-tab-pane" type="button" role="tab" aria-controls="{{ cat[0] }}-tab-pane" aria-selected="false">{{ cat[0] }} <span class="badge rounded-pill text-bg-primary">{{ cat[1].size }}</span></button>
   </li>
   {% endfor %}
 </ul>
