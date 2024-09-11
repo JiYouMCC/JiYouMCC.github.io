@@ -30,7 +30,8 @@ async function search(searchString) {
           .attr("src", results[i]["meta"]['image'])
           .attr("title", results[i]["meta"]['title'])
           .attr("alt", results[i]["meta"]['title'])
-          .attr("style", "max-width: 100%")
+          .css("max-width", "100%")
+          .css("max-height", "200px")
       )
       row.append(image_div);
       text_div = $("<div></div>").addClass("col-md-10");
