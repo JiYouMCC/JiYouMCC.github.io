@@ -2,19 +2,59 @@
 layout: default
 title: "分类"
 ---
-<ul class="nav nav-tabs nav-justified" role="tablist">
-  <li role="presentation" class="active">
-    <a id="tag_all" href="#list_all" title="所有文章" rel="{{ site.posts.size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">所有文章 <span class="badge">{{ site.posts.size }}</span></a>
+<!-- Bootstrapt 5 completed -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">所有文章 <span class="badge rounded-pill text-bg-primary">{{ site.posts.size }}</span></button>
   </li>
   {% for cat in site.categories %}
-    <li role="presentation">
-      <a id="tag_{{ cat[0] }}" href="#list_{{ cat[0] }}" rel="{{ cat[1].size }}" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">{{ cat[0] }} <span class="badge">{{ cat[1].size }}</span></a>
-    </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="{{ cat[0] }}-tab" data-bs-toggle="tab" data-bs-target="#{{ cat[0] }}-tab-pane" type="button" role="tab" aria-controls="{{ cat[0] }}-tab-pane" aria-selected="false">{{ cat[0] }} <span class="badge rounded-pill text-bg-primary">{{ cat[1].size }}</span></button>
+  </li>
   {% endfor %}
 </ul>
-<div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="list_all">
-    <div class="table-responsive">
+<div class="tab-content text-nowrap overflow-x-auto">
+  <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+            <th class="page_list_item"></th><th></th><th></th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for post in site.posts %}
+            {% if post.is_sticky %}
+            <tr>
+              <td class="text-center">
+                <span class="badge text-bg-secondary">置顶</span>
+              </td>
+              <td>
+                <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url }}">{{ post.title }}</a>
+              </td>
+              <td class="fw-bold">
+                <i data-feather="calendar"></i>&nbsp;
+                {{ post.date | date: "%Y-%m-%d"}}
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          {% for post in site.posts %}
+            {% unless post.is_sticky %}
+            <tr>
+              <td class="text-center"></td>
+              <td><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url }}">{{ post.title }}</a></td>
+              <td class="fw-bold">
+                <i data-feather="calendar"></i>&nbsp;
+                {{ post.date | date: "%Y-%m-%d"}}
+              </td>
+            </tr>
+            {% endunless %}
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% for cat in site.categories %}
+  <div class="tab-pane fade" id="{{ cat[0] }}-tab-pane" role="tabpanel" aria-labelledby="{{ cat[0] }}-tab" tabindex="0">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -22,54 +62,20 @@ title: "分类"
         </tr>
       </thead>
       <tbody>
-        {% for post in site.posts %}
-          {% if post.is_sticky %}
-          <tr>
-            <td class="text-center">
-              <span class="label label-default">置顶</span>
-            </td>
-            <td>
-              <a href="{{ post.url }}">{{ post.title }}</a>
-            </td>
-            <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d"}}</td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-        {% for post in site.posts %}
-          {% unless post.is_sticky %}
-          <tr>
-            <td class="text-center"></td>
-            <td><a href="{{ post.url }}">{{ post.title }}</a></td>
-            <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d"}}</td>
-          </tr>
-          {% endunless %}
+        {% for post in cat[1] %}
+        <tr>
+          <td class="text-center">{% if post.is_sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
+          <td><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url }}">{{ post.title }}</a></td>
+          <td class="fw-bold">
+            <i data-feather="calendar"></i>&nbsp;
+            {{ post.date | date: "%Y-%m-%d"}}
+          </td>
+        </tr>
         {% endfor %}
       </tbody>
     </table>
-    </div>
   </div>
-  {% for cat in site.categories %}
-    <div role="tabpanel" class="tab-pane" id="list_{{ cat[0] }}">
-      <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th class="page_list_item"></th><th></th><th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for post in cat[1] %}
-          <tr>
-            <td class="text-center">{% if post.is_sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
-            <td><a href="{{ post.url }}">{{ post.title }}</a></td>
-            <td class="page_datetime text-right">{{ post.date | date: "%Y-%m-%d"}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      </div>
-    </div>
-  {% endfor %}
+{% endfor %}
 </div>
 <script type="text/javascript">
   if (location.hash != "") {

@@ -10,21 +10,20 @@ use_code: true
 
 <!--more-->
 
-<div>
-    <div class="form-group"><label for="startDate">末次月经第一天</label>
-        <input class="form-control" id="startDate" type="date">
-    </div>
-    <div class="text-center">
-        <button class="btn btn-default" onclick="getResult()">计算</button>
-    </div>
-    <div class="form-group"><label for="resultDate">预产期</label>
-        <input class="form-control" id="resultDate" type="date" disabled="">
-    </div>
-    <div class="form-group"><label for="currentWeek">当前周数</label>
-        <input class="form-control" id="currentWeek" type="text" disabled="">
-    </div>
-    <canvas id="clock" width="300" height="300"></canvas>
-</div>
+<p>
+    <label for="startDate">末次月经第一天：</label>
+    <input id="startDate" type="date">
+</p>
+<button onclick="getResult()">计算</button>
+<p>
+    <label for="resultDate">预产期：</label>
+    <input id="resultDate" type="date" disabled="">
+</p>
+<p>
+    <label for="currentWeek">当前周数：</label>
+    <input id="currentWeek" type="text" disabled="">
+</p>
+<canvas id="clock" width="300" height="300"></canvas>
 
 <script type="text/javascript">
     var currentDate = new Date();

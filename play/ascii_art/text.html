@@ -1,0 +1,36 @@
+---
+layout: default
+title: "ASCII 文字"
+use_code: true
+---
+<link rel="stylesheet" href="{{ "/play/ascii_art/ascii-art.css" }}" />
+<h1>{{ page.title }}</h1>
+<canvas id="canvas" style="border:1px solid black"></canvas>
+<p>
+  <label for="img_input">画布大小</label>
+  <input id="canvas_width" type="number" min="100" max="600" value="130">
+  *
+  <input id="canvas_height" type="number" min="100" max="600" value="30">
+</p>
+<p>
+  <label for="text">文字</label>
+  <input id="text" type="text" value="Hello World">
+</p>
+<p>
+  <label for="font">字体</label>
+  <input id="font" type="text" value="20pt fantasy">
+</p>
+<p>
+  <label for="color">字符列表</label>
+  <input id="color" type="text" value="Hello World">
+</p>
+<p>
+  <button class="btn btn-default" onclick="showText()">文字预览</button>
+  <button class="btn btn-default" onclick="generateText()">生成结果</button>
+</p>
+<article>
+  <pre>
+    <code id="ascii"></code>
+  </pre>
+</article>
+<script src="{{ "/play/ascii_art/ascii-art.js"}}"></script>

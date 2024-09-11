@@ -2,13 +2,17 @@
 layout: default
 title: "相册"
 ---
-<ol class="breadcrumb">
-</ol>
+<!-- Bootstrapt 5 completed -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb breadcrumb_photo mb-0 p-2">
+  </ol>
+</nav>
+
 <div id="folders" class="row"></div>
 <!-- Big picture Modal -->
 <div class="modal fade bs-example-modal-lg" id="modal_photo" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel">
   <div class="modal-dialog modal-lg modal-photo" role="document">
-    <img id="big_img" src="" class="img-responsive center-block">
+    <img id="big_img" src="" class="img-fluid center-block">
   </div>
 </div>
 <script src="{{ "/js/photos.js"}}"></script>

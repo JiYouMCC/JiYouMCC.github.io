@@ -32,14 +32,15 @@ var Photos = {
         $("#folders").text(" ");
     },
     setBreadcrumb: function(paths) {
-        $(".breadcrumb").text("");
+        $(".breadcrumb_photo").text("");
         for (var i = 0; i < paths.length; i++) {
-            $(".breadcrumb").append(
-                $("<li></li>").append(
-                    $("<a></a>").attr("breakcrumb", paths[i]).attr('href', '#').text(paths[i])
+            $(".breadcrumb_photo").append(
+                $("<li></li>").attr("class", "breadcrumb-item").append(
+                    $("<a></a>").addClass("link-underline link-underline-opacity-0 link-underline-opacity-100-hover").attr("breakcrumb", paths[i]).attr('href', '#').text(paths[i])
                 )
             );
         }
+
         $("a[breakcrumb]").click(function() {
             var breakcrumb = $(this).attr("breakcrumb");
             if (breakcrumb == "相册") {
@@ -54,13 +55,15 @@ var Photos = {
         Photos.clearPhotos();
         for (var i = 0; i < Photos._folderNames.length; i++) {
             $("#folders").append(
-                $("<div></div>").addClass("col-sm-6 col-md-4 photo-div").append(
-                    $("<a></a>").attr("folder", Photos._folderNames[i]).attr("href", "#").append(
-                        $("<div></div>").addClass("thumbnail").append(
-                            $("<img>").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
-                        ).append(
-                            $("<h1></h1>").addClass("text-center").text(Photos._folderNames[i] + "  ").append(
-                                $("<span></span>").addClass("badge").text(Photos._folders[Photos._folderNames[i]].length)
+                $("<div></div>").addClass("col-xs-6 col-md-4 p-2").append(
+                    $("<div></div>").addClass("photo-div card text-center").append(
+                        $("<a></a>").addClass("text-decoration-none").attr("folder", Photos._folderNames[i]).attr("href", "#").append(
+                            $("<div></div>").addClass("thumbnail").append(
+                                $("<img>").css("height","200px").attr("class", "card-img-top").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
+                            ).append(
+                                $("<p></p>").addClass("mt-1 mb-2").text(Photos._folderNames[i] + "  ").append(
+                                    $("<span></span>").addClass("badge rounded-pill text-bg-primary").text(Photos._folders[Photos._folderNames[i]].length)
+                                )
                             )
                         )
                     )
@@ -85,10 +88,12 @@ var Photos = {
         Photos.clearPhotos();
         for (var i = 0; i < Photos._folders[folderName].length; i++) {
             $("#folders").append(
-                $("<div></div>").addClass("col-sm-6 col-md-4 photo-div").append(
-                    $("<a></a>").attr("imgPath", Photos._folders[folderName][i].path).attr("href", "#").append(
-                        $("<div></div>").addClass("thumbnail").append(
-                            $("<img>").attr("src", Photos._folders[folderName][i].path).attr("title", Photos._folders[folderName][i].basename)
+                $("<div></div>").addClass("col-xs-6 col-md-4 p-2").append(
+                    $("<div></div>").addClass("photo-div").append(
+                        $("<a></a>").attr("imgPath", Photos._folders[folderName][i].path).attr("href", "#").append(
+                            $("<div></div>").addClass("thumbnail").append(
+                                $("<img>").css("height","200px").attr("class", "rounded object-fit-cover w-100").attr("src", Photos._folders[folderName][i].path).attr("title", Photos._folders[folderName][i].basename)
+                            )
                         )
                     )
                 )

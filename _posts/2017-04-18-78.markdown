@@ -63,11 +63,13 @@ If one complete new layer is wrapped around the spiral above, a square spiral wi
         if i > 0 and rate < 0.1:
             break
         i += 1
-        
-[Finished in 16.5s]
+
+用时
+
+    [Finished in 16.5s]
 
 去print
 
-[Finished in 12.7s]
+    [Finished in 12.7s]
 
 Prime list使用的场景也需要斟酌

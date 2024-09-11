@@ -5,7 +5,7 @@
 
 - name: 抽签器
   title: 身份抽签器
-  href: /lot
+  href: /play/lot
 
 - name: 猫命规则发牌器
   title: 为猫命规则定制的抽签器
@@ -19,12 +19,12 @@
 
 - name: ASCII Art Text
   title: 文字转换ASCII艺术字符画
-  href: /ascii_art/text
+  href: /play/ascii_art/text
   blank: true
 
 - name: ASCII Art Img
   title: 图片转换ASCII艺术字符画
-  href: /ascii_art/img
+  href: /play/ascii_art/img
   blank: true
 
 - name: ICY收发日历

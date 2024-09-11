@@ -478,37 +478,21 @@ var OldComments = {
       $("#comment_all_count").attr("with_old", "true");
       var old_head = $("<div></div>")
         .attr('id', "old_comments_head")
-        .addClass("panel-heading")
-        .attr('role', "tab")
+        .addClass("card-header")
         .append($("<a></a>")
-          .attr('role', "button")
-          .attr('data-toggle', "collapse")
-          .attr('data-parent', "#comments")
+          .addClass('btn')
+          .attr('data-bs-toggle', "collapse")
           .attr('href', "#old_comments")
-          .attr('aria-expanded', "true")
-          .attr('aria-controls', "old_comments")
-          .attr('style', "border-top: '1px solid';border-top-left-radius: 0;border-top-right-radius: 0")
           .append($("<strong></strong>")
             .text("旧评论")
           )
         );
       var old_comments_line = $("<div></div>")
         .attr('id', "old_comments")
-        .addClass("list-group")
-        .addClass('panel-collapse')
-        .addClass('collapse')
-        .attr('role', "tabpanel")
-        .attr('aria-labelledby', "old_comments_head");
-      var old_comments_count = $("<div></div>")
-        .attr('id', "old_comments_count")
-        .addClass("list-group-item")
-        .attr('style', "border-bottom: '0px'")
-        .append($("<strong>&nbsp</strong>"));      
+        .addClass("list-group list-group-flush collapse")
+        .attr('data-bs-parent', "old_comments_head");
       $("#comments").append(old_head);
-      //old_head.insertBefore($("#git_comments"));
       $("#comments").append(old_comments_line);
-      //old_comments_line.insertBefore($("#git_comments"));
-      //$("#comments").append(old_comments_count);
     }
     for (var i = comments.length - 1;i >=0;i--){
       OldComments.addOldComment(comments[i]);

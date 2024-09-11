@@ -7,14 +7,14 @@ tags: javascript firebase wilddog jquery
 use_code: true
 issue: 18
 ---
-# 更新 #
+## 更新 ##
 4/4 前端：修改首页最新评论的锚记名字；添加加载后滑动到指定锚记；添加用cookies记录已经发送评论的昵称邮箱网址。
 
 4/5 添加Comments.post.commentCount.check(callback)； 添加js端排序；修改所有comments返回的格式。以上修改是为了动态导入野狗数据准备
 
 4/5 从多说迁移数据成功
 
-# 碎碎念 #
+## 碎碎念 ##
 
 这件事情的起因是这样的
 
@@ -44,17 +44,17 @@ issue: 18
 
 <!--more-->
 
-# 关于代码 #
+## 关于代码 ##
 
 具体怎么用我在 [Demo Page](/firebase-comments/){:target="_blank"} 里面已经写了2个，当然比较粗糙了
 
-## firebase/wilddog 设置 ##
+### firebase/wilddog 设置 ###
 
-### 安全域名 ###
+#### 安全域名 ####
 
 这就没什么好说的了，防止偷跑流量（去死啦，就那么点评论有几个流量）
 
-### 数据操作规则 ###
+#### 数据操作规则 ####
 
 在这个问题上面我这次好好研（在Frank的页面上各种捣蛋）究了一下，最后写了这堆复杂的东西
 
@@ -120,13 +120,13 @@ issue: 18
 - firebase/wilddog里面正则和javascript里面略有不同，转义有的地方需要双斜杠
 - write和validate是不同的，没弄清楚会造成set({})等于remove()的恶劣效果，这个其实在firebase文档里面写了，我没仔细看
 
-## 关于comments.js ##
+### 关于comments.js ###
 因为很大一部分代码都是复用了抓鬼的代码，所以风格和抓鬼的一致，比如：
 
 - callback各种嵌套
 - 原生js
 
-### methods  ###
+#### methods ####
 
 *Comments.handleError(error)*
 
@@ -197,7 +197,7 @@ issue: 18
 - 同样还是分页问题
 - 在使用之前必须要给posts加上.write是true，不然它没法工作
 
-### 具体用法 ###
+#### 具体用法 ####
 
 先是引用firebase/wilddog的库，然后引用comments(.min).js
 
@@ -243,21 +243,15 @@ issue: 18
 
 还碰到奇怪的坑，到手机端全都看不到了。怀疑是MD5方法坏了，后来才发现是comment.js里面的格式带了ES6特性，手机的（以及IE）都不认识就挂了。
 
-# 迁移自多说 #
+## 迁移自多说 ##
 
 为了迁移我做了一些有点古怪的事儿，首先是下面2个框，我放这里只是为了自己不想把双引号转成单引号
 
-<div>
-    <div class="form-group"><label for="source_json">野狗数据</label>
-        <textarea class="form-control" id="source_json" placeholder="{'posts':[]}"></textarea>
-    </div>
-    <div class="text-center">
-        <button class="btn btn-default" onclick="document.getElementById('result_json').value = JSON.stringify(Comments.comment.convertFromDuoshuo(document.getElementById('source_json').value))">转换</button>
-    </div>
-    <div class="form-group"><label for="result_json">转换后数据</label>
-        <textarea class="form-control" id="result_json"></textarea>
-    </div>
-</div>
+<label for="source_json">野狗数据</label>
+<textarea id="source_json" placeholder="{'posts':[]}"></textarea>
+<button onclick="document.getElementById('result_json').value = JSON.stringify(Comments.comment.convertFromDuoshuo(document.getElementById('source_json').value))">转换</button>
+<label for="result_json">转换后数据</label>
+<textarea id="result_json"></textarea>
 
 迁移有2种方法
 
@@ -269,7 +263,7 @@ issue: 18
 
 更新：已经迁移成功了，同时发现一个小问题，因为我不记得多说有没有引用了，我的脚本里面没有写引用，如果有小伙伴的数据里面有关于引用的东西，可以借我来实验一下，不过这种转换也是一次性的，挺不高兴维护……
 
-# 还没干的事儿  #
+## 还没干的事儿 ##
 
 - callback说：我想变成Promise_(:зゝ∠)_
 - Reply说：我的UI为什么那么丑_(:зゝ∠)_

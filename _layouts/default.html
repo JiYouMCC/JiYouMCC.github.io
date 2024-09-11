@@ -6,14 +6,9 @@
     {% include header.html %}
     <div class="row">
       <div class="col-md-9">{{ content }}</div>
-      <div class="col-md-3">{% include right.html %}</div>
+      <div class="container col-md-3">{% include right.html %}</div>
     </div>
     {% include footer.html %}
     </div>
   </body>
-  <script>
-    $(function() {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
-  </script>
 </html>

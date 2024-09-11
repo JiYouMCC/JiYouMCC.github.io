@@ -11,26 +11,26 @@ In the card game poker, a hand consists of five cards and are ranked, from lowes
 
 在扑克牌游戏中，一手牌由五张牌构成，从低牌型到高牌型有以下几种分布：
 
-- High Card: Highest value card.
-- 散牌：啥都不是
-- One Pair: Two cards of the same value.
-- 一对：有2张相同点数
-- Two Pairs: Two different pairs.
-- 两对：有2对相同点数
-- Three of a Kind: Three cards of the same value.
-- 三条：有3张相同点数
-- Straight: All cards are consecutive values.
-- 顺子：所有牌点数都能连起来
-- Flush: All cards of the same suit.
-- 同花：所有牌花色相同
-- Full House: Three of a kind and a pair.
-- 葫芦（俘虏）：三张相同点数加一对
-- Four of a Kind: Four cards of the same value.
-- 四条（炸弹）：四张相同点数
-- Straight Flush: All cards are consecutive values of same suit.
-- 同花顺：统一花色的顺子
-- Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
-- 同花大顺：同一花色的10，J，Q，K，A
+- High Card: Highest value card.<br>
+  散牌：啥都不是
+- One Pair: Two cards of the same value.<br>
+  一对：有2张相同点数
+- Two Pairs: Two different pairs.<br>
+  两对：有2对相同点数
+- Three of a Kind: Three cards of the same value.<br>
+  三条：有3张相同点数
+- Straight: All cards are consecutive values.<br>
+  顺子：所有牌点数都能连起来
+- Flush: All cards of the same suit.<br>
+  同花：所有牌花色相同
+- Full House: Three of a kind and a pair.<br>
+  葫芦（俘虏）：三张相同点数加一对
+- Four of a Kind: Four cards of the same value.<br>
+  四条（炸弹）：四张相同点数
+- Straight Flush: All cards are consecutive values of same suit.<br>
+  同花顺：统一花色的顺子
+- Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.<br>
+  同花大顺：同一花色的10，J，Q，K，A
 
 The cards are valued in the order:
 

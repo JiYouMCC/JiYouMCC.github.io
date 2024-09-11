@@ -1,0 +1,42 @@
+---
+layout: default
+title: "ASCII 图片"
+---
+<link rel="stylesheet" href="{{ "/play/ascii_art/ascii-art.css" }}" />
+<h1>{{ page.title }}</h1>
+<img id="img"></img>
+<p>
+  <label for="img_input">选择图片</label>
+  <input id="img_input" type="file" name="pic" accept="image/*" onchange="updateCanvas()">
+</p>
+<p>
+  <label for="grey_scale">灰度标准</label>
+  <label class="radio-inline">
+    <input type="radio" id="grey_scale_601" name="grey_scale" checked> Rec. 601
+  </label>
+  <label class="radio-inline">
+    <input type="radio" id="grey_scale_709" name="grey_scale">Rec. 709
+  </label>
+  <label class="radio-inline">
+    <input type="radio" id="grey_scale_2100" name="grey_scale"> Rec. 2100
+  </label>
+  <label class="radio-inline">
+    <input type="radio" id="grey_scale_average" name="grey_scale"> 平均
+  </label>
+</p>
+<p>
+  <label for="color">字符列表</label>
+  <input id="color" type="text" value="MNHQ$OC?7>!:-;. ">
+</p>
+<p>
+  <button onclick="generateImg()">生成结果</button>
+</p>
+<div>
+  <input id="range" class="form-control" type="range" min="0.025" max="1" step=0.001 value=0.1 oninput="setZoom();"/>
+  <div class="out">
+    <div id="ascii" class="ascii"></div>
+  </div>
+</div>
+
+<script src="{{ "/play/ascii_art/ascii-art.js"}}"></script>
+<!-- https://en.wikipedia.org/wiki/Grayscale -->

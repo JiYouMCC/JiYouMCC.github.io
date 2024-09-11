@@ -10,7 +10,7 @@ issue: 17
 最近在继续用bootstrap渲染这里，闲暇的时候以前C世界的老盆友给推荐了个养龙的页游，给了我很大的惊喜。可能说我比较中意这种类型的游戏。
 
 
-# [Flight Rising](http://www.flightrising.com/) #
+## [Flight Rising](http://www.flightrising.com/) ##
 
 <!--more-->
 

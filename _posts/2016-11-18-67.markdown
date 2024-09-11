@@ -46,11 +46,11 @@ How many, not necessarily distinct, values of  <sup>n</sup>C<sub>r</sub>, for 1 
 
     print result
 
-从奥数的角度这题可以有很多捷径，比如C(n,r)已经大于100W了，C(n+1,r)=C(n,r)*(n+1)/(n+1-r)一定也大于100W了，不过考虑没有偷懒算的好像也挺快的，而且这么处理循环有点混乱，我就不高兴弄了
+从奥数的角度这题可以有很多捷径，比如$$C(n,r)$$已经大于100W了，$$C(n+1,r)=C(n,r)*(n+1)/(n+1-r)$$一定也大于100W了，不过考虑没有偷懒算的好像也挺快的，而且这么处理循环有点混乱，我就不高兴弄了
 
 用了很久的itertools，我一直以为它是用来做排列组合的，所以以为也有直接算C和P的函数，现在才发现这个是用来做快速索引的……
 
 另，MathJax基础用法：
 
-http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
+[http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 

@@ -5,10 +5,11 @@ date:   2016-11-11 10:38:00 +0800
 categories: 技术
 tags: python projecteulor
 use_code: true
+use_math: true
 ---
-The series, 1<sup>1</sup> + 2<sup>2</sup> + 3<sup>3</sup> + ... + 10<sup>10</sup> = 10405071317.
+The series, $$1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317$$.
 
-Find the last ten digits of the series, 1<sup>1</sup> + 2<sup>2</sup> + 3<sup>3</sup> + 1000<sup>1000</sup>.
+Find the last ten digits of the series, $$1^1 + 2^2 + 3^3 + 1000^1000$$.
 
 <!--more-->
     result = 0

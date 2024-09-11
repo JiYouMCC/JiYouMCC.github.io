@@ -7,71 +7,137 @@ use_mermaid: true
 {% if paginator.page == 1 %}
   {% assign sticky_posts = site.posts | where: "is_sticky" ,"true" %}
   {% for post in sticky_posts %}
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title"><span class="label label-default">置顶</span> {{ post.title }}</a>
-      <span class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
+  <div class="card mb-3">
+    <div class="card-header">
+      <h2 class="mb-0">
+        <span class="badge text-bg-secondary">置顶</span> 
+        <a href="{{ post.url | prepend: site.baseurl }}" class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+          {{ post.title }}
+        </a>
+      </h2>
     </div>
-    <div class="panel-body">{{ post.excerpt | replace: '<li>[ ]', '<li class="post_check list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="post_check list-unstyled"><input type="checkbox" disabled checked>'  }}</div>
-    <div class="panel-footer page_blog_footer">
-      <strong>
-        {% if post.issue %}<span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论&nbsp;</a><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></span>{% endif %}
-        {% if post.categories.size > 0 %}<span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
-        {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a class="label label-default" href="/tag#{{ tag }}">{{ tag }}</a>{% endfor %}</span>{% endif %}&nbsp;
-      </strong>
+    <div class="card-body">
+      <span class="fw-bold">
+        <i data-feather="calendar"></i>&nbsp;
+        {{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
+      </span>
+    </div>
+    <article class="card-body">
+      {{ post.excerpt | replace: '<li>[ ]', '<li class="post_check list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="post_check list-unstyled"><input type="checkbox" disabled checked>'  }}
+    </article>
+    <div class="card-footer">
+      {% if post.issue %}
+      <span>
+        <i data-feather="message-circle"></i>&nbsp;
+        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
+        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
+      </span>
+      {% endif %}
+      {% if post.categories.size > 0 %}
+      <span>
+        <i data-feather="folder"></i>
+        {% for cat in post.categories %}
+          {% if cat != 'sticky' %}
+        &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
+          {% endif %}
+        {% endfor %}
+      </span>&nbsp;
+      {% endif %}
+      {% if post.tags.size > 0 %}
+      <span>
+        <i data-feather="tag"></i>
+        {% for tag in post.tags %}
+          &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/tag#{{ tag }}">{{ tag }}</a>
+        {% endfor %}
+      </span>
+      {% endif %}
     </div>
   </div>
   {% endfor %}
 {% endif %}
 {% for post in paginator.posts %}
   {% unless post.is_sticky %}
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <a href="{{ post.url | prepend: site.baseurl }}" class="page_blog_title">{{ post.title }}</a>
-      <span class="page_datetime">{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}</span>
+  <div class="card mb-3">
+    <div class="card-header">
+      <h2 class="mb-0">
+        <a href="{{ post.url | prepend: site.baseurl }}" class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+          {{ post.title }}
+        </a>
+      </h2>
     </div>
-    <div class="panel-body page_blog_content">
-      {{ post.excerpt | replace: '<li>[ ]', '<li class="list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="list-unstyled"><input type="checkbox" disabled checked>'  }}
+    <div class="card-body">
+      <span class="fw-bold">
+        <i data-feather="calendar"></i>&nbsp;
+        {{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
+      </span>
     </div>
-    <div class="panel-footer page_blog_footer">
-    <strong>
-        {% if post.issue %}<span><a href="{{ post.url | prepend: site.baseurl }}#comments">评论&nbsp;</a><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge ds-thread-count"></span></span>{% endif %}
-        {% if post.categories.size > 0 %}<span>分类{% for cat in post.categories %}{% if cat != 'sticky' %}&nbsp;<a class="label label-default" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}</span>{% endif %}
-        {% if post.tags.size > 0 %}<span>标签{% for tag in post.tags %}&nbsp;<a href="/tag#{{ tag }}" class="label label-default">{{ tag }}</a>{% endfor %}</span></script>{% endif %}&nbsp;
-      </strong>
+    <div class="card-body">
+      <article>
+        {{ post.excerpt | replace: '<li>[ ]', '<li class="post_check list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="post_check list-unstyled"><input type="checkbox" disabled checked>'  }}
+      </article>
+    </div>
+    <div class="card-footer">
+      {% if post.issue %}
+      <span>
+        <i data-feather="message-circle"></i>&nbsp;
+        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
+        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
+      </span>
+      {% endif %}
+      {% if post.categories.size > 0 %}
+      <span>
+        <i data-feather="folder"></i>
+        {% for cat in post.categories %}
+          {% if cat != 'sticky' %}
+        &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
+          {% endif %}
+        {% endfor %}
+      </span>&nbsp;
+      {% endif %}
+      {% if post.tags.size > 0 %}
+      <span>
+        <i data-feather="tag"></i>
+        {% for tag in post.tags %}
+          &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/tag#{{ tag }}">{{ tag }}</a>
+        {% endfor %}
+      </span>
+      {% endif %}
     </div>
   </div>
   {% endunless %}
 {% endfor %}
-<nav class="text-center">
-  <ul class="pagination">
+
+<nav>
+  <ul class="pagination justify-content-center">
     {% if paginator.page < 5 %}
       {% for num in (1..paginator.page) %}
-        <li {% if num == paginator.page %}class="active"{% endif %}><a href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
+        <li class="page-item{% if num == paginator.page %} active{% endif %}"><a class="page-link" href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
       {% endfor %}
     {% else %}
-      <li><a href="/">1</a></li>
-      <li class="disabled"><a href="#">...</a></li>
+      <li class="page-item"><a class="page-link" href="/">1</a></li>
+      <li class="page-item disabled"><a class="page-link" href="#">…</a></li>
       {% assign startpage = paginator.page | minus: 2 %}
         {% for num in (startpage..paginator.page) %}
-          <li {% if num == paginator.page %}class="active"{% endif %}><a href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
+          <li class="page-item{% if num == paginator.page %} active{% endif %}"><a class="page-link" href={% if num == 1 %}"/"{% else %}"/blog/index/{{num}}/"{% endif %}>{{ num }}</a></li>
         {% endfor %}
     {% endif %}
     {% assign remainpage = paginator.total_pages | minus: paginator.page %}
     {% if remainpage < 4 %}
       {% assign startpage = paginator.page | plus: 1 %}
       {% for num in (startpage..paginator.total_pages) %}
-          <li><a href="/blog/index/{{num}}/">{{ num }}</a></li>
+          <li class="page-item"><a href="/blog/index/{{num}}/">{{ num }}</a></li>
         {% endfor %}
     {% else %}
       {% assign startpage = paginator.page | plus: 1 %}
       {% assign endpage = paginator.page | plus: 2 %}
         {% for num in (startpage..endpage) %}
-          <li><a href="/blog/index/{{num}}/">{{ num }}</a></li>
+          <li class="page-item"><a class="page-link" href="/blog/index/{{num}}/">{{ num }}</a></li>
         {% endfor %}
-        <li class="disabled"><a href="#">...</a></li>
-        <li><a href="/blog/index/{{ paginator.total_pages }}/">{{ paginator.total_pages }}</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">…</a></li>
+        <li class="page-item"><a class="page-link" href="/blog/index/{{ paginator.total_pages }}/">{{ paginator.total_pages }}</a></li>
     {% endif %}
+
+    
   </ul>
 </nav>
 <script src="{{ site.baseurl }}/js/old-comments.js"></script>

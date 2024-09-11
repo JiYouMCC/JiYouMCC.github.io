@@ -1,69 +1,74 @@
 <aside data-pagefind-ignore="all">
-{% if page.is_post %}
-{% else %}
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <strong>最新文章</strong>
+  {% if page.is_post %}
+  {% else %}
+  <div class="card mb-3">
+    <div class="card-header">
+      <strong>最新文章</strong>
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for post in site.posts offset: 0 limit: 7 %}
+      <a title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item text-nowrap overflow-x-hidden">{{ post.title }} </a>
+      {% endfor %}
+    </ul>
   </div>
-  <div class="list-group">
-    {% for post in site.posts offset: 0 limit: 7 %}
-    <a title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item">{{ post.title }} <span class="badge"></span></a>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
+  {% endif %}
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <strong>标签云</strong>
+  {% if page.is_tag %}
+  {% else %}
+  <div class="card mb-3">
+    <div class="card-header">
+      <strong>标签云</strong>
+    </div>
+    <ul class="list-group list-group-flush">
+      <div class="list-group-item tagcloud"></div>
+    </ul>
   </div>
-  <div class="panel-body tagcloud">
-  </div>
-</div>
-<script>
-  var texts = [ {% for tag in site.tags %}'{{ tag[0] }}',{% endfor %}];
-  var tc = TagCloud('.tagcloud', texts);
-  $(".tagcloud--item").click(function() {
-    window.open('/tag/#' + $(this).text(), '_self');
-    if (window.location.href.startsWith(window.location.origin+"/tag/")) {
-      $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
-    }
-  });
-</script>
+  <script>
+    var texts = [ {% for tag in site.tags %}'{{ tag[0] }}',{% endfor %}];
+    var tc = TagCloud('.tagcloud', texts);
+    $(".tagcloud--item").click(function() {
+      window.open('/tag/#' + $(this).text(), '_self');
+      if (window.location.href.startsWith(window.location.origin+"/tag/")) {
+        $("#tag_" + decodeURI(location.hash.replace("#",""))).tab('show');
+      }
+    });
+  </script>
+  {% endif %}
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <strong>链接</strong>
-  </div>
-  <div class="list-group">{% for link in site.data.links %}
-      {% if link.src %}<a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img class="img-responsive" src="{{ link.src }}"></a>
+  <div class="card mb-3">
+    <div class="card-header">
+      <strong>链接</strong>
+    </div>
+    <ul class="list-group list-group-flush">
+      {% for link in site.data.links %}
+      {% if link.src %}<a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item"><img src="{{ link.src }}" style="max-width: 100%; height: auto;"></a>
       {% else %}<a href="{{ link.href }}" title="{{ link.title }}" target="_blank" class="list-group-item">{{ link.title }}</a>{% endif %}
-  {% endfor %}
+      {% endfor %}
+    </ul>
   </div>
-</div>
 
-<div id="rss_nav" class="panel panel-default">
-  <div class="panel-heading">
-    <strong>RSS</strong>
+  <div class="card mb-3">
+    <div class="card-header">
+      <strong>RSS</strong>
+    </div>
+    <ul class="list-group list-group-flush">
+      <a href="/feed.xml" class="list-group-item">{{ site.title }}</a>
+    </ul>
   </div>
-  <div class="list-group">
-    <a href="/feed.xml" class="list-group-item">{{ site.title }}</a>
-  </div>
-</div>
 
-{% if page.is_post %}
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <strong>知识共享许可协议</strong>
+  {% if page.is_post %}
+  <div id="bottom_nav" class="card mb-3">
+    <div class="card-header">
+      <strong>知识共享许可协议</strong>
+    </div>
+    <ul class="list-group list-group-flush">
+      <a class="list-group-item" rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" title="本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可"><img alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+    </ul>
   </div>
-  <div class="list-group">
-    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" title="本文采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可"><img class="list-group-item" alt="知识共享许可协议" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
-  </div>
-</div>
 
-<div id="affix-nav" class="hidden-xs hidden-sm">
-  <div id="affix-nav-pannel" class="panel panel-default"></div>
-</div>
-<script src="{{ site.baseurl }}/js/affix.js"></script>
-{% endif %}
+  <div id="affix-nav" class="d-none d-md-block">
+    <div id="affix-nav-pannel" class="card mb-3"></div>
+  </div>
+  <script src="{{ site.baseurl }}/js/affix.js"></script>
+  {% endif %}
 </aside>
