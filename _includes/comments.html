@@ -12,17 +12,17 @@
 </div>
 
 <!-- Error Modal -->
-<div class="modal fade" id="modal_error" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel">
-  <div class="modal-dialog" role="document">
+<div class="modal" id="modal_error" tabindex="-1">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="errorModalLabel">评论失败</h4>
+        <h5 class="modal-title">评论失败</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div id="error_message" class="modal-body">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
