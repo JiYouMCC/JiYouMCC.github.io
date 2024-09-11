@@ -15,7 +15,7 @@ is_tag: true
 {% for tag in sortedtags reversed %}
   {% assign tagitems = tag | split: '#' %}
   <li role="presentation" class="d-inline-block">
-    <a id="pills-{{ tagitems[1] }}-tab" href="#list_{{ tagitems[1] }}" title="{{ tagitems[1] }}" data-bs-toggle="pill" data-bs-target="#pills-{{ tagitems[1] }}" role="tab" aria-controls="pills-{{ tagitems[1] }}" aria-selected="false"><span class="badge text-bg-secondary">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></span></a>
+    <a id="pills-{{ tagitems[1] }}-tab" href="#list_{{ tagitems[1] }}" title="{{ tagitems[1] }}" data-bs-toggle="pill" data-bs-target="#pills-{{ tagitems[1] }}" role="tab" aria-controls="pills-{{ tagitems[1] }}" aria-selected="false"><span class="badge text-bg-primary">{{ tagitems[1] }} <sup>{{ tagitems[2] }}</sup></span></a>
   </li>
 {% endfor %}
 </ul>
