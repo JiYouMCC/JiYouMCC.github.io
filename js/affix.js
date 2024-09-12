@@ -68,7 +68,7 @@ for (var i = 0; i < headers.length; i++) {
   }
   links.append($("<a></a>")
     .attr("id", "content_" + headers[i].id)
-    .attr("class", "list-group-item list-group-flush text-nowrap overflow-x-hidden")
+    .attr("class", "list-group-item list-group-flush text-nowrap text-truncate")
     .attr("affix_to","#" + headers[i].id)
     .attr("href", "#" + headers[i].id)
     .attr('title', $(headers[i]).text())

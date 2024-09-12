@@ -7,7 +7,7 @@
     </div>
     <ul class="list-group list-group-flush">
       {% for post in site.posts offset: 0 limit: 7 %}
-      <a title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item text-nowrap overflow-x-hidden">{{ post.title }} </a>
+      <a title="{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ post.url | prepend: site.baseurl }}" class="list-group-item text-nowrap text-truncate">{{ post.title }} </a>
       {% endfor %}
     </ul>
   </div>
