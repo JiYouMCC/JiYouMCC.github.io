@@ -9,15 +9,13 @@ use_mermaid: true
   {% for post in sticky_posts %}
   <div class="card mb-3">
     <div class="card-header">
-      <h2 class="mb-0">
-        <span class="badge text-bg-secondary">置顶</span> 
+      <h2 class="mb-0 d-inline">
+        <span class="badge text-bg-primary">置顶</span> 
         <a href="{{ post.url | prepend: site.baseurl }}" class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
           {{ post.title }}
         </a>
       </h2>
-    </div>
-    <div class="card-body">
-      <span class="fw-bold">
+      <span class="fw-bold text-nowrap">
         <i data-feather="calendar"></i>&nbsp;
         {{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
       </span>
@@ -59,14 +57,12 @@ use_mermaid: true
   {% unless post.is_sticky %}
   <div class="card mb-3">
     <div class="card-header">
-      <h2 class="mb-0">
+      <h2 class="mb-0 d-inline">
         <a href="{{ post.url | prepend: site.baseurl }}" class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
           {{ post.title }}
         </a>
       </h2>
-    </div>
-    <div class="card-body">
-      <span class="fw-bold">
+      <span class="fw-bold text-nowrap">
         <i data-feather="calendar"></i>&nbsp;
         {{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
       </span>

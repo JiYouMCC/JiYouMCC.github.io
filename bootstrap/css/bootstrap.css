@@ -4852,6 +4852,9 @@ textarea.form-control-lg {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: var(--bs-badge-border-radius);
+}
+
+a > .text-bg-primary.badge {
   border: 1px solid RGBA(var(--bs-primary-rgb), var(--bs-bg-opacity, 1));
 }
 
