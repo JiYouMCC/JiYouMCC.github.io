@@ -59,7 +59,10 @@ var Photos = {
                     $("<div></div>").addClass("photo-div card text-center").append(
                         $("<a></a>").addClass("text-decoration-none").attr("folder", Photos._folderNames[i]).attr("href", "#").append(
                             $("<div></div>").addClass("thumbnail").append(
-                                $("<img>").css("height","200px").attr("class", "card-img-top").attr("src", Photos._folders[Photos._folderNames[i]][0].path)
+                                $("<img>").css("height","200px")
+                                    .attr("class", "card-img-top object-fit-cover")
+                                    .css("object-position", "center")
+                                    .attr("src", Photos._folders[Photos._folderNames[i]][0].path)
                             ).append(
                                 $("<p></p>").addClass("mt-1 mb-2").text(Photos._folderNames[i] + "  ").append(
                                     $("<span></span>").addClass("badge rounded-pill text-bg-primary").text(Photos._folders[Photos._folderNames[i]].length)
