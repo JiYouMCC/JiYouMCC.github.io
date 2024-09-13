@@ -61,24 +61,34 @@ function addComment(comment) {
   comment_detail.append(
     $("<article></article>").attr('id', 'comment_text_' + commentId)
   );
-  var name_div = $("<div></div>");
-  name_div.append("<img class='rounded-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
-  name_div.append($("<span></span>").text(userName)).append(" ");
+  var name_div = $("<div></div>").addClass("mb-3");
   name_div.append(
+    $("<a></a>").attr("href", userLink).attr("target", "_blank").append(
+      $("<img />")
+        .addClass("rounded-circle")
+        .css("width", "20px")
+        .css("height", "20px")
+        .attr("alt", userName)
+        .attr("src", userAvatar)
+    )
+  ).append(" ");
+  name_div.append(" ").append(
+    $("<a></a>")
+      .addClass("link-underline link-underline-opacity-0 link-underline-opacity-100-hover")
+      .attr("href", "#comment_form")
+      .attr('title', "回复" + userName)
+      .attr('id', "button_reply_" + commentId)
+      .attr('reply', userName)
+      .append(
+        $("<span></span>").text("@" + userName)
+      )
+  );
+  name_div.append(" ").append(
     $("<span></span>")
     .addClass("fw-bold text-nowrap")
     .text(timeSince(date))
     .attr("title", formatDate(date)));
-  name_div.append(" ").append(
-    $("<a></a>").attr("href", userLink).attr("target", "_blank").attr("title", "Github page").append(
-      "<sup><i data-feather='home'></i></sup>"
-    )
-  );
-  name_div.append(" ").append(
-    $("<a></a>").attr("href", "#comment_form").attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', userName).append(
-      "<sup><i data-feather='message-square'></i></sup>"
-    )
-  );
+
 
   var d_comments = $("<div></div>")
     .addClass("list-group-item")
