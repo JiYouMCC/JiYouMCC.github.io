@@ -71,12 +71,12 @@ function addComment(comment) {
     .attr("title", formatDate(date)));
   name_div.append(" ").append(
     $("<a></a>").attr("href", userLink).attr("target", "_blank").attr("title", "Github page").append(
-      "<i data-feather='home'></i>"
+      "<sup><i data-feather='home'></i></sup>"
     )
   );
   name_div.append(" ").append(
     $("<a></a>").attr("href", "#comment_form").attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', userName).append(
-      "<i data-feather='message-square'></i>"
+      "<sup><i data-feather='message-square'></i></sup>"
     )
   );
 
