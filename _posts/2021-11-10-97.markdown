@@ -37,7 +37,7 @@ RER (kcal) = $$[体重(kg)^{0.75}]*70$$
   千克
 </p>
 <p>
-  <label for="input_type">猫咪类型</label>
+  <label for="input_type">猫咪类型：</label>
   <select id="input_k">
     <option value="0.8">需要减肥的猫</option>
     <option value="1">非常懒惰的猫</option>
@@ -56,7 +56,7 @@ RER (kcal) = $$[体重(kg)^{0.75}]*70$$
   克
 </p>
 <p>
-<label for="result">计算结果</label>
+<label for="result">计算结果：</label>
 <input id="result" disabled="disabled">
 克
 </p>
