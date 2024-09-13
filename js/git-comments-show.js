@@ -62,7 +62,7 @@ function addComment(comment) {
     $("<article></article>").attr('id', 'comment_text_' + commentId)
   );
   var name_div = $("<div></div>");
-  name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
+  name_div.append("<img class='rounded-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
   name_div.append($("<span></span>").text(userName)).append(" ");
   name_div.append(
     $("<span></span>")
@@ -112,7 +112,7 @@ function showComments(issueId, postId) {
           for (var i = 0; i < result.data.length; i++) {
             addComment(result.data[i]);
           }
-          $("button[id^=button_reply_]").click(function() {
+          $("a[id^=button_reply_]").click(function() {
             var reply = $(this).attr("reply");
             $("#comment").val($("#comment").val() + "@" + reply + " ");
             $("html,body").animate({
