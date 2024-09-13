@@ -59,33 +59,36 @@ function addComment(comment) {
 
   var comment_detail = $("<div></div>");
   comment_detail.append(
-    $("<div></div>").attr('id', 'comment_text_' + commentId).addClass('page_blog_comment_message')
+    $("<article></article>").attr('id', 'comment_text_' + commentId)
   );
   var name_div = $("<div></div>");
   name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
-  name_div.append($("<span></span>").addClass("page_blog_comment_name").text(userName)).append(" ");
+  name_div.append($("<span></span>").text(userName)).append(" ");
   name_div.append(
     $("<span></span>")
-    .addClass("page_datetime")
+    .addClass("fw-bold text-nowrap")
     .text(timeSince(date))
     .attr("title", formatDate(date)));
   name_div.append(" ").append(
     $("<a></a>").attr("href", userLink).attr("target", "_blank").attr("title", "Github page").append(
-      $("<button></button>").addClass("btn btn-link").append(
-        "<i data-feather='home'></i>"
-      )
+      "<i data-feather='home'></i>"
     )
   );
   name_div.append(" ").append(
-    $("<button></button>").addClass('btn btn-link').attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', userName).append(
+    $("<a></a>").attr("href", "#comment_form").attr('title', "回复").attr('id', "button_reply_" + commentId).attr('reply', userName).append(
       "<i data-feather='message-square'></i>"
     )
   );
 
-  var d_comments = $("<div></div>").addClass("list-group-item").attr('id', "comments_" + commentId).append(name_div).append(comment_detail);
+  var d_comments = $("<div></div>")
+    .addClass("list-group-item")
+    .attr('id', "comments_" + commentId)
+    .append(name_div)
+    .append(comment_detail);
   $("#div_comments").after(d_comments);
   document.getElementById('comment_text_' + commentId).innerHTML = comment.body_html;
   emojiProcess();
+  feather.replace();
 }
 
 function showComments(issueId, postId) {
