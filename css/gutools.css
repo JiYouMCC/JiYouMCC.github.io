@@ -262,6 +262,10 @@ blockquote {
     animation: rotate .7s infinite linear;
 }
 
+.feather-refresh-ccw {
+    animation: rotate .7s infinite linear;
+}
+
 .photo-div {
     animation: photo 1s;
     -moz-animation: photo 1s;
