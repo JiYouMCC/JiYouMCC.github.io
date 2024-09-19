@@ -98,7 +98,9 @@ var Photos = {
             $("<a></a>").attr("imgPath", Photos._folders[folderName][i].path).attr("href", "#").append(
               $("<div></div>").addClass("thumbnail").append(
                 $("<img>")
-                .addClass("ratio ratio-4x3 rounded object-fit-cover w-100")
+                .css("height", "auto")
+                .css("aspect-ratio", 4 / 3)
+                .addClass("rounded object-fit-cover w-100")
                 .attr("src", Photos._folders[folderName][i].path)
                 .attr("title", Photos._folders[folderName][i].basename)
               )
