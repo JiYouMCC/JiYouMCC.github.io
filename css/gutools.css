@@ -249,36 +249,6 @@ blockquote {
     border-left: 3px solid #a1afc9;
 }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg);
-    }
-}
-
-.glyphicon-refresh-animate {
-    animation: rotate .7s infinite linear;
-}
-
-.feather-refresh-ccw {
-    animation: rotate .7s infinite linear;
-}
-
-.photo-div {
-    animation: photo 1s;
-    -moz-animation: photo 1s;
-    -webkit-animation: photo 1s;
-    -o-animation: photo 1s;
-}
-  
-
-.modal-photo {
-    top: 50%;
-    transform: translateY(-50%) !important;
-}
-
 @keyframes photo {
     from {opacity: 0;}
     to {opacity: 1;}
@@ -299,13 +269,24 @@ blockquote {
     to {opacity: 1;}
 }
 
+.photo-div {
+    animation: photo 1s;
+    -moz-animation: photo 1s;
+    -webkit-animation: photo 1s;
+    -o-animation: photo 1s;
+}
+
+.modal-photo {
+    top: 50%;
+    transform: translateY(-50%) !important;
+}
+
 #comment_all_count.list-group-item:last-child {
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
 }
 
 /* new */
-
 body {
   margin-top: 69px;
 }
@@ -414,4 +395,18 @@ article textarea {
     border-radius: 2px;
     opacity: 1 !important;
     z-index: 100 !important;
+}
+
+/*逆时针旋转的特殊feather ccw*/
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.feather-refresh-ccw {
+    animation: rotate .7s infinite linear;
 }
