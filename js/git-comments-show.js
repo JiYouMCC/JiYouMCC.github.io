@@ -103,8 +103,11 @@ function addComment(comment) {
 
 function showComments(issueId, postId) {
   $('div[id^=comments_]').remove();
-  $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
-      "<span class=\"glyphicon-refresh-animate\"><i data-feather=\"refresh-ccw\"></i></span>"
+  $("<div></div>")
+    .attr("id", "refresh_comments")
+    .addClass("list-group-item")
+    .append(
+      "<i data-feather=\"refresh-ccw\"></i>"
      ).append(" 载入中……").insertAfter($("#div_comments"));
   feather.replace();
   function loopShowComments(issueId, page) {
@@ -233,7 +236,7 @@ function showUserForm(issueId, userInfo) {
 function showForm(issueId) {
   $("#comment_form").text("");
   $("#comment_form").append(
-    $("<span class=\"glyphicon-refresh-animate\"><i data-feather=\"refresh-ccw\"></i></span>")
+    $("<i data-feather=\"refresh-ccw\"></i>")
   );
   feather.replace();
   GithubComments.User.Get(function(userInfo) {
