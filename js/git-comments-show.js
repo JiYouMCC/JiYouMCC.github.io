@@ -106,6 +106,7 @@ function showComments(issueId, postId) {
   $("<div></div>").attr("id", "refresh_comments").addClass("list-group-item").append(
       "<span class=\"glyphicon-refresh-animate\"><i data-feather=\"refresh-cw\"></i></span>"
      ).append(" 载入中……").insertAfter($("#div_comments"));
+  feather.replace();
   function loopShowComments(issueId, page) {
     GithubComments.Comments.Get(
       issueId, 
@@ -156,8 +157,13 @@ function showLogin() {
   $("#comment_form").append(
     $("<i data-feather=\"github\">")
   ).append(
-    $("<button></button>").attr('type', 'button').attr('id', 'comment_button_login').addClass('btn btn-link').text('登录')
+    $("<button></button>")
+      .attr('type', 'button')
+      .attr('id', 'comment_button_login')
+      .addClass('btn btn-link')
+      .text('登录')
   );
+  feather.replace();
   $("#comment_button_login").click(function() {
     GithubComments.User.Login();
   });
@@ -189,7 +195,7 @@ function showUserForm(issueId, userInfo) {
     $("#comment").val($("#comment").val() + " " + emoji + " ");
   });
   $("#comment_form").append(
-    $("<div></div>").addClass('form-group').append(
+    $("<div></div>").addClass('form-group  mt-2').append(
       $("<textarea></textarea>").attr('name', 'comment').attr('id', 'comment').addClass('form-control')
     )
   );
@@ -229,6 +235,7 @@ function showForm(issueId) {
   $("#comment_form").append(
     $("<span class=\"glyphicon-refresh-animate\"><i data-feather=\"refresh-cw\"></i></span>")
   );
+  feather.replace();
   GithubComments.User.Get(function(userInfo) {
     if (userInfo) {
       showUserForm(issueId, userInfo);
