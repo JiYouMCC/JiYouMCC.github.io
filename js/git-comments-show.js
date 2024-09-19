@@ -194,8 +194,8 @@ function showUserForm(issueId, userInfo) {
     )
   );
   $("#comment_form").append(
-    $("<div></div>").addClass('text-center').append(
-      $("<button></button>").attr('id', 'add_comment').addClass('btn btn-default').text('评论')
+    $("<div></div>").addClass('text-center mt-2').append(
+      $("<button></button>").attr('id', 'add_comment').addClass('btn btn-primary').text('评论')
     )
   );
   $("#comment_button_logout").click(function() {
