@@ -24,7 +24,7 @@ async function search(searchString) {
     var row = $("<div></div>").addClass("row g-0");
     var text_div = null;
     if ("image" in results[i]["meta"]) {
-      var image_div = $("<div></div>").addClass("col-md-2");
+      var image_div = $("<div></div>").addClass("col-md-2 card-body");
       image_div.append(
         $("<img>")
           .attr("src", results[i]["meta"]['image'])
