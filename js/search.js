@@ -21,22 +21,16 @@ async function search(searchString) {
   $("#search_message").html("搜索“" + searchString + "”，查找到 " + results.length + " 条记录");
   for (var i = 0; i < results.length; i++) {
     var group = $("<div></div>").addClass("list-group-item");
-    var row = $("<div></div>").addClass("row g-0");
     var text_div = null;
     if ("image" in results[i]["meta"]) {
-      var image_div = $("<div></div>").addClass("col-md-2 card-body");
-      image_div.append(
+      group.append(
         $("<img>")
           .attr("src", results[i]["meta"]['image'])
           .attr("title", results[i]["meta"]['title'])
           .attr("alt", results[i]["meta"]['title'])
-          .css("max-width", "100%")
-          .css("max-height", "200px")
+          .css("max-height", "150px")
+          .addClass("rounded float-end")
       )
-      row.append(image_div);
-      text_div = $("<div></div>").addClass("col-md-10");
-    } else {
-      text_div = $("<div></div>").addClass("col-md-12");
     }
     var div_body_title = $("<a></a>")
       .addClass('link-underline link-underline-opacity-0 link-underline-opacity-100-hover')
@@ -46,13 +40,10 @@ async function search(searchString) {
         .text(results[i]["meta"]['title'])
     );
 
-    var div_body_p = $("<p>" + results[i]['excerpt'] + "</p>");
-    var div_body = $("<div></div>").addClass("card-body");
+    var div_body = $("<div></div>");
     div_body.append(div_body_title);
-    div_body.append(div_body_p);
-    text_div.append(div_body);
-    row.append(text_div);
-    group.append(row);
+    div_body.append(results[i]['excerpt']);
+    group.append(div_body);
     $("#pagefind_result").append(group);
   }
 }
