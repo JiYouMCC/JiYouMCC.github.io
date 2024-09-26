@@ -5116,6 +5116,9 @@ a >.text-bg-primary.badge:hover {
 .list-group-item + .list-group-item.active {
   margin-top: calc(-1 * var(--bs-list-group-border-width));
   border-top-width: var(--bs-list-group-border-width);
+}
+
+.list-group-item + .list-group-item.active:hover {
   color: var(--bs-link-color);
 }
 
