@@ -5119,7 +5119,7 @@ a >.text-bg-primary.badge:hover {
   color: var(--bs-link-color);
 }
 
-.list-group-item:hover {
+a.list-group-item:hover {
   background-color: #F3F8F1;
 }
 
