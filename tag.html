@@ -28,13 +28,11 @@ is_tag: true
         <tr>
           <td><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></td>
           <td class="fw-bold">
-            <i data-feather="calendar"></i>&nbsp;
-            {{ post.date | date: "%Y-%m-%d"}}
+            <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d"}}
           </td>
           <td class="text-center">
           {% for cat in post.categories %}
-            <i data-feather="folder"></i>&nbsp;
-            <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
+            <i data-feather="folder"></i><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
           {% endfor %}</td>
         </tr>
         {% endfor %}

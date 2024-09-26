@@ -32,8 +32,7 @@ title: "分类"
                 <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url }}">{{ post.title }}</a>
               </td>
               <td class="fw-bold">
-                <i data-feather="calendar"></i>&nbsp;
-                {{ post.date | date: "%Y-%m-%d"}}
+                <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d"}}
               </td>
             </tr>
             {% endif %}
@@ -44,8 +43,7 @@ title: "分类"
               <td class="text-center"></td>
               <td><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url }}">{{ post.title }}</a></td>
               <td class="fw-bold">
-                <i data-feather="calendar"></i>&nbsp;
-                {{ post.date | date: "%Y-%m-%d"}}
+                <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d"}}
               </td>
             </tr>
             {% endunless %}
@@ -67,8 +65,7 @@ title: "分类"
           <td class="text-center">{% if post.is_sticky %}<span class="label label-default">置顶</span>{% endif %}</td>
           <td><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url }}">{{ post.title }}</a></td>
           <td class="fw-bold">
-            <i data-feather="calendar"></i>&nbsp;
-            {{ post.date | date: "%Y-%m-%d"}}
+            <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d"}}
           </td>
         </tr>
         {% endfor %}

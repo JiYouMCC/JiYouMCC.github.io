@@ -16,8 +16,7 @@ use_mermaid: true
         </a>
       </h2>
       <span class="fw-bold text-nowrap">
-        <i data-feather="calendar"></i>&nbsp;
-        {{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
+        <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
       </span>
     </div>
     <article class="card-body">
@@ -26,17 +25,13 @@ use_mermaid: true
     <div class="card-footer">
       {% if post.issue %}
       <span>
-        <i data-feather="message-circle"></i>&nbsp;
-        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
+        <i data-feather="message-square"></i><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
         <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
       </span>
       {% endif %}
       {% if post.categories.size > 0 %}
       <span>
-        <i data-feather="folder"></i>
-        {% for cat in post.categories %}
-          {% if cat != 'sticky' %}
-        &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
+        <i data-feather="folder"></i>{% for cat in post.categories %}{% if cat != 'sticky' %}<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
           {% endif %}
         {% endfor %}
       </span>&nbsp;
@@ -63,8 +58,7 @@ use_mermaid: true
         </a>
       </h2>
       <span class="fw-bold text-nowrap">
-        <i data-feather="calendar"></i>&nbsp;
-        {{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
+        <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
       </span>
     </div>
     <div class="card-body">
@@ -75,17 +69,13 @@ use_mermaid: true
     <div class="card-footer">
       {% if post.issue %}
       <span>
-        <i data-feather="message-circle"></i>&nbsp;
-        <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
+        <i data-feather="message-square"></i><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
         <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
       </span>
       {% endif %}
       {% if post.categories.size > 0 %}
       <span>
-        <i data-feather="folder"></i>
-        {% for cat in post.categories %}
-          {% if cat != 'sticky' %}
-        &nbsp;<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
+        <i data-feather="folder"></i>{% for cat in post.categories %}{% if cat != 'sticky' %}<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
           {% endif %}
         {% endfor %}
       </span>&nbsp;
