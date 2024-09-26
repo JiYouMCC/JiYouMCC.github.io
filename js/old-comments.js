@@ -510,7 +510,7 @@ var OldComments = {
       $("<div></div>").attr('id', 'comment_text_' + commentId).addClass('page_blog_comment_message')
     );
     var name_div = $("<div></div>");
-    name_div.append("<img class='img-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
+    name_div.append("<img class='rounded-circle' style='width: 20px;height: 20px;' alt='" + userName + "' src='" + userAvatar + "' />").append(" ");
     name_div.append($("<span></span>").addClass("page_blog_comment_name").text(userName)).append(" ");
     name_div.append(
       $("<span></span>")
