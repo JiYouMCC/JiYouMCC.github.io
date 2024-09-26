@@ -16,7 +16,7 @@ layout: default
   </article>
 </main>
 <nav>
-  <ul class="pagination justify-content-between">
+  <ul class="pagination {% if page.next.url and page.previous.url %}justify-content-between{% else %}justify-content-center{% endif %}">
     {% if page.next.url %} 
     <li class="page-item">
       <a class="page-link" title="{{ page.next.title | date: "%Y-%m-%d %H:%M:%S"}}" href="{{ page.next.url }}"><i data-feather="chevron-left"></i> 后一篇</a>
