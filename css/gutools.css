@@ -408,3 +408,7 @@ article textarea {
 .feather-refresh-ccw {
     animation: rotate .7s infinite linear;
 }
+
+.feather {
+    vertical-align: text-bottom;
+}
