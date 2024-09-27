@@ -27,8 +27,8 @@ function change_position() {
 $(window).resize(function () {
   change_position();
 });
-$(window).scroll(function() {
 
+$(window).scroll(function() {
   change_position();
 });
 
@@ -101,17 +101,15 @@ links.append(
 );
 
 $("#affix-nav-pannel").append(links);
-/*$('body').scrollspy({ target: '#affix-nav-pannel' });*/
-
 $("a[affix_to]").click(function(){
   var target = $($(this).attr("affix_to"));
   var target_offset = 0;
   if ($(this).attr("affix_to") != "#top") {
     target_offset = target.offset().top
   }
-
-  $("html,body").animate({scrollTop: target_offset}, 2000);
+  window.scrollTo({
+    top: target_offset - 56,
+    behavior: 'smooth'
+  });
   return false;
 });
-
-
