@@ -8,7 +8,7 @@ title: "归档"
 {% capture is_first_year %}1{% endcapture %}
 {% capture expanded %}true{% endcapture %}
 <div id="archive">
-  <div class="card">
+  <div class="card mb-3">
 {% for post in site.posts %}
   {% capture post_year %}{{ post.date | date: '%Y' }}{% endcapture %}
   {% capture post_month %}{{ post.date | date: '%-m' }}{% endcapture %}
