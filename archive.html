@@ -2,35 +2,37 @@
 layout: default
 title: "归档"
 ---
-<!-- Bootstrapt 5 completed -->
 {% capture archives_year %}1900{% endcapture %}
 {% capture archives_month %}0{% endcapture %}
 {% capture is_first_year %}1{% endcapture %}
 {% capture expanded %}true{% endcapture %}
-<div id="archive">
-  <div class="card mb-3">
+<div class="accordion mb-3" id="archive">
 {% for post in site.posts %}
   {% capture post_year %}{{ post.date | date: '%Y' }}{% endcapture %}
   {% capture post_month %}{{ post.date | date: '%-m' }}{% endcapture %}
   {% if archives_year != post_year %}
     {% assign archives_year = post_year %}
     {% if is_first_year != "1" %}
-      </div>
+      </ul>
+    </div>
+  </div>
     {% else %}
       {% assign is_first_year = "0" %}
     {% endif %}
-    <div class="card-header" id="heading_{{ archives_year }}">
-      <a class="btn" data-bs-toggle="collapse" href="#collaps_{{ archives_year }}">
-        <h2 class="mb-0">{{ archives_year }}</h2>
-      </a>
-    </div>
-    <div id="collaps_{{ archives_year }}" class="list-group list-group-flush collapse{% if expanded != "false" %} show{% endif %}" data-bs-parent="#archive">
-    {% if expanded != "false" %}{% assign expanded = "false" %}{% endif %}
-  {% endif %}
-  {% if archives_month != post_month %}
-    {% assign archives_month = post_month %}
-      <div class="card-body border-bottom">
-        <h5 class="mb-0">{% case post_month %}
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button{% if expanded %}{% else %} collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ archives_year }}" aria-expanded="{% if expanded %}true{% else %}false{% endif %}" aria-controls="flush-{{ archives_year }}">
+        {{ archives_year }}
+      </button>
+    </h2>
+    <div id="flush-{{ archives_year }}" class="accordion-collapse collapse{% if expanded %} show{% endif %}" data-bs-parent="#archive">
+      <ul class="list-group list-group-flush">
+    {% endif %}
+    {% if expanded %}{% assign expanded = false %}{% endif %}
+    {% if archives_month != post_month %}
+      {% assign archives_month = post_month %}
+        <li class="list-group-item">
+          <h6 class="mb-0">{% case post_month %}
               {% when '1' %}一月
               {% when '2' %}二月
               {% when '3' %}三月
@@ -43,16 +45,17 @@ title: "归档"
               {% when '10' %}十月
               {% when '11' %}十一月
               {% when '12' %}十二月
-            {% endcase %}</h5>
-      </div>
-  {% endif %}
-      <a href="{{post.url}}" class="list-group-item">
-        <span class="fw-bold">{{ post.date | date: "%d" }}</span> {{ post.title }}
-      </a>
+              {% endcase %}</h6>
+        </li>
+    {% endif %}
+        <li class="list-group-item">
+          <span class="fw-bold">{{ post.date | date: "%d" }}</span>
+          <a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{post.url}}" target="_blank">
+            {{ post.title }}
+          </a>
+        </li>
 {% endfor %}
-    </div>
-    <div class="card-footer text-center text-secondary">
-      &lt;!-- 到底了 --&gt;
+      </ul>
     </div>
   </div>
 </div>
