@@ -413,3 +413,11 @@ article textarea {
     vertical-align: text-bottom;
     height: 20px;
 }
+
+pre.notranslate {
+    color: #000;
+    background: #f8f8ff;
+    overflow-x: auto;
+    padding: 1em;
+    word-wrap: break-word;
+}
