@@ -4,7 +4,7 @@ title:  "草稿模板"
 date:   2099-01-01 00:00:00 +0800
 categories: 技术 镜头 生活 游戏
 tags: python javascript jquery css ubuntu linux 猫
-issue: 49
+issue: 0
 use_code: true
 ---
 这里放个模板，用来放草稿
