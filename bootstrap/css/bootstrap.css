@@ -4609,6 +4609,7 @@ textarea.form-control-lg {
   border-radius: 0;
   overflow-anchor: none;
   transition: var(--bs-accordion-transition);
+  background: #a1afc9;
 }
 @media (prefers-reduced-motion: reduce) {
   .accordion-button {
