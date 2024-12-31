@@ -30,7 +30,7 @@ jobs:
         run: |
           wget https://github.com/CloudCannon/pagefind/releases/download/${{ vars.PAGEFIND_VERSION }}/${{ vars.PAGEFIND_PACKAGE_NAME }}
           tar -xvzf ${{ vars.PAGEFIND_PACKAGE_NAME }}
-          ./pagefind_extended --site ${{ github.workspace }}/_site --exclude-selectors "img.emoji" --glob blog/post/**/*.html
+          ./pagefind_extended --site ${{ github.workspace }}/_site --exclude-selectors "img.emoji" --glob blog/post/**/*.html --quiet
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
   deploy:
