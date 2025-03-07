@@ -14,7 +14,7 @@ issue: 43
 
 <!--more-->
 
-## 人工整理（2024/6/17）13.17%进行中 ##
+## 人工整理（2024/6/17）18.09%进行中 ##
 
 GitHub emoji = 1874
 
@@ -334,7 +334,7 @@ GitHub emoji = 1874
 | :man_shrugging: |man_shrugging|🤷‍♂️|男生耸肩|
 | :woman_shrugging: |woman_shrugging|🤷‍♀️|女生耸肩|
 
-#### 活动与运动 （） ####
+#### 活动与运动 （94） ####
 
 | GitHub Emoji | GitHub name | Emoji | 中文名字 |
 | :----------: | :---------: | :---: | :------: |
@@ -381,91 +381,72 @@ GitHub emoji = 1874
 | - |-|👨‍🦽‍➡️|坐手动轮椅的男人右转头|
 | :woman_in_manual_wheelchair: |woman_in_manual_wheelchair|👩‍🦽|坐手动轮椅的女人|
 | - |-|👩‍🦽‍➡️|坐手动轮椅的女人右转头|
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
-| :: ||||
+| :runner: :running: |runner running|🏃|跑步者|
+| :running_man: |running_man|🏃‍♂️|男生跑步|
+| :running_woman: |running_woman|🏃‍♀️|女生跑步|
+| - |-|🏃‍➡️|人跑步右转头|
+| - |-|🏃‍♀️‍➡️|女生跑步右转头|
+| - | - |🏃‍♂️‍➡️|男孩跑步右转头|
+| :woman_dancing: :dancer: | woman_dancing dancer|💃|跳舞的女人|
+| :man_dancing: |man_dancing|🕺|跳舞的男人|
+| :business_suit_levitating: |business_suit_levitating|🕴️|西装革履的人|
+| :dancers: |dancers|👯|戴兔耳朵的人|
+| :dancing_men: |dancing_men|👯‍♂️|兔先生|
+| :dancing_women: |dancing_women|👯‍♀️|兔女郎|
+| :sauna_person: |sauna_person|🧖|桑拿房里的人|
+| :sauna_man: |sauna_man|🧖‍♂️|桑拿房里的男人|
+| :sauna_woman: |sauna_woman|🧖‍♀️|桑拿房里的女人|
+| :climbing: |climbing|🧗|攀爬的人|
+| :climbing_man: |climbing_man|🧗‍♂️|攀爬的男人|
+| :climbing_woman: |climbing_woman|🧗‍♀️|攀爬的女人|
+| :person_fencing: |person_fencing|🤺|击剑选手|
+| :horse_racing: |horse_racing|🏇|赛马|
+| :skier: |skier|⛷️|滑雪的人|
+| :snowboarder: |snowboarder|🏂|滑雪板|
+| :golfing: |golfing|🏌️|打高尔夫球的人|
+| :golfing_man: |golfing_man|🏌️‍♂️|男生打高尔夫|
+| :golfing_woman: |golfing_woman|🏌️‍♀️|女生打高尔夫|
+| :surfer: |surfer|🏄|冲浪|
+| :surfing_man: |surfing_man|🏄‍♂️|男生冲浪|
+| :surfing_woman: |surfing_woman|surfing_man|女生冲浪|
+| :rowboat: |rowboat|🚣|划船|
+| :rowing_man: |rowing_man|🚣‍♂️|男生划船|
+| :rowing_woman: |rowing_woman|🚣‍♀️|女生划船|
+| :swimmer: |swimmer|🏊|游泳|
+| :swimming_man: |swimming_man|🏊‍♂️|男生游泳|
+| :swimming_woman: |swimming_woman|🏊‍♀️|女生游泳|
+| :bouncing_ball_person: |bouncing_ball_person|⛹️|玩球|
+| :basketball_man: bouncing_ball_man|basketball_man bouncing_ball_man|⛹️‍♂️|男生玩球|
+| :basketball_woman: :bouncing_ball_woman: |basketball_woman bouncing_ball_woman|⛹️‍♀️|女生玩球|
+| :weight_lifting: |weight_lifting|🏋️|举重|
+| :weight_lifting_man: |weight_lifting_man|🏋️‍♂️|男生举重|
+| :weight_lifting_woman: |weight_lifting_woman|🏋️‍♀️|女生举重|
+| :bicyclist: |bicyclist|🚴|骑自行车|
+| :biking_man: |biking_man|🚴‍♂️|男生骑自行车|
+| :biking_woman: |biking_woman|🚴‍♀️|女生骑自行车|
+| :mountain_bicyclist: |mountain_bicyclist|🚵|骑山地车|
+| :mountain_biking_man: |mountain_biking_man|🚵‍♂️|男生骑山地车|
+| :mountain_biking_woman: |mountain_biking_woman|🚵‍♀️|女生骑山地车|
+| :cartwheeling: |cartwheeling|🤸|侧手翻|
+| :man_cartwheeling: |man_cartwheeling|🤸‍♂️|男生侧手翻|
+| :woman_cartwheeling: |woman_cartwheeling|🤸‍♀️|女生侧手翻|
+| :wrestling: |wrestling|🤼|摔跤选手|
+| :men_wrestling: |men_wrestling|🤼‍♂️|男子摔跤|
+| :women_wrestling: |women_wrestling|🤼‍♀️|女子摔跤|
+| :water_polo: |water_polo|🤽|水球|
+| :man_playing_water_polo: |man_playing_water_polo|🤽‍♂️|男子水球|
+| :woman_playing_water_polo: |woman_playing_water_polo|🤽‍♀️|女子水球|
+| :handball_person: |handball_person|🤾|手球|
+| :man_playing_handball: |man_playing_handball|🤾‍♂️|男子手球|
+| :woman_playing_handball: |woman_playing_handball|🤾‍♀️|女子手球|
+| :juggling_person: |juggling_person|🤹|杂技|
+| :man_juggling: |man_juggling|🤹‍♂️|男子杂技|
+| :woman_juggling: |woman_juggling|🤹‍♀️|女子杂技|
+| :lotus_position: |lotus_position|🧘|盘腿的人|
+| :lotus_position_man: |lotus_position_man|🧘‍♂️|盘腿的男人|
+| :lotus_position_woman: |lotus_position_woman|🧘‍♀️|盘腿的女人|
+| :bath: |bath|🛀|洗澡的人|
+| :sleeping_bed: |sleeping_bed|🛌|躺在床上的人|
 
 ## 自动更新的列表 ##
 
