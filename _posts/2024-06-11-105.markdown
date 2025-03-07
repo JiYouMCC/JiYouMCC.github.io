@@ -416,7 +416,7 @@ GitHub emoji = 1874
 | :swimming_man: |swimming_man|🏊‍♂️|男生游泳|
 | :swimming_woman: |swimming_woman|🏊‍♀️|女生游泳|
 | :bouncing_ball_person: |bouncing_ball_person|⛹️|玩球|
-| :basketball_man: bouncing_ball_man|basketball_man bouncing_ball_man|⛹️‍♂️|男生玩球|
+| :basketball_man: :bouncing_ball_man:|basketball_man bouncing_ball_man|⛹️‍♂️|男生玩球|
 | :basketball_woman: :bouncing_ball_woman: |basketball_woman bouncing_ball_woman|⛹️‍♀️|女生玩球|
 | :weight_lifting: |weight_lifting|🏋️|举重|
 | :weight_lifting_man: |weight_lifting_man|🏋️‍♂️|男生举重|
