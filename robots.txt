@@ -5,3 +5,4 @@ Disallow: /img/
 Disallow: /js/
 Disallow: /lib/
 Disallow: /photo/
+Disallow: /postcards/
