@@ -1,14 +1,32 @@
-id,url,type,platform,action_type,friend_id,friend_url,country,region,sent_data,received_data,card_brand,card_material,card_type,card_title,series,tags
-AT-465115
-AU-697978
-CA-966797
-CZ-1631055
-DE-8727180
-DE-8814973
-FI-3640189
-GB-1199724
-JP-1345109
-JP-1353205
-NL-4539268
-US-6350458
-US-6378655
+﻿no,id,title,type,platform,friend_id,country,region,sent_date,received_date,tags,url,friend_url
+,AT-465115,LINZ - Austria,MATCH,POSTCROSSING,Resal,Austria,,"19 Nov, 2019","24 Dec, 2019",城市 林茨 有轨电车 摄影,https://www.postcrossing.com/postcards/AT-465115,https://www.postcrossing.com/user/Resal
+,AU-697978,,MATCH,POSTCROSSING,,,,,,,,
+,CA-966797,,MATCH,POSTCROSSING,,,,,,,,
+,CZ-1631055,,MATCH,POSTCROSSING,,,,,,,,
+,DE-8727180,,MATCH,POSTCROSSING,,,,,,,,
+,DE-8814973,,MATCH,POSTCROSSING,,,,,,,,
+,FI-3640189,,MATCH,POSTCROSSING,,,,,,,,
+,GB-1199724,,MATCH,POSTCROSSING,,,,,,,,
+,JP-1345109,,MATCH,POSTCROSSING,,,,,,,,
+,JP-1353205,,MATCH,POSTCROSSING,,,,,,,,
+,NL-4539268,小心斯瓦尔巴德群岛的熊,MATCH,POSTCROSSING,kaartjesvanchris,Netherlands,,"17 Dec, 2019","12 Jan, 2020",挪威 标志 熊,https://www.postcrossing.com/postcards/NL-4539268,https://www.postcrossing.com/user/kaartjesvanchris
+,US-6350458,"UP THE EAST RIVER FROM WATERSIDE APARTMENTS,1981 From Manbattan Lightscape",MATCH,POSTCROSSING,JFY,U.S.A.,,"2 Nov, 2019","17 Nov, 2019",河流 曼哈顿 城市 摄影,https://www.postcrossing.com/postcards/US-6350458,https://www.postcrossing.com/user/JFV
+,US-6378655,Indio Date Festival,MATCH,POSTCROSSING,LulamaeA,U.S.A.,,"17 Nov, 2019","2 Dec, 2019",民俗,https://www.postcrossing.com/user/LulamaeA,https://www.postcrossing.com/user/LulamaeA
+,CNTM27681,南京中山陵,MATCH,ICY,轻触梦境,中国,江苏,4/10/2020 0:18,4/19/2020 20:27,南京 景点 中山陵,https://icardyou.icu/sendpostcard/postcardDetail/1055467,https://icardyou.icu/userInfo/homePage?userId=21252
+,CNBJ25192,,,,,,,,,,,
+,CNGD35154,,,,,,,,,,,
+,CNGD35558,,,,,,,,,,,
+,CNHL1801,,,,,,,,,,,
+,CNHN7202,,,,,,,,,,,
+,CNHN7380,,,,,,,,,,,
+,CNJL1208,,,,,,,,,,,
+,CNJS11572,,,,,,,,,,,
+,CNJS12770,,,,,,,,,,,
+,CNLN4299,,,,,,,,,,,
+,CNSH16618,,,,,,,,,,,
+,CNSH18548,,,,,,,,,,,
+,CNTM32053,,,,,,,,,,,
+,CNTM35591,,,,,,,,,,,
+,CNTM36019,,,,,,,,,,,
+,CNXJ0178,陆川龙珠湖景区,GAME,ICY,笨笨兔,中国,新疆,7/4/2020 1:03,7/15/2020 20:12,景区 门票 广西,https://icardyou.icu/sendpostcard/postcardDetail/1076778,https://icardyou.icu/userInfo/homePage?userId=2847
+,CNZJ17075,奈良若草山,GAME,ICY,咩影追云,中国,浙江,7/14/2020 8:56,7/17/2020 8:11,风景 奈良 日本,https://icardyou.icu/sendpostcard/postcardDetail/1080482,https://icardyou.icu/userInfo/homePage?userId=37425
