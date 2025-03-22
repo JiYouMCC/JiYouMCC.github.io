@@ -12,7 +12,7 @@ title: "我收到的明信片"
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-country" id="ul-country">
         <li>
           <div class="dropdown-item">
-            <input class="form-check-input me-1" type="checkbox" value="all" id="all"><label class="form-check-label" for="all">All</label>
+            <input class="form-check-input me-1" type="checkbox" value="all" id="country-all"><label class="form-check-label" for="all">All</label>
           </div>
         </li>
       </ul>
@@ -22,7 +22,7 @@ title: "我收到的明信片"
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-region" id="ul-region">
         <li>
           <div class="dropdown-item">
-            <input class="form-check-input me-1" type="checkbox" value="all" id="all"><label class="form-check-label" for="all">All</label>
+            <input class="form-check-input me-1" type="checkbox" value="all" id="region-all"><label class="form-check-label" for="all">All</label>
           </div>
         </li>
       </ul>
@@ -32,7 +32,7 @@ title: "我收到的明信片"
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-Type" id="ul-type">
         <li>
           <div class="dropdown-item">
-            <input class="form-check-input me-1" type="checkbox" value="all" id="all"><label class="form-check-label" for="all">All</label>
+            <input class="form-check-input me-1" type="checkbox" value="all" id="type-all"><label class="form-check-label" for="all">All</label>
           </div>
         </li>
     </div>
@@ -41,13 +41,13 @@ title: "我收到的明信片"
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-platform" id="ul-platform">
         <li>
           <div class="dropdown-item">
-            <input class="form-check-input me-1" type="checkbox" value="all" id="all"><label class="form-check-label" for="all">All</label>
+            <input class="form-check-input me-1" type="checkbox" value="all" id="platform-all"><label class="form-check-label" for="all">All</label>
           </div>
         </li>
       </ul>
     </div>
     <div class="col-auto me-2">
-      <input type="text" list="datalistSender" class="form-control" name="sender" placeholder="Sender">
+      <input id="inputSender" type="text" list="datalistSender" class="form-control" name="sender" placeholder="Sender">
       <datalist id="datalistSender"></datalist>
     </div>
     <a class="btn btn-primary me-2" data-bs-toggle="collapse" href="#collapseSentDate" role="button" aria-wxpanded="false" aria-controls="collapseSentDate">Sent Date</a>
@@ -58,23 +58,26 @@ title: "我收到的明信片"
     <div class="input-group mb-3 row gy-2 gx-3 align-items-center">
       <div class="col-auto"><strong>Sent Date</strong></div>
       <div class="col-auto"><span>from</span></div>
-      <div class="col-auto"><input type="date" class="form-control"></div>
+      <div class="col-auto"><input id="inputSentDateStart" type="date" class="form-control"></div>
       <div class="col-auto"><span>to</span></div>
-      <div class="col-auto"><input type="date" class="form-control"></div>
+      <div class="col-auto"><input id="inputSentDateEnd" type="date" class="form-control"></div>
     </div>
   </div>
   <div class="collapse mb-2" id="collapseReceivedDate">
     <div class="input-group mb-3 row gy-2 gx-3 align-items-center">
       <div class="col-auto"><strong>Received Date</strong></div>
       <div class="col-auto"><span>from</span></div>
-      <div class="col-auto"><input type="date" class="form-control"></div>
+      <div class="col-auto"><input id="inputReceivedDateStart" type="date" class="form-control"></div>
       <div class="col-auto"><span>to</span></div>
-      <div class="col-auto"><input type="date" class="form-control"></div>
+      <div class="col-auto"><input id="inputReceivedDateEnd" type="date" class="form-control"></div>
     </div>
   </div>
   <div class="collapse mb-2" id="collapseTags">
     <div class="card card-body">
-      <div id="div-tags" class="d-flex flex-wrap"></div>
+      <div id="div-tags" class="d-flex flex-wrap">
+        <input id="tag-all" type="checkbox" class="form-check-input me-1" value="all">
+        <label class="form-check-label me-2" for="tag-all">All</label>
+      </div>
     </div>
   </div>
   <div class="alert alert-light" role="alert">
@@ -82,179 +85,8 @@ title: "我收到的明信片"
   </div>
   <div class="row mt-4" id='imageContainer'></div>
 </div>
-<script>
+<script src="{{ "/js/postcard.js"}}"></script>
+<script type="text/javascript">
   const csvData = {{ site.data.postcard.received | jsonify }};
-  // filter by receivedDate
-  csvData.sort((a, b) => new Date(b['received_date']) - new Date(a['received_date']));
-  $("#cardCount").text(csvData.length);
-  $("#searchCount").text(csvData.length);
-  for (let i = 0; i < csvData.length; i++) {
-    var dataItem = csvData[i];
-    $("#imageContainer").append(
-      $("<div></div>").addClass("col-lg-3 col-md-4 mb-4 col-6 image-item").append(
-        $("<img></img>").addClass("img-fluid img-thumbnail postcard")
-          .attr("src","/postcards/received/" + dataItem['id']+ ".jpg")
-          .attr("title", dataItem['id'])
-          .attr("data-bs-toggle", "popover")
-          .attr("data-bs-placement", "bottom")
-          .attr("data-card-id", dataItem['id'])
-          .attr("data-card-url", dataItem["url"])
-          .attr("data-card-title", dataItem["title"])
-          .attr("data-card-platform", dataItem["platform"])
-          .attr("data-card-friend_id", dataItem["friend_id"])
-          .attr("data-card-friend_url", dataItem["friend_url"])
-          .attr("data-card-country", dataItem["country"])
-          .attr("data-card-region", dataItem["region"])
-          .attr("data-card-sent_date", dataItem["sent_date"])
-          .attr("data-card-received_date", dataItem["received_date"])
-          .attr("data-card-type", dataItem["type"])
-          .attr("data-card-tags", dataItem["tags"])
-    ));
-  }
-
-  var countryList = new Set();
-  var typeList = new Set();
-  var platformList = new Set();
-  var friendList = new Set();
-  var regionList = new Set();
-  var tagList = new Set();
-
-  csvData.forEach(item => {
-    if (item['country']) {
-      countryList.add(item['country']);
-    }
-    if (item['type']) {
-      typeList.add(item['type']);
-    }
-    if (item['platform']) {
-      platformList.add(item['platform']);
-    }
-    if (item['friend_id']) {
-      friendList.add(item['friend_id']);
-    }
-    if (item['region']) {
-      regionList.add(item['region']);
-    }
-    if (item['tags']) {
-      item['tags'].split(' ').forEach(tag => {
-        tagList.add(tag);
-      });
-    }
-  });
-
-  for(let country of countryList){
-    $("#ul-country").append(
-      $("<li></li>").append(
-        $("<div></div>").addClass("dropdown-item").append(
-          $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", country).attr("id", country),
-            $("<label></label>").addClass("form-check-label").attr("for", country).text(country)
-        )
-      )
-    );
-  }
-
-  for (let type of typeList) {
-    $("#ul-type").append(
-      $("<li></li>").append(
-        $("<div></div>").addClass("dropdown-item").append(
-          $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", type).attr("id", type),
-          $("<label></label>").addClass("form-check-label").attr("for", type).text(type)
-        )
-      )
-    );
-  }
-
-  for (let platform of platformList) {
-    $("#ul-platform").append(
-      $("<li></li>").append(
-        $("<div></div>").addClass("dropdown-item").append(
-          $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", platform).attr("id", platform),
-          $("<label></label>").addClass("form-check-label").attr("for", platform).text(platform)
-        )
-      )
-    );
-  }
-
-  for (let friend of friendList) {
-    $("#datalistSender").append(
-      $("<option></option>").attr("value", friend)
-    );
-  };
-
-  for (let region of regionList) {
-    $("#ul-region").append(
-      $("<li></li>").append(
-        $("<div></div>").addClass("dropdown-item").append(
-          $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", region).attr("id", region),
-          $("<label></label>").addClass("form-check-label").attr("for", region).text(region)
-        )
-      )
-    );
-  }
-
-  for (let tag of tagList) {
-    $("#div-tags").append(
-      $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", tag).attr("id", tag).attr("checked", "checked"),
-      $("<label></label>").addClass("form-check-label me-2").attr("for", tag).text(tag)
-    );
-  }
-  document.addEventListener('DOMContentLoaded', function () {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl, {
-          html: true,
-          content: function () {
-            var cardID = popoverTriggerEl.getAttribute('data-card-id');
-            var cardTitle = popoverTriggerEl.getAttribute('data-card-title') || cardID;
-            var cardUrl = popoverTriggerEl.getAttribute('data-card-url') || "#";
-            var cardType = popoverTriggerEl.getAttribute('data-card-type') || "";
-            var friendId = popoverTriggerEl.getAttribute('data-card-friend_id') || "";
-            var friendUrl = popoverTriggerEl.getAttribute('data-card-friend_url') || "#";
-            var country = popoverTriggerEl.getAttribute('data-card-country') || "";
-            var region = popoverTriggerEl.getAttribute('data-card-region') || "";
-            var sentDate = new Date(popoverTriggerEl.getAttribute('data-card-sent_date'));
-            var receivedDate = new Date(popoverTriggerEl.getAttribute('data-card-received_date'));
-            var tags = popoverTriggerEl.getAttribute('data-card-tags') || "";
-            tags = tags.split(' ');
-            var platform = popoverTriggerEl.getAttribute('data-card-platform');
-            var days = Math.floor((receivedDate - sentDate) / (1000 * 60 * 60 * 24));
-            var sentDataStr = sentDate.getFullYear() + "-" + (sentDate.getMonth() + 1) + "-" + sentDate.getDate();
-            var receivedDataStr = receivedDate.getFullYear() + "-" + (receivedDate.getMonth() + 1) + "-" + receivedDate.getDate();
-            var location = country;
-            if (region !== "") {
-              location = location + ' - ' + region;
-            }
-            var resultHtml = "";
-            resultHtml += '<a href="' + cardUrl + '" target="_blank"><strong>' + cardTitle + '</strong></a>';
-            resultHtml += '<br><strong>From</strong> <a href="' + friendUrl + '" target="_blank">' + friendId + '</a> (' + location + ')' + ' ['+ platform + ']';
-            resultHtml += '<br>' + sentDataStr + ' ~ ' + receivedDataStr + ' (' + days + ' days)';
-            resultHtml += '<br>';
-            for (let i = 0; i < tags.length; i++) {
-              resultHtml += '<a href="#"><span class="badge text-bg-primary">' + tags[i] + '</span></a> ';
-            }
-            return resultHtml;
-          }
-        })
-      })
-    });
-
-  $(document).ready(function() {
-    $('#all').on('change', function() {
-      var isChecked = $(this).is(':checked');
-      $('.dropdown-menu .form-check-input').not(this).prop('checked', isChecked);
-    });
-
-        $('.dropdown-menu .form-check-input').not('#all').on('change', function() {
-            var allChecked = $('.dropdown-menu .form-check-input').not('#all').length === $('.dropdown-menu .form-check-input').not('#all').filter(':checked').length;
-            $('#all').prop('checked', allChecked);
-        });
-
-        $('.dropdown-menu .form-check-input').on('change', function() {
-            var selectedOptions = [];
-            $('.dropdown-menu .form-check-input:checked').not('#all').each(function() {
-                selectedOptions.push($(this).val());
-            });
-            $('#dropdownMenuButton-country').text(selectedOptions.join(', ') || 'Select Countries');
-        });
-    });
+  PostcardCollection.Init(csvData)
 </script>
