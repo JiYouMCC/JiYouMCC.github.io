@@ -146,8 +146,8 @@ PostcardCollection = {
       $("#ul-country").append(
         $("<li></li>").append(
           $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", country).attr("id", country),
-            $("<label></label>").addClass("form-check-label").attr("for", country).text(country)
+            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", country).attr("id", 'country_' + country),
+            $("<label></label>").addClass("form-check-label").attr("for", 'country_' + country).text(country)
           )
         )
       );
@@ -157,8 +157,8 @@ PostcardCollection = {
       $("#ul-type").append(
         $("<li></li>").append(
           $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", type).attr("id", type),
-            $("<label></label>").addClass("form-check-label").attr("for", type).text(type)
+            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", type).attr("id", 'type_' + type),
+            $("<label></label>").addClass("form-check-label").attr("for", 'type_' + type).text(type)
           )
         )
       );
@@ -168,8 +168,8 @@ PostcardCollection = {
       $("#ul-platform").append(
         $("<li></li>").append(
           $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", platform).attr("id", platform),
-            $("<label></label>").addClass("form-check-label").attr("for", platform).text(platform)
+            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", platform).attr("id", 'platform_' + platform),
+            $("<label></label>").addClass("form-check-label").attr("for", 'platform_' + platform).text(platform)
           )
         )
       );
@@ -185,8 +185,8 @@ PostcardCollection = {
       $("#ul-region").append(
         $("<li></li>").append(
           $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", region).attr("id", region),
-            $("<label></label>").addClass("form-check-label").attr("for", region).text(region)
+            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", region).attr("id", 'region_' + region),
+            $("<label></label>").addClass("form-check-label").attr("for", 'region_' + region).text(region)
           )
         )
       );
@@ -194,8 +194,10 @@ PostcardCollection = {
 
     for (let tag of tagList) {
       $("#div-tags").append(
-        $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", tag).attr("id", "tag_"+tag),
-        $("<label></label>").addClass("form-check-label me-2").attr("for", "tag_"+tag).text(tag)
+        $('<div></div>').addClass('d-flex flex-nowarp').append(
+            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", tag).attr("id", "tag_" + tag),
+            $("<label></label>").addClass("form-check-label me-2").attr("for", "tag_" + tag).text(tag)
+        )
       );
     }
   },
@@ -254,6 +256,9 @@ PostcardCollection = {
   },
 
   RefreshImageContainer: function(data) {
+    try {
+      $('[data-bs-toggle="popover"]').popover('hide');
+    } catch (e) {}
     $("#cardCount").text(_postData.length);
     $("#searchCount").text(data.length);
     $("#imageContainer").empty();
@@ -337,7 +342,7 @@ PostcardCollection = {
       var isRegionMatch = selectedRegions.length === 0 || selectedRegions.includes(item['region']);
       var isTypeMatch = selectedTypes.length === 0 || selectedTypes.includes(item['type']);
       var isPlatformMatch = selectedPlatforms.length === 0 || selectedPlatforms.includes(item['platform']);
-      var isTagMatch = selectedTags.length === 0 || selectedTags.every(tag => item['tags'].includes(tag));
+      var isTagMatch = selectedTags.length === 0 || selectedTags.some(tag => item['tags'].includes(tag));
       var isFriendMatch = selectedFriend === "" || item['friend_id'].includes(selectedFriend);
       var isSentDateMatch = (sentDateStart === "" || new Date(item['sent_date']) >= new Date(sentDateStart)) && (sentDateEnd === "" || new Date(item['sent_date']) <= new Date(sentDateEnd));
       var isReceivedDateMatch = (receivedDateStart === "" || new Date(item['received_date']) >= new Date(receivedDateStart)) && (receivedDateEnd === "" || new Date(item['received_date']) <= new Date(receivedDateEnd));
