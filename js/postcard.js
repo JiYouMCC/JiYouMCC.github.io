@@ -1,273 +1,205 @@
-PostcardCollection = {
+const PostcardCollection = {
   _postData: undefined,
   _filterData: undefined,
   Init: function(data) {
-    _postData = data.sort((a, b) => new Date(b['sent_date']) - new Date(a['received_date']));
-    // split tags
-    _postData.forEach(item => {
-      if (item['tags']) {
-        item['tags'] = item['tags'].split(' ');
-      } else {
-        item['tags'] = [];
-      }
+    PostcardCollection._postData = data.sort((a, b) => new Date(b['sent_date']) - new Date(a['received_date']));
+    PostcardCollection._postData.forEach(item => {
+      item['tags'] = item['tags'] ? item['tags'].split(' ') : [];
     });
 
-    _filterData = _postData;
-    PostcardCollection.RefreshFilterElements(_filterData);
-    PostcardCollection.RefreshImageContainer(_filterData);
+    PostcardCollection._filterData = PostcardCollection._postData;
+    PostcardCollection.RefreshFilterElements(PostcardCollection._filterData);
+    PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
     PostcardCollection.InitFilterElements();
   },
   InitFilterElements: function() {
-    // control the behavior of the filter, do not related to data
-    // country filter
-    $('#country-all').on('change', function() {
-      var isChecked = $(this).is(':checked');
-      console.log(isChecked);
-      $('#ul-country .form-check-input').prop('checked', isChecked);
-    });
+    const debounce = (func, wait) => {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    };
 
-    $('#ul-country .form-check-input').not('#country-all').on('change', function() {
-      var allChecked = $('#ul-country .form-check-input').not('#all').length === $('#ul-country .form-check-input').not('#all').filter(':checked').length;
-      $('#country-all').prop('checked', allChecked);
-    });
+    const updateDropdownText = (selector, text) => {
+      $(selector).text(text.join(', ') || 'Select');
+    };
 
-    $('#ul-country .form-check-input').on('change', function() {
-      var selectedOptions = [];
-      $('#ul-country .form-check-input:checked').not('#country-all').each(function() {
-        selectedOptions.push($(this).val());
+    const handleCheckboxChange = (allSelector, itemSelector, dropdownSelector) => {
+      $(allSelector).on('change', function() {
+        const isChecked = $(this).is(':checked');
+        $(itemSelector).prop('checked', isChecked);
       });
-      $('#dropdownMenuButton-country').text(selectedOptions.join(', ') || 'Select Countries');
-    });
 
-    // region filter
-    $('#region-all').on('change', function() {
-      var isChecked = $(this).is(':checked');
-      console.log(isChecked);
-      $('#ul-region .form-check-input').prop('checked', isChecked);
-    });
-
-    $('#ul-region .form-check-input').not('#region-all').on('change', function() {
-      var allChecked = $('#ul-region .form-check-input').not('#all').length === $('#ul-region .form-check-input').not('#all').filter(':checked').length;
-      $('#region-all').prop('checked', allChecked);
-    });
-
-    $('#ul-region .form-check-input').on('change', function() {
-      var selectedOptions = [];
-      $('#ul-region .form-check-input:checked').not('#region-all').each(function() {
-        selectedOptions.push($(this).val());
+      $(itemSelector).not(allSelector).on('change', function() {
+        const allChecked = $(itemSelector).not(allSelector).length === $(itemSelector).not(allSelector).filter(':checked').length;
+        $(allSelector).prop('checked', allChecked);
       });
-      $('#dropdownMenuButton-region').text(selectedOptions.join(', ') || 'Select Regions');
-    });
 
-    // type filter
-    $('#type-all').on('change', function() {
-      var isChecked = $(this).is(':checked');
-      console.log(isChecked);
-      $('#ul-type .form-check-input').prop('checked', isChecked);
-    });
-
-    $('#ul-type .form-check-input').not('#type-all').on('change', function() {
-      var allChecked = $('#ul-type .form-check-input').not('#all').length === $('#ul-type .form-check-input').not('#all').filter(':checked').length;
-      $('#type-all').prop('checked', allChecked);
-    });
-
-    $('#ul-type .form-check-input').on('change', function() {
-      var selectedOptions = [];
-      $('#ul-type .form-check-input:checked').not('#type-all').each(function() {
-        selectedOptions.push($(this).val());
+      $(itemSelector).on('change', function() {
+        const selectedOptions = $(itemSelector + ':checked').not(allSelector).map(function() {
+          return $(this).val();
+        }).get();
+        updateDropdownText(dropdownSelector, selectedOptions);
       });
-      $('#dropdownMenuButton-type').text(selectedOptions.join(', ') || 'Select Types');
-    });
+    };
 
-    // platform filter
-    $('#platform-all').on('change', function() {
-      var isChecked = $(this).is(':checked');
-      console.log(isChecked);
-      $('#ul-platform .form-check-input').prop('checked', isChecked);
-    });
+    handleCheckboxChange('#country-all', '#ul-country .form-check-input', '#dropdownMenuButton-country');
+    handleCheckboxChange('#region-all', '#ul-region .form-check-input', '#dropdownMenuButton-region');
+    handleCheckboxChange('#type-all', '#ul-type .form-check-input', '#dropdownMenuButton-type');
+    handleCheckboxChange('#platform-all', '#ul-platform .form-check-input', '#dropdownMenuButton-platform');
 
-    $('#ul-platform .form-check-input').not('#platform-all').on('change', function() {
-      var allChecked = $('#ul-platform .form-check-input').not('#all').length === $('#ul-platform .form-check-input').not('#all').filter(':checked').length;
-      $('#platform-all').prop('checked', allChecked);
-    });
-
-    $('#ul-platform .form-check-input').on('change', function() {
-      var selectedOptions = [];
-      $('#ul-platform .form-check-input:checked').not('#platform-all').each(function() {
-        selectedOptions.push($(this).val());
-      });
-      $('#dropdownMenuButton-platform').text(selectedOptions.join(', ') || 'Select Platforms');
-    });
-
-    // tag filter
     $('#tag-all').on('change', function() {
-      var isChecked = $(this).is(':checked');
+      const isChecked = $(this).is(':checked');
       $('#div-tags .form-check-input').prop('checked', isChecked);
     });
 
-    $('#inputTitle, #ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input, #collapseSentDate .form-control, #collapseReceivedDate .form-control, #inputSender').on('change', function() {
+    $("#inputTitle,#inputSender").width("12ch");
+
+    $("#inputTitle,#inputSender").on('input', function(event) {
+      function getStringWidth(str) {
+        let width = 0;
+        for (let char of str) {
+          if (char.match(/[^\x00-\xff]/)) {
+            // Chinese characters
+            width += 2;
+          } else {
+            // English characters
+            width += 1;
+          }
+        }
+        return width;
+      }
+      $(this).width(Math.max(getStringWidth($(this).val()), 12) + "ch");
+    });
+
+    $("#inputTitle,#inputSender").on('input', debounce(() => {
       PostcardCollection.GenerateFilter();
-      PostcardCollection.RefreshImageContainer(PostcardCollection.GenerateFilter());
+      PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
+    }, 100));
+
+    $('#inputTitle,#inputSender,#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input, #collapseSentDate .form-control, #collapseReceivedDate .form-control').on('change', debounce(() => {
+      PostcardCollection.GenerateFilter();
+      PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
+    }, 100));
+
+    $('#resetFilter').on('click', () => {
+      $('#inputTitle, #inputSender, #inputSentDateStart, #inputSentDateEnd, #inputReceivedDateStart, #inputReceivedDateEnd').val('');
+      $('#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input').prop('checked', false);
+      updateDropdownText('#dropdownMenuButton-country', []);
+      updateDropdownText('#dropdownMenuButton-region', []);
+      updateDropdownText('#dropdownMenuButton-type', []);
+      updateDropdownText('#dropdownMenuButton-platform', []);
+      PostcardCollection.GenerateFilter();
+      PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
     });
   },
   RefreshFilterElements: function(data) {
-    $("#cardCount").text(_postData.length);
-    $("#searchCount").text(data.length);
-    var countryList = new Set();
-    var typeList = new Set();
-    var platformList = new Set();
-    var friendList = new Set();
-    var regionList = new Set();
-    var tagList = new Set();
-    data.forEach(item => {
-      if (item['country']) {
-        countryList.add(item['country']);
-      }
-      if (item['type']) {
-        typeList.add(item['type']);
-      }
-      if (item['platform']) {
-        platformList.add(item['platform']);
-      }
-      if (item['friend_id']) {
-        friendList.add(item['friend_id']);
-      }
-      if (item['region']) {
-        regionList.add(item['region']);
-      }
-      if (item['tags']) {
-        item['tags'].forEach(tag => {
-          tagList.add(tag);
+    const updateList = (selector, items, idPrefix) => {
+      if (idPrefix === 'tag') {
+        items.forEach(item => {
+          $(selector).append(
+            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", item).attr("id", `${idPrefix}_${item}`),
+            $("<label></label>").addClass("form-check-label me-2").attr("for", `${idPrefix}_${item}`).text(item)
+          )
+        });
+      } else {
+        items.forEach(item => {
+          $(selector).append(
+            $("<li></li>").append(
+              $("<div></div>").addClass("dropdown-item").append(
+                $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", item).attr("id", `${idPrefix}_${item}`),
+                $("<label></label>").addClass("form-check-label").attr("for", `${idPrefix}_${item}`).text(item)
+              )
+            )
+          );
         });
       }
-    });
-
-    for (let country of countryList) {
-      $("#ul-country").append(
-        $("<li></li>").append(
-          $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", country).attr("id", 'country_' + country),
-            $("<label></label>").addClass("form-check-label").attr("for", 'country_' + country).text(country)
-          )
-        )
-      );
-    }
-
-    for (let type of typeList) {
-      $("#ul-type").append(
-        $("<li></li>").append(
-          $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", type).attr("id", 'type_' + type),
-            $("<label></label>").addClass("form-check-label").attr("for", 'type_' + type).text(type)
-          )
-        )
-      );
-    }
-
-    for (let platform of platformList) {
-      $("#ul-platform").append(
-        $("<li></li>").append(
-          $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", platform).attr("id", 'platform_' + platform),
-            $("<label></label>").addClass("form-check-label").attr("for", 'platform_' + platform).text(platform)
-          )
-        )
-      );
-    }
-
-    for (let friend of friendList) {
-      $("#datalistSender").append(
-        $("<option></option>").attr("value", friend)
-      );
     };
 
-    for (let region of regionList) {
-      $("#ul-region").append(
-        $("<li></li>").append(
-          $("<div></div>").addClass("dropdown-item").append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", region).attr("id", 'region_' + region),
-            $("<label></label>").addClass("form-check-label").attr("for", 'region_' + region).text(region)
-          )
-        )
-      );
-    }
+    $("#cardCount").text(PostcardCollection._postData.length);
+    $("#searchCount").text(data.length);
 
-    for (let tag of tagList) {
-      $("#div-tags").append(
-        $('<div></div>').addClass('d-flex flex-nowarp').append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", tag).attr("id", "tag_" + tag),
-            $("<label></label>").addClass("form-check-label me-2").attr("for", "tag_" + tag).text(tag)
-        )
-      );
-    }
-  },
-  refreshPopoverListeners: function() {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
-      return new bootstrap.Popover(popoverTriggerEl);
+    const countryList = new Set();
+    const typeList = new Set();
+    const platformList = new Set();
+    const friendList = new Set();
+    const regionList = new Set();
+    const tagList = new Set();
+
+    data.forEach(item => {
+      if (item['country']) countryList.add(item['country']);
+      if (item['type']) typeList.add(item['type']);
+      if (item['platform']) platformList.add(item['platform']);
+      if (item['friend_id']) friendList.add(item['friend_id']);
+      if (item['region']) regionList.add(item['region']);
+      if (item['tags']) item['tags'].forEach(tag => tagList.add(tag));
     });
 
-    // Function to clear popover event listeners
-    function clearPopoverListeners() {
-      popoverList.forEach(function(popover) {
-        popover.dispose();
-      });
-    }
+    updateList("#ul-country", countryList, 'country');
+    updateList("#ul-type", typeList, 'type');
+    updateList("#ul-platform", platformList, 'platform');
+    updateList("#ul-region", regionList, 'region');
+    updateList("#div-tags", tagList, 'tag');
 
-    // Call the function to clear the listeners
-    clearPopoverListeners();
-
-    var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+    friendList.forEach(friend => {
+      $("#datalistSender").append($("<option></option>").attr("value", friend));
+    });
+  },
+  refreshPopoverListeners: function() {
+    const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    const popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl);
+    });
+    popoverList.forEach(function(popover) {
+      popover.dispose();
+    });
+    const newpopoverList = popoverTriggerList.map(function(popoverTriggerEl) {
       return new bootstrap.Popover(popoverTriggerEl, {
         html: true,
         content: function() {
-          var cardID = popoverTriggerEl.getAttribute('data-card-id');
-          var cardTitle = popoverTriggerEl.getAttribute('data-card-title') || cardID;
-          var cardUrl = popoverTriggerEl.getAttribute('data-card-url') || "#";
-          var cardType = popoverTriggerEl.getAttribute('data-card-type') || "";
-          var friendId = popoverTriggerEl.getAttribute('data-card-friend_id') || "";
-          var friendUrl = popoverTriggerEl.getAttribute('data-card-friend_url') || "#";
-          var country = popoverTriggerEl.getAttribute('data-card-country') || "";
-          var region = popoverTriggerEl.getAttribute('data-card-region') || "";
-          var sentDate = new Date(popoverTriggerEl.getAttribute('data-card-sent_date'));
-          var receivedDate = new Date(popoverTriggerEl.getAttribute('data-card-received_date'));
-          var tags = popoverTriggerEl.getAttribute('data-card-tags') || "";
-          tags = tags.split(',');
-          var platform = popoverTriggerEl.getAttribute('data-card-platform');
-          var days = Math.floor((receivedDate - sentDate) / (1000 * 60 * 60 * 24));
-          var sentDataStr = sentDate.getFullYear() + "-" + (sentDate.getMonth() + 1) + "-" + sentDate.getDate();
-          var receivedDataStr = receivedDate.getFullYear() + "-" + (receivedDate.getMonth() + 1) + "-" + receivedDate.getDate();
-          var location = country;
-          if (region !== "") {
-            location = location + ' - ' + region;
-          }
-          var resultHtml = "";
-          resultHtml += '<a href="' + cardUrl + '" target="_blank"><strong>' + cardTitle + '</strong></a>';
-          resultHtml += '<br><strong>From</strong> <a href="' + friendUrl + '" target="_blank">' + friendId + '</a> (' + location + ')' + ' [' + platform + ']';
-          resultHtml += '<br>' + sentDataStr + ' ~ ' + receivedDataStr + ' (' + days + ' days)';
-          resultHtml += '<br>';
-          for (let i = 0; i < tags.length; i++) {
-            resultHtml += '<a href="#"><span class="badge text-bg-primary">' + tags[i] + '</span></a> ';
-          }
+          const cardID = popoverTriggerEl.getAttribute('data-card-id');
+          const cardTitle = popoverTriggerEl.getAttribute('data-card-title') || cardID;
+          const cardUrl = popoverTriggerEl.getAttribute('data-card-url') || "#";
+          const cardType = popoverTriggerEl.getAttribute('data-card-type') || "";
+          const friendId = popoverTriggerEl.getAttribute('data-card-friend_id') || "";
+          const friendUrl = popoverTriggerEl.getAttribute('data-card-friend_url') || "#";
+          const country = popoverTriggerEl.getAttribute('data-card-country') || "";
+          const region = popoverTriggerEl.getAttribute('data-card-region') || "";
+          const sentDate = new Date(popoverTriggerEl.getAttribute('data-card-sent_date'));
+          const receivedDate = new Date(popoverTriggerEl.getAttribute('data-card-received_date'));
+          const tags = popoverTriggerEl.getAttribute('data-card-tags') || "";
+          const platform = popoverTriggerEl.getAttribute('data-card-platform');
+          const days = Math.floor((receivedDate - sentDate) / (1000 * 60 * 60 * 24));
+          const sentDataStr = `${sentDate.getFullYear()}-${sentDate.getMonth() + 1}-${sentDate.getDate()}`;
+          const receivedDataStr = `${receivedDate.getFullYear()}-${receivedDate.getMonth() + 1}-${receivedDate.getDate()}`;
+          const location = region ? `${country} - ${region}` : country;
+          let resultHtml = `<a href="${cardUrl}" target="_blank"><strong>${cardTitle}</strong></a>`;
+          resultHtml += `<br><strong>From</strong> <a href="${friendUrl}" target="_blank">${friendId}</a> (${location}) [${platform}]`;
+          resultHtml += `<br>${sentDataStr} ~ ${receivedDataStr} (${days} days)<br>`;
+          tags.split(',').forEach(tag => {
+            resultHtml += `<span class="me-1 badge text-bg-primary">${tag}</span>`;
+          });
           return resultHtml;
         }
       })
-    })
+    });
   },
-
   RefreshImageContainer: function(data) {
     try {
       $('[data-bs-toggle="popover"]').popover('hide');
     } catch (e) {}
-    $("#cardCount").text(_postData.length);
+
+    $("#cardCount").text(PostcardCollection._postData.length);
     $("#searchCount").text(data.length);
     $("#imageContainer").empty();
-    for (let i = 0; i < data.length; i++) {
-      var dataItem = data[i];
+
+    data.forEach(dataItem => {
       $("#imageContainer").append(
-        $("<div></div>").addClass("col-lg-3 col-md-4 mb-4 col-6 image-item").append(
+        $("<div></div>").attr("id", "image_" + dataItem['id']).addClass("col-lg-3 col-md-4 mb-4 col-6 image-item").append(
           $("<img></img>").addClass("img-fluid img-thumbnail postcard")
-          .attr("src", "/postcards/received/" + dataItem['id'] + ".jpg")
+          .attr("src", `/postcards/received/${dataItem['id']}.jpg`)
+          .attr("alt", dataItem['id'])
           .attr("title", dataItem['id'])
           .attr("data-bs-toggle", "popover")
           .attr("data-bs-placement", "bottom")
@@ -284,72 +216,38 @@ PostcardCollection = {
           .attr("data-card-type", dataItem["type"])
           .attr("data-card-tags", dataItem["tags"])
         ));
-    }
+    });
 
     PostcardCollection.refreshPopoverListeners();
-
-
   },
   GenerateFilter: function() {
-    // get filter query from ui elements and apply it to data
-    // country filter
-    var selectedCountries = [];
-    $('#ul-country .form-check-input:checked').not('#country-all').each(function() {
-      selectedCountries.push($(this).val());
-    });
+    const getSelectedValues = (selector) => $(selector + ':checked').not(selector + '-all').map(function() {
+      return $(this).val();
+    }).get();
 
-    // region filter
-    var selectedRegions = [];
-    $('#ul-region .form-check-input:checked').not('#region-all').each(function() {
-      selectedRegions.push($(this).val());
-    });
+    const selectedCountries = getSelectedValues('#ul-country .form-check-input');
+    const selectedRegions = getSelectedValues('#ul-region .form-check-input');
+    const selectedTypes = getSelectedValues('#ul-type .form-check-input');
+    const selectedPlatforms = getSelectedValues('#ul-platform .form-check-input');
+    const selectedTags = getSelectedValues('#div-tags .form-check-input');
+    const selectedFriend = $('#inputSender').val();
+    const selectedTitle = $('#inputTitle').val();
+    const sentDateStart = $('#inputSentDateStart').val();
+    const sentDateEnd = $('#inputSentDateEnd').val();
+    const receivedDateStart = $('#inputReceivedDateStart').val();
+    const receivedDateEnd = $('#inputReceivedDateEnd').val();
 
-    // type filter
-    var selectedTypes = [];
-    $('#ul-type .form-check-input:checked').not('#type-all').each(function() {
-      selectedTypes.push($(this).val());
-    });
-
-    // platform filter
-    var selectedPlatforms = [];
-    $('#ul-platform .form-check-input:checked').not('#platform-all').each(function() {
-      selectedPlatforms.push($(this).val());
-    });
-
-    // tag filter
-    var selectedTags = [];
-
-    $('#div-tags .form-check-input:checked').not('#tag-all').each(function() {
-      selectedTags.push($(this).val());
-    });
-
-    // friend filter
-    var selectedFriend = $('#inputSender').val();
-    var selectedTitle = $('#inputTitle').val();
-
-    // sent date filter
-    var sentDateStart = $('#inputSentDateStart').val();
-    var sentDateEnd = $('#inputSentDateEnd').val();
-
-    // received date filter
-    var receivedDateStart = $('#inputReceivedDateStart').val();
-    var receivedDateEnd = $('#inputReceivedDateEnd').val();
-
-    // apply the filters to data and return the result
-    var resultData = _postData.filter(item => {
-      var isTitleMatch = selectedTitle === "" || (item['title'] && item['title'].includes(selectedTitle));
-      var isCountryMatch = selectedCountries.length === 0 || selectedCountries.includes(item['country']);
-      var isRegionMatch = selectedRegions.length === 0 || selectedRegions.includes(item['region']);
-      var isTypeMatch = selectedTypes.length === 0 || selectedTypes.includes(item['type']);
-      var isPlatformMatch = selectedPlatforms.length === 0 || selectedPlatforms.includes(item['platform']);
-      var isTagMatch = selectedTags.length === 0 || selectedTags.some(tag => item['tags'].includes(tag));
-      var isFriendMatch = selectedFriend === "" || item['friend_id'].includes(selectedFriend);
-      var isSentDateMatch = (sentDateStart === "" || new Date(item['sent_date']) >= new Date(sentDateStart)) && (sentDateEnd === "" || new Date(item['sent_date']) <= new Date(sentDateEnd));
-      var isReceivedDateMatch = (receivedDateStart === "" || new Date(item['received_date']) >= new Date(receivedDateStart)) && (receivedDateEnd === "" || new Date(item['received_date']) <= new Date(receivedDateEnd));
+    PostcardCollection._filterData = PostcardCollection._postData.filter(item => {
+      const isTitleMatch = !selectedTitle || (item['title'] && item['title'].includes(selectedTitle));
+      const isCountryMatch = !selectedCountries.length || selectedCountries.includes(item['country']);
+      const isRegionMatch = !selectedRegions.length || selectedRegions.includes(item['region']);
+      const isTypeMatch = !selectedTypes.length || selectedTypes.includes(item['type']);
+      const isPlatformMatch = !selectedPlatforms.length || selectedPlatforms.includes(item['platform']);
+      const isTagMatch = !selectedTags.length || selectedTags.some(tag => item['tags'].includes(tag));
+      const isFriendMatch = !selectedFriend || item['friend_id'].includes(selectedFriend);
+      const isSentDateMatch = (!sentDateStart || new Date(item['sent_date']) >= new Date(sentDateStart)) && (!sentDateEnd || new Date(item['sent_date']) <= new Date(sentDateEnd));
+      const isReceivedDateMatch = (!receivedDateStart || new Date(item['received_date']) >= new Date(receivedDateStart)) && (!receivedDateEnd || new Date(item['received_date']) <= new Date(receivedDateEnd));
       return isTitleMatch && isCountryMatch && isRegionMatch && isTypeMatch && isPlatformMatch && isTagMatch && isFriendMatch && isSentDateMatch && isReceivedDateMatch;
     });
-    _filterData = resultData;
-    return resultData;
   }
-
 }

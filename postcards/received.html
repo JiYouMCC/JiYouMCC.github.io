@@ -6,11 +6,11 @@ title: "我收到的明信片"
   <h1 class="post-title text-center">{{ page.title }}</h1>
 </header>
 <div class="container">
-  <div class="d-flex flex-wrap mb-2" style="gap: 10px">
-    <div class="col-auto me-2">
-      <input id="inputTitle" type="text" class="form-control" name="title" placeholder="Title">
+  <div class="d-flex flex-wrap mb-1" style="row-gap: 0.25rem">
+    <div class="col-auto me-1">
+      <input id="inputTitle"" type="text" class="form-control" name="title" placeholder="Title">
     </div>
-    <div class="dropdown me-2">
+    <div class="dropdown me-1">
       <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-country" data-bs-toggle="dropdown" aria-expanded="false">Select Countries</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-country" id="ul-country">
         <li>
@@ -20,8 +20,8 @@ title: "我收到的明信片"
         </li>
       </ul>
     </div>
-    <div class="dropdown me-2">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-region" data-bs-toggle="dropdown" aria-expanded="false">Select Region</button>
+    <div class="dropdown me-1">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-region" data-bs-toggle="dropdown" aria-expanded="false">Select Regions</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-region" id="ul-region">
         <li>
           <div class="dropdown-item">
@@ -30,8 +30,8 @@ title: "我收到的明信片"
         </li>
       </ul>
     </div>
-    <div class="dropdown me-2">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-type" data-bs-toggle="dropdown" aria-expanded="false">Select Type</button>
+    <div class="dropdown me-1">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-type" data-bs-toggle="dropdown" aria-expanded="false">Select Types</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-Type" id="ul-type">
         <li>
           <div class="dropdown-item">
@@ -39,8 +39,8 @@ title: "我收到的明信片"
           </div>
         </li>
     </div>
-    <div class="dropdown me-2">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-platform" data-bs-toggle="dropdown" aria-expanded="false">Select Platform</button>
+    <div class="dropdown me-1">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-platform" data-bs-toggle="dropdown" aria-expanded="false">Select Platforms</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-platform" id="ul-platform">
         <li>
           <div class="dropdown-item">
@@ -49,16 +49,17 @@ title: "我收到的明信片"
         </li>
       </ul>
     </div>
-    <div class="col-auto me-2">
+    <div class="col-auto me-1">
       <input id="inputSender" type="text" list="datalistSender" class="form-control" name="sender" placeholder="Sender">
       <datalist id="datalistSender"></datalist>
     </div>
-    <a class="btn btn-primary me-2" data-bs-toggle="collapse" href="#collapseSentDate" role="button" aria-wxpanded="false" aria-controls="collapseSentDate">Sent Date</a>
-    <a class="btn btn-primary me-2" data-bs-toggle="collapse" href="#collapseReceivedDate" role="button" aria-expanded="false" aria-controls="collapseReceivedDate">Received Date</a>
-    <a class="btn btn-primary me-2" data-bs-toggle="collapse" href="#collapseTags" role="button" aria-expanded="false" aria-controls="collapseTags">Tags</a>
+    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseSentDate" role="button" aria-wxpanded="false" aria-controls="collapseSentDate">Sent Date</a>
+    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseReceivedDate" role="button" aria-expanded="false" aria-controls="collapseReceivedDate">Received Date</a>
+    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseTags" role="button" aria-expanded="false" aria-controls="collapseTags">Tags</a>
+    <a class="btn btn-info me-1" id="resetFilter" data-bs-toggle="collapse">Reset Filter</a>
   </div>
-  <div class="collapse mb-2" id="collapseSentDate">
-    <div class="input-group mb-3 row gy-2 gx-3 align-items-center">
+  <div class="collapse mb-1" id="collapseSentDate">
+    <div class="input-group mb-0 row gy-2 gx-3 align-items-center">
       <div class="col-auto"><strong>Sent Date</strong></div>
       <div class="col-auto"><span>from</span></div>
       <div class="col-auto"><input id="inputSentDateStart" type="date" class="form-control"></div>
@@ -66,8 +67,8 @@ title: "我收到的明信片"
       <div class="col-auto"><input id="inputSentDateEnd" type="date" class="form-control"></div>
     </div>
   </div>
-  <div class="collapse mb-2" id="collapseReceivedDate">
-    <div class="input-group mb-3 row gy-2 gx-3 align-items-center">
+  <div class="collapse mb-1" id="collapseReceivedDate">
+    <div class="input-group mb-0 row gy-2 gx-3 align-items-center">
       <div class="col-auto"><strong>Received Date</strong></div>
       <div class="col-auto"><span>from</span></div>
       <div class="col-auto"><input id="inputReceivedDateStart" type="date" class="form-control"></div>
@@ -75,16 +76,14 @@ title: "我收到的明信片"
       <div class="col-auto"><input id="inputReceivedDateEnd" type="date" class="form-control"></div>
     </div>
   </div>
-  <div class="collapse mb-2" id="collapseTags">
-    <div class="card card-body">
-      <div id="div-tags" class="d-flex flex-wrap">
-        <input id="tag-all" type="checkbox" class="form-check-input me-1" value="all">
-        <label class="form-check-label me-2" for="tag-all">All</label>
-      </div>
+  <div class="collapse mb-1" id="collapseTags">
+    <div id="div-tags" class="d-flex flex-wrap">
+      <input id="tag-all" type="checkbox" class="form-check-input me-1" value="all">
+      <label class="form-check-label me-2" for="tag-all">All</label>
     </div>
   </div>
-  <div class="alert alert-light" role="alert">
-    <span id="cardCount">NA</span> cards in all. Search criteria found <span id="searchCount">NA</span> cards.
+  <div class="alert alert-light mt-2" role="alert">
+    Found <span id="searchCount">NA</span> cards in <span id="cardCount">NA</span> cards.
   </div>
   <div class="row mt-4" id='imageContainer'></div>
 </div>
