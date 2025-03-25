@@ -21,8 +21,12 @@ const PostcardCollection = {
       };
     };
 
+    const capitalize = (str) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
     const updateDropdownText = (selector, text) => {
-      $(selector).text(text.join(', ') || 'Select');
+      $(selector).text(text.join(', ') || 'Select ' + capitalize(selector.split('-')[1]));
     };
 
     const handleCheckboxChange = (allSelector, itemSelector, dropdownSelector) => {
@@ -99,8 +103,10 @@ const PostcardCollection = {
       if (idPrefix === 'tag') {
         items.forEach(item => {
           $(selector).append(
-            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", item).attr("id", `${idPrefix}_${item}`),
-            $("<label></label>").addClass("form-check-label me-2").attr("for", `${idPrefix}_${item}`).text(item)
+            $("<div></div").addClass('d-flex flex-wrap').append(
+              $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", item).attr("id", `${idPrefix}_${item}`),
+              $("<label></label>").addClass("form-check-label me-2").attr("for", `${idPrefix}_${item}`).text(item)
+            )
           )
         });
       } else {
