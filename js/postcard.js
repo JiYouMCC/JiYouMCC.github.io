@@ -2,11 +2,10 @@ const PostcardCollection = {
   _postData: undefined,
   _filterData: undefined,
   Init: function(data) {
-    PostcardCollection._postData = data.sort((a, b) => new Date(b['sent_date']) - new Date(a['received_date']));
+    PostcardCollection._postData = data.sort((a, b) => new Date(b['sent_date']) - new Date(a['sent_date']));
     PostcardCollection._postData.forEach(item => {
       item['tags'] = item['tags'] ? item['tags'].split(' ') : [];
     });
-
     PostcardCollection._filterData = PostcardCollection._postData;
     PostcardCollection.RefreshFilterElements(PostcardCollection._filterData);
     PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
@@ -52,20 +51,82 @@ const PostcardCollection = {
     handleCheckboxChange('#region-all', '#ul-region .form-check-input', '#dropdownMenuButton-region');
     handleCheckboxChange('#type-all', '#ul-type .form-check-input', '#dropdownMenuButton-type');
     handleCheckboxChange('#platform-all', '#ul-platform .form-check-input', '#dropdownMenuButton-platform');
+    handleCheckboxChange('#region-all', '#ul-region .form-check-input', '#dropdownMenuButton-region');
+
+    $('#ul-country .form-check-input').on('change', function() {
+      const selectedCountries = $('#ul-country .form-check-input:checked').not('#country-all').map(function() {
+        return $(this).val();
+      }).get();
+      const selectedRegions = $('#ul-region .form-check-input:checked').not('#region-all').map(function() {
+        return $(this).val();
+      }).get();
+
+      const regionList = new Set();
+      if (selectedCountries.length === 0) {
+        PostcardCollection._postData.forEach(item => {
+          if (item['region']) {
+            regionList.add(item['region']);
+          }
+        });
+      } else {
+        PostcardCollection._postData.filter(item => selectedCountries.includes(item['country'])).forEach(item => {
+          if (item['region']) {
+            regionList.add(item['region']);
+          }
+        });
+      }
+
+      $('#ul-region').empty();
+      $('#ul-region').append(
+        $("<li></li>").append(
+          $("<div></div>").addClass("dropdown-item").append(
+            $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", "all").attr("id", "region-all"),
+            $("<label></label>").addClass("form-check-label").attr("for", "region-all").text("All")
+          )
+        )
+      );
+
+      regionList.forEach(region => {
+        $('#ul-region').append(
+          $("<li></li>").append(
+            $("<div></div>").addClass("dropdown-item").append(
+              $("<input></input>").addClass("form-check-input me-1").attr("type", "checkbox").attr("value", region).attr("id", `region_${region}`),
+              $("<label></label>").addClass("form-check-label").attr("for", `region_${region}`).text(region)
+            )
+          )
+        );
+        if (selectedRegions.includes(region))
+          $(`#region_${region}`).prop('checked', true);
+      });
+
+      const selectedOptions = $('#ul-region .form-check-input:checked').not('#region-all').map(function() {
+          return $(this).val();
+        }).get();
+
+      handleCheckboxChange('#region-all', '#ul-region .form-check-input', '#dropdownMenuButton-region');
+
+      updateDropdownText('#dropdownMenuButton-region', selectedOptions);
+
+      $('#ul-region .form-check-input').on('change', debounce(() => {
+        PostcardCollection.GenerateFilter();
+        PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
+      }, 100));
+
+    });
 
     $('#tag-all').on('change', function() {
       const isChecked = $(this).is(':checked');
       $('#div-tags .form-check-input').prop('checked', isChecked);
     });
 
-    $("#inputTitle,#inputSender").width("12ch");
+    $("#inputTitle,#inputSender").width("10ch");
 
     $("#inputTitle,#inputSender").on('input', function(event) {
       function getStringWidth(str) {
         let width = 0;
         for (let char of str) {
-          if (char.match(/[^\x00-\xff]/)) {
-            // Chinese characters
+          if (char.match(/[\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF]/)) {
+            // CJP characters
             width += 2;
           } else {
             // English characters
@@ -74,7 +135,7 @@ const PostcardCollection = {
         }
         return width;
       }
-      $(this).width(Math.max(getStringWidth($(this).val()), 12) + "ch");
+      $(this).width(Math.max(getStringWidth($(this).val()), 10) + "ch");
     });
 
     $("#inputTitle,#inputSender").on('input', debounce(() => {
@@ -244,13 +305,13 @@ const PostcardCollection = {
     const receivedDateEnd = $('#inputReceivedDateEnd').val();
 
     PostcardCollection._filterData = PostcardCollection._postData.filter(item => {
-      const isTitleMatch = !selectedTitle || (item['title'] && item['title'].includes(selectedTitle));
+      const isTitleMatch = !selectedTitle || (item['title'] && item['title'].includes(selectedTitle)) || (item['id'] && item['id'].includes(selectedTitle));
       const isCountryMatch = !selectedCountries.length || selectedCountries.includes(item['country']);
       const isRegionMatch = !selectedRegions.length || selectedRegions.includes(item['region']);
       const isTypeMatch = !selectedTypes.length || selectedTypes.includes(item['type']);
       const isPlatformMatch = !selectedPlatforms.length || selectedPlatforms.includes(item['platform']);
       const isTagMatch = !selectedTags.length || selectedTags.some(tag => item['tags'].includes(tag));
-      const isFriendMatch = !selectedFriend || item['friend_id'].includes(selectedFriend);
+      const isFriendMatch = !selectedFriend || (item['friend_id'] && item['friend_id'].includes(selectedFriend));
       const isSentDateMatch = (!sentDateStart || new Date(item['sent_date']) >= new Date(sentDateStart)) && (!sentDateEnd || new Date(item['sent_date']) <= new Date(sentDateEnd));
       const isReceivedDateMatch = (!receivedDateStart || new Date(item['received_date']) >= new Date(receivedDateStart)) && (!receivedDateEnd || new Date(item['received_date']) <= new Date(receivedDateEnd));
       return isTitleMatch && isCountryMatch && isRegionMatch && isTypeMatch && isPlatformMatch && isTagMatch && isFriendMatch && isSentDateMatch && isReceivedDateMatch;

@@ -431,3 +431,6 @@ pre.notranslate {
     cursor: pointer
 }
 
+#ul-region {
+    column-count: 3;
+}
