@@ -143,7 +143,7 @@ const PostcardCollection = {
       PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
     }, 100));
 
-    $('#inputTitle,#inputSender,#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input, #collapseSentDate .form-control, #collapseReceivedDate .form-control').on('change', debounce(() => {
+    $('#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input, #collapseSentDate .form-control, #collapseReceivedDate .form-control').on('change', debounce(() => {
       PostcardCollection.GenerateFilter();
       PostcardCollection.RefreshImageContainer(PostcardCollection._filterData);
     }, 100));
@@ -242,7 +242,8 @@ const PostcardCollection = {
           const receivedDataStr = `${receivedDate.getFullYear()}-${receivedDate.getMonth() + 1}-${receivedDate.getDate()}`;
           const location = region ? `${country} - ${region}` : country;
           let resultHtml = `<a href="${cardUrl}" target="_blank"><strong>${cardTitle}</strong></a>`;
-          resultHtml += `<br><strong>From</strong> <a href="${friendUrl}" target="_blank">${friendId}</a> (${location}) [${platform}]`;
+          resultHtml += `<br><strong>From</strong> <a href="${friendUrl}" target="_blank">${friendId}</a> (${location})`;
+          resultHtml += `<br><strong>On</strong> ${platform}`;
           resultHtml += `<br>${sentDataStr} ~ ${receivedDataStr} (${days} days)<br>`;
           tags.split(',').forEach(tag => {
             resultHtml += `<span class="me-1 badge text-bg-primary">${tag}</span>`;
