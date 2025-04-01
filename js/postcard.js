@@ -2,7 +2,7 @@ const PostcardCollection = {
   _postData: undefined,
   _filterData: undefined,
   Init: function(data) {
-    PostcardCollection._postData = data.sort((a, b) => new Date(b['sent_date']) - new Date(a['sent_date']));
+    PostcardCollection._postData = data.sort((a, b) => new Date(b['received_date']) - new Date(a['received_date']));
     PostcardCollection._postData.forEach(item => {
       item['tags'] = item['tags'] ? item['tags'].split(' ') : [];
     });
