@@ -119,7 +119,7 @@ const PostcardCollection = {
       $('#div-tags .form-check-input').prop('checked', isChecked);
     });
 
-    $("#inputTitle,#inputSender").width("10ch");
+    $("#inputTitle,#inputSender").width("12ch");
 
     $("#inputTitle,#inputSender").on('input', function(event) {
       function getStringWidth(str) {
@@ -135,7 +135,7 @@ const PostcardCollection = {
         }
         return width;
       }
-      $(this).width(Math.max(getStringWidth($(this).val()), 10) + "ch");
+      $(this).width(Math.max(getStringWidth($(this).val()), 12) + "ch");
     });
 
     $("#inputTitle,#inputSender").on('input', debounce(() => {
@@ -306,7 +306,7 @@ const PostcardCollection = {
     const receivedDateEnd = $('#inputReceivedDateEnd').val();
 
     PostcardCollection._filterData = PostcardCollection._postData.filter(item => {
-      const isTitleMatch = !selectedTitle || (item['title'] && item['title'].includes(selectedTitle)) || (item['id'] && item['id'].includes(selectedTitle));
+      const isTitleMatch = !selectedTitle || (item['title'] && item['title'].includes(selectedTitle)) || (item['id'] && item['id'].includes(selectedTitle)) || item['tags'].some(tag => tag.includes(selectedTitle));
       const isCountryMatch = !selectedCountries.length || selectedCountries.includes(item['country']);
       const isRegionMatch = !selectedRegions.length || selectedRegions.includes(item['region']);
       const isTypeMatch = !selectedTypes.length || selectedTypes.includes(item['type']);
