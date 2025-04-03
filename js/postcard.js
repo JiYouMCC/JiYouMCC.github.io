@@ -264,7 +264,7 @@ const PostcardCollection = {
 
     data.forEach(dataItem => {
       $("#imageContainer").append(
-        $("<div></div>").attr("id", "image_" + dataItem['id']).addClass("col-lg-3 col-md-4 mb-4 col-6 image-item").append(
+        $("<div></div>").attr("id", "image_" + dataItem['id']).addClass("col-lg-3 col-md-4 mb-4 col-6 image-item px-1").append(
           $("<img></img>").addClass("img-fluid img-thumbnail postcard")
           .attr("src", `/postcards/received/${dataItem['id']}.jpg`)
           .attr("alt", dataItem['id'])
