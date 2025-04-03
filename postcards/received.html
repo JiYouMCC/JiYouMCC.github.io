@@ -8,10 +8,10 @@ title: "我收到的明信片"
 <div class="container">
   <div class="d-flex flex-wrap mb-1" style="row-gap: 0.25rem">
     <div class="col-auto me-1">
-      <input id="inputTitle"" type="text" class="form-control" name="title" placeholder="Title, ID or tag">
+      <input id="inputTitle" type="text" class="form-control" name="title" placeholder="Title, ID, tag">
     </div>
     <div class="dropdown me-1">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-country" data-bs-toggle="dropdown" aria-expanded="false">Select Country</button>
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-country" data-bs-toggle="dropdown" aria-expanded="false">Country</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-country" id="ul-country">
         <li>
           <div class="dropdown-item">
@@ -21,7 +21,7 @@ title: "我收到的明信片"
       </ul>
     </div>
     <div class="dropdown me-1">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-region" data-bs-toggle="dropdown" aria-expanded="false">Select Region</button>
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-region" data-bs-toggle="dropdown" aria-expanded="false">Region</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-region" id="ul-region">
         <li>
           <div class="dropdown-item">
@@ -31,16 +31,17 @@ title: "我收到的明信片"
       </ul>
     </div>
     <div class="dropdown me-1">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-type" data-bs-toggle="dropdown" aria-expanded="false">Select Type</button>
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-type" data-bs-toggle="dropdown" aria-expanded="false">Type</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-Type" id="ul-type">
         <li>
           <div class="dropdown-item">
             <input class="form-check-input me-1" type="checkbox" value="all" id="type-all"><label class="form-check-label" for="type-all">All</label>
           </div>
         </li>
+      </ul>
     </div>
     <div class="dropdown me-1">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-platform" data-bs-toggle="dropdown" aria-expanded="false">Select Platform</button>
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton-platform" data-bs-toggle="dropdown" aria-expanded="false">Platform</button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-platform" id="ul-platform">
         <li>
           <div class="dropdown-item">
@@ -50,13 +51,13 @@ title: "我收到的明信片"
       </ul>
     </div>
     <div class="col-auto me-1">
-      <input id="inputSender" type="text" list="datalistSender" class="form-control" name="sender" placeholder="Sender">
+      <input id="inputSender" type="text" list="datalistSender" class="form-control" name="sender" placeholder="Sender Name">
       <datalist id="datalistSender"></datalist>
     </div>
-    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseSentDate" role="button" aria-wxpanded="false" aria-controls="collapseSentDate">Sent Date</a>
-    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseReceivedDate" role="button" aria-expanded="false" aria-controls="collapseReceivedDate">Received Date</a>
+    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseSentDate" role="button" aria-expanded="false" aria-controls="collapseSentDate">Sent</a>
+    <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseReceivedDate" role="button" aria-expanded="false" aria-controls="collapseReceivedDate">Received</a>
     <a class="btn btn-primary me-1" data-bs-toggle="collapse" href="#collapseTags" role="button" aria-expanded="false" aria-controls="collapseTags">Tags</a>
-    <a class="btn btn-info me-1" id="resetFilter" data-bs-toggle="collapse">Reset Filter</a>
+    <a class="btn btn-info me-1" id="resetFilter" data-bs-toggle="collapse">Reset</a>
   </div>
   <div class="collapse mb-1" id="collapseSentDate">
     <div class="input-group mb-0 row gy-2 gx-3 align-items-center">
@@ -83,12 +84,17 @@ title: "我收到的明信片"
     </div>
   </div>
   <div class="alert alert-light mt-2" role="alert">
-    Found <span id="searchCount">NA</span> cards in <span id="cardCount">NA</span> cards.
+    Showing <span id="searchCount">NA</span> cards out of <span id="cardCount">NA</span> total. Displaying cards <span id="cardstart">NA</span> to <span id="cardend">NA</span>.
   </div>
-  <div class="row mt-4" id='imageContainer'></div>
+  <div class="row mt-2" id='imageContainer'></div>
 </div>
+<nav>
+  <ul id="pagination" class="pagination justify-content-center"></ul>
+</nav>
 <script src="{{ "/js/postcard.js"}}"></script>
 <script type="text/javascript">
   const csvData = {{ site.data.postcard.received | jsonify }};
   PostcardCollection.Init(csvData)
 </script>
+
+
