@@ -27,8 +27,6 @@ const PostcardCollection = {
     };
 
     const updateDropdownText = (selector, text) => {
-      // get first 3 item and join by , 
-      // if more than 3, add '...'
       if (text.length > 3) {
         text = text.slice(0, 3).join(', ').concat('...(' + text.length + ')');
       } else {
