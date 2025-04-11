@@ -405,6 +405,13 @@ const PostcardCollection = {
           .attr("data-card-tags", dataItem["tags"])
         ));
     });
+    // 在所有图片上添加 onerror 事件
+    document.querySelectorAll('img').forEach(img => {
+      img.onerror = function() {
+        this.src = '/postcards/postcard.svg'; // 替换为默认图片的路径
+      };
+    });
+
     PostcardCollection.refreshPopoverListeners();
   },
   GenerateFilter: function() {
