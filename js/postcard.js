@@ -1,7 +1,20 @@
+function Debounce(func, wait) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+function Capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const PostcardCollection = {
   _postData: undefined,
   _filterData: undefined,
   _itemsPerPage: 12,
+  _currentPage: 1,
   Init: function(data) {
     PostcardCollection._postData = data.sort((a, b) => new Date(b['received_date']) - new Date(a['received_date']));
     PostcardCollection._postData.forEach(item => {
@@ -11,30 +24,17 @@ const PostcardCollection = {
     PostcardCollection.RefreshFilterElements(PostcardCollection._filterData);
     PostcardCollection.RefreshImageContainer();
     PostcardCollection.InitFilterElements();
-    PostcardCollection.RefreshPagenation();
+    PostcardCollection.ApplyFiltersFromUrl();
+  },
+  _UpdateDropdownText: function(selector, text) {
+    if (text.length > 3) {
+      text = text.slice(0, 3).join(', ').concat('...(' + text.length + ')');
+    } else {
+      text = text.join(', ');
+    }
+    $(selector).text(text || Capitalize(selector.split('-')[1]));
   },
   InitFilterElements: function() {
-    const debounce = (func, wait) => {
-      let timeout;
-      return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-      };
-    };
-
-    const capitalize = (str) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    };
-
-    const updateDropdownText = (selector, text) => {
-      if (text.length > 3) {
-        text = text.slice(0, 3).join(', ').concat('...(' + text.length + ')');
-      } else {
-        text = text.join(', ');
-      }
-      $(selector).text(text || capitalize(selector.split('-')[1]));
-    };
-
     const handleCheckboxChange = (allSelector, itemSelector, dropdownSelector) => {
       $(allSelector).on('change', function() {
         const isChecked = $(this).is(':checked');
@@ -50,7 +50,7 @@ const PostcardCollection = {
         const selectedOptions = $(itemSelector + ':checked').not(allSelector).map(function() {
           return $(this).val();
         }).get();
-        updateDropdownText(dropdownSelector, selectedOptions);
+        PostcardCollection._UpdateDropdownText(dropdownSelector, selectedOptions);
       });
     };
 
@@ -59,6 +59,7 @@ const PostcardCollection = {
     handleCheckboxChange('#type-all', '#ul-type .form-check-input', '#dropdownMenuButton-type');
     handleCheckboxChange('#platform-all', '#ul-platform .form-check-input', '#dropdownMenuButton-platform');
 
+    // country和region联动
     $('#ul-country .form-check-input').on('change', function() {
       const selectedCountries = $('#ul-country .form-check-input:checked').not('#country-all').map(function() {
         return $(this).val();
@@ -111,9 +112,9 @@ const PostcardCollection = {
 
       handleCheckboxChange('#region-all', '#ul-region .form-check-input', '#dropdownMenuButton-region');
 
-      updateDropdownText('#dropdownMenuButton-region', selectedOptions);
+      PostcardCollection._UpdateDropdownText('#dropdownMenuButton-region', selectedOptions);
 
-      $('#ul-region .form-check-input').on('change', debounce(() => {
+      $('#ul-region .form-check-input').on('change', Debounce(() => {
         PostcardCollection.GenerateFilter();
         PostcardCollection.RefreshImageContainer();
       }, 100));
@@ -124,6 +125,7 @@ const PostcardCollection = {
       $('#div-tags .form-check-input').prop('checked', isChecked);
     });
 
+    // input 尺寸
     $("#inputTitle,#inputSender").width("12ch");
 
     $("#inputTitle,#inputSender").on('input', function(event) {
@@ -143,30 +145,119 @@ const PostcardCollection = {
       $(this).width(Math.max(getStringWidth($(this).val()), 12) + "ch");
     });
 
-    $("#inputTitle,#inputSender").on('input', debounce(() => {
+    // input挂钩
+    $("#inputTitle,#inputSender").on('input', Debounce(() => {
       PostcardCollection.GenerateFilter();
       PostcardCollection.RefreshImageContainer();
     }, 100));
 
-    $('#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input, #collapseSentDate .form-control, #collapseReceivedDate .form-control').on('change', debounce(() => {
+    // 其他checkbox和日期挂钩
+    $('#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input, #collapseSentDate .form-control, #collapseReceivedDate .form-control').on('change', Debounce(() => {
       PostcardCollection.GenerateFilter();
       PostcardCollection.RefreshImageContainer();
     }, 100));
 
+    // reset
     $('#resetFilter').on('click', () => {
       $('#inputTitle, #inputSender, #inputSentDateStart, #inputSentDateEnd, #inputReceivedDateStart, #inputReceivedDateEnd').val('');
       $('#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #div-tags .form-check-input').prop('checked', false);
-      updateDropdownText('#dropdownMenuButton-country', []);
-      updateDropdownText('#dropdownMenuButton-region', []);
-      updateDropdownText('#dropdownMenuButton-type', []);
-      updateDropdownText('#dropdownMenuButton-platform', []);
+      PostcardCollection._UpdateDropdownText('#dropdownMenuButton-country', []);
+      PostcardCollection._UpdateDropdownText('#dropdownMenuButton-region', []);
+      PostcardCollection._UpdateDropdownText('#dropdownMenuButton-type', []);
+      PostcardCollection._UpdateDropdownText('#dropdownMenuButton-platform', []);
       $("#inputTitle,#inputSender").width("12ch");
       const bsCollapse = new bootstrap.Collapse('#collapseTags', {
         toggle: false
       }).hide();
+      PostcardCollection._currentPage = 1;
       PostcardCollection.GenerateFilter();
       PostcardCollection.RefreshImageContainer();
+      PostcardCollection.UpdateUrlParameters();
     });
+
+    //parameter update
+    $('#ul-country .form-check-input, #ul-region .form-check-input, #ul-type .form-check-input, #ul-platform .form-check-input, #inputTitle, #inputSender, #div-tags .form-check-input, #collapseSentDate .form-control, #collapseReceivedDate .form-control').on('change input', function() {
+      PostcardCollection.UpdateUrlParameters();
+    });
+  },
+  ApplyFiltersFromUrl: function() {
+    const params = new URLSearchParams(window.location.search);
+    const setCheckboxValues = (selector, values) => {
+      values.forEach(value => {
+        const checkbox = $(`${selector}[value="${value}"]`);
+        if (checkbox.length) {
+          checkbox.prop('checked', true);
+        }
+      });
+    };
+
+    const countries = params.get('countries')?.split(',') || [];
+    const regions = params.get('regions')?.split(',') || [];
+    const types = params.get('types')?.split(',') || [];
+    const platforms = params.get('platforms')?.split(',') || [];
+    const tags = params.get('tags')?.split(',') || [];
+    const title = params.get('title') || '';
+    const sender = params.get('sender') || '';
+    const sentDateStart = params.get('sentDateStart') || '';
+    const sentDateEnd = params.get('sentDateEnd') || '';
+    const receivedDateStart = params.get('receivedDateStart') || '';
+    const receivedDateEnd = params.get('receivedDateEnd') || '';
+    const page = params.get('page') || 1;
+
+    setCheckboxValues('#ul-country .form-check-input', countries);
+    setCheckboxValues('#ul-region .form-check-input', regions);
+    setCheckboxValues('#ul-type .form-check-input', types);
+    setCheckboxValues('#ul-platform .form-check-input', platforms);
+    setCheckboxValues('#div-tags .form-check-input', tags);
+
+    $('#inputTitle').val(title);
+    $('#inputSender').val(sender);
+    $('#inputSentDateStart').val(sentDateStart);
+    $('#inputSentDateEnd').val(sentDateEnd);
+    $('#inputReceivedDateStart').val(receivedDateStart);
+    $('#inputReceivedDateEnd').val(receivedDateEnd);
+
+
+    const selectedCountries = $("#ul-country .form-check-input" + ':checked').not("#country-all").map(function() {
+      return $(this).val();
+    }).get();
+    PostcardCollection._UpdateDropdownText('#dropdownMenuButton-country', selectedCountries);
+
+    const selectedRegions = $("#ul-region .form-check-input" + ':checked').not("#region-all").map(function() {
+      return $(this).val();
+    }).get();
+    PostcardCollection._UpdateDropdownText('#dropdownMenuButton-region', selectedRegions);
+
+    const selectedTypes = $("#ul-type .form-check-input" + ':checked').not("#type-all").map(function() {
+      return $(this).val();
+    }).get();
+    PostcardCollection._UpdateDropdownText('#dropdownMenuButton-type', selectedTypes);
+
+    const selectedPlatforms = $("#ul-platform .form-check-input" + ':checked').not("#platform-all").map(function() {
+      return $(this).val();
+    }).get();
+    PostcardCollection._UpdateDropdownText('#dropdownMenuButton-platform', selectedPlatforms);
+
+    PostcardCollection.GenerateFilter();
+    // apply the page
+    PostcardCollection._currentPage = page;
+    const totalPages = Math.ceil(PostcardCollection._filterData.length / PostcardCollection._itemsPerPage);
+    const currentPage = Math.min(PostcardCollection._currentPage, totalPages);
+    PostcardCollection._currentPage = Math.max(currentPage, 1);
+    PostcardCollection.GeneratePagination(currentPage, totalPages);
+    const startIndex = (currentPage - 1) * PostcardCollection._itemsPerPage;
+    const endIndex = startIndex + PostcardCollection._itemsPerPage;
+    PostcardCollection.GenerateImageContainer(PostcardCollection._filterData.slice(startIndex, endIndex));
+    $("#pagination .page-item").removeClass("active");
+    $("#pagination .page-link").each(function() {
+      if ($(this).attr("data-page") == currentPage) {
+        $(this).parent().addClass("active");
+      }
+    });
+    $("#cardstart").text(Math.min(PostcardCollection._filterData.length, (PostcardCollection._currentPage - 1) * PostcardCollection._itemsPerPage + 1));
+    $("#cardend").text(Math.min(PostcardCollection._currentPage * PostcardCollection._itemsPerPage, PostcardCollection._filterData.length));
+    $("#cardCount").text(PostcardCollection._postData.length);
+    $("#searchCount").text(PostcardCollection._filterData.length);
   },
   RefreshFilterElements: function(data) {
     const updateList = (selector, items, idPrefix) => {
@@ -269,8 +360,25 @@ const PostcardCollection = {
 
     $("#cardCount").text(PostcardCollection._postData.length);
     $("#searchCount").text(PostcardCollection._filterData.length);
-    PostcardCollection.GenerateImageContainer(PostcardCollection._filterData);
-    PostcardCollection.RefreshPagenation()
+
+    // apply the page
+    const totalPages = Math.ceil(PostcardCollection._filterData.length / PostcardCollection._itemsPerPage);
+    const currentPage = Math.min(PostcardCollection._currentPage, totalPages);
+    PostcardCollection._currentPage = Math.max(currentPage, 1);
+    PostcardCollection.GeneratePagination(currentPage, totalPages);
+    const startIndex = (currentPage - 1) * PostcardCollection._itemsPerPage;
+    const endIndex = startIndex + PostcardCollection._itemsPerPage;
+    PostcardCollection.GenerateImageContainer(PostcardCollection._filterData.slice(startIndex, endIndex));
+    //PostcardCollection.GenerateImageContainer(PostcardCollection._filterData);
+    //PostcardCollection.RefreshPagenation()
+    $("#pagination .page-item").removeClass("active");
+    $("#pagination .page-link").each(function() {
+      if ($(this).attr("data-page") == currentPage) {
+        $(this).parent().addClass("active");
+      }
+    });
+    $("#cardstart").text(Math.min(PostcardCollection._filterData.length, (PostcardCollection._currentPage - 1) * PostcardCollection._itemsPerPage + 1));
+    $("#cardend").text(Math.min(currentPage * PostcardCollection._itemsPerPage, PostcardCollection._filterData.length));
   },
   GenerateImageContainer: function(data) {
     $("#imageContainer").empty();
@@ -333,27 +441,31 @@ const PostcardCollection = {
     const totalPages = Math.ceil(PostcardCollection._filterData.length / PostcardCollection._itemsPerPage);
     const paginationContainer = $("#pagination");
     paginationContainer.empty();
-    PostcardCollection.GeneratePagination(1, totalPages);
-    paginationContainer.find(".page-link").first().trigger("click");
+    const page = 1;
+    const startIndex = (page - 1) * PostcardCollection._itemsPerPage;
+    const endIndex = startIndex + PostcardCollection._itemsPerPage;
+    PostcardCollection.GeneratePagination(page, totalPages);
+    PostcardCollection.GenerateImageContainer(PostcardCollection._filterData.slice(startIndex, endIndex));
   },
   GeneratePagination: function(currentPage, totalPages) {
     const paginationContainer = $("#pagination");
     paginationContainer.empty();
+    PostcardCollection._currentPage = Math.max(currentPage, 1);
 
     const firstPageItem = $("<li></li>").addClass("page-item").append(
       $("<a></a>").addClass("page-link").text(1).attr("href", "#").attr("data-page", 1)
     );
     paginationContainer.append(firstPageItem);
 
-    if (totalPages > 4 && currentPage > 3) {
+    if (totalPages > 4 && PostcardCollection._currentPage > 3) {
       const dotsItem = $("<li></li>").addClass("page-item").append(
         $("<a></a>").addClass("page-link disabled").text("...").attr("href", "#").attr("data-page", "...")
       );
       paginationContainer.append(dotsItem);
     }
 
-    const startPage = Math.max(2, currentPage - 2);
-    const endPage = Math.min(totalPages - 1, currentPage + 2);
+    const startPage = Math.max(2, PostcardCollection._currentPage - 2);
+    const endPage = Math.min(totalPages - 1, PostcardCollection._currentPage + 2);
     for (let i = startPage; i <= endPage; i++) {
       const pageItem = $("<li></li>").addClass("page-item").append(
         $("<a></a>").addClass("page-link").text(i).attr("href", "#").attr("data-page", i)
@@ -361,7 +473,7 @@ const PostcardCollection = {
       paginationContainer.append(pageItem);
     }
 
-    if (totalPages > 4 && currentPage < totalPages - 2) {
+    if (totalPages > 4 && PostcardCollection._currentPage < totalPages - 2) {
       const dotsItem = $("<li></li>").addClass("page-item").append(
         $("<a></a>").addClass("page-link disabled").text("...").attr("href", "#").attr("data-page", "...")
       );
@@ -377,22 +489,109 @@ const PostcardCollection = {
 
     paginationContainer.find(".page-item").removeClass("active");
     paginationContainer.find(".page-link").each(function() {
-      if ($(this).attr("data-page") == currentPage) {
+      if ($(this).attr("data-page") == PostcardCollection._currentPage) {
         $(this).parent().addClass("active");
       }
     });
 
     paginationContainer.find(".page-link").on("click", function(event) {
-      const totalPages = Math.ceil(PostcardCollection._filterData.length / PostcardCollection._itemsPerPage);
       event.preventDefault();
+      const totalPages = Math.ceil(PostcardCollection._filterData.length / PostcardCollection._itemsPerPage);
       const page = parseInt($(this).attr("data-page"));
       const startIndex = (page - 1) * PostcardCollection._itemsPerPage;
       const endIndex = startIndex + PostcardCollection._itemsPerPage;
       PostcardCollection.GeneratePagination(page, totalPages);
       PostcardCollection.GenerateImageContainer(PostcardCollection._filterData.slice(startIndex, endIndex));
+      PostcardCollection.UpdateUrlParameters();
     });
 
-    $("#cardstart").text((currentPage - 1) * PostcardCollection._itemsPerPage + 1);
-    $("#cardend").text(Math.min(currentPage * PostcardCollection._itemsPerPage, PostcardCollection._filterData.length));
+    $("#cardstart").text(Math.min(PostcardCollection._filterData.length, (PostcardCollection._currentPage - 1) * PostcardCollection._itemsPerPage + 1));
+    $("#cardend").text(Math.min(PostcardCollection._currentPage * PostcardCollection._itemsPerPage, PostcardCollection._filterData.length));
+  },
+  UpdateUrlParameters: function() {
+    const params = new URLSearchParams();
+
+    // country
+    const selectedCountries = $('#ul-country .form-check-input:checked').not('#country-all').map(function() {
+      return $(this).val();
+    }).get();
+    if (selectedCountries.length) {
+      params.set('countries', selectedCountries.join(','));
+    }
+
+    // region
+    const selectedRegions = $('#ul-region .form-check-input:checked').not('#region-all').map(function() {
+      return $(this).val();
+    }).get();
+    if (selectedRegions.length) {
+      params.set('regions', selectedRegions.join(','));
+    }
+
+    // type
+    const selectedTypes = $('#ul-type .form-check-input:checked').not('#type-all').map(function() {
+      return $(this).val();
+    }).get();
+    if (selectedTypes.length) {
+      params.set('types', selectedTypes.join(','));
+    }
+
+    // platform
+    const selectedPlatforms = $('#ul-platform .form-check-input:checked').not('#platform-all').map(function() {
+      return $(this).val();
+    }).get();
+    if (selectedPlatforms.length) {
+      params.set('platforms', selectedPlatforms.join(','));
+    }
+
+    // title
+    const title = $('#inputTitle').val();
+    if (title) {
+      params.set('title', title);
+    }
+
+    // sender
+    const sender = $('#inputSender').val();
+    if (sender) {
+      params.set('sender', sender);
+    }
+
+    // tags
+    const tags = $('#div-tags .form-check-input:checked').not('#tag-all').map(function() {
+      return $(this).val();
+    }).get();
+    if (tags.length) {
+      params.set('tags', tags.join(','));
+    }
+
+    //sent date
+    const sentDateStart = $('#inputSentDateStart').val();
+    if (sentDateStart) {
+      params.set('sentDateStart', sentDateStart);
+    }
+
+    const sentDateEnd = $('#inputSentDateEnd').val();
+    if (sentDateEnd) {
+      params.set('sentDateEnd', sentDateEnd);
+    }
+
+    // received date
+    const receivedDateStart = $('#inputReceivedDateStart').val();
+    if (receivedDateStart) {
+      params.set('receivedDateStart', receivedDateStart);
+    }
+
+    const receivedDateEnd = $('#inputReceivedDateEnd').val();
+    if (receivedDateEnd) {
+      params.set('receivedDateEnd', receivedDateEnd);
+    }
+
+    // page
+    const currentPage = PostcardCollection._currentPage;
+    if (currentPage && currentPage > 1) {
+      params.set('page', currentPage);
+    }
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    history.replaceState(null, '', newUrl);
   }
 }
