@@ -30,7 +30,7 @@
 
 - name: ICY收发日历
   title: 明信片交换收发方格日历
-  href: /play/icy.html
+  href: /play/icy
   blank: true
 
 - name: Ji You's github-comments Demo

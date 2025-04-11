@@ -421,3 +421,16 @@ pre.notranslate {
     padding: 1em;
     word-wrap: break-word;
 }
+
+/*明信片页面*/
+.postcard {
+    max-height: 200px;
+    aspect-ratio: 1.33333 / 1;
+    object-position: center center;
+    object-fit: cover;
+    cursor: pointer
+}
+
+#ul-region {
+    column-count: 3;
+}
