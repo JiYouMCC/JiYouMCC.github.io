@@ -63,6 +63,28 @@ title: "ICY日历"
       <small class="form-text text-muted ms-2">实际天数会根据星期来补足，所以需要微调</small>
     </div>
   </div>
+  <div class="form-group d-flex align-items-center mb-2">
+    <div class="col-3 col-md-2">
+      <label for="receivedType" class="form-label me-2 mb-0">收件计算方式</label>
+    </div>
+    <div class="col-6 col-md-7">
+      <select class="form-select form-select-sm" id="receivedType">
+        <option value="0">按发出时间（如果没有以收到时间计入）</option>
+        <option value="1">按收到时间</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group d-flex align-items-center mb-2">
+    <div class="col-3 col-md-2">
+      <label for="sentType" class="form-label me-2 mb-0">发件计算方式</label>
+    </div>
+    <div class="col-6 col-md-7">
+      <select class="form-select form-select-sm" id="sentType">
+        <option value="1">按收到时间（未收到就不计入）</option>
+        <option value="0">按发出时间（未寄出就不计入）</option>
+      </select>
+    </div>
+  </div>
   <button class="btn btn-primary btn-sm mb-3" onclick="go();">更新</button>
   <div class="form-group d-flex align-items-center mb-2">
     <div class="col-3 col-md-2">
@@ -200,11 +222,19 @@ title: "ICY日历"
     var receivedData = document.getElementById("received").value;
     var sentData = document.getElementById("sent").value;
     receivedData = receivedData.split("\n");
+    // get receivedtype
+    var receivedType = parseInt(document.getElementById("receivedType").value);
     for (i in receivedData) {
       var line = receivedData[i];
+      var date = null;
       a = [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
-      if (a.length == 2 || a.length == 1) {
-        var date = a[a.length-1][0];
+
+      if (a.length > 0) {
+        if (receivedType == '1') {
+          date = a[0][0];
+        } else {
+          date = a[a.length-1][0];
+        }
         var theData = result.find(i => new Date(i.date).toDateString() == new Date(date).toDateString());
         if (theData) {
           theData.received += 1;
@@ -217,12 +247,23 @@ title: "ICY日历"
         }
       }
     }
+    // get senttype
+    var sentType = parseInt(document.getElementById("sentType").value);
     sentData = sentData.split("\n");
     for (i in sentData) {
       var line = sentData[i];
       a = [...line.matchAll(/\d{4}-\d{2}-\d{2}/g)]
-      if (a.length == 2 || a.length == 1) {
-        var date = a[0][0];
+      if (a.length > 0) {
+        var date = null;
+        if (sentType == '0') {
+          date = a[0][0];
+        } else {
+          if (a.length != 2) {
+            continue
+          }
+          date = a[1][0];
+        }
+
         var theData = result.find(i => new Date(i.date).toDateString() == new Date(date).toDateString());
         if (theData) {
           theData.sent += 1;
