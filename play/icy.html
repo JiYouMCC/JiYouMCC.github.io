@@ -63,6 +63,23 @@ title: "ICY日历"
       <small class="form-text text-muted ms-2">实际天数会根据星期来补足，所以需要微调</small>
     </div>
   </div>
+  <button class="btn btn-primary btn-sm mb-3" onclick="go();">更新</button>
+  <div class="form-group d-flex align-items-center mb-2">
+    <div class="col-3 col-md-2">
+      <label for="received" class="form-label">收</label>
+    </div>
+    <div class="col-9 col-md-10">
+      <textarea class="form-control form-control-sm" id="received" rows="3"></textarea>
+    </div>
+  </div>
+  <div class="form-group d-flex align-items-center mb-2">
+    <div class="col-3 col-md-2">
+      <label for="sent" class="form-label">发</label>
+    </div>
+    <div class="col-9 col-md-10">
+      <textarea class="form-control form-control-sm" id="sent" rows="3"></textarea>
+    </div>
+  </div>
   <div class="form-check form-group d-flex align-items-center mb-2">
     <input class="form-check-input me-2" type="checkbox" id="showSent" checked>
     <label class="form-check-label mb-0" for="showSent">显示发出的数据</label>
@@ -71,7 +88,7 @@ title: "ICY日历"
     <input class="form-check-input me-2" type="checkbox" id="showReceived" checked>
     <label class="form-check-label mb-0" for="showReceived">显示收到的数据</label>
   </div>
-  <div class="form-group d-flex align-items-center mb-2">
+    <div class="form-group d-flex align-items-center mb-2">
     <div class="col-3 col-md-2">
       <label for="receivedType" class="form-label me-2 mb-0">收件计算方式</label>
     </div>
@@ -91,23 +108,6 @@ title: "ICY日历"
         <option value="0">按发出时间（未寄出就不计入）</option>
         <option value="1">按收到时间（未收到就不计入）</option>
       </select>
-    </div>
-  </div>
-  <button class="btn btn-primary btn-sm mb-3" onclick="go();">更新</button>
-  <div class="form-group d-flex align-items-center mb-2">
-    <div class="col-3 col-md-2">
-      <label for="received" class="form-label">收</label>
-    </div>
-    <div class="col-9 col-md-10">
-      <textarea class="form-control form-control-sm" id="received" rows="3"></textarea>
-    </div>
-  </div>
-  <div class="form-group d-flex align-items-center mb-2">
-    <div class="col-3 col-md-2">
-      <label for="sent" class="form-label">发</label>
-    </div>
-    <div class="col-9 col-md-10">
-      <textarea class="form-control form-control-sm" id="sent" rows="3"></textarea>
     </div>
   </div>
   <button class="btn btn-primary btn-sm mb-3" onclick="process();">生成数据</button>
