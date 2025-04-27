@@ -455,10 +455,12 @@ const PostcardCollection = {
     PostcardCollection.GenerateImageContainer(PostcardCollection._filterData.slice(startIndex, endIndex));
   },
   GeneratePagination: function(currentPage, totalPages) {
+    try {
+      $('[data-bs-toggle="popover"]').popover('hide');
+    } catch (e) {}
     const paginationContainer = $("#pagination");
     paginationContainer.empty();
     PostcardCollection._currentPage = Math.max(currentPage, 1);
-
     const firstPageItem = $("<li></li>").addClass("page-item").append(
       $("<a></a>").addClass("page-link").text(1).attr("href", "#").attr("data-page", 1)
     );
