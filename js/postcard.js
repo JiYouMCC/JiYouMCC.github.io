@@ -93,7 +93,13 @@ const PostcardCollection = {
         )
       );
 
-      regionList.forEach(region => {
+      const sortedRegionList = Array.from(regionList).sort((a, b) => {
+        const textA = a.toLowerCase();
+        const textB = b.toLowerCase();
+        return textA.localeCompare(textB, 'zh-CN');
+      });
+
+      sortedRegionList.forEach(region => {
         $('#ul-region').append(
           $("<li></li>").append(
             $("<div></div>").addClass("dropdown-item").append(
@@ -272,7 +278,12 @@ const PostcardCollection = {
           )
         });
       } else {
-        items.forEach(item => {
+        const sortedItems = Array.from(items).sort((a, b) => {
+          const textA = a.toLowerCase();
+          const textB = b.toLowerCase();
+          return textA.localeCompare(textB, 'zh-CN');
+        });
+        sortedItems.forEach(item => {
           $(selector).append(
             $("<li></li>").append(
               $("<div></div>").addClass("dropdown-item").append(
@@ -312,6 +323,16 @@ const PostcardCollection = {
 
     friendList.forEach(friend => {
       $("#datalistSender").append($("<option></option>").attr("value", friend));
+    });
+    const options = $("#datalistSender option").toArray();
+    options.sort((a, b) => {
+      const textA = $(a).attr("value").toLowerCase();
+      const textB = $(b).attr("value").toLowerCase();
+      return textA.localeCompare(textB, 'zh-CN');
+    });
+    $("#datalistSender").empty();
+    options.forEach(option => {
+      $("#datalistSender").append(option);
     });
   },
   RefreshPopoverListeners: function() {
