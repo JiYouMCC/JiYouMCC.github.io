@@ -341,14 +341,14 @@ const PostcardCollection = {
           const days = Math.floor((receivedDate - sentDate) / (1000 * 60 * 60 * 24));
           const sentDataStr = `${sentDate.getFullYear()}-${sentDate.getMonth() + 1}-${sentDate.getDate()}`;
           const receivedDataStr = `${receivedDate.getFullYear()}-${receivedDate.getMonth() + 1}-${receivedDate.getDate()}`;
-          const location = region ? `<a href="?countries=${country}">${country}</a> - <a href="?countries=${country}&regions=${region}">${region}</a>` : `<a href="?countries=${country}" target="_blank">${country}</a>`;
+          const location = region ? `<a href="?countries=${country}" style="cursor: pointer;">${country}</a> - <a href="?countries=${country}&regions=${region}" style="cursor: pointer;">${region}</a>` : `<a href="?countries=${country}" target="_blank" style="cursor: pointer;">${country}</a>`;
           let resultHtml = `<a href="${cardUrl}" target="_blank"><strong>${cardTitle}</strong></a>`;
-          resultHtml += `<br><strong>From</strong> <a href="${friendUrl}" target="_blank">${friendId}</a> (${location})`;
-          resultHtml += `<br><strong>On</strong> <a href="?platforms=${platform}">${platform}</a>`;
-          resultHtml += `<br><strong>By</strong> <a href="?types=${cardType}">${cardType}</a>`;
+          resultHtml += `<br><strong>From</strong> <a href="?&sender=${friendId}" style="cursor: pointer;">${friendId}</a><a href="${friendUrl}" target="_blank">↗</a> (${location})`;
+          resultHtml += `<br><strong>On</strong> <a href="?platforms=${platform}" style="cursor: pointer;">${platform}</a>`;
+          resultHtml += `<br><strong>By</strong> <a href="?types=${cardType}" style="cursor: pointer;">${cardType}</a>`;
           resultHtml += `<br>${sentDataStr} ~ ${receivedDataStr} (${days} days)<br>`;
           tags.split(',').forEach(tag => {
-            resultHtml += `<a href="?tags=${tag}"><span class="me-1 badge text-bg-primary">${tag}</span></a>`;
+            resultHtml += `<a href="?tags=${tag}" style="cursor: pointer;"><span class="me-1 badge text-bg-primary">${tag}</span></a>`;
           });
           return resultHtml;
         }
