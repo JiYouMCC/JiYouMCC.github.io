@@ -117,6 +117,7 @@ const PostcardCollection = {
       $('#ul-region .form-check-input').on('change', Debounce(() => {
         PostcardCollection.GenerateFilter();
         PostcardCollection.RefreshImageContainer();
+        PostcardCollection.UpdateUrlParameters();
       }, 100));
     });
 
@@ -166,9 +167,9 @@ const PostcardCollection = {
       PostcardCollection._UpdateDropdownText('#dropdownMenuButton-type', []);
       PostcardCollection._UpdateDropdownText('#dropdownMenuButton-platform', []);
       $("#inputTitle,#inputSender").width("12ch");
-      const bsCollapse = new bootstrap.Collapse('#collapseTags', {
-        toggle: false
-      }).hide();
+      new bootstrap.Collapse('#collapseTags', {toggle: false}).hide();
+      new bootstrap.Collapse('#collapseSentDate', {toggle: false}).hide();
+      new bootstrap.Collapse('#collapseReceivedDate', {toggle: false}).hide();
       PostcardCollection._currentPage = 1;
       PostcardCollection.GenerateFilter();
       PostcardCollection.RefreshImageContainer();
@@ -313,7 +314,7 @@ const PostcardCollection = {
       $("#datalistSender").append($("<option></option>").attr("value", friend));
     });
   },
-  refreshPopoverListeners: function() {
+  RefreshPopoverListeners: function() {
     const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
     const popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
       return new bootstrap.Popover(popoverTriggerEl);
@@ -340,13 +341,14 @@ const PostcardCollection = {
           const days = Math.floor((receivedDate - sentDate) / (1000 * 60 * 60 * 24));
           const sentDataStr = `${sentDate.getFullYear()}-${sentDate.getMonth() + 1}-${sentDate.getDate()}`;
           const receivedDataStr = `${receivedDate.getFullYear()}-${receivedDate.getMonth() + 1}-${receivedDate.getDate()}`;
-          const location = region ? `${country} - ${region}` : country;
+          const location = region ? `<a href="?countries=${country}">${country}</a> - <a href="?countries=${country}&regions=${region}">${region}</a>` : `<a href="?countries=${country}" target="_blank">${country}</a>`;
           let resultHtml = `<a href="${cardUrl}" target="_blank"><strong>${cardTitle}</strong></a>`;
           resultHtml += `<br><strong>From</strong> <a href="${friendUrl}" target="_blank">${friendId}</a> (${location})`;
-          resultHtml += `<br><strong>On</strong> ${platform}`;
+          resultHtml += `<br><strong>On</strong> <a href="?platforms=${platform}">${platform}</a>`;
+          resultHtml += `<br><strong>By</strong> <a href="?types=${cardType}">${cardType}</a>`;
           resultHtml += `<br>${sentDataStr} ~ ${receivedDataStr} (${days} days)<br>`;
           tags.split(',').forEach(tag => {
-            resultHtml += `<span class="me-1 badge text-bg-primary">${tag}</span>`;
+            resultHtml += `<a href="?tags=${tag}"><span class="me-1 badge text-bg-primary">${tag}</span></a>`;
           });
           return resultHtml;
         }
@@ -412,7 +414,7 @@ const PostcardCollection = {
       };
     });
 
-    PostcardCollection.refreshPopoverListeners();
+    PostcardCollection.RefreshPopoverListeners();
   },
   GenerateFilter: function() {
     const getSelectedValues = (selector) => $(selector + ':checked').not(selector + '-all').map(function() {
