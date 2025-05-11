@@ -18,4 +18,4 @@ $('tr').each(function() {
         allData.push(rowData);
     }
 });
-console.table(allData);
+console.log(JSON.stringify(allData));
