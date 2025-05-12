@@ -1,6 +1,6 @@
 import csv
 
-source_file_path = "../../_data/postcard/Post-Hi_已登记_收方向_20250510152312.csv"
+source_file_path = "../../_data/postcard/Post-Hi_已登记_收方向_20250512145036.csv"
 target_file_path = "../../_data/postcard/received.csv"
 
 
@@ -33,7 +33,10 @@ with open(source_file_path, mode='r', newline='', encoding='utf-8') as source_fi
                     new_row.append("Post-Hi")
                     new_row.append(row_source[5])
                     new_row.append(row_source[7].split(" ")[0])
-                    new_row.append(row_source[7].split(" ")[1])
+                    area = row_source[7].split(" ")[1]
+                    if area.endswith("省") or area.endswith("市"):
+                        area = area[:-1]
+                    new_row.append(area)
                     new_row.append(row_source[9])
                     new_row.append(row_source[10])
                     new_row.append("")

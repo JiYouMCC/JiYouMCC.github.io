@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import csv
-post_link_list = [["活动","/sendpostcard/postcardDetail/1309462","CNZJ29227"]]
+post_link_list = [["活动", "/sendpostcard/postcardDetail/1309462", "CNZJ29227"]]
 # ignore warnings
 requests.packages.urllib3.disable_warnings()
 target_file_path = "../../_data/postcard/received.csv"
@@ -118,8 +118,6 @@ with open(target_file_path, mode='r', newline='', encoding='utf-8') as target_fi
                     break
             # 如果没有相同的编号，则写入目标文件
             if exists == False:
-                print ("编号不存在，写入目标文件")
-                print ("编号:", row_source[1])
+                print("编号不存在，写入目标文件")
+                print("编号:", row_source[1])
                 writer.writerow(row_source)
-
-
