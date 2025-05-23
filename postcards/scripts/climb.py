@@ -29,6 +29,9 @@ for url in post_link_list:
     print(',', end='')
 
     # 4. type = url[0]
+    card_type = url[0]
+    if card_type == '配对':
+        card_type = 'MATCH'
     new_line.append(url[0])
     print(url[0] + ',', end='')
 
