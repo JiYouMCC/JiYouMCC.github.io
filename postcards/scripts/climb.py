@@ -32,8 +32,8 @@ for url in post_link_list:
     card_type = url[0]
     if card_type == '配对':
         card_type = 'MATCH'
-    new_line.append(url[0])
-    print(url[0] + ',', end='')
+    new_line.append(card_type)
+    print(card_type + ',', end='')
 
     # 5. platform = icardyou
     new_line.append('icardyou')
