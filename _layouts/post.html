@@ -6,10 +6,19 @@ layout: default
   <span class="fw-bold text-nowrap">
     <i data-feather="calendar"></i>{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}
   </span>
-      {% if page.categories.size > 0 %}&nbsp;
-        <i data-feather="folder"></i>{% for cat in page.categories %}{% if cat != 'sticky' %}<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}{% endif %}</a>{% endfor %}{% endif %} 
-      {% if page.tags.size > 0 %}&nbsp;<i data-feather="tag"></i>&nbsp;{% for tag in page.tags %}<a href="/tag#{{ tag }}"><span class="badge text-bg-primary">{{ tag }}</span></a>
-      {% endfor %}{% endif %}
+  {% if page.categories.size > 0 %}&nbsp;
+  <span class="text-nowrap">
+    <i data-feather="folder"></i>{% for cat in page.categories %}{% if cat != 'sticky' %}<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
+      {% endif %}
+    {% endfor %}
+  </span>
+  {% endif %}
+  {% if page.tags.size > 0 %}&nbsp;
+  <span class="text-nowrap">
+    <i data-feather="tag"></i>{% for tag in page.tags %}<a href="/tag#{{ tag }}"><span class="badge text-bg-primary">{{ tag }}</span></a>
+    {% endfor %}
+  </span>
+  {% endif %}
   <article id="blog_content" class="p-2 mt-2" data-bs-spy="scroll">
     {{ content }}
   </article>
