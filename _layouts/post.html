@@ -15,7 +15,7 @@ layout: default
   {% endif %}
   {% if page.tags.size > 0 %}&nbsp;
   <span class="text-nowrap">
-    <i data-feather="tag"></i>{% for tag in page.tags %}<a href="/tag#{{ tag }}"><span class="badge text-bg-primary">{{ tag }}</span></a>
+    <i data-feather="tag"></i>{% for tag in page.tags %}<a href="/tag#{{ tag }}"><span class="badge text-bg-primary align-text-bottom">{{ tag }}</span></a>
     {% endfor %}
   </span>
   {% endif %}

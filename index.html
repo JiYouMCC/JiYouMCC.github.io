@@ -7,45 +7,28 @@ use_mermaid: true
 {% if paginator.page == 1 %}
   {% assign sticky_posts = site.posts | where: "is_sticky" ,"true" %}
   {% for post in sticky_posts %}
-  <div class="card mb-3">
-    <div class="card-header">
-      <h2 class="mb-0 d-inline">
-        <span class="badge text-bg-primary">置顶</span> 
-        <a href="{{ post.url | prepend: site.baseurl }}" class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
-          {{ post.title }}
-        </a>
-      </h2>
-      <span class="fw-bold text-nowrap">
-        <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
-      </span>
-    </div>
-    <article class="card-body">
-      {{ post.excerpt | replace: '<li>[ ]', '<li class="post_check list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="post_check list-unstyled"><input type="checkbox" disabled checked>'  }}
-    </article>
-    <div class="card-footer">
-      {% if post.issue %}
-      <span>
-        <i data-feather="message-square"></i><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
-        <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
-      </span>
-      {% endif %}
-      {% if post.categories.size > 0 %}
-      <span>
-        <i data-feather="folder"></i>{% for cat in post.categories %}{% if cat != 'sticky' %}<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>
-          {% endif %}
-        {% endfor %}
-      </span>&nbsp;
-      {% endif %}
-      {% if post.tags.size > 0 %}
-      <span>
-        <i data-feather="tag"></i>
-        {% for tag in post.tags %}
-        <a href="/tag#{{ tag }}"><span class="badge text-bg-primary">{{ tag }}</span></a>
-        {% endfor %}
-      </span>
-      {% endif %}
-    </div>
-  </div>
+  <h2><span class="badge text-bg-primary align-text-bottom">置顶</span>
+    <a href="{{ post.url | prepend: site.baseurl }}" class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover">{{ post.title }}</a></h2>
+  <div class="fw-bold text-nowrap mb-2">
+    <i data-feather="calendar"></i>{{ post.date | date: "%Y-%m-%d %H:%M:%S"}}
+  </div>  
+  <article>
+    {{ post.excerpt | replace: '<li>[ ]', '<li class="post_check list-unstyled"><input type="checkbox" disabled>' | replace: '<li>[x]', '<li class="post_check list-unstyled"><input type="checkbox" disabled checked>'  }}
+  </article>
+  {% if post.categories.size > 0 %}
+  <span class="text-nowrap"><i data-feather="folder"></i>{% for cat in post.categories %}{% if cat != 'sticky' %}<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>{% endif %}{% endfor %}</span>&nbsp;
+  {% endif %}
+  {% if post.tags.size > 0 %}
+  <span class="text-nowrap"><i data-feather="tag"></i>{% for tag in post.tags %}<a href="/tag#{{ tag }}"><span class="badge text-bg-primary align-text-bottom">{{ tag }}</span></a>
+  {% endfor %}
+  </span>
+  {% endif %}
+  {% if post.issue %}
+  <span class="text-nowrap">
+    <i data-feather="message-square"></i><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary align-text-bottom"></span>&nbsp;
+  </span>
+  {% endif %}
+  <div class="mb-4">&nbsp;</div>
   {% endfor %}
 {% endif %}
 {% for post in paginator.posts %}
@@ -61,18 +44,16 @@ use_mermaid: true
   <span class="text-nowrap"><i data-feather="folder"></i>{% for cat in post.categories %}{% if cat != 'sticky' %}<a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="/type#{{ cat }}">{{ cat }}</a>{% endif %}{% endfor %}</span>&nbsp;
   {% endif %}
   {% if post.tags.size > 0 %}
-  <span class="text-nowrap"><i data-feather="tag"></i>{% for tag in post.tags %}<a href="/tag#{{ tag }}"><span class="badge text-bg-primary">{{ tag }}</span></a>
+  <span class="text-nowrap"><i data-feather="tag"></i>{% for tag in post.tags %}<a href="/tag#{{ tag }}"><span class="badge text-bg-primary align-text-bottom">{{ tag }}</span></a>
   {% endfor %}
   </span>
   {% endif %}
   {% if post.issue %}
   <span class="text-nowrap">
-    <i data-feather="message-square"></i><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a>
-    <span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary"></span>&nbsp;
+    <i data-feather="message-square"></i><a class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ post.url | prepend: site.baseurl }}#comments">评论</a><span post-id="{{ post.id }}" comments-count="{{ post.issue }}" class="badge rounded-pill text-bg-primary align-text-bottom"></span>&nbsp;
   </span>
   {% endif %}
   <div class="mb-4">&nbsp;</div>
-
   {% endunless %}
 {% endfor %}
 
