@@ -55,7 +55,7 @@ var Photos = {
     Photos.clearPhotos();
     for (var i = 0; i < Photos._folderNames.length; i++) {
       $("#folders").append(
-        $("<div></div>").addClass("col-xs-6 col-md-4 p-2").append(
+        $("<div></div>").addClass("col-lg-3 col-md-4 col-sm-6 col-xs-6 p-2").append(
           $("<div></div>").addClass("photo-div card text-center").append(
             $("<a></a>").addClass("text-decoration-none").attr("folder", Photos._folderNames[i]).attr("href", "#").append(
               $("<div></div>").addClass("thumbnail").append(
