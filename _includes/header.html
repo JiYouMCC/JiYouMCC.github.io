@@ -17,7 +17,7 @@
               {% for cat in site.categories %}
                 {% if cat[0] != 'sticky'%}
                 <li>
-                  <a class="dropdown-item d-flex justify-content-between" href="/type#{{ cat[0] | uri_escape }}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge rounded-pill text-bg-light">{{ cat[1].size }}</span></a>
+                  <a class="dropdown-item d-flex justify-content-between" href="/type#{{ cat[0] | uri_escape }}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge rounded-pill text-bg-light align-text-bottom">{{ cat[1].size }}</span></a>
                 </li>
                 {% endif %}
               {% endfor %}

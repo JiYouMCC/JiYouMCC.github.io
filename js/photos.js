@@ -55,7 +55,7 @@ var Photos = {
     Photos.clearPhotos();
     for (var i = 0; i < Photos._folderNames.length; i++) {
       $("#folders").append(
-        $("<div></div>").addClass("col-lg-3 col-md-4 col-sm-6 col-xs-6 p-2").append(
+        $("<div></div>").addClass("col-md-4 col-6 p-2").append(
           $("<div></div>").addClass("photo-div card text-center").append(
             $("<a></a>").addClass("text-decoration-none").attr("folder", Photos._folderNames[i]).attr("href", "#").append(
               $("<div></div>").addClass("thumbnail").append(
@@ -66,8 +66,8 @@ var Photos = {
                 .css("object-position", "center")
                 .attr("src", Photos._folders[Photos._folderNames[i]][0].path)
               ).append(
-                $("<p></p>").addClass("mt-1 mb-2").text(Photos._folderNames[i] + "  ").append(
-                  $("<span></span>").addClass("badge rounded-pill text-bg-primary").text(Photos._folders[Photos._folderNames[i]].length)
+                $("<p></p>").attr("title", Photos._folderNames[i]).addClass("mt-1 mb-2 ms-1 me-1 text-nowrap text-truncate").text(Photos._folderNames[i] + "  ").append(
+                  $("<span></span>").addClass("badge rounded-pill text-bg-primary align-text-bottom").text(Photos._folders[Photos._folderNames[i]].length)
                 )
               )
             )
@@ -93,7 +93,7 @@ var Photos = {
     Photos.clearPhotos();
     for (var i = 0; i < Photos._folders[folderName].length; i++) {
       $("#folders").append(
-        $("<div></div>").addClass("col-xs-6 col-md-4 p-2").append(
+        $("<div></div>").addClass("col-6 col-md-4 p-2").append(
           $("<div></div>").addClass("photo-div").append(
             $("<a></a>").attr("imgPath", Photos._folders[folderName][i].path).attr("href", "#").append(
               $("<div></div>").addClass("thumbnail").append(
