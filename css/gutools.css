@@ -249,6 +249,10 @@ blockquote {
     border-left: 3px solid #a1afc9;
 }
 
+blockquote p {
+    margin-block-end: 0px;
+}
+
 @keyframes photo {
     from {opacity: 0;}
     to {opacity: 1;}
