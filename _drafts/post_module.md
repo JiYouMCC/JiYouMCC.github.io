@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 草稿模板
-date: 2099-01-01 00:00:00 +0800
+date: {{date:YYYY-MM-DD}} {{time:HH:mm}} +0800
 categories: 技术
 tags:
   - javascript
@@ -11,6 +11,8 @@ use_math: true
 use_mermaid: true
 ---
 这里放个模板，用来放草稿
+
+{{date:YYYY-MM-DD}}T{{time:HH:mm}}
 
 <!--more-->
 
@@ -50,7 +52,7 @@ use_mermaid: true
 
 参考： [](https://mermaid.js.org/#/)
 
-### 代码段 ###
+### 代码段
 
 ``` c
 #include<stdio.h>
