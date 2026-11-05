@@ -11,13 +11,13 @@
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i data-feather="folder"></i>&nbsp;分类<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item d-flex justify-content-between" href="/type" rel="{{ site.posts.size }}">所有文章 <span class="badge rounded-pill text-bg-light">{{ site.posts.size }}</span></a>
+                <a class="dropdown-item d-flex justify-content-between align-items-center" href="/type" rel="{{ site.posts.size }}">所有文章 <span class="badge rounded-pill text-bg-light">{{ site.posts.size }}</span></a>
               </li>
               <li><hr class="dropdown-divider"></li>
               {% for cat in site.categories %}
                 {% if cat[0] != 'sticky'%}
                 <li>
-                  <a class="dropdown-item d-flex justify-content-between" href="/type#{{ cat[0] | uri_escape }}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge rounded-pill text-bg-light align-text-bottom">{{ cat[1].size }}</span></a>
+                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="/type#{{ cat[0] | uri_escape }}" rel="{{ cat[1].size }}">{{ cat[0] }} <span class="badge rounded-pill text-bg-light align-text-bottom">{{ cat[1].size }}</span></a>
                 </li>
                 {% endif %}
               {% endfor %}
@@ -33,9 +33,13 @@
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i data-feather="tool"></i>&nbsp;工具<span class="caret"></span></a>
             <ul class="dropdown-menu">
               {% for tool in site.data.tools %}
+              {% if tool.divider %}
+              <li><hr class="dropdown-divider"></li>
+              {% else %}
               <li>
                 <a class="dropdown-item" href="{{ tool.href }}" data-placement="bottom" title="{{ tool.title }}" {% if tool.blank %}target="_blank"{% endif %}>{{ tool.name }}</a>
               </li>
+              {% endif %}
               {% endfor %}
             </ul>
           </li>

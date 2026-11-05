@@ -414,6 +414,15 @@ article textarea {
     height: 20px;
 }
 
+.navbar-brand .feather {
+    transform: translateY(-2px);
+}
+
+.tab-badge-count {
+    display: inline-block;
+    transform: translateY(-1px);
+}
+
 pre.notranslate {
     color: #000;
     background: #f8f8ff;

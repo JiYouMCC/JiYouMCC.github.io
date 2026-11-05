@@ -18,6 +18,8 @@
   href: /fatcatsub
   blank: true
 
+- divider: true
+
 - name: ASCII Art Text
   title: 文字转换ASCII艺术字符画
   href: /play/ascii_art/text
@@ -28,10 +30,19 @@
   href: /play/ascii_art/img
   blank: true
 
+- divider: true
+
 - name: ICY收发日历
   title: 明信片交换收发方格日历
   href: /play/icy
   blank: true
+
+- name: 我的明信片收藏册
+  title: 嵇尔的明信片收藏册
+  href: /postcards/
+  blank: true
+
+- divider: true
 
 - name: Ji You's github-comments Demo
   title: 基于GitHub Comments的留言系统Demo
