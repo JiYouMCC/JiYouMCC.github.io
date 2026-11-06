@@ -101,7 +101,7 @@ function addComment(comment) {
   feather.replace();
 }
 
-function showComments(issueId, postId) {
+async function showComments(issueId, postId) {
   $('div[id^=comments_]').remove();
   $("<div></div>")
     .attr("id", "refresh_comments")
@@ -110,49 +110,45 @@ function showComments(issueId, postId) {
       "<i data-feather=\"refresh-ccw\"></i>"
      ).append(" 载入中……").insertAfter($("#div_comments"));
   feather.replace();
-  function loopShowComments(issueId, page) {
-    GithubComments.Comments.Get(
-      issueId, 
-      function(result) {
-        if (result.status) {
-          if (result.links.length) {
-            for (index in result.links) {
-              var title = result.links[index].ref;
-              if (title == 'next') {
-                loopShowComments(issueId, page + 1);
-              }
-            }
-          }
-          for (var i = 0; i < result.data.length; i++) {
-            addComment(result.data[i]);
-          }
-          $("a[id^=button_reply_]").click(function() {
-            var reply = $(this).attr("reply");
-            $("#comment").val($("#comment").val() + "@" + reply + " ");
-            $("html,body").animate({
-              scrollTop: $("#comment").offset().top
-            }, 1000);
-            $("#comment").focus();
-          });
-        } else {
-          handleError(result.data);
-        }
-      },
-      page
-    )
-  };
-  GithubComments.Comments.Count(issueId, function(result) {
-    if (result.status) {
-      $("[comments-count='" + issueId + "']").text(result.count + OldComments.GetCommentsCount(postId));
-      if (result.count==0 && $('#comment_all_count').attr('with_old') != 'true') {
-        $("#comment_all_count").attr('style', 'border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;')
-      } else {
-        $("#comment_all_count").removeAttr('style');
-      }
+  try {
+    var countResult = await GithubComments.Comments.Count(issueId);
+    $("[comments-count='" + issueId + "']").text(countResult.count + OldComments.GetCommentsCount(postId));
+    if (countResult.count == 0 && $('#comment_all_count').attr('with_old') != 'true') {
+      $("#comment_all_count").attr('style', 'border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;')
+    } else {
+      $("#comment_all_count").removeAttr('style');
     }
-  });
-  $('#refresh_comments').remove();
-  loopShowComments(issueId, 1);
+  } catch (error) {
+    console.error('Unable to load GitHub comment count.', error);
+  }
+
+  try {
+    var page = 1;
+    while (page) {
+      var result = await GithubComments.Comments.Get(issueId, page);
+      for (var i = 0; i < result.data.length; i++) {
+        addComment(result.data[i]);
+      }
+
+      var nextLink = result.links.find(function(link) {
+        return link.ref == 'next';
+      });
+      page = nextLink ? nextLink.page : undefined;
+    }
+
+    $("a[id^=button_reply_]").click(function() {
+      var reply = $(this).attr("reply");
+      $("#comment").val($("#comment").val() + "@" + reply + " ");
+      $("html,body").animate({
+        scrollTop: $("#comment").offset().top
+      }, 1000);
+      $("#comment").focus();
+    });
+  } catch (error) {
+    handleError(error);
+  } finally {
+    $('#refresh_comments').remove();
+  }
 }
 
 function showLogin() {
@@ -211,44 +207,45 @@ function showUserForm(issueId, userInfo) {
     GithubComments.User.Logout();
     showForm();
   });
-  $("#add_comment").click(function() {
+  $("#add_comment").click(async function() {
     if ($("#comment").val()) {
       $("#add_comment").prop('disabled', true);
-      GithubComments.Comments.Add(issueId, $("#comment").val(), function(result) {
-        if (result.status) {
-          $("#comment").val("");
-          addComment(result.data);
-          $("[comments-count='" + issueId + "']").text(
-            parseInt($("[comments-count='" + issueId + "']").text()) + 1
-          );
-          $("#comment_all_count").removeAttr('style');
-        } else {
-          handleError(result.data);
-        }
-      });
-      $("#add_comment").prop('disabled', false);
+      try {
+        var comment = await GithubComments.Comments.Add(issueId, $("#comment").val());
+        $("#comment").val("");
+        addComment(comment);
+        $("[comments-count='" + issueId + "']").text(
+          parseInt($("[comments-count='" + issueId + "']").text()) + 1
+        );
+        $("#comment_all_count").removeAttr('style');
+      } catch (error) {
+        handleError(error);
+      } finally {
+        $("#add_comment").prop('disabled', false);
+      }
     } else {
       handleError("评论不能为空！");
     }
   });
 }
 
-function showForm(issueId) {
+async function showForm(issueId) {
   $("#comment_form").text("");
   $("#comment_form").append(
     $("<i data-feather=\"refresh-ccw\"></i>")
   );
   feather.replace();
-  GithubComments.User.Get(function(userInfo, error) {
+  try {
+    var userInfo = await GithubComments.User.Get();
     if (userInfo) {
       showUserForm(issueId, userInfo);
     } else {
       showLogin();
-      if (error) {
-        handleError(error);
-      }
     }
-  })
+  } catch (error) {
+    showLogin();
+    handleError(error);
+  }
 }
 
 function emojiProcess() {

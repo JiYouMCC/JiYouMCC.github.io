@@ -180,6 +180,23 @@ Mermaid 12 的官方浏览器基线为 Safari 17.4；若仍需支持更旧浏览
 
 授权码交换和读取登录用户信息均有 15 秒超时。发生网络、代理或 GitHub 授权错误时，评论框会恢复“登录”按钮并显示错误，而不会持续停留在刷新图标；优先检查 `GithubComments.CORS_ANYWHERE` 指向的代理和 OAuth App 回调地址。
 
+### 评论代码中的 async/await
+
+评论请求由 `GithubComments.Request()` 将 jQuery 的 `$.ajax()` 包装为 Promise。`Comments.Get`、`Count`、`Add` 和 `User.Get` 都是 `async` 函数：成功时 `return` 数据，失败时 `throw Error`。页面代码通过 `try`/`catch`/`finally` 使用它们：
+
+```javascript
+try {
+  const result = await GithubComments.Comments.Count(issueId);
+  updateCommentCount(result.count);
+} catch (error) {
+  console.error('Unable to load GitHub comment count.', error);
+} finally {
+  hideLoadingIndicator();
+}
+```
+
+这样每个异步操作只有一条成功路径和一条错误路径，不再需要将 `function(result) { ... }` 作为参数层层传递。`finally` 适合放恢复按钮、移除刷新图标等必须执行的 UI 清理；事件处理函数本身可以声明为 `async`。
+
 ## 相册：用静态文件和目录名驱动
 
 `_config.yml` 为路径 `photo` 下的静态文件赋予 `photo: true`。`photos.html` 从 `site.static_files` 过滤出这些文件，再交给 `js/photos.js` 按目录显示文件夹和图片。
