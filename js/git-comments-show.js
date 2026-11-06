@@ -239,11 +239,14 @@ function showForm(issueId) {
     $("<i data-feather=\"refresh-ccw\"></i>")
   );
   feather.replace();
-  GithubComments.User.Get(function(userInfo) {
+  GithubComments.User.Get(function(userInfo, error) {
     if (userInfo) {
       showUserForm(issueId, userInfo);
     } else {
       showLogin();
+      if (error) {
+        handleError(error);
+      }
     }
   })
 }

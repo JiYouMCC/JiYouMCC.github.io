@@ -178,6 +178,8 @@ Mermaid 12 的官方浏览器基线为 Safari 17.4；若仍需支持更旧浏览
 
 留言页 `guestbook.html` 也使用同一机制，但目前固定关联 `issue: 3`。不要随意复用同一个 Issue 编号，否则不同文章会显示和写入同一串评论。若登录跳转或提交失败，应检查 GitHub OAuth App 的回调地址和 `_includes/head.html` 中的初始化配置；不要把 OAuth client secret 放进静态仓库。
 
+授权码交换和读取登录用户信息均有 15 秒超时。发生网络、代理或 GitHub 授权错误时，评论框会恢复“登录”按钮并显示错误，而不会持续停留在刷新图标；优先检查 `GithubComments.CORS_ANYWHERE` 指向的代理和 OAuth App 回调地址。
+
 ## 相册：用静态文件和目录名驱动
 
 `_config.yml` 为路径 `photo` 下的静态文件赋予 `photo: true`。`photos.html` 从 `site.static_files` 过滤出这些文件，再交给 `js/photos.js` 按目录显示文件夹和图片。
