@@ -44,6 +44,7 @@ function insertEmoji(alias) {
   $("#comment").val($("#comment").val() + " :" + alias + ": ");
   $("#comment").focus();
   recordRecentEmoji(alias);
+  renderRecentEmojis();
 
   var modalElement = document.getElementById("emoji_picker_modal");
   if (modalElement) {
@@ -63,10 +64,22 @@ function createEmojiButton(alias) {
     });
 }
 
+function createQuickEmojiButton(alias) {
+  return $("<button></button>")
+    .attr("type", "button")
+    .attr("title", ":" + alias + ":")
+    .addClass("btn btn-link p-0 me-1 emoji-quick-item")
+    .append(GithubComments.Emoji.Parse(":" + alias + ":"))
+    .click(function() {
+      insertEmoji(alias);
+    });
+}
+
 function renderRecentEmojis() {
   var recent = getRecentEmojiAliases();
-  var section = $("#emoji_picker_recent_section");
-  var items = $("#emoji_picker_recent");
+  var section = $("#emoji_recent_section");
+  var items = $("#emoji_recent");
+  if (!section.length) return;
   items.text("");
 
   if (!recent.length) {
@@ -76,7 +89,7 @@ function renderRecentEmojis() {
 
   section.removeClass("d-none");
   for (var i = 0; i < recent.length; i++) {
-    items.append(createEmojiButton(recent[i]));
+    items.append(createQuickEmojiButton(recent[i]));
   }
 }
 
@@ -89,7 +102,6 @@ function renderEmojiPicker(page) {
   var pageCount = Math.max(1, Math.ceil(filtered.length / EMOJI_PAGE_SIZE));
   page = Math.min(Math.max(page, 1), pageCount);
 
-  renderRecentEmojis();
   $("#emoji_picker_results").text("找到 " + filtered.length + " 个表情");
   $("#emoji_picker_grid").text("");
 
@@ -144,10 +156,6 @@ function createEmojiPicker() {
           '</div>' +
           '<div class="modal-body">' +
             '<input id="emoji_picker_search" class="form-control mb-3" type="search" placeholder="按别名搜索，例如 smile">' +
-            '<div id="emoji_picker_recent_section" class="mb-3 d-none">' +
-              '<strong class="d-block mb-2">最近使用</strong>' +
-              '<div id="emoji_picker_recent" class="emoji-picker-grid"></div>' +
-            '</div>' +
             '<div id="emoji_picker_results" class="text-muted mb-2"></div>' +
             '<div id="emoji_picker_grid" class="emoji-picker-grid"></div>' +
           '</div>' +
@@ -353,16 +361,7 @@ function showUserForm(issueId, userInfo) {
   var bar = $("<div></div>").addClass('form-group').attr('id', 'emoji-bar');
   for (var i = 0; i < emojiList.length; i++) {
     var emoji = emojiList[i].slice(1, -1);
-    bar.append(
-      $("<button></button>")
-        .attr("type", "button")
-        .attr("title", emojiList[i])
-        .addClass("btn btn-link p-0 me-1 emoji-quick-item")
-        .append(GithubComments.Emoji.Parse(emojiList[i]))
-        .click(function() {
-          insertEmoji($(this).attr("title").slice(1, -1));
-        })
-    );
+    bar.append(createQuickEmojiButton(emoji));
   }
   bar.append(
     $("<button></button>")
@@ -373,6 +372,14 @@ function showUserForm(issueId, userInfo) {
       .click(showEmojiPicker)
   );
   $("#comment_form").append(bar);
+  $("#comment_form").append(
+    $("<div></div>")
+      .attr("id", "emoji_recent_section")
+      .addClass("form-group mt-2 d-none")
+      .append($("<strong></strong>").addClass("d-block mb-1").text("最近使用"))
+      .append($("<div></div>").attr("id", "emoji_recent"))
+  );
+  renderRecentEmojis();
   $("#comment_form").append(
     $("<div></div>").addClass('form-group  mt-2').append(
       $("<textarea></textarea>").attr('name', 'comment').attr('id', 'comment').addClass('form-control')
