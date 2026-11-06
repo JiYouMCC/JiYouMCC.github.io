@@ -291,10 +291,31 @@ body {
   margin-top: 69px;
 }
 
+/*分页和相邻文章导航*/
+.pagination {
+  --bs-pagination-bg: #e9f0f6;
+  --bs-pagination-border-color: #a1afc9;
+  --bs-pagination-hover-bg: var(--bs-body-bg);
+  --bs-pagination-hover-border-color: #8ba3bd;
+  --bs-pagination-focus-bg: #dbe7f0;
+}
+
 /*代码块格式配置*/
 article pre {
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #f8f8ff;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+article pre code {
+    padding: 0;
+    background-color: transparent;
+}
+
+article pre code.hljs {
+    padding: 0;
 }
 
 /*图片格式配置*/
