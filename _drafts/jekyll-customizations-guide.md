@@ -169,6 +169,7 @@ Mermaid 12 的官方浏览器基线为 Safari 17.4；若仍需支持更旧浏览
 - `js/git-comments-count.js` 在首页等列表页汇总 Issue 评论数。
 - `js/old-comments.js` 保存历史评论数据；页面同时展示旧评论数，以支持迁移前内容。
 - `js/comment.min.js` 会将每个 Issue 的评论页和评论数缓存到浏览器 `localStorage` 5 分钟；成功发表新评论后会立即清除该 Issue 的缓存。
+- 表情元数据由 GitHub `/emojis` 一次性返回并缓存；评论框保留常用表情，“更多表情”弹窗在浏览器端按别名搜索、每页显示 48 个，并记录最近使用的 12 个。
 
 为一篇新文章启用评论：
 

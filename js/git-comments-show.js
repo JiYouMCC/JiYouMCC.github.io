@@ -12,6 +12,177 @@ var emojiList = [":smile:",
   ":angry:",
   ":selfie:"
 ];
+var EMOJI_PAGE_SIZE = 48;
+var EMOJI_RECENT_LIMIT = 12;
+var EMOJI_RECENT_KEY = 'GITHUB_EMOJI_RECENT';
+
+function getRecentEmojiAliases() {
+  var stored = localStorage.getItem(EMOJI_RECENT_KEY);
+  if (!stored) return [];
+
+  try {
+    var aliases = JSON.parse(stored);
+    if (!Array.isArray(aliases)) throw new Error('Invalid recent emoji cache.');
+    return aliases.filter(function(alias) {
+      return GithubComments.Emoji.GetAliases().indexOf(alias) >= 0;
+    });
+  } catch (error) {
+    localStorage.removeItem(EMOJI_RECENT_KEY);
+    return [];
+  }
+}
+
+function recordRecentEmoji(alias) {
+  var aliases = getRecentEmojiAliases().filter(function(item) {
+    return item != alias;
+  });
+  aliases.unshift(alias);
+  localStorage.setItem(EMOJI_RECENT_KEY, JSON.stringify(aliases.slice(0, EMOJI_RECENT_LIMIT)));
+}
+
+function insertEmoji(alias) {
+  $("#comment").val($("#comment").val() + " :" + alias + ": ");
+  $("#comment").focus();
+  recordRecentEmoji(alias);
+
+  var modalElement = document.getElementById("emoji_picker_modal");
+  if (modalElement) {
+    bootstrap.Modal.getOrCreateInstance(modalElement).hide();
+  }
+}
+
+function createEmojiButton(alias) {
+  return $("<button></button>")
+    .attr("type", "button")
+    .attr("title", ":" + alias + ":")
+    .attr("aria-label", ":" + alias + ":")
+    .addClass("btn btn-light border emoji-picker-item")
+    .append(GithubComments.Emoji.Parse(":" + alias + ":"))
+    .click(function() {
+      insertEmoji(alias);
+    });
+}
+
+function renderRecentEmojis() {
+  var recent = getRecentEmojiAliases();
+  var section = $("#emoji_picker_recent_section");
+  var items = $("#emoji_picker_recent");
+  items.text("");
+
+  if (!recent.length) {
+    section.addClass("d-none");
+    return;
+  }
+
+  section.removeClass("d-none");
+  for (var i = 0; i < recent.length; i++) {
+    items.append(createEmojiButton(recent[i]));
+  }
+}
+
+function renderEmojiPicker(page) {
+  var aliases = GithubComments.Emoji.GetAliases();
+  var query = $("#emoji_picker_search").val().trim().toLowerCase();
+  var filtered = aliases.filter(function(alias) {
+    return alias.toLowerCase().indexOf(query) >= 0;
+  });
+  var pageCount = Math.max(1, Math.ceil(filtered.length / EMOJI_PAGE_SIZE));
+  page = Math.min(Math.max(page, 1), pageCount);
+
+  renderRecentEmojis();
+  $("#emoji_picker_results").text("找到 " + filtered.length + " 个表情");
+  $("#emoji_picker_grid").text("");
+
+  var start = (page - 1) * EMOJI_PAGE_SIZE;
+  for (var i = start; i < Math.min(start + EMOJI_PAGE_SIZE, filtered.length); i++) {
+    $("#emoji_picker_grid").append(createEmojiButton(filtered[i]));
+  }
+
+  var pagination = $("#emoji_picker_pagination");
+  pagination.text("");
+  var previous = $("<button></button>")
+    .attr("type", "button")
+    .addClass("page-link")
+    .text("上一页")
+    .click(function() {
+      renderEmojiPicker(page - 1);
+    });
+  pagination.append(
+    $("<li></li>")
+      .addClass("page-item" + (page == 1 ? " disabled" : ""))
+      .append(previous)
+  );
+  pagination.append(
+    $("<li></li>")
+      .addClass("page-item disabled")
+      .append($("<span></span>").addClass("page-link").text("第 " + page + " / " + pageCount + " 页"))
+  );
+  var next = $("<button></button>")
+    .attr("type", "button")
+    .addClass("page-link")
+    .text("下一页")
+    .click(function() {
+      renderEmojiPicker(page + 1);
+    });
+  pagination.append(
+    $("<li></li>")
+      .addClass("page-item" + (page == pageCount ? " disabled" : ""))
+      .append(next)
+  );
+}
+
+function createEmojiPicker() {
+  if ($("#emoji_picker_modal").length) return;
+
+  $("body").append(
+    '<div class="modal fade" id="emoji_picker_modal" tabindex="-1" aria-labelledby="emoji_picker_title" aria-hidden="true">' +
+      '<div class="modal-dialog modal-lg modal-dialog-scrollable">' +
+        '<div class="modal-content">' +
+          '<div class="modal-header">' +
+            '<h5 class="modal-title" id="emoji_picker_title">选择 GitHub 表情</h5>' +
+            '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' +
+          '</div>' +
+          '<div class="modal-body">' +
+            '<input id="emoji_picker_search" class="form-control mb-3" type="search" placeholder="按别名搜索，例如 smile">' +
+            '<div id="emoji_picker_recent_section" class="mb-3 d-none">' +
+              '<strong class="d-block mb-2">最近使用</strong>' +
+              '<div id="emoji_picker_recent" class="emoji-picker-grid"></div>' +
+            '</div>' +
+            '<div id="emoji_picker_results" class="text-muted mb-2"></div>' +
+            '<div id="emoji_picker_grid" class="emoji-picker-grid"></div>' +
+          '</div>' +
+          '<div class="modal-footer justify-content-center">' +
+            '<ul id="emoji_picker_pagination" class="pagination pagination-sm mb-0"></ul>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+  );
+
+  $("#emoji_picker_search").on("input", function() {
+    renderEmojiPicker(1);
+  });
+}
+
+async function showEmojiPicker() {
+  createEmojiPicker();
+  bootstrap.Modal.getOrCreateInstance(document.getElementById("emoji_picker_modal")).show();
+  $("#emoji_picker_results").text("正在加载表情……");
+  $("#emoji_picker_grid").text("");
+
+  try {
+    if (!GithubComments._emojiJson && GithubComments._emojiLoadPromise) {
+      await GithubComments._emojiLoadPromise;
+    }
+
+    if (!GithubComments._emojiJson) {
+      throw new Error("表情列表尚未加载，请稍后重试。");
+    }
+    renderEmojiPicker(1);
+  } catch (error) {
+    $("#emoji_picker_results").text(error.message);
+  }
+}
 
 function formatDate(e) {
   return e.getFullYear() + "-" + ("0" + (e.getMonth() + 1)).slice(-2) + "-" + ("0" + e.getDate()).slice(-2) + " " + ("0" + e.getHours()).slice(-2) + ":" + ("0" + e.getMinutes()).slice(-2) + ":" + ("0" + e.getSeconds()).slice(-2) + " "
@@ -181,18 +352,27 @@ function showUserForm(issueId, userInfo) {
   );
   var bar = $("<div></div>").addClass('form-group').attr('id', 'emoji-bar');
   for (var i = 0; i < emojiList.length; i++) {
-    var emoji = emojiList[i];
+    var emoji = emojiList[i].slice(1, -1);
     bar.append(
-      $("<a></a>").attr('id', 'emoji-' + i).attr('emoji', emoji).append(
-        GithubComments.Emoji.Parse(emoji)
-      )
+      $("<button></button>")
+        .attr("type", "button")
+        .attr("title", emojiList[i])
+        .addClass("btn btn-link p-0 me-1 emoji-quick-item")
+        .append(GithubComments.Emoji.Parse(emojiList[i]))
+        .click(function() {
+          insertEmoji($(this).attr("title").slice(1, -1));
+        })
     );
-  };
+  }
+  bar.append(
+    $("<button></button>")
+      .attr("type", "button")
+      .attr("id", "emoji_picker_button")
+      .addClass("btn btn-sm btn-outline-secondary ms-2")
+      .text("更多表情")
+      .click(showEmojiPicker)
+  );
   $("#comment_form").append(bar);
-  $("a[id^=emoji-]").click(function() {
-    var emoji = $(this).attr("emoji");
-    $("#comment").val($("#comment").val() + " " + emoji + " ");
-  });
   $("#comment_form").append(
     $("<div></div>").addClass('form-group  mt-2').append(
       $("<textarea></textarea>").attr('name', 'comment').attr('id', 'comment').addClass('form-control')

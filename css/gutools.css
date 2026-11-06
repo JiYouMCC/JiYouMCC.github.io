@@ -44,6 +44,27 @@ input.task-list-item-checkbox {
     margin-right: 5px;
 }
 
+.emoji-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+    gap: 6px;
+}
+
+.emoji-picker-item {
+    min-height: 42px;
+    padding: 4px;
+}
+
+.emoji-picker-item .emoji {
+    height: 24px;
+    width: 24px;
+}
+
+.emoji-quick-item .emoji {
+    height: 24px;
+    width: 24px;
+}
+
 /*.page_blog_content table {
   width: 100%;
   max-width: 100%;
