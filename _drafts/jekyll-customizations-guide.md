@@ -168,6 +168,7 @@ Mermaid 12 的官方浏览器基线为 Safari 17.4；若仍需支持更旧浏览
 - `_includes/comments.html` 依据 `page.issue` 决定是否显示提交框，并用该 Issue 编号拉取评论。
 - `js/git-comments-count.js` 在首页等列表页汇总 Issue 评论数。
 - `js/old-comments.js` 保存历史评论数据；页面同时展示旧评论数，以支持迁移前内容。
+- `js/comment.min.js` 会将每个 Issue 的评论页和评论数缓存到浏览器 `localStorage` 5 分钟；成功发表新评论后会立即清除该 Issue 的缓存。
 
 为一篇新文章启用评论：
 
